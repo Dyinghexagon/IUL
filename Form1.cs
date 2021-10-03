@@ -120,11 +120,6 @@ namespace IUL
                 CreateTable(nameFile, IUL);
                 i++;
             }
-            //for(int i=0;i< chapter.Length; i++) 
-            //{
-            //    string nameFile = "File" + i.ToString() + ".pdf";
-            //    CreateTables(nameFile);
-            //}
         }
         void CreateTable(string nameFile, IULValue IUL)
         {
