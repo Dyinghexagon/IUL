@@ -14,12 +14,12 @@ using iTextSharp.text.pdf;
 using MySql.Data.MySqlClient;
 namespace IUL
 {
-    public partial class Form1 : Form
+    public partial class CreateIUL : Form
     {
         List<IULValue> IULs = new List<IULValue>();
         List<string> fileNames = new List<string>();
         string dateSigning;
-        public Form1()
+        public CreateIUL()
         {
             InitializeComponent();
             dateSigning = textBox1.Text;

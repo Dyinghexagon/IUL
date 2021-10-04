@@ -1,7 +1,7 @@
 ﻿
 namespace IUL
 {
-    partial class Form1
+    partial class CreateIUL
     {
         /// <summary>
         ///  Required designer variable.
