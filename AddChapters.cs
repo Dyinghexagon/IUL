@@ -86,6 +86,9 @@ namespace IUL
             {
                 chapters.Add(chapter.ToString());
             }
+            AddAuthorsChapters addAuthorsChapters = new AddAuthorsChapters(chapters);
+            addAuthorsChapters.Show();
+            this.Visible = false;
         }
     }
 }

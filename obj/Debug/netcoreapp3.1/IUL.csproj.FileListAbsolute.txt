@@ -51,7 +51,6 @@ D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.GeneratedMSBuildEditorConf
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AssemblyInfoInputs.cache
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AssemblyInfo.cs
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.csproj.CoreCompileInputs.cache
-D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.csproj.CopyComplete
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.dll
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.pdb
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.genruntimeconfig.cache
@@ -59,3 +58,4 @@ D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddProject.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.Main.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddChapters.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.CreateIUL.resources
+D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddAuthorsChapters.resources
