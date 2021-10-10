@@ -1,0 +1,14 @@
+use IUL;
+INSERT INTO Staff (Surname, Work_role) VALUES('Рябов','Н. контр.');
+INSERT INTO Staff (Surname, Work_role) VALUES('Рябов','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Читайкин','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Истрашкин','Руководитель группы');
+INSERT INTO Staff (Surname, Work_role) VALUES('Боровкова','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Чиранов','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Спиридонова','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Архипов','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Шугаева','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Ловцева','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Янина','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Салтанова','Разработал');
+INSERT INTO Staff (Surname, Work_role) VALUES('Комарова','Разработал');

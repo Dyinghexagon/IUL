@@ -22,57 +22,66 @@ namespace IUL
         }
         /// <summary>
         /// Доделать:
-        /// 1.  Выгрузку из БД "рабочих ролей"
-        /// 2.  Выгрузку из БД "исполнителей"
-        /// 3.  Загрузку в БД итоговых значений
-        /// 4.  Проработать UI/UX
+        /// 1.  Загрузку в БД итоговых значений
+        /// 2.  Проработать UI/UX
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             int distanceBetween = 25;
+            int countCombobox = 6;
+            int heightObject = 15;
+            Size sizeTabControl = new Size(50 + 260, heightObject + heightObject * countCombobox + distanceBetween * countCombobox);
             int iter = 0;
-            object[] arr = new object[] { 1, 2, 3, 4, 5, 6 };
-            string[] workRoles = new string[] { "Разраб.", "Разраб.", "Рук. груп.", "Пров.", "ГИП", "Н. контр." };
-            int maxSize = workRoles[2].Length * 7;
+            List<string> workRolesStaff = new List<string>(Staff.GetFаield("Work_role"));
+            List<string> surnameStaff = new List<string>(Staff.GetFаield("Surname"));
+            
             foreach (var chapter in _chapters) 
             {
-                Point labelLocation = new Point(10, 10);
+                Point location = new Point(10, 35);
                 TabPage tabPage = new TabPage();
                 tabControl1.TabPages.Add(tabPage);
                 tabPage.Name = "TabPage" + iter.ToString();
                 tabPage.Text = chapter;
-                for (int i = 0; i < workRoles.Length; i++)
+                tabPage.Controls.Add(CreateLabel("label1" + tabPage.Name, new Point(location.X, location.Y-distanceBetween), "РОЛЬ"));
+                tabPage.Controls.Add(CreateLabel("label2" + tabPage.Name, new Point(location.X + 130, location.Y-distanceBetween), "ИСПОЛНИТЕЛИ"));
+                for (int i = 0; i < countCombobox; i++)
                 {
-                    labelLocation.Y += distanceBetween;
-                    Size size = new Size(workRoles[i].Length * 7, 15);
-                    string name = "Label" + i.ToString();
-                    string text = workRoles[i];
-                    tabPage.Controls.Add(CreateLabel(size, name, labelLocation, text));
-                    Size sizeComboBox = new Size(120, 15);
-                    string nameComboBox = "ComboBox" + iter.ToString();
-                    Point locationComboBox = new Point(labelLocation.X + maxSize, labelLocation.Y);
-                    tabPage.Controls.Add(CreateComboBox(sizeComboBox, nameComboBox, locationComboBox, arr));
-                    tabPage.Controls.Add(CreateComboBox(sizeComboBox, nameComboBox, new Point(locationComboBox.X + sizeComboBox.Width + 10, labelLocation.Y), arr));
-
+                    string nameComboBoxWorkRole = "ComboBox" + i.ToString();
+                    string nameComboBoxSurname = "ComboBox" + i.ToString() + "_2";
+                    tabPage.Controls.Add(CreateComboBox(nameComboBoxWorkRole, location, workRolesStaff.ToArray()));
+                    tabPage.Controls.Add(CreateComboBox(nameComboBoxSurname, new Point(location.X + 130, location.Y), surnameStaff.ToArray()));
+                    location.Y += distanceBetween;
                 }
+                tabPage.Controls.Add(CreateButton("Button" + tabPage.Name, new Point(location.X + 130, location.Y), "Добавить"));
+                tabControl1.Size = sizeTabControl;
+                tabPage.Size = sizeTabControl;
                 iter++;
             }
         }
-        private Label CreateLabel(Size size, string name, Point location, string text) 
+        private Label CreateLabel(string name, Point location, string text) 
         {
             Label label = new Label();
-            label.Size = new Size(text.Length * 7, 15);
+            label.Size = new Size(text.Length * 10, 15);
             label.Name = name;
             label.Location = location;
             label.Text = text;
             return label;
         }
-        private ComboBox CreateComboBox(Size size, string name, Point location, object[] arr) 
+        private Button CreateButton(string name, Point location, string text) 
+        {
+            Button button = new Button();
+            button.Name = name;
+            button.Location = location;
+            button.Text = text;
+            button.Click += new System.EventHandler(this.button_click);
+            return button;
+        }
+        private ComboBox CreateComboBox(string name, Point location, object[] arr) 
         {
             ComboBox comboBox = new ComboBox();
-            comboBox.Size = size;
+            comboBox.Size = new Size(120, 15);
             comboBox.Name = name;
             comboBox.Location = location;
             comboBox.Items.AddRange(arr);
@@ -82,6 +91,11 @@ namespace IUL
         private void comboBox_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
+        }
+        private void button_click(object sender, EventArgs e) 
+        {
+            MessageBox.Show(tabControl1.SelectedTab.Text);
+
         }
     }
 }

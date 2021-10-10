@@ -40,8 +40,8 @@ namespace IUL
                 }
                 reader.Close();
                 int i = 0;
-                AuthorTeam GIP = new AuthorTeam();
-                AuthorTeam NKontr = new AuthorTeam();
+                Staff GIP = new Staff();
+                Staff NKontr = new Staff();
                 string queryGIP = "SELECT work_role, surname FROM engineers WHERE work_role = 'ГИП';";
                 string queryNKontr = "SELECT work_role, surname FROM engineers WHERE work_role = 'Н.Контр';";
                 MySqlCommand selectGIP = new MySqlCommand(queryGIP, conn);
@@ -67,11 +67,11 @@ namespace IUL
                     MySqlParameter codeIdParam = new MySqlParameter("@code", code);
                     selectAuthorTeam.Parameters.Add(codeIdParam);
                     reader = selectAuthorTeam.ExecuteReader();
-                    List<AuthorTeam> authorTeam = new List<AuthorTeam>();
+                    List<Staff> authorTeam = new List<Staff>();
                     authorTeam.Add(GIP);
                     while (reader.Read()) 
                     {
-                        authorTeam.Add(new AuthorTeam(reader[0].ToString(), reader[1].ToString()));
+                        authorTeam.Add(new Staff(reader[0].ToString(), reader[1].ToString()));
                     }
                     authorTeam.Add(NKontr);
                     IULs.Add(new IULValue(code,(code + "-УЛ"), namesDoc[i], authorTeam));

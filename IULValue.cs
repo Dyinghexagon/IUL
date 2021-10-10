@@ -6,14 +6,14 @@ namespace IUL
 {
     class IULValue
     {
-        public IULValue(string code, string codeIUL, string nameDoc, AuthorTeam author) 
+        public IULValue(string code, string codeIUL, string nameDoc, Staff author) 
         {
             _code = code;
             _codeIUL = codeIUL;
             _nameDoc = nameDoc;
             _AuthorTeam.Add(author);
         }
-        public IULValue(string code, string codeIUL, string nameDoc, List<AuthorTeam> authorTeam)
+        public IULValue(string code, string codeIUL, string nameDoc, List<Staff> authorTeam)
         {
             _code = code;
             _codeIUL = codeIUL;
@@ -26,8 +26,8 @@ namespace IUL
         private string _code;
         private string _codeIUL;
         private string _nameDoc;
-        private List<AuthorTeam> _AuthorTeam= new List<AuthorTeam>();
-        public List<AuthorTeam> AuthorTeam
+        private List<Staff> _AuthorTeam= new List<Staff>();
+        public List<Staff> AuthorTeam
         {
             get 
             {
