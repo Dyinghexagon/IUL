@@ -21,5 +21,12 @@ namespace IUL
             this.Visible = false;
             addProject.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CreateIUL createIUL = new CreateIUL();
+            createIUL.Show();
+            this.Hide();
+        }
     }
 }
