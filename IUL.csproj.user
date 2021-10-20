@@ -4,9 +4,6 @@
     <Compile Update="AddAuthorsChapters.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AddChapters.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="AddProject.cs">
       <SubType>Form</SubType>
     </Compile>

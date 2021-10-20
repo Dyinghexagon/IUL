@@ -10,7 +10,6 @@ namespace IUL
 {
     public partial class AddAuthorsChapters : Form
     {
-        List<string> _chapters;
         public AddAuthorsChapters()
         {
             InitializeComponent();
@@ -18,44 +17,36 @@ namespace IUL
         public AddAuthorsChapters(List<string> chapters)
         {
             InitializeComponent();
-            _chapters = new List<string>(chapters);
+            FillingTabControl(chapters, tabControl1);
         }
-        /// <summary>
-        /// Доделать:
-        /// 1.  Загрузку в БД итоговых значений
-        /// 2.  Проработать UI/UX
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        private void FillingTabControl(List<string> chapters, TabControl tabControl) 
         {
             int distanceBetween = 25;
             int countCombobox = 6;
             int heightObject = 15;
             Size sizeTabControl = new Size(50 + 260, heightObject + heightObject * countCombobox + distanceBetween * countCombobox);
             int iter = 0;
-            List<string> workRolesStaff = new List<string>(Staff.GetFаield("Work_role"));
-            List<string> surnameStaff = new List<string>(Staff.GetFаield("Surname"));
-            
-            foreach (var chapter in _chapters) 
+            List<string> roles = new List<string>(Roles.GetFullOrAbbreviatedNameRoles(true));
+            List<string> fioEmployees = new List<string>(Employees.GetFIOList());
+            foreach (var chapter in chapters)
             {
                 Point location = new Point(10, 35);
                 TabPage tabPage = new TabPage();
-                tabControl1.TabPages.Add(tabPage);
+                tabControl.TabPages.Add(tabPage);
                 tabPage.Name = "TabPage" + iter.ToString();
                 tabPage.Text = chapter;
-                tabPage.Controls.Add(CreateLabel("label1" + tabPage.Name, new Point(location.X, location.Y-distanceBetween), "РОЛЬ"));
-                tabPage.Controls.Add(CreateLabel("label2" + tabPage.Name, new Point(location.X + 130, location.Y-distanceBetween), "ИСПОЛНИТЕЛИ"));
+                tabPage.Controls.Add(CreateLabel("label1" + tabPage.Name, new Point(location.X, location.Y - distanceBetween), "РОЛЬ"));
+                tabPage.Controls.Add(CreateLabel("label2" + tabPage.Name, new Point(location.X + 130, location.Y - distanceBetween), "ИСПОЛНИТЕЛИ"));
                 for (int i = 0; i < countCombobox; i++)
                 {
                     string nameComboBoxWorkRole = "ComboBox" + i.ToString();
                     string nameComboBoxSurname = "ComboBox" + i.ToString() + "_2";
-                    tabPage.Controls.Add(CreateComboBox(nameComboBoxWorkRole, location, workRolesStaff.ToArray()));
-                    tabPage.Controls.Add(CreateComboBox(nameComboBoxSurname, new Point(location.X + 130, location.Y), surnameStaff.ToArray()));
+                    tabPage.Controls.Add(CreateComboBox(nameComboBoxWorkRole, location, roles.ToArray()));
+                    tabPage.Controls.Add(CreateComboBox(nameComboBoxSurname, new Point(location.X + 130, location.Y), fioEmployees.ToArray()));
                     location.Y += distanceBetween;
                 }
                 tabPage.Controls.Add(CreateButton("Button" + tabPage.Name, new Point(location.X + 130, location.Y), "Добавить"));
-                tabControl1.Size = sizeTabControl;
+                tabControl.Size = sizeTabControl;
                 tabPage.Size = sizeTabControl;
                 iter++;
             }
@@ -95,7 +86,6 @@ namespace IUL
         private void button_click(object sender, EventArgs e) 
         {
             MessageBox.Show(tabControl1.SelectedTab.Text);
-
         }
     }
 }

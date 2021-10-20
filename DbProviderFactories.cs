@@ -22,6 +22,12 @@ namespace IUL
             SqlConnection conn = new SqlConnection(connStr);
             return conn;
         }
+        public static SqlConnection GetDBConnection()
+        {
+            string connStr = @"Data Source=18.117.109.19\SQLEXPRESS,1433;Initial Catalog=IUL;User ID=root;Password=root";
+            SqlConnection conn = new SqlConnection(connStr);
+            return conn;
+        }
         public static void CheckConnection(string dataSourse, string nameDB)
         {
             Console.WriteLine("Getting Connection ...");
@@ -38,16 +44,44 @@ namespace IUL
             }
 
         }
-        public static int GetCountRows(string server, string dataBase, string tableName)
+        public static async Task<int> GetCountRowsAsync(string tableName)
         {
             int count = 0;
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection(server, dataBase))
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
-                connection.Open();
+                await connection.OpenAsync();
                 string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
                 using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
                 {
-                    count = (Int32)getchild.ExecuteScalar();
+                    count =Convert.ToInt32(getchild.ExecuteScalarAsync());
+                }
+            }
+            return count;
+        }
+        public static async Task<int> GetCountСolumnsAsync(string tableName)
+        {
+            object count = 0;
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                await connection.OpenAsync();
+                string query = "SELECT count(*) FROM ["+tableName+"]";
+                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                {
+                    count = await getchild.ExecuteScalarAsync();
+                }
+            }
+            return Convert.ToInt32(count);
+        }
+        public static int GetCountСolumns(string tableName)
+        {
+            int count = 0;
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                string query = "SELECT count(*) FROM [" + tableName + "]";
+                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                {
+                    count = Convert.ToInt32(getchild.ExecuteScalar());
                 }
             }
             return count;

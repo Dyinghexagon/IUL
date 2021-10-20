@@ -42,6 +42,7 @@ namespace IUL
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +124,7 @@ namespace IUL
             // checkedListBox2
             // 
             this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(12, 193);
+            this.checkedListBox2.Location = new System.Drawing.Point(9, 229);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(197, 22);
             this.checkedListBox2.TabIndex = 13;
@@ -131,7 +132,7 @@ namespace IUL
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 175);
+            this.label1.Location = new System.Drawing.Point(9, 211);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 15);
             this.label1.TabIndex = 14;
@@ -166,11 +167,22 @@ namespace IUL
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(565, 164);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(94, 41);
+            this.button4.TabIndex = 18;
+            this.button4.Text = "Добавить исполнителей";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // AddProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 591);
+            this.ClientSize = new System.Drawing.Size(665, 609);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
@@ -204,5 +216,6 @@ namespace IUL
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

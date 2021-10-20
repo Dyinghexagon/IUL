@@ -20,15 +20,15 @@ namespace IUL
         }
         private void CreateFolderProject() 
         {
-            List<string> chapters = new List<string>(20);
+            List<string> _chapters = new List<string>(20);
             foreach (var chapter in checkedListBox2.CheckedItems)
             {
-                chapters.Add(chapter.ToString());
+                _chapters.Add(chapter.ToString());
             }
-            string filePath;
+            string pathToMainFolder;
             if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
-            filePath = folderBrowserDialog1.SelectedPath;
+            pathToMainFolder = folderBrowserDialog1.SelectedPath;
             string nameMaiFolder;
             if (textBox1.Text.Length == 0)
             {
@@ -39,27 +39,32 @@ namespace IUL
             {
                 nameMaiFolder = textBox1.Text;
             }
-            CreateFolder(nameMaiFolder, filePath);//Создание папки проекта
-            Dictionary<string, string> dictSubFolder = new Dictionary<string, string>();
-            dictSubFolder.Add("!Изыскания", filePath + "\\" + nameMaiFolder);
-            dictSubFolder.Add("!ПД", filePath + "\\" + nameMaiFolder);
-            dictSubFolder.Add("!ИРД", filePath + "\\" + nameMaiFolder);
-            //Создание папок
-            foreach (var sf in dictSubFolder)
-            {
-                CreateFolder(sf.Key, sf.Value);
-            }
-            CreateResearchs(filePath + "\\" + nameMaiFolder + "\\" + "!Изыскания");
-            string keyFilePd = "!ПД";
             
-            foreach(var chapter in chapters) 
+            CreateFolder(nameMaiFolder, pathToMainFolder);//Создание папки проекта 
+            // pathToMainFolder - путь к папке где необходимо создать папку проекта
+            // pathMainFolder - путь самой папки проекта, т. е. путь к главной папке + её название
+            string pathMainFolder = pathToMainFolder + "\\" + nameMaiFolder;
+            List<string> subFolders = new List<string>() 
             {
-                string filePD = filePath + "\\" + nameMaiFolder + "\\" + keyFilePd + "\\";
-                CreateFolder(chapter, filePD);
+                "!Изыскания",
+                "!ПД",
+                "!ИРД",
+                "!ИУЛ",
+                "!Экспертиза"
+            };
+            //Создание папок
+            foreach(var subFolder in subFolders) 
+            {
+                CreateFolder(subFolder, pathMainFolder);
+            }
+            string keyFilePd = "!ПД";
+            string pathPD = pathMainFolder + "\\" + keyFilePd + "\\";
+            foreach (var chapter in _chapters) 
+            {
+                CreateFolder(chapter, pathPD);
 
             }
-            string path = filePath + "\\" + nameMaiFolder + "\\" + keyFilePd + "\\";
-            CreateFolderSource(chapters, path);
+            CreateFolderSource(_chapters, pathPD);
 
         }
         /// <summary>
@@ -69,12 +74,19 @@ namespace IUL
         /// <param name="path">Путь к папке</param>
         private void CreateFolder(string folderName, string path) 
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(path);
-            if (!dirInfo.Exists)
+            if (folderName.Equals("!Изыскания")) 
             {
-                dirInfo.Create();
+                CreateResearchs(path + "\\" + "!Изыскания");
             }
-            dirInfo.CreateSubdirectory(folderName);
+            else 
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(path);
+                if (!dirInfo.Exists)
+                {
+                    dirInfo.Create();
+                }
+                dirInfo.CreateSubdirectory(folderName);
+            }
         } 
         /// <summary>
         /// Метод создающий подпапки для Изысканий
@@ -150,8 +162,9 @@ namespace IUL
                     "Раздел 12. Иная документация в случаях, предусмотренных федеральными законами"
                 });
                 checkedListBox2.Size = new Size(605, 350);
-                //checkedListBox2.Size = new Size(94 * 5, 19 * 30);
+
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -173,6 +186,27 @@ namespace IUL
             {
                 checkedListBox1.SetItemChecked(i, true);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox2.Items.Count == 0)
+            {
+                MessageBox.Show("Необходимо выбрать тип проекта!", "Ошибка!");
+                return;
+            }
+            List<string> selectedChapters = new List<string>(20);
+            foreach (var chapter in checkedListBox2.CheckedItems)
+            {
+                selectedChapters.Add(chapter.ToString());
+            }
+            foreach (var chapter in checkedListBox1.CheckedItems)
+            {
+                selectedChapters.Add(chapter.ToString());
+            }
+            AddAuthorsChapters addAuthorsChapters = new AddAuthorsChapters(selectedChapters);
+            addAuthorsChapters.Show();
+
         }
     }
 }
