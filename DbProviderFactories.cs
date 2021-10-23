@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-
+using System.Configuration;
 namespace IUL
 {
     class DbProviderFactories
@@ -17,21 +17,21 @@ namespace IUL
         /// <returns></returns>
         public static SqlConnection GetDBConnection(string dataSourse, string nameDB)
         {
-            //string connStr = @"Data Source=18.117.109.19\SQLEXPRESS,1433;Initial Catalog=lab3;User ID=root;Password=root";
             string connStr = @"Data Source=" + dataSourse + "\\SQLEXPRESS,1433;Initial Catalog=" + nameDB + ";User ID=root;Password=root";
             SqlConnection conn = new SqlConnection(connStr);
             return conn;
         }
         public static SqlConnection GetDBConnection()
         {
-            string connStr = @"Data Source=18.117.109.19\SQLEXPRESS,1433;Initial Catalog=IUL;User ID=root;Password=root";
-            SqlConnection conn = new SqlConnection(connStr);
+
+            string connectionString = ConfigurationManager.AppSettings["conn"];
+            SqlConnection conn = new SqlConnection(connectionString);
             return conn;
         }
-        public static void CheckConnection(string dataSourse, string nameDB)
+        public static void CheckConnection()
         {
             Console.WriteLine("Getting Connection ...");
-            SqlConnection conn = DbProviderFactories.GetDBConnection(dataSourse, nameDB);
+            SqlConnection conn = DbProviderFactories.GetDBConnection();
             try
             {
                 Console.WriteLine("Openning Connection ...");
@@ -54,6 +54,20 @@ namespace IUL
                 using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
                 {
                     count =Convert.ToInt32(getchild.ExecuteScalarAsync());
+                }
+            }
+            return count;
+        }
+        public static int GetCountRows(string tableName)
+        {
+            int count = 0;
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
+                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                {
+                    count = Convert.ToInt32(getchild.ExecuteScalarAsync());
                 }
             }
             return count;

@@ -56,7 +56,6 @@ D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.pdb
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.genruntimeconfig.cache
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddProject.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.Main.resources
-D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddChapters.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.CreateIUL.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddAuthorsChapters.resources
 D:\ФАЙЛЫ\Project\IUL\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
@@ -103,3 +102,4 @@ C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.csproj.CopyC
 C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.dll
 C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.pdb
 C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.genruntimeconfig.cache
+D:\ФАЙЛЫ\Project\IUL\bin\Debug\netcoreapp3.1\IUL.dll.config
