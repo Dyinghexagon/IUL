@@ -51,8 +51,7 @@ namespace IUL
                         {
                             string fname = reader.GetValue(0).ToString().Trim();
                             string name = reader.GetValue(1).ToString().Trim();
-                            string patromic = reader.GetValue(2).ToString().Trim();
-                            FIO = fname + " " + name[0] + ". " + patromic[0] + ".";
+                            FIO = fname;
                         }
                     }
                 }

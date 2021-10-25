@@ -1,7 +1,7 @@
 ﻿
 namespace IUL
 {
-    partial class AddAuthorsChapters
+    partial class AddSubChapters
     {
         /// <summary>
         /// Required designer variable.
@@ -34,22 +34,21 @@ namespace IUL
             // 
             // tabControl1
             // 
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(170, 160);
-            this.tabControl1.TabIndex = 2;
+            this.tabControl1.Size = new System.Drawing.Size(200, 100);
+            this.tabControl1.TabIndex = 0;
             // 
-            // AddAuthorsChapters
+            // AddSubChapters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 333);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "AddAuthorsChapters";
-            this.Text = "AddAuthorsChapters";
-            this.Load += new System.EventHandler(this.AddAuthorsChapters_Load);
+            this.Name = "AddSubChapters";
+            this.Text = "AddSubChapters";
+            this.Load += new System.EventHandler(this.AddSubChapters_Load);
             this.ResumeLayout(false);
 
         }

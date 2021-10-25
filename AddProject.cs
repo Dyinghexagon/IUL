@@ -11,13 +11,10 @@ namespace IUL
 {
     public partial class AddProject : Form
     {
+        static bool _isAddSubChapter = false;
         public AddProject()
         {
             InitializeComponent();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            CreateFolderProject();
         }
         private void CreateFolderProject() 
         {
@@ -168,28 +165,16 @@ namespace IUL
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonAddSubChapters_Click(object sender, EventArgs e)
         {
-            if(checkedListBox2.Items.Count == 0) 
-            {
-                MessageBox.Show("Необходимо выбрать тип проекта!", "Ошибка!");
-                return;
-            }
-            for(int i=0; i < checkedListBox2.Items.Count; i++) 
-            {
-                checkedListBox2.SetItemChecked(i, true);
-            }
+            _isAddSubChapter = true;
+            List<string> selectedChapters = new List<string>(20);
+            SelectedChapters(ref selectedChapters);
+            AddSubChapters addSubChapters = new AddSubChapters(ref selectedChapters);
+            addSubChapters.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-            {
-                checkedListBox1.SetItemChecked(i, true);
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonAddAuthorsChapters_Click(object sender, EventArgs e)
         {
             if (checkedListBox2.Items.Count == 0)
             {
@@ -197,6 +182,39 @@ namespace IUL
                 return;
             }
             List<string> selectedChapters = new List<string>(20);
+            SelectedChapters(ref selectedChapters);
+            AddAuthorsChapters addAuthorsChapters = new AddAuthorsChapters(selectedChapters);
+            addAuthorsChapters.Show();
+        }
+
+        private void buttonSelectAllReseach_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+            }
+        }
+
+        private void buttonSelectAllChapters_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox2.Items.Count == 0)
+            {
+                MessageBox.Show("Необходимо выбрать тип проекта!", "Ошибка!");
+                return;
+            }
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+                checkedListBox2.SetItemChecked(i, true);
+            }
+        }
+
+        private void buttonCreateFolderProject_Click(object sender, EventArgs e)
+        {
+            CreateFolderProject();
+        }
+
+        private void SelectedChapters(ref List<string> selectedChapters) 
+        {
             foreach (var chapter in checkedListBox2.CheckedItems)
             {
                 selectedChapters.Add(chapter.ToString());
@@ -205,9 +223,6 @@ namespace IUL
             {
                 selectedChapters.Add(chapter.ToString());
             }
-            AddAuthorsChapters addAuthorsChapters = new AddAuthorsChapters(selectedChapters);
-            addAuthorsChapters.Show();
-
         }
     }
 }

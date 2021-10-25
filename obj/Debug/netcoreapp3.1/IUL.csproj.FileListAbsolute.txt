@@ -103,3 +103,5 @@ C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.dll
 C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.pdb
 C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.genruntimeconfig.cache
 D:\ФАЙЛЫ\Project\IUL\bin\Debug\netcoreapp3.1\IUL.dll.config
+C:\Users\dying\Desktop\РАБОТА\IUL\bin\Debug\netcoreapp3.1\IUL.dll.config
+C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.AddSubChapters.resources

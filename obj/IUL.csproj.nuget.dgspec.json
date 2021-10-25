@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ФАЙЛЫ\\Project\\IUL\\IUL.csproj": {}
+    "C:\\Users\\dying\\Desktop\\РАБОТА\\IUL\\IUL.csproj": {}
   },
   "projects": {
-    "D:\\ФАЙЛЫ\\Project\\IUL\\IUL.csproj": {
+    "C:\\Users\\dying\\Desktop\\РАБОТА\\IUL\\IUL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ФАЙЛЫ\\Project\\IUL\\IUL.csproj",
+        "projectUniqueName": "C:\\Users\\dying\\Desktop\\РАБОТА\\IUL\\IUL.csproj",
         "projectName": "IUL",
-        "projectPath": "D:\\ФАЙЛЫ\\Project\\IUL\\IUL.csproj",
-        "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
-        "outputPath": "D:\\ФАЙЛЫ\\Project\\IUL\\obj\\",
+        "projectPath": "C:\\Users\\dying\\Desktop\\РАБОТА\\IUL\\IUL.csproj",
+        "packagesPath": "C:\\Users\\dying\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dying\\Desktop\\РАБОТА\\IUL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dying\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,7 +79,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

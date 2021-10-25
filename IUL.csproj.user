@@ -7,6 +7,9 @@
     <Compile Update="AddProject.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AddSubChapters.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CreateIUL.cs">
       <SubType>Form</SubType>
     </Compile>
