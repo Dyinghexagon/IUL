@@ -100,5 +100,54 @@ namespace IUL
             }
             return count;
         }
+        public static int GetCountСolumnsChapters(string codeProject)
+        {
+            int count = 0;
+            string query = "SELECT COUNT(*) FROM [IUL].[dbo].[CHAPTERS] " +
+    "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @codeProject" + ";";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
+                command.Parameters.Add(codeProjectParam);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            count = Convert.ToInt32(reader.GetValue(0));
+                        }
+                    }
+                }
+            }
+            return count;
+        }
+        public static string GetPathMainFolder(string codeProject) 
+        {
+            string path="";
+            string query = "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER] " +
+                "FROM [IUL].[dbo].[PROJECTS] " +
+                "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
+                command.Parameters.Add(codeProjectParam);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            path = reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
+            }
+            return path;
+        }
     }
 }
