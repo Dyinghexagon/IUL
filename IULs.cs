@@ -15,16 +15,22 @@ namespace IUL
         /// Значением выступает объект класса IUL.
         /// </summary>
         private Dictionary<string, Chapters> _chapters;
-        private DateTime _dateSign;
+        public string GIP 
+        {
+            get { return _GIP; }
+        }
+        public string Nkontr 
+        {
+            get { return _NKontr; }
+        }
 
-        public IULs(string codeProject, DateTime dateSign) 
+        public IULs(string codeProject) 
         {
             int countChapters = DbProviderFactories.GetCountСolumnsChapters(codeProject);
             HashSet<string> chaptersCode = GetChaptersCode(countChapters, codeProject);
             _chapters = new Dictionary<string, Chapters>(countChapters);
             InitializationGip(codeProject);
             InitializationNkontr(codeProject);
-            this._dateSign = dateSign;
             foreach(var chapterCode in chaptersCode) 
             {
                 _chapters.Add(chapterCode, new Chapters(chapterCode, codeProject));
@@ -110,5 +116,9 @@ namespace IUL
             }
             return chaptersName;
         }
+        public ref Dictionary<string, Chapters> GetIULsValue() 
+        {
+            return ref this._chapters;
+        } 
     }
 }

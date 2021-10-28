@@ -2,34 +2,46 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.IO;
 namespace IUL
 {
     class Chapters
     {
-        private static string _pathMainFolder;
         private string _nameChapter;
         private string _nameFile;
         private List<string> _authorsChapter;
         private string _MD5;
-        private DateTime _dateChange;
-        private int _sizeFile;
+        private string _dateChange;
+        private long _sizeFile;
         public string NameChapter 
         {
             get { return _nameChapter; }
-            set { _nameChapter = value; }
         }
         public string NameFile 
         {
             get { return _nameFile; }
-            set { _nameFile = value; }
+        }
+        public string MD5 
+        {
+            get { return _MD5; }
+        }
+        public string DateChange 
+        {
+            get { return _dateChange; }
+        }
+        public long SizeFile 
+        {
+            get { return _sizeFile; }
         }
         public Chapters(string codeChapter, string codeProject)
         {
-            _authorsChapter = new List<string>(20);
+            this._authorsChapter = new List<string>(20);
+            this._nameFile = GetFileName(codeChapter);
             InitializationNameChapter(codeChapter);
             InitializationNameFile(codeChapter);
             InitializationAuthorsChapter(codeChapter);
-            InitializationMD5(codeChapter, codeProject);
+            InitializationFileInfo(codeChapter, codeProject);
         }
         private void InitializationAuthorsChapter(string codeChapter) 
         {
@@ -105,22 +117,26 @@ namespace IUL
                         while (reader.Read())
                         {
                             string nameFile = reader.GetValue(0).ToString().Trim();
-                            nameFile += ".pdf";
                             this._nameFile = nameFile;
                         }
                     }
                 }
             }
         }
-        /// <summary>
-        /// Дописать отсюда!!!!!
-        /// </summary>
-        /// <param name="codeChapter"></param>
-        /// <param name="codeProject"></param>
-        private void InitializationMD5(string codeChapter, string codeProject) 
+        private void InitializationFileInfo(string codeChapter, string codeProject) 
         {
-            string path = GetPathMainFolder(codeProject) + "\\" + GetFileName(codeChapter) + ".pdf";
-            Console.WriteLine(path);
+            string path = GetPathMainFolder(codeProject) + "\\" + this._nameFile;
+            using (FileStream fs = System.IO.File.OpenRead(path))
+            {
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] fileData = new byte[fs.Length];
+                fs.Read(fileData, 0, (int)fs.Length);
+                byte[] checkSum = md5.ComputeHash(fileData);
+                this._MD5 = BitConverter.ToString(checkSum).Replace("-", String.Empty);
+            }
+            FileInfo fileInfo = new FileInfo(path);
+            this._sizeFile = fileInfo.Length;
+            this._dateChange = fileInfo.LastWriteTime.ToShortDateString() + " " + fileInfo.LastWriteTime.ToLongTimeString();
         }
         private string GetFileName(string codeChapter) 
         {

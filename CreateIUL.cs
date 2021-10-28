@@ -16,288 +16,220 @@ namespace IUL
 {
     public partial class CreateIUL : Form
     {
-        //List<IULValue> IULs = new List<IULValue>();
-        //List<string> fileNames = new List<string>();
-        //string dateSigning;
+        static List<KeyValuePair<string, string>> idAndNameProjects;
         public CreateIUL()
         {
             InitializeComponent();
-            IULs iULs = new IULs("4/21", dateTimePicker1.Value);
-            //dateSigning = textBox1.Text;
-            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            //string connStr = "server=localhost;user=root;database=IUL;password=root";
-            //using (MySqlConnection conn = new MySqlConnection(connStr)) 
-            //{
-            //    conn.Open();
-            //    string sql = "SELECT * FROM project_composition;";
-            //    MySqlCommand com = new MySqlCommand(sql, conn);
-            //    MySqlDataReader reader = com.ExecuteReader();
-            //    List<string> codes = new List<string>();
-            //    List<string> namesDoc = new List<string>();
-            //    while (reader.Read())
-            //    {
-            //        codes.Add(reader[0].ToString());
-            //        namesDoc.Add(reader[1].ToString());
-            //    }
-            //    reader.Close();
-            //    int i = 0;
-            //    Staff GIP = new Staff();
-            //    Staff NKontr = new Staff();
-            //    string queryGIP = "SELECT work_role, surname FROM engineers WHERE work_role = 'ГИП';";
-            //    string queryNKontr = "SELECT work_role, surname FROM engineers WHERE work_role = 'Н.Контр';";
-            //    MySqlCommand selectGIP = new MySqlCommand(queryGIP, conn);
-            //    reader = selectGIP.ExecuteReader();
-            //    while (reader.Read()) 
-            //    {
-            //        GIP.WorkRole = reader[0].ToString();
-            //        GIP.Surname = reader[1].ToString();
-            //    }
-            //    reader.Close();
-            //    MySqlCommand selectNKontr = new MySqlCommand(queryNKontr, conn);
-            //    reader = selectNKontr.ExecuteReader();
-            //    while (reader.Read()) 
-            //    {
-            //        NKontr.WorkRole = reader[0].ToString();
-            //        NKontr.Surname = reader[1].ToString();
-            //    }
-            //    reader.Close();
-            //    foreach (var code in codes) 
-            //    {
-            //        string queryAuthorTeam = "SELECT work_role, surname FROM engineers WHERE code_id = @code;";
-            //        MySqlCommand selectAuthorTeam = new MySqlCommand(queryAuthorTeam, conn);
-            //        MySqlParameter codeIdParam = new MySqlParameter("@code", code);
-            //        selectAuthorTeam.Parameters.Add(codeIdParam);
-            //        reader = selectAuthorTeam.ExecuteReader();
-            //        List<Staff> authorTeam = new List<Staff>();
-            //        authorTeam.Add(GIP);
-            //        while (reader.Read()) 
-            //        {
-            //            authorTeam.Add(new Staff(reader[0].ToString(), reader[1].ToString()));
-            //        }
-            //        authorTeam.Add(NKontr);
-            //        IULs.Add(new IULValue(code,(code + "-УЛ"), namesDoc[i], authorTeam));
-            //        reader.Close();
-            //        i++;
-            //    }
-            //    conn.Close();
-            //}
+            idAndNameProjects = new List<KeyValuePair<string, string>>(DbProviderFactories.GetIdAndNameProject());
+            foreach(var nameProject in idAndNameProjects) 
+            {
+                comboBox1.Items.Add(nameProject.Value);
+            }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(dateTimePicker1.Value.ToShortDateString());
-            //int i = 0;
-            //foreach (var IUL in IULs) 
-            //{
-            //    richTextBox1.Text += "Code: " + IUL.Code + "\n"
-            //                        + "CodeIUL: " + IUL.CodeIUL + "\n"
-            //                        + "NameDoc: " + IUL.NameDoc + "\n"
-            //                        + "AuthorTeam: " + "\n";
-            //    foreach(var author in IUL.AuthorTeam) 
-            //    {
-            //        richTextBox1.Text += "WorkRole: " + author.WorkRole + "\n"
-            //                           + "Surname: " + author.Surname + "\n";
-            //    }
-            //    richTextBox1.Text += "--------------------------------------------------------" + "\n";
-            //    string nameFile = "File" + i.ToString() + ".pdf";
-            //    CreateTable(nameFile, IUL);
-            //    i++;
-            //}
+            string codeProject = idAndNameProjects[comboBox1.SelectedIndex].Key;
+            IULs iuls = new IULs(codeProject);
+            foreach(var chapter in iuls.GetIULsValue()) 
+            {
+                Console.WriteLine(chapter.Key);
+            }
         }
-        //void CreateTable(string nameFile, IULValue IUL)
-        //{
-        //    var doc = new iTextSharp.text.Document(PageSize.A4);
-        //    try
-        //    {
-        //        BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        //        iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
-        //        using (var writer = PdfWriter.GetInstance(doc, new FileStream(nameFile, FileMode.Create)))
-        //        {
-        //            doc.Open();
-        //            PdfPTable table = new PdfPTable(4);
+        void CreateTable(string nameFile, IULs IUL, string codeChapter, string nameDoc, string MD5, string dateChange, long sizeFile, string dateSigning, string CodeIUL)
+        {
+            var doc = new iTextSharp.text.Document(PageSize.A4);
+            try
+            {
+                BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
+                using (var writer = PdfWriter.GetInstance(doc, new FileStream(nameFile, FileMode.Create)))
+                {
+                    doc.Open();
+                    PdfPTable table = new PdfPTable(4);
 
-        //            PdfPCell cell = new PdfPCell(new Phrase("Номер п/п", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Обозначение документа", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Наименование документа", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Номер последнего изменения (версии)", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
+                    PdfPCell cell = new PdfPCell(new Phrase("Номер п/п", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Обозначение документа", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Наименование документа", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Номер последнего изменения (версии)", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
 
-        //            cell = new PdfPCell(new Phrase("", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase(IUL.Code, font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            //string str = "Проектная документация.\nРаздел 1 Пояснительная записка";
-        //            cell = new PdfPCell(new Phrase(IUL.NameDoc, font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("1", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase(codeChapter, font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    //string str = "Проектная документация.\nРаздел 1 Пояснительная записка";
+                    cell = new PdfPCell(new Phrase(nameDoc, font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("1", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
 
-        //            cell = new PdfPCell(new Phrase("MD5", font));
-        //            cell.Colspan = 2;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("4E47EE85B11B625B0511E2BF50EC59EA", font));
-        //            cell.Colspan = 2;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("MD5", font));
+                    cell.Colspan = 2;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase(MD5, font));
+                    cell.Colspan = 2;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
 
-        //            cell = new PdfPCell(new Phrase("Наименование файла", font));
-        //            cell.Colspan = 2;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Дата и время последнего изменения файла", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Размер файла, байт", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Наименование файла", font));
+                    cell.Colspan = 2;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Дата и время последнего изменения файла", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Размер файла, байт", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
 
-        //            cell = new PdfPCell(new Phrase("тестовый текст", font));
-        //            cell.Colspan = 2;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("26.08.2021 11:45", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("28440833", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("тестовый текст", font));
+                    cell.Colspan = 2;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase(dateChange, font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase(sizeFile.ToString(), font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
 
-        //            cell = new PdfPCell(new Phrase("Характер работы", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Фамилия", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Подпись", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase("Дата подписания", font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            foreach (var author in IUL.AuthorTeam)
-        //            {
-        //                cell = new PdfPCell(new Phrase(author.WorkRole, font));
-        //                cell.Colspan = 1;
-        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //                table.AddCell(cell);
-        //                cell = new PdfPCell(new Phrase(author.Surname, font));
-        //                cell.Colspan = 1;
-        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //                table.AddCell(cell);
-        //                cell = new PdfPCell(new Phrase("", font));
-        //                cell.Colspan = 1;
-        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //                table.AddCell(cell);
-        //                cell = new PdfPCell(new Phrase(dateSigning, font));
-        //                cell.Colspan = 1;
-        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //                table.AddCell(cell);
-        //            }
-        //            cell = new PdfPCell(new Phrase("Информационно-удостоверяющий лист", font));
-        //            cell.Colspan = 2;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            cell = new PdfPCell(new Phrase(IUL.CodeIUL, font));
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
-        //            PdfPTable subTable = new PdfPTable(2);
-        //            PdfPCell subCell = new PdfPCell(new Phrase("Лист", font));
-        //            subCell.Colspan = 1;
-        //            subCell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            subTable.AddCell(subCell);
-        //            subCell = new PdfPCell(new Phrase("Листов", font));
-        //            subCell.Colspan = 1;
-        //            subCell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            subTable.AddCell(subCell);
-        //            subCell = new PdfPCell(new Phrase("", font));
-        //            subCell.Colspan = 1;
-        //            subCell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            subTable.AddCell(subCell);
-        //            subCell = new PdfPCell(new Phrase("   ", font));
-        //            subCell.Colspan = 1;
-        //            subCell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            subTable.AddCell(subCell);
-        //            cell = new PdfPCell(subTable);
-        //            cell.Colspan = 1;
-        //            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-        //            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-        //            table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Характер работы", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Фамилия", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Подпись", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase("Дата подписания", font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    //foreach (var author in IUL.AuthorTeam)
+                    //{
+                    //    cell = new PdfPCell(new Phrase(author.WorkRole, font));
+                    //    cell.Colspan = 1;
+                    //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    //    table.AddCell(cell);
+                    //    cell = new PdfPCell(new Phrase(author.Surname, font));
+                    //    cell.Colspan = 1;
+                    //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    //    table.AddCell(cell);
+                    //    cell = new PdfPCell(new Phrase("", font));
+                    //    cell.Colspan = 1;
+                    //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    //    table.AddCell(cell);
+                    //    cell = new PdfPCell(new Phrase(dateSigning, font));
+                    //    cell.Colspan = 1;
+                    //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    //    table.AddCell(cell);
+                    //}
+                    cell = new PdfPCell(new Phrase("Информационно-удостоверяющий лист", font));
+                    cell.Colspan = 2;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    cell = new PdfPCell(new Phrase(CodeIUL, font));
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
+                    PdfPTable subTable = new PdfPTable(2);
+                    PdfPCell subCell = new PdfPCell(new Phrase("Лист", font));
+                    subCell.Colspan = 1;
+                    subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    subTable.AddCell(subCell);
+                    subCell = new PdfPCell(new Phrase("Листов", font));
+                    subCell.Colspan = 1;
+                    subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    subTable.AddCell(subCell);
+                    subCell = new PdfPCell(new Phrase("", font));
+                    subCell.Colspan = 1;
+                    subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    subTable.AddCell(subCell);
+                    subCell = new PdfPCell(new Phrase("   ", font));
+                    subCell.Colspan = 1;
+                    subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    subTable.AddCell(subCell);
+                    cell = new PdfPCell(subTable);
+                    cell.Colspan = 1;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                    table.AddCell(cell);
 
-        //            doc.Add(table);
-        //            doc.Close();
-        //            writer.Close();
-        //        }
-        //    }
-        //    catch (DocumentException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    catch (IOException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+                    doc.Add(table);
+                    doc.Close();
+                    writer.Close();
+                }
+            }
+            catch (DocumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
