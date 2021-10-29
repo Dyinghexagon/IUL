@@ -10,7 +10,7 @@ namespace IUL
     {
         private string _nameChapter;
         private string _nameFile;
-        private List<string> _authorsChapter;
+        private List<KeyValuePair<string, string>> _authorsChapter;
         private string _MD5;
         private string _dateChange;
         private long _sizeFile;
@@ -36,22 +36,29 @@ namespace IUL
         }
         public Chapters(string codeChapter, string codeProject)
         {
-            this._authorsChapter = new List<string>(20);
+            this._authorsChapter = new List<KeyValuePair<string, string>>(20);
             this._nameFile = GetFileName(codeChapter);
             InitializationNameChapter(codeChapter);
             InitializationNameFile(codeChapter);
             InitializationAuthorsChapter(codeChapter);
             InitializationFileInfo(codeChapter, codeProject);
         }
+        public ref List<KeyValuePair<string, string>> GetAuthorChapter() 
+        {
+            return ref this._authorsChapter;
+        }
         private void InitializationAuthorsChapter(string codeChapter) 
         {
             string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME] " +
-                "FROM [IUL].[dbo].[PERFORMERS] " +
-                "JOIN" +
-                "[IUL].[dbo].[EMPLOYEES] " +
-                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] " +
-                "WHERE[IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @codeChapter" + ";";
+                "SELECT" +
+                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME]," +
+                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME]" +
+                "FROM [IUL].[dbo].[PERFORMERS]" +
+                "JOIN [IUL].[dbo].[EMPLOYEES]" +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
+                "JOIN [IUL].[dbo].[ROLES]" +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID]" +
+                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @codeChapter" + ";";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
@@ -64,7 +71,9 @@ namespace IUL
                     {
                         while (reader.Read())
                         {
-                            this._authorsChapter.Add(reader.GetValue(0).ToString().Trim());
+                            string authorSurname = reader.GetValue(0).ToString().Trim();
+                            string authorRole = reader.GetValue(1).ToString().Trim();
+                            this._authorsChapter.Add(new KeyValuePair<string, string>(authorSurname, authorRole));
                         }
                     }
                 }

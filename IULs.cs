@@ -7,8 +7,8 @@ namespace IUL
     class IULs
     {
 
-        private string _GIP;
-        private string _NKontr;
+        private Employee _GIP;
+        private Employee _NKontr;
         /// <summary>
         /// Словарь _chapters хранит информацию об том или ином разделе.
         /// Ключом выступает код раздела.
@@ -17,13 +17,13 @@ namespace IUL
         private Dictionary<string, Chapters> _chapters;
         public string GIP 
         {
-            get { return _GIP; }
+            get { return _GIP.Fname; }
         }
         public string Nkontr 
         {
-            get { return _NKontr; }
+            get { return _NKontr.Fname; }
         }
-
+        
         public IULs(string codeProject) 
         {
             int countChapters = DbProviderFactories.GetCountСolumnsChapters(codeProject);
@@ -44,6 +44,7 @@ namespace IUL
                 "JOIN [IUL].[dbo].[EMPLOYEES]" +
                 "ON [IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
                 "WHERE[IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
+            string gip = "";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
@@ -56,11 +57,12 @@ namespace IUL
                     {
                         while (reader.Read())
                         {
-                            this._GIP = reader.GetValue(0).ToString().Trim();
+                            gip = reader.GetValue(0).ToString().Trim();
                         }
                     }
                 }
             }
+            this._GIP = new Employee(gip);
         }
         private void InitializationNkontr(string codeProject)
         {
@@ -70,6 +72,7 @@ namespace IUL
                 "JOIN [IUL].[dbo].[EMPLOYEES]" +
                 "ON [IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
                 "WHERE[IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
+            string nkont = "";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
@@ -82,11 +85,12 @@ namespace IUL
                     {
                         while (reader.Read())
                         {
-                            this._NKontr = reader.GetValue(0).ToString().Trim();
+                            nkont = reader.GetValue(0).ToString().Trim();
                         }
                     }
                 }
             }
+            this._NKontr = new Employee(nkont);
         }
         private HashSet<string> GetChaptersCode(int countChapters, string codeProject) 
         {
@@ -116,7 +120,7 @@ namespace IUL
             }
             return chaptersName;
         }
-        public ref Dictionary<string, Chapters> GetIULsValue() 
+        public ref Dictionary<string, Chapters> GetChapters() 
         {
             return ref this._chapters;
         } 

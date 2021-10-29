@@ -36,6 +36,7 @@ namespace IUL
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -85,11 +86,19 @@ namespace IUL
             this.comboBox1.Size = new System.Drawing.Size(453, 23);
             this.comboBox1.TabIndex = 10;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(12, 95);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(453, 386);
+            this.panel1.TabIndex = 11;
+            // 
             // CreateIUL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 100);
+            this.ClientSize = new System.Drawing.Size(477, 493);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -111,6 +120,7 @@ namespace IUL
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

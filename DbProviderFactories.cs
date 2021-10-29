@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Drawing;
 namespace IUL
 {
     class DbProviderFactories
@@ -174,6 +176,52 @@ namespace IUL
                 }
             }
             return idAndNameProject;
+        }
+
+        public static void UpdateImageSignEmployee(string path, int id) 
+        {
+            FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(fileStream);
+            byte[] signData = reader.ReadBytes((int)fileStream.Length);       
+            string query = "USE IUL;" +
+                "UPDATE [IUL].[dbo].[EMPLOYEES]" +
+                "SET [EMPLOYEE_SIGN] = @sign " +
+                "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id;";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@sign", System.Data.SqlDbType.Image, signData.Length).Value = signData;
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+                command.ExecuteNonQuery();
+            }
+            fileStream.Close();
+            reader.Close();
+        }
+        public static byte[] GetSignBinary(int id)
+        {
+            byte[] signData = null;
+            string query = "USE IUL;" +
+                "SELECT[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
+                "FROM[IUL].[dbo].[EMPLOYEES] " +
+                "WHERE[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id; ";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            signData = (byte[])reader.GetValue(0);
+                        }
+                    }
+                }
+            }
+            return signData;
         }
     }
 }
