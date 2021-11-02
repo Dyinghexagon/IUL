@@ -44,6 +44,12 @@ namespace IUL
             this.buttonSelectAllReseach = new System.Windows.Forms.Button();
             this.buttonAddAuthorsChapters = new System.Windows.Forms.Button();
             this.buttonAddSubChapters = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,16 +122,16 @@ namespace IUL
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(332, 117);
+            this.textBox1.Location = new System.Drawing.Point(327, 135);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(227, 22);
+            this.textBox1.Size = new System.Drawing.Size(232, 22);
             this.textBox1.TabIndex = 12;
             // 
             // checkedListBox2
             // 
             this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(12, 231);
+            this.checkedListBox2.Location = new System.Drawing.Point(9, 231);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(647, 22);
             this.checkedListBox2.TabIndex = 13;
@@ -133,7 +139,7 @@ namespace IUL
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 213);
+            this.label1.Location = new System.Drawing.Point(9, 213);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 15);
             this.label1.TabIndex = 14;
@@ -142,11 +148,11 @@ namespace IUL
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 99);
+            this.label3.Location = new System.Drawing.Point(327, 117);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 15);
+            this.label3.Size = new System.Drawing.Size(137, 15);
             this.label3.TabIndex = 15;
-            this.label3.Text = "Наименование папки проекта";
+            this.label3.Text = "Наименование проекта";
             // 
             // buttonSelectAllChapters
             // 
@@ -188,11 +194,68 @@ namespace IUL
             this.buttonAddSubChapters.UseVisualStyleBackColor = true;
             this.buttonAddSubChapters.Click += new System.EventHandler(this.buttonAddSubChapters_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(327, 161);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 15);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Шифр проекта";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(326, 179);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(238, 22);
+            this.textBox2.TabIndex = 20;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 142);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 15);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "ГИП";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(9, 160);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(145, 23);
+            this.comboBox1.TabIndex = 24;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(160, 161);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(151, 23);
+            this.comboBox2.TabIndex = 26;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(160, 143);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 15);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Н. контр.";
+            // 
             // AddProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 609);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.buttonAddSubChapters);
             this.Controls.Add(this.buttonAddAuthorsChapters);
             this.Controls.Add(this.buttonSelectAllReseach);
@@ -230,5 +293,11 @@ namespace IUL
         private System.Windows.Forms.Button buttonSelectAllReseach;
         private System.Windows.Forms.Button buttonAddAuthorsChapters;
         private System.Windows.Forms.Button buttonAddSubChapters;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label6;
     }
 }

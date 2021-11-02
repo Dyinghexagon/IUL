@@ -48,7 +48,6 @@ namespace IUL
             this.Controls.Add(this.tabControl1);
             this.Name = "AddSubChapters";
             this.Text = "AddSubChapters";
-            this.Load += new System.EventHandler(this.AddSubChapters_Load);
             this.ResumeLayout(false);
 
         }

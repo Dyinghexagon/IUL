@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Configuration;
 namespace IUL
 {
     public partial class AddProject : Form
@@ -15,6 +14,9 @@ namespace IUL
         public AddProject()
         {
             InitializeComponent();
+            List<string> fnames = new List<string>(Employee.GetFnameList());
+            comboBox1.Items.AddRange(fnames.ToArray());
+            comboBox2.Items.AddRange(fnames.ToArray());
         }
         private void CreateFolderProject() 
         {
@@ -164,7 +166,6 @@ namespace IUL
             }
 
         }
-
         private void buttonAddSubChapters_Click(object sender, EventArgs e)
         {
             _isAddSubChapter = true;
@@ -173,7 +174,6 @@ namespace IUL
             AddSubChapters addSubChapters = new AddSubChapters(ref selectedChapters);
             addSubChapters.Show();
         }
-
         private void buttonAddAuthorsChapters_Click(object sender, EventArgs e)
         {
             if (checkedListBox2.Items.Count == 0)
@@ -186,7 +186,6 @@ namespace IUL
             AddAuthorsChapters addAuthorsChapters = new AddAuthorsChapters(selectedChapters);
             addAuthorsChapters.Show();
         }
-
         private void buttonSelectAllReseach_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
@@ -194,7 +193,6 @@ namespace IUL
                 checkedListBox1.SetItemChecked(i, true);
             }
         }
-
         private void buttonSelectAllChapters_Click(object sender, EventArgs e)
         {
             if (checkedListBox2.Items.Count == 0)
@@ -207,12 +205,10 @@ namespace IUL
                 checkedListBox2.SetItemChecked(i, true);
             }
         }
-
         private void buttonCreateFolderProject_Click(object sender, EventArgs e)
         {
             CreateFolderProject();
         }
-
         private void SelectedChapters(ref List<string> selectedChapters) 
         {
             foreach (var chapter in checkedListBox2.CheckedItems)

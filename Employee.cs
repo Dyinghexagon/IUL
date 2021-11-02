@@ -69,7 +69,7 @@ namespace IUL
             }
             return fname;
         }
-        public static List<string> GetFIOList() 
+        public static List<string> GetFnameList() 
         {
             int countColumns = DbProviderFactories.GetCountСolumns("EMPLOYEES");
             List<string> FIOList = new List<string>(countColumns);
@@ -108,5 +108,6 @@ namespace IUL
                 }
             }
         }
+
     }
 }

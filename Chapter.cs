@@ -125,8 +125,7 @@ namespace IUL
                     {
                         while (reader.Read())
                         {
-                            string nameFile = reader.GetValue(0).ToString().Trim();
-                            this._nameFile = nameFile;
+                            this._nameFile = reader.GetValue(0).ToString().Trim();
                         }
                     }
                 }

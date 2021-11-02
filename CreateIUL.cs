@@ -130,7 +130,7 @@ namespace IUL
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
 
-                    cell = new PdfPCell(new Phrase("тестовый текст", font));
+                    cell = new PdfPCell(new Phrase(chapter.NameFile, font));
                     cell.Colspan = 2;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;

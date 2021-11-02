@@ -52,5 +52,13 @@ namespace IUL
             checkBox.Location = location;
             return checkBox;
         }
+        public static TextBox CreateTextBox(string name, Point location, Size size)
+        {
+            TextBox textBox = new TextBox();
+            textBox.Name = name;
+            textBox.Location = location;
+            textBox.Size = size;
+            return textBox;
+        }
     }
 }

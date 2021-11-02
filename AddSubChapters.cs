@@ -26,9 +26,9 @@ namespace IUL
             int distanceBetween = 25;
 
             Size sizeTabControl = new Size(CreateForm.WidthComboBox * 2 + CreateForm.WidthComboBox / 4,
-    CreateForm.HeightForm * 17);
+    CreateForm.HeightForm * 20);
             this.Size = new Size(sizeTabControl.Width + 50, sizeTabControl.Height + 50);
-            string textCheckBox = "Добавить подраздел?";
+            string textCheckBox = "Добавить подраздел(ы)?";
             object[] countSubChapter = new object[] { 1, 2, 3, 4, 5, 6 };
             foreach (var chapter in chapters)
             {
@@ -43,20 +43,33 @@ namespace IUL
                 location.Y += distanceBetween;
                 ComboBox comboBox = CreateForm.CreateComboBox(tabPage.Name + "comboBox", location, countSubChapter);
                 comboBox.Enabled = false;
+                comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedItem);
                 tabPage.Controls.Add(comboBox);
                 tabControl.Size = sizeTabControl;
                 tabPage.Size = sizeTabControl;
                 iter++;
             }
         }
-        private void AddSubChapters_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void checkBox_CheckedChanged(object sender, EventArgs e)      
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = sender as CheckBox;
-            MessageBox.Show(checkBox.Name);
+            TabPage selectedTabPage = tabControl1.SelectedTab;
+            ComboBox cmb = selectedTabPage.Controls[selectedTabPage.Name + "comboBox"] as ComboBox;
+            cmb.Enabled = !cmb.Enabled;
+        }
+        private void comboBox_SelectedItem(object sender, EventArgs e)
+        {
+            TabPage selectedTabPage = tabControl1.SelectedTab;
+            ComboBox cmb = selectedTabPage.Controls[selectedTabPage.Name + "comboBox"] as ComboBox;
+            int cuntSubChapter = Convert.ToInt32(cmb.SelectedItem);
+            Point locationTextBox = new Point(10, 100);
+            Size sizeTextBox = new Size(300, 25);
+            for (int i = 0; i < cuntSubChapter; i++)
+            {
+                string nameTextBox = selectedTabPage.Name + "texBox" + i.ToString();
+                selectedTabPage.Controls.Add(CreateForm.CreateTextBox(nameTextBox, locationTextBox, sizeTextBox));
+                locationTextBox.Y += 25;
+            }
         }
     }
 }

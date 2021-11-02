@@ -25,7 +25,7 @@ namespace IUL
             int countCombobox = 6;
             int iter = 0;
             List<string> roles = new List<string>(Roles.GetFullOrAbbreviatedNameRoles(true));
-            List<string> fioEmployees = new List<string>(Employee.GetFIOList());
+            List<string> fioEmployees = new List<string>(Employee.GetFnameList());
             Size sizeTabControl = new Size(CreateForm.WidthComboBox * 2 + CreateForm.WidthComboBox / 4,
     CreateForm.HeightForm * 17);
             this.Size = new Size(sizeTabControl.Width + 50, sizeTabControl.Height + 50);

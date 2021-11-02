@@ -11,40 +11,11 @@ namespace IUL
 {
     class DbProviderFactories
     {
-        /// <summary>
-        /// Метод подключения к БД
-        /// </summary>
-        /// <param name="dataSourse">Расположение сервера</param>
-        /// <param name="nameDB">Имя БД, которой осуществляется подключение</param>
-        /// <returns></returns>
-        public static SqlConnection GetDBConnection(string dataSourse, string nameDB)
-        {
-            string connStr = @"Data Source=" + dataSourse + "\\SQLEXPRESS,1433;Initial Catalog=" + nameDB + ";User ID=root;Password=root";
-            SqlConnection conn = new SqlConnection(connStr);
-            return conn;
-        }
         public static SqlConnection GetDBConnection()
         {
-
             string connectionString = ConfigurationManager.AppSettings["conn"];
             SqlConnection conn = new SqlConnection(connectionString);
             return conn;
-        }
-        public static void CheckConnection()
-        {
-            Console.WriteLine("Getting Connection ...");
-            SqlConnection conn = DbProviderFactories.GetDBConnection();
-            try
-            {
-                Console.WriteLine("Openning Connection ...");
-                conn.Open();
-                Console.WriteLine("Connection successful!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.Message);
-            }
-
         }
         public static async Task<int> GetCountRowsAsync(string tableName)
         {
