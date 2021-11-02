@@ -177,7 +177,6 @@ namespace IUL
             }
             return idAndNameProject;
         }
-
         public static void UpdateImageSignEmployee(string path, int id) 
         {
             FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -197,31 +196,6 @@ namespace IUL
             }
             fileStream.Close();
             reader.Close();
-        }
-        public static byte[] GetSignBinary(int id)
-        {
-            byte[] signData = null;
-            string query = "USE IUL;" +
-                "SELECT[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
-                "FROM[IUL].[dbo].[EMPLOYEES] " +
-                "WHERE[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id; ";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            signData = (byte[])reader.GetValue(0);
-                        }
-                    }
-                }
-            }
-            return signData;
         }
     }
 }

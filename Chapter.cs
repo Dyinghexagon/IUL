@@ -6,11 +6,11 @@ using System.Security.Cryptography;
 using System.IO;
 namespace IUL
 {
-    class Chapters
+    class Chapter
     {
         private string _nameChapter;
         private string _nameFile;
-        private List<KeyValuePair<string, string>> _authorsChapter;
+        private List<KeyValuePair<string, Employee>> _authorsChapter;
         private string _MD5;
         private string _dateChange;
         private long _sizeFile;
@@ -34,16 +34,16 @@ namespace IUL
         {
             get { return _sizeFile; }
         }
-        public Chapters(string codeChapter, string codeProject)
+        public Chapter(string codeChapter, string codeProject)
         {
-            this._authorsChapter = new List<KeyValuePair<string, string>>(20);
+            this._authorsChapter = new List<KeyValuePair<string, Employee>>(4);
             this._nameFile = GetFileName(codeChapter);
             InitializationNameChapter(codeChapter);
             InitializationNameFile(codeChapter);
             InitializationAuthorsChapter(codeChapter);
             InitializationFileInfo(codeChapter, codeProject);
         }
-        public ref List<KeyValuePair<string, string>> GetAuthorChapter() 
+        public ref List<KeyValuePair<string, Employee>> GetAuthorChapter() 
         {
             return ref this._authorsChapter;
         }
@@ -73,7 +73,7 @@ namespace IUL
                         {
                             string authorSurname = reader.GetValue(0).ToString().Trim();
                             string authorRole = reader.GetValue(1).ToString().Trim();
-                            this._authorsChapter.Add(new KeyValuePair<string, string>(authorSurname, authorRole));
+                            this._authorsChapter.Add(new KeyValuePair<string, Employee>(authorRole, new Employee(authorSurname)));
                         }
                     }
                 }

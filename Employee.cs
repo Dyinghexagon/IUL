@@ -14,19 +14,30 @@ namespace IUL
         private byte[] _sign;
         public int Id
         {
-            get { return _id; }
+            get { return this._id; }
         }
         public string Fname
         {
-            get { return _fname; }
+            get { return this._fname; }
         }
         public string Name
         {
-            get { return _name; }
+            get { return this._name; }
         }
         public string Patromic
         {
-            get { return _patromic; }
+            get { return this._patromic; }
+        }
+        public System.Drawing.Image Sign 
+        {
+            get 
+            { 
+                using(System.IO.MemoryStream ms = new System.IO.MemoryStream(this._sign)) 
+                {
+                    System.Drawing.Image imgSign = System.Drawing.Image.FromStream(ms);
+                    return imgSign;
+                }
+            }
         }
         public Employee(string fname) 
         {

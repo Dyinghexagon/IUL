@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using MySql.Data.MySqlClient;
 namespace IUL
 {
     public partial class CreateIUL : Form
@@ -25,35 +18,44 @@ namespace IUL
             {
                 comboBox1.Items.Add(nameProject.Value);
             }
-            //DbProviderFactories.UpdateImageSignEmployee(@"C:\Users\dying\Desktop\РАБОТА\IUL\bin\Debug\netcoreapp3.1\sign\Архипов.png", 2);
-            MemoryStream memoryStream = new MemoryStream();
-            foreach(var b in DbProviderFactories.GetSignBinary(2)) 
-            {
-                memoryStream.WriteByte(b);
-            }
-            System.Drawing.Image image = System.Drawing.Image.FromStream(memoryStream);
-            panel1.BackgroundImage = image;
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            string codeProject = idAndNameProjects[comboBox1.SelectedIndex].Key;
-            IULs iuls = new IULs(codeProject);
-            foreach(var chapter in iuls.GetChapters()) 
+            try
             {
-                CreateTable(chapter.Key, chapter.Value, dateTimePicker1.Value.ToShortDateString(), iuls.GIP, iuls.Nkontr);
+                string codeProject = idAndNameProjects[comboBox1.SelectedIndex].Key;
+                string pathMainFolder = DbProviderFactories.GetPathMainFolder(codeProject);
+                folderBrowserDialog1.SelectedPath = pathMainFolder;
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+                pathMainFolder = folderBrowserDialog1.SelectedPath;
+                IULs iuls = new IULs(codeProject);
+                Dictionary<string, IUL.Chapter> chaptrers = new Dictionary<string, IUL.Chapter>(iuls.GetChapters());
+                string dateSign = dateTimePicker1.Value.ToShortDateString();
+                foreach (var chapter in chaptrers)
+                {
+                    CreateTable(pathMainFolder, chapter.Key, chapter.Value, chapter.Value.GetAuthorChapter(), dateSign, iuls.GIP, iuls.Nkontr);
+                }
+                MessageBox.Show("ИУЛы готовы");
             }
-            MessageBox.Show("ИУЛы готовы");
+            catch(System.ArgumentOutOfRangeException ex) 
+            {
+                MessageBox.Show("Необходимо выбрать проект!");
+            }
+
         }
-        void CreateTable(string codeChapter, Chapters chapter, string dateSigning, string GIP, string NKontr)
+        private void CreateTable(string path, string codeChapter, IUL.Chapter chapter, List<KeyValuePair<string, Employee>> authorsChapter, string dateSigning, Employee GIP, Employee NKontr)
         {
             var doc = new iTextSharp.text.Document(PageSize.A4);
             try
             {
+                float scale = 0.4f;
                 BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
                 string nameFile = chapter.NameFile.Remove(chapter.NameFile.Length - 4, 4);
                 nameFile += "-УЛ.pdf";
-                using (var writer = PdfWriter.GetInstance(doc, new FileStream(nameFile, FileMode.Create)))
+                path += "\\" + nameFile;
+                using (var writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create)))
                 {
                     doc.Open();
                     PdfPTable table = new PdfPTable(4);
@@ -170,13 +172,14 @@ namespace IUL
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    cell = new PdfPCell(new Phrase(GIP, font));
+                    cell = new PdfPCell(new Phrase(GIP.Fname, font));
                     cell.Colspan = 1;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    iTextSharp.text.Image sign = iTextSharp.text.Image.GetInstance(@"C:\Users\dying\Desktop\РАБОТА\IUL\bin\Debug\netcoreapp3.1\sign\Рябов.png");
-                    cell = new PdfPCell(sign);
+                    iTextSharp.text.Image signGip = iTextSharp.text.Image.GetInstance(GIP.Sign,BaseColor.WHITE);
+                    cell = new PdfPCell(signGip);
+                    signGip.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                     cell.Colspan = 1;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -186,19 +189,21 @@ namespace IUL
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    foreach (var author in chapter.GetAuthorChapter())
+                    foreach (var author in authorsChapter)
                     {
-                        cell = new PdfPCell(new Phrase(author.Value, font));
-                        cell.Colspan = 1;
-                        cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                        table.AddCell(cell);
                         cell = new PdfPCell(new Phrase(author.Key, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase("", font));
+                        cell = new PdfPCell(new Phrase(author.Value.Fname, font));
+                        cell.Colspan = 1;
+                        cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+                        iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(author.Value.Sign, BaseColor.WHITE);
+                        cell = new PdfPCell(signAuthor);
+                        signAuthor.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -215,12 +220,14 @@ namespace IUL
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    cell = new PdfPCell(new Phrase(NKontr, font));
+                    cell = new PdfPCell(new Phrase(NKontr.Fname, font));
                     cell.Colspan = 1;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    cell = new PdfPCell(new Phrase("", font));
+                    iTextSharp.text.Image signNkontr = iTextSharp.text.Image.GetInstance(NKontr.Sign, BaseColor.WHITE);
+                    cell = new PdfPCell(signNkontr);
+                    signNkontr.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                     cell.Colspan = 1;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
