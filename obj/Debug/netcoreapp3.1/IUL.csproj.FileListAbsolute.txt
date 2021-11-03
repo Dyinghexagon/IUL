@@ -54,7 +54,6 @@ D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.csproj.CoreCompileInputs.c
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.dll
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.pdb
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.genruntimeconfig.cache
-D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddProject.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.Main.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.CreateIUL.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddAuthorsChapters.resources
@@ -106,3 +105,4 @@ D:\ФАЙЛЫ\Project\IUL\bin\Debug\netcoreapp3.1\IUL.dll.config
 C:\Users\dying\Desktop\РАБОТА\IUL\bin\Debug\netcoreapp3.1\IUL.dll.config
 C:\Users\dying\Desktop\РАБОТА\IUL\obj\Debug\netcoreapp3.1\IUL.AddSubChapters.resources
 D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.AddSubChapters.resources
+D:\ФАЙЛЫ\Project\IUL\obj\Debug\netcoreapp3.1\IUL.CreateFolderProject.resources

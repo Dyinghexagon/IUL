@@ -29,48 +29,72 @@ namespace IUL
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonNewProject = new System.Windows.Forms.Button();
+            this.buttonCreateIULs = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonAddChapters = new System.Windows.Forms.Button();
+            this.buttonCreateFolder = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonNewProject
             // 
-            this.button1.Location = new System.Drawing.Point(6, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 22);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonNewProject.Location = new System.Drawing.Point(6, 22);
+            this.buttonNewProject.Name = "buttonNewProject";
+            this.buttonNewProject.Size = new System.Drawing.Size(93, 53);
+            this.buttonNewProject.TabIndex = 0;
+            this.buttonNewProject.Text = "Добавить новый проект";
+            this.buttonNewProject.UseVisualStyleBackColor = true;
+            this.buttonNewProject.Click += new System.EventHandler(this.buttonNewProject_Click);
             // 
-            // button2
+            // buttonCreateIULs
             // 
-            this.button2.Location = new System.Drawing.Point(87, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 22);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Выгрузить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonCreateIULs.Location = new System.Drawing.Point(6, 81);
+            this.buttonCreateIULs.Name = "buttonCreateIULs";
+            this.buttonCreateIULs.Size = new System.Drawing.Size(93, 53);
+            this.buttonCreateIULs.TabIndex = 2;
+            this.buttonCreateIULs.Text = "Выгрузить ИУЛы";
+            this.buttonCreateIULs.UseVisualStyleBackColor = true;
+            this.buttonCreateIULs.Click += new System.EventHandler(this.buttonCreateIULs_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.buttonCreateFolder);
+            this.groupBox1.Controls.Add(this.buttonAddChapters);
+            this.groupBox1.Controls.Add(this.buttonNewProject);
+            this.groupBox1.Controls.Add(this.buttonCreateIULs);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(171, 52);
+            this.groupBox1.Size = new System.Drawing.Size(207, 142);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор функции";
+            // 
+            // buttonAddChapters
+            // 
+            this.buttonAddChapters.Location = new System.Drawing.Point(105, 81);
+            this.buttonAddChapters.Name = "buttonAddChapters";
+            this.buttonAddChapters.Size = new System.Drawing.Size(93, 53);
+            this.buttonAddChapters.TabIndex = 3;
+            this.buttonAddChapters.Text = "Добавить разделы к проекту";
+            this.buttonAddChapters.UseVisualStyleBackColor = true;
+            this.buttonAddChapters.Click += new System.EventHandler(this.buttonAddChapters_Click);
+            // 
+            // buttonCreateFolder
+            // 
+            this.buttonCreateFolder.Location = new System.Drawing.Point(105, 22);
+            this.buttonCreateFolder.Name = "buttonCreateFolder";
+            this.buttonCreateFolder.Size = new System.Drawing.Size(93, 53);
+            this.buttonCreateFolder.TabIndex = 4;
+            this.buttonCreateFolder.Text = "Создать папку проекта";
+            this.buttonCreateFolder.UseVisualStyleBackColor = true;
+            this.buttonCreateFolder.Click += new System.EventHandler(this.buttonCreateFolder_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(199, 76);
+            this.ClientSize = new System.Drawing.Size(230, 159);
             this.Controls.Add(this.groupBox1);
             this.Name = "Main";
             this.Text = "Main";
@@ -81,8 +105,10 @@ namespace IUL
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonNewProject;
+        private System.Windows.Forms.Button buttonCreateIULs;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button buttonAddChapters;
+        private System.Windows.Forms.Button buttonCreateFolder;
     }
 }

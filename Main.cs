@@ -14,19 +14,26 @@ namespace IUL
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonNewProject_Click(object sender, EventArgs e)
         {
-            AddProject addProject = new AddProject();
-            this.Visible = false;
-            addProject.Show();
-        }
 
-        private void button2_Click(object sender, EventArgs e)
+        }
+        private void buttonCreateIULs_Click(object sender, EventArgs e)
         {
             CreateIUL createIUL = new CreateIUL();
             createIUL.Show();
             this.Hide();
+        }
+
+        private void buttonCreateFolder_Click(object sender, EventArgs e)
+        {
+            CreateFolderProject createFolder = new CreateFolderProject();
+            createFolder.Show();
+            this.Hide();
+        }
+        private void buttonAddChapters_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
