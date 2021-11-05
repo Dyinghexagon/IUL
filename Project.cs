@@ -174,5 +174,56 @@ namespace IUL
 
             return true;
         }
+        public static string GetPathMainFolder(string codeProject)
+        {
+            string path = "";
+            string query = "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER] " +
+                "FROM [IUL].[dbo].[PROJECTS] " +
+                "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
+                command.Parameters.Add(codeProjectParam);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            path = reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
+            }
+            return path;
+        }
+        public static List<KeyValuePair<string, string>> GetIdAndNameProject()
+        {
+            List<KeyValuePair<string, string>> idAndNameProject = new List<KeyValuePair<string, string>>();
+            string query = "USE IUL;" +
+                "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]," +
+                "[IUL].[dbo].[PROJECTS].[PROJECT_NAME]" +
+                "FROM [IUL].[dbo].[PROJECTS];";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string id = reader.GetValue(0).ToString().Trim();
+                            string projectName = reader.GetValue(1).ToString().Trim();
+                            idAndNameProject.Add(new KeyValuePair<string, string>(id, projectName));
+                        }
+                    }
+                }
+            }
+            return idAndNameProject;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace IUL
         public CreateIUL()
         {
             InitializeComponent();
-            idAndNameProjects = new List<KeyValuePair<string, string>>(DbProviderFactories.GetIdAndNameProject());
+            idAndNameProjects = new List<KeyValuePair<string, string>>(Project.GetIdAndNameProject());
             foreach(var nameProject in idAndNameProjects) 
             {
                 comboBox1.Items.Add(nameProject.Value);
@@ -24,7 +24,7 @@ namespace IUL
             try
             {
                 string codeProject = idAndNameProjects[comboBox1.SelectedIndex].Key;
-                string pathMainFolder = DbProviderFactories.GetPathMainFolder(codeProject);
+                string pathMainFolder = Project.GetPathMainFolder(codeProject);
                 folderBrowserDialog1.SelectedPath = pathMainFolder;
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;

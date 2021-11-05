@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
-
+using System.IO;
 namespace IUL
 {
     class Employee
@@ -107,6 +107,26 @@ namespace IUL
                     }
                 }
             }
+        }
+        public static void UpdateImageSignEmployee(string path, int id)
+        {
+            FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(fileStream);
+            byte[] signData = reader.ReadBytes((int)fileStream.Length);
+            string query = "USE IUL;" +
+                           "UPDATE [IUL].[dbo].[EMPLOYEES]" +
+                           "SET [EMPLOYEE_SIGN] = @sign " +
+                           "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id;";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@sign", System.Data.SqlDbType.Image, signData.Length).Value = signData;
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+                command.ExecuteNonQuery();
+            }
+            fileStream.Close();
+            reader.Close();
         }
 
     }
