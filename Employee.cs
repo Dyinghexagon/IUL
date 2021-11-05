@@ -8,7 +8,7 @@ namespace IUL
     class Employee
     {
         private int _id;
-        private string _fname;
+        private string _surname;
         private string _name;
         private string _patromic;
         private byte[] _sign;
@@ -16,9 +16,9 @@ namespace IUL
         {
             get { return this._id; }
         }
-        public string Fname
+        public string Surname
         {
-            get { return this._fname; }
+            get { return this._surname; }
         }
         public string Name
         {
@@ -39,15 +39,15 @@ namespace IUL
                 }
             }
         }
-        public Employee(string fname) 
+        public Employee(string surname) 
         {
-            this._fname = fname;
+            this._surname = surname;
             Initialization();
         }
         private static string GetFname(int id)
         {
             string fname = "";
-            string query = "SELECT [EMPLOYEES].[EMPLOYEE_FNAME]" +
+            string query = "SELECT [EMPLOYEES].[EMPLOYEE_SURNAME]" +
                 "FROM [EMPLOYEES]" +
                 "WHERE [EMPLOYEES].[EMPLOYEE_ID] = @id;";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
@@ -69,7 +69,7 @@ namespace IUL
             }
             return fname;
         }
-        public static List<string> GetFnameList() 
+        public static string[] GetSurnameEmployees() 
         {
             int countColumns = DbProviderFactories.GetCountСolumns("EMPLOYEES");
             List<string> FIOList = new List<string>(countColumns);
@@ -77,7 +77,7 @@ namespace IUL
             {
                 FIOList.Add(Employee.GetFname(i));
             }
-            return FIOList;
+            return FIOList.ToArray();
         }
         private void Initialization() 
         {
@@ -87,12 +87,12 @@ namespace IUL
                 "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_PATROMIC]," +
                 "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
                 "FROM [IUL].[dbo].[EMPLOYEES] " +
-                "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME] = @fname;";
+                "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME] = @surname;";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@fname", System.Data.SqlDbType.VarChar).Value = this._fname;
+                command.Parameters.Add("@surname", System.Data.SqlDbType.VarChar).Value = this._surname;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)

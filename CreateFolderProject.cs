@@ -14,55 +14,19 @@ namespace IUL
         {
             InitializeComponent();
         }
-        private void buttonCreateFolder_Click(object sender, EventArgs e)
+        private void ButtonCreateFolder_Click(object sender, EventArgs e)
         {
             CreateMainFolder();
         }
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            checkedListBox2.Items.Clear();
-            if (radioButton1.Checked)
+            if (RadioButton1.Checked)
             {
-                checkedListBox2.Items.AddRange(new object[]
-                {
-                    "Раздел 1. Пояснительная записка",
-                    "Раздел 2. Проект полосы отвода",
-                    "Раздел 3. Технологические и конструктивные решения линейного объекта. Искусственные сооружения",
-                    "Раздел 4. Здания, строения и сооружения, входящие в инфраструктуру линейного объекта",
-                    "Раздел 5. Проект организации строительства",
-                    "Раздел 6. Проект организации работ по сносу (демонтажу) линейного объекта",
-                    "Раздел 7. Мероприятия по охране окружающей среды",
-                    "Раздел 8. Мероприятия по обеспечению пожарной безопасности",
-                    "Раздел 9. Смета на строительство"
-                });
-                checkedListBox2.Size = new Size(605, 166);
+                FilingComboBoxLinearChapter();
             }
-            else if (radioButton2.Checked)
+            else if (RadioButton2.Checked)
             {
-                checkedListBox2.Items.AddRange(new object[]
-                {
-                    "Раздел 1. Пояснительная записка",
-                    "Раздел 2. Схема планировочной организации земельного участка",
-                    "Раздел 3. Архитектурные решения",
-                    "Раздел 4. Конструктивные и объемно-планировочные решения",
-                    "Раздел 5. Подраздел 5.1 Система электроснабжения",
-                    "Раздел 5. Подраздел 5.2 Система водоснабжения",
-                    "Раздел 5. Подраздел 5.3 Система водоотведения",
-                    "Раздел 5. Подраздел 5.4 Отопление, вентиляция и кондиционирование воздуха, тепловые сети",
-                    "Раздел 5. Подраздел 5.5 Сети связи",
-                    "Раздел 5. Подраздел 5.6 Система газоснабжения",
-                    "Раздел 5. Подраздел 5.7 Технологические решения",
-                    "Раздел 6. Проект организации строительства",
-                    "Раздел 7. Проект организации работ по сносу или демонтажу объектов капитального строительства",
-                    "Раздел 8. Перечень мероприятий по охране окружающей среды",
-                    "Раздел 9. Мероприятия по обеспечению пожарной безопасности",
-                    "Раздел 10. Мероприятия по обеспечению доступа инвалидов",
-                    "Раздел 10_1. Мероприятия по обеспечению соблюдения требований энергетической эффективности",
-                    "Раздел 11. Смета на строительство объектов капитального строительства",
-                    "Раздел 12. Иная документация в случаях, предусмотренных федеральными законами"
-                });
-                checkedListBox2.Size = new Size(605, 350);
-
+                FilingComboBoxCapitalChapter();
             }
         }
         private void CreateMainFolder()
@@ -166,7 +130,7 @@ namespace IUL
             }
         }
 
-        private void buttonSelectAllChapters_Click(object sender, EventArgs e)
+        private void ButtonSelectAllChapters_Click(object sender, EventArgs e)
         {
             if (checkedListBox2.Items.Count == 0)
             {
@@ -178,7 +142,7 @@ namespace IUL
                 checkedListBox2.SetItemChecked(i, true);
             }
         }
-        private void buttonSelectAllReseach_Click(object sender, EventArgs e)
+        private void ButtonSelectAllReseach_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {

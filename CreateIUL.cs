@@ -172,7 +172,7 @@ namespace IUL
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    cell = new PdfPCell(new Phrase(GIP.Fname, font));
+                    cell = new PdfPCell(new Phrase(GIP.Surname, font));
                     cell.Colspan = 1;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -196,7 +196,7 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(author.Value.Fname, font));
+                        cell = new PdfPCell(new Phrase(author.Value.Surname, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -220,7 +220,7 @@ namespace IUL
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    cell = new PdfPCell(new Phrase(NKontr.Fname, font));
+                    cell = new PdfPCell(new Phrase(NKontr.Surname, font));
                     cell.Colspan = 1;
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;

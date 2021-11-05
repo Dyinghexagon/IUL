@@ -34,13 +34,13 @@ namespace IUL
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.RadioButton2 = new System.Windows.Forms.RadioButton();
+            this.RadioButton1 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonCreateFolder = new System.Windows.Forms.Button();
-            this.buttonSelectAllReseach = new System.Windows.Forms.Button();
-            this.buttonSelectAllChapters = new System.Windows.Forms.Button();
+            this.ButtonCreateFolder = new System.Windows.Forms.Button();
+            this.ButtonSelectAllReseach = new System.Windows.Forms.Button();
+            this.ButtonSelectAllChapters = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -88,8 +88,8 @@ namespace IUL
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.RadioButton2);
+            this.groupBox1.Controls.Add(this.RadioButton1);
             this.groupBox1.Location = new System.Drawing.Point(320, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(233, 76);
@@ -97,27 +97,27 @@ namespace IUL
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Проектная документация";
             // 
-            // radioButton2
+            // RadioButton2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 47);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(226, 19);
-            this.radioButton2.TabIndex = 11;
-            this.radioButton2.Text = "Объект капитального строительства";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.RadioButton2.AutoSize = true;
+            this.RadioButton2.Location = new System.Drawing.Point(6, 47);
+            this.RadioButton2.Name = "RadioButton2";
+            this.RadioButton2.Size = new System.Drawing.Size(226, 19);
+            this.RadioButton2.TabIndex = 11;
+            this.RadioButton2.Text = "Объект капитального строительства";
+            this.RadioButton2.UseVisualStyleBackColor = true;
+            this.RadioButton2.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
-            // radioButton1
+            // RadioButton1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 22);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(210, 19);
-            this.radioButton1.TabIndex = 10;
-            this.radioButton1.Text = "Объект линейного строительства";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.RadioButton1.AutoSize = true;
+            this.RadioButton1.Location = new System.Drawing.Point(6, 22);
+            this.RadioButton1.Name = "RadioButton1";
+            this.RadioButton1.Size = new System.Drawing.Size(210, 19);
+            this.RadioButton1.TabIndex = 10;
+            this.RadioButton1.Text = "Объект линейного строительства";
+            this.RadioButton1.UseVisualStyleBackColor = true;
+            this.RadioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // label3
             // 
@@ -136,44 +136,44 @@ namespace IUL
             this.textBox1.Size = new System.Drawing.Size(232, 22);
             this.textBox1.TabIndex = 16;
             // 
-            // buttonCreateFolder
+            // ButtonCreateFolder
             // 
-            this.buttonCreateFolder.Location = new System.Drawing.Point(559, 12);
-            this.buttonCreateFolder.Name = "buttonCreateFolder";
-            this.buttonCreateFolder.Size = new System.Drawing.Size(94, 41);
-            this.buttonCreateFolder.TabIndex = 18;
-            this.buttonCreateFolder.Text = "Создать папку проекта";
-            this.buttonCreateFolder.UseVisualStyleBackColor = true;
-            this.buttonCreateFolder.Click += new System.EventHandler(this.buttonCreateFolder_Click);
+            this.ButtonCreateFolder.Location = new System.Drawing.Point(559, 12);
+            this.ButtonCreateFolder.Name = "ButtonCreateFolder";
+            this.ButtonCreateFolder.Size = new System.Drawing.Size(94, 41);
+            this.ButtonCreateFolder.TabIndex = 18;
+            this.ButtonCreateFolder.Text = "Создать папку проекта";
+            this.ButtonCreateFolder.UseVisualStyleBackColor = true;
+            this.ButtonCreateFolder.Click += new System.EventHandler(this.ButtonCreateFolder_Click);
             // 
-            // buttonSelectAllReseach
+            // ButtonSelectAllReseach
             // 
-            this.buttonSelectAllReseach.Location = new System.Drawing.Point(558, 106);
-            this.buttonSelectAllReseach.Name = "buttonSelectAllReseach";
-            this.buttonSelectAllReseach.Size = new System.Drawing.Size(94, 41);
-            this.buttonSelectAllReseach.TabIndex = 20;
-            this.buttonSelectAllReseach.Text = "Выбрать все изыскания";
-            this.buttonSelectAllReseach.UseVisualStyleBackColor = true;
-            this.buttonSelectAllReseach.Click += new System.EventHandler(this.buttonSelectAllReseach_Click);
+            this.ButtonSelectAllReseach.Location = new System.Drawing.Point(558, 106);
+            this.ButtonSelectAllReseach.Name = "ButtonSelectAllReseach";
+            this.ButtonSelectAllReseach.Size = new System.Drawing.Size(94, 41);
+            this.ButtonSelectAllReseach.TabIndex = 20;
+            this.ButtonSelectAllReseach.Text = "Выбрать все изыскания";
+            this.ButtonSelectAllReseach.UseVisualStyleBackColor = true;
+            this.ButtonSelectAllReseach.Click += new System.EventHandler(this.ButtonSelectAllReseach_Click);
             // 
-            // buttonSelectAllChapters
+            // ButtonSelectAllChapters
             // 
-            this.buttonSelectAllChapters.Location = new System.Drawing.Point(558, 59);
-            this.buttonSelectAllChapters.Name = "buttonSelectAllChapters";
-            this.buttonSelectAllChapters.Size = new System.Drawing.Size(94, 41);
-            this.buttonSelectAllChapters.TabIndex = 19;
-            this.buttonSelectAllChapters.Text = "Выбрать все разделы";
-            this.buttonSelectAllChapters.UseVisualStyleBackColor = true;
-            this.buttonSelectAllChapters.Click += new System.EventHandler(this.buttonSelectAllChapters_Click);
+            this.ButtonSelectAllChapters.Location = new System.Drawing.Point(558, 59);
+            this.ButtonSelectAllChapters.Name = "ButtonSelectAllChapters";
+            this.ButtonSelectAllChapters.Size = new System.Drawing.Size(94, 41);
+            this.ButtonSelectAllChapters.TabIndex = 19;
+            this.ButtonSelectAllChapters.Text = "Выбрать все разделы";
+            this.ButtonSelectAllChapters.UseVisualStyleBackColor = true;
+            this.ButtonSelectAllChapters.Click += new System.EventHandler(this.ButtonSelectAllChapters_Click);
             // 
             // CreateFolderProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 450);
-            this.Controls.Add(this.buttonSelectAllReseach);
-            this.Controls.Add(this.buttonSelectAllChapters);
-            this.Controls.Add(this.buttonCreateFolder);
+            this.Controls.Add(this.ButtonSelectAllReseach);
+            this.Controls.Add(this.ButtonSelectAllChapters);
+            this.Controls.Add(this.ButtonCreateFolder);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
@@ -183,12 +183,62 @@ namespace IUL
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateFolderProject";
-            this.Text = "AddFolderProject";
+            this.Text = "Создание папки проекта";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void FilingComboBoxCapitalChapter()
+        {
+            this.checkedListBox2.Items.Clear();
+            this.checkedListBox2.Items.AddRange(new object[]
+            {
+                "Раздел 1. Пояснительная записка",
+                "Раздел 2. Схема планировочной организации земельного участка",
+                "Раздел 3. Архитектурные решения",
+                "Раздел 4. Конструктивные и объемно-планировочные решения",
+                "Раздел 5. Подраздел 5.1 Система электроснабжения",
+                "Раздел 5. Подраздел 5.2 Система водоснабжения",
+                "Раздел 5. Подраздел 5.3 Система водоотведения",
+                "Раздел 5. Подраздел 5.4 Отопление, вентиляция и кондиционирование воздуха, тепловые сети",
+                "Раздел 5. Подраздел 5.5 Сети связи",
+                "Раздел 5. Подраздел 5.6 Система газоснабжения",
+                "Раздел 5. Подраздел 5.7 Технологические решения",
+                "Раздел 6. Проект организации строительства",
+                "Раздел 7. Проект организации работ по сносу или демонтажу объектов капитального строительства",
+                "Раздел 8. Перечень мероприятий по охране окружающей среды",
+                "Раздел 9. Мероприятия по обеспечению пожарной безопасности",
+                "Раздел 10. Мероприятия по обеспечению доступа инвалидов",
+                "Раздел 10_1. Мероприятия по обеспечению соблюдения требований энергетической эффективности",
+                "Раздел 11. Смета на строительство объектов капитального строительства",
+                "Раздел 12. Иная документация в случаях, предусмотренных федеральными законами"
+            });
+            this.checkedListBox2.Size = new System.Drawing.Size(605, 350);
+            this.ClientSize = new System.Drawing.Size(checkedListBox2.Size.Width + 55,
+                                                    checkedListBox2.Size.Height + 170);
+        }
+
+        private void FilingComboBoxLinearChapter()
+        {
+            this.checkedListBox2.Items.Clear();
+            this.checkedListBox2.Items.AddRange(new object[]
+            {
+                "Раздел 1. Пояснительная записка",
+                "Раздел 2. Проект полосы отвода",
+                "Раздел 3. Технологические и конструктивные решения линейного объекта. Искусственные сооружения",
+                "Раздел 4. Здания, строения и сооружения, входящие в инфраструктуру линейного объекта",
+                "Раздел 5. Проект организации строительства",
+                "Раздел 6. Проект организации работ по сносу (демонтажу) линейного объекта",
+                "Раздел 7. Мероприятия по охране окружающей среды",
+                "Раздел 8. Мероприятия по обеспечению пожарной безопасности",
+                "Раздел 9. Смета на строительство"
+            });
+            this.checkedListBox2.Size = new System.Drawing.Size(605, 166);
+            this.ClientSize = new System.Drawing.Size(checkedListBox2.Size.Width + 55,
+                checkedListBox2.Size.Height + 170);
         }
 
         #endregion
@@ -198,13 +248,14 @@ namespace IUL
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton RadioButton2;
+        private System.Windows.Forms.RadioButton RadioButton1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button buttonCreateFolder;
-        private System.Windows.Forms.Button buttonSelectAllReseach;
-        private System.Windows.Forms.Button buttonSelectAllChapters;
+        private System.Windows.Forms.Button ButtonCreateFolder;
+        private System.Windows.Forms.Button ButtonSelectAllReseach;
+        private System.Windows.Forms.Button ButtonSelectAllChapters;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
+
 }
