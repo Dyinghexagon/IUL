@@ -6,14 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Drawing;
+using System.Collections.Specialized;
+
 namespace IUL
 {
     class DbProviderFactories
     {
         public static SqlConnection GetDBConnection()
         {
-            string connectionString = ConfigurationManager.AppSettings["conn"];
+            string connectionString = ConfigurationManager.AppSettings.Get("conn");
             SqlConnection conn = new SqlConnection(connectionString);
             return conn;
         }

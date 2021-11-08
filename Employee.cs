@@ -43,41 +43,29 @@ namespace IUL
         {
             this._surname = surname;
             Initialization();
-        }
-        private static string GetFname(int id)
+        } 
+        public static string[] GetSurnameEmployees() 
         {
-            string fname = "";
+            int countEmployees = DbProviderFactories.GetCountСolumns("EMPLOYEES");
+            string[] surnameEmployees = new string[countEmployees];
             string query = "SELECT [EMPLOYEES].[EMPLOYEE_SURNAME]" +
-                "FROM [EMPLOYEES]" +
-                "WHERE [EMPLOYEES].[EMPLOYEE_ID] = @id;";
+                "FROM [EMPLOYEES];";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                SqlParameter idParam = new SqlParameter("@id", id);
-                command.Parameters.Add(idParam);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
                     {
-                        while (reader.Read())
+                        for(int i = 0; reader.Read(); i++) 
                         {
-                            fname = reader.GetValue(0).ToString().Trim();
+                            surnameEmployees[i] = reader.GetValue(0).ToString().Trim();
                         }
                     }
                 }
             }
-            return fname;
-        }
-        public static string[] GetSurnameEmployees() 
-        {
-            int countColumns = DbProviderFactories.GetCountСolumns("EMPLOYEES");
-            List<string> FIOList = new List<string>(countColumns);
-            for(int i=1;i<= countColumns; i++) 
-            {
-                FIOList.Add(Employee.GetFname(i));
-            }
-            return FIOList.ToArray();
+            return surnameEmployees;
         }
         private void Initialization() 
         {
@@ -128,6 +116,5 @@ namespace IUL
             fileStream.Close();
             reader.Close();
         }
-
     }
 }

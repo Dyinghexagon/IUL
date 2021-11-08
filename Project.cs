@@ -124,7 +124,56 @@ namespace IUL
             set { this._path = value; }
 
         }
+        public Project() { }
+        public Project(string nameProject) 
+        {
+            this._name = nameProject;
+            string query = "USE IUL;" +
+                "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_ENVIRONMENTAL_SURVEYS]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_METEOROLOGICAL_SURVEYS]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOTECHNICAL_SURVEYS]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_CUSTOMER]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID]" +
+                ",[IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER]" +
+                "FROM [IUL].[dbo].[PROJECTS]" +
+                "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_NAME] LIKE @nameProject; ";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@nameProject", SqlDbType.NChar).Value = this._name;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            this._id = reader.GetValue(0).ToString().Trim();
+                            this._capitalOrLinear = Convert.ToBoolean(reader.GetValue(1));
+                            this._isGeodetiSurveys = Convert.ToBoolean(reader.GetValue(2));
+                            this._isGeologicalSurveysSurveys = Convert.ToBoolean(reader.GetValue(3));
+                            this._isEnvironmentalSurveys = Convert.ToBoolean(reader.GetValue(4));
+                            this._isMeteorologicalSurveys = Convert.ToBoolean(reader.GetValue(5));
+                            this._isGeotechnicalSurveys = Convert.ToBoolean(reader.GetValue(6));
+                            this._isArchaeologicalSurveys = Convert.ToBoolean(reader.GetValue(7));
+                            this._isInspectionOfTechnicalCondition = Convert.ToBoolean(reader.GetValue(8));
+                            this._nameCustomer = reader.GetValue(9).ToString().Trim();
+                            this._idGIP = Convert.ToInt32(reader.GetValue(10));
+                            this._idNkont = Convert.ToInt32(reader.GetValue(11));
+                            this._path = reader.GetValue(12).ToString().Trim();
 
+                        }
+                    }
+                }
+            }
+        }
         public bool InsertNewProject()
         {
             string query = "USE [IUL];" +
@@ -225,5 +274,29 @@ namespace IUL
             }
             return idAndNameProject;
         }
+        public static string[] GetProjectsArray() 
+        {
+            int countProjects = DbProviderFactories.GetCountСolumns("PROJECTS");
+            string[] projects = new string[countProjects];
+            string query = "USE IUL;" +
+                "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_NAME] " +
+                "FROM [IUL].[dbo].[PROJECTS]; ";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        for (int i = 0; reader.Read(); i++)
+                        {
+                            projects[i] = reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
+            }
+            return projects;
+        }     
     }
 }

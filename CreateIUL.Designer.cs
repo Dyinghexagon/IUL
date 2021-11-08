@@ -97,7 +97,6 @@ namespace IUL
             this.PerformLayout();
 
         }
-
         #endregion
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button button2;

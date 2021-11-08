@@ -58,13 +58,12 @@ namespace IUL
                 "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
                 "JOIN [IUL].[dbo].[ROLES]" +
                 "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID]" +
-                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @codeChapter" + ";";
+                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @codeChapter;";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                SqlParameter codeChapterParam = new SqlParameter("@codeChapter", codeChapter);
-                command.Parameters.Add(codeChapterParam);
+                command.Parameters.Add("@codeChapter", System.Data.SqlDbType.NChar).Value = codeChapter;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)

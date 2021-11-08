@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace IUL
 {
     public partial class CreateProject : Form
@@ -14,6 +14,7 @@ namespace IUL
         public CreateProject()
         {
             InitializeComponent();
+            Stopwatch stopwatch = new Stopwatch();
             FillingComboBoxGIP();
             FillingComboBoxNkontr();
             this._newProject = new Project();
