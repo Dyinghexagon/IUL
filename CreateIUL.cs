@@ -30,7 +30,7 @@ namespace IUL
                     return;
                 pathMainFolder = folderBrowserDialog1.SelectedPath;
                 IULs iuls = new IULs(codeProject);
-                Dictionary<string, IUL.Chapter> chaptrers = new Dictionary<string, IUL.Chapter>(iuls.GetChapters());
+                Dictionary<string, IUL.ChapterInfoForIULs> chaptrers = new Dictionary<string, IUL.ChapterInfoForIULs>(iuls.GetChapters());
                 string dateSign = dateTimePicker1.Value.ToShortDateString();
                 foreach (var chapter in chaptrers)
                 {
@@ -44,7 +44,7 @@ namespace IUL
             }
 
         }
-        private void CreateTable(string path, string codeChapter, IUL.Chapter chapter, List<KeyValuePair<string, Employee>> authorsChapter, string dateSigning, Employee GIP, Employee NKontr)
+        private void CreateTable(string path, string codeChapter, IUL.ChapterInfoForIULs chapter, List<KeyValuePair<string, Employee>> authorsChapter, string dateSigning, Employee GIP, Employee NKontr)
         {
             var doc = new iTextSharp.text.Document(PageSize.A4);
             try

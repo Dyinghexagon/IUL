@@ -32,17 +32,19 @@ namespace IUL
             this.LabelNameProject = new System.Windows.Forms.Label();
             this.ComboBoxNameProjects = new System.Windows.Forms.ComboBox();
             this.ButtonAddNewChapter = new System.Windows.Forms.Button();
-            this.LabelCodeProjectHint = new System.Windows.Forms.Label();
+            this.LabelIdProjectHint = new System.Windows.Forms.Label();
             this.ComboBoxChapters = new System.Windows.Forms.ComboBox();
             this.LabelNameChapters = new System.Windows.Forms.Label();
-            this.LabelCodeProject = new System.Windows.Forms.Label();
+            this.LabelIdProject = new System.Windows.Forms.Label();
             this.LabelChapterHint = new System.Windows.Forms.Label();
-            this.LabelNumberSubChapter = new System.Windows.Forms.Label();
-            this.TextBoxSubChapter = new System.Windows.Forms.TextBox();
+            this.LabelIdSubChapter = new System.Windows.Forms.Label();
+            this.TextBoxIdSubChapter = new System.Windows.Forms.TextBox();
             this.ButtonSelecFileChapter = new System.Windows.Forms.Button();
-            this.LabelChapter = new System.Windows.Forms.Label();
             this.LabelNameSubChapter = new System.Windows.Forms.Label();
             this.TextBoxNameSubChapter = new System.Windows.Forms.TextBox();
+            this.TextBoxIdChapter = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // LabelNameProject
@@ -71,15 +73,16 @@ namespace IUL
             this.ButtonAddNewChapter.TabIndex = 3;
             this.ButtonAddNewChapter.Text = "Добавить раздел к проекту";
             this.ButtonAddNewChapter.UseVisualStyleBackColor = true;
+            this.ButtonAddNewChapter.Click += new System.EventHandler(this.ButtonAddNewChapter_Click);
             // 
-            // LabelCodeProjectHint
+            // LabelIdProjectHint
             // 
-            this.LabelCodeProjectHint.AutoSize = true;
-            this.LabelCodeProjectHint.Location = new System.Drawing.Point(717, 9);
-            this.LabelCodeProjectHint.Name = "LabelCodeProjectHint";
-            this.LabelCodeProjectHint.Size = new System.Drawing.Size(159, 15);
-            this.LabelCodeProjectHint.TabIndex = 5;
-            this.LabelCodeProjectHint.Text = "Шифр выбранного проекта";
+            this.LabelIdProjectHint.AutoSize = true;
+            this.LabelIdProjectHint.Location = new System.Drawing.Point(717, 9);
+            this.LabelIdProjectHint.Name = "LabelIdProjectHint";
+            this.LabelIdProjectHint.Size = new System.Drawing.Size(159, 15);
+            this.LabelIdProjectHint.TabIndex = 5;
+            this.LabelIdProjectHint.Text = "Шифр выбранного проекта";
             // 
             // ComboBoxChapters
             // 
@@ -99,14 +102,14 @@ namespace IUL
             this.LabelNameChapters.TabIndex = 8;
             this.LabelNameChapters.Text = "Перечень разделов";
             // 
-            // LabelCodeProject
+            // LabelIdProject
             // 
-            this.LabelCodeProject.AutoSize = true;
-            this.LabelCodeProject.Location = new System.Drawing.Point(717, 35);
-            this.LabelCodeProject.Name = "LabelCodeProject";
-            this.LabelCodeProject.Size = new System.Drawing.Size(159, 15);
-            this.LabelCodeProject.TabIndex = 9;
-            this.LabelCodeProject.Text = "Шифр выбранного проекта";
+            this.LabelIdProject.AutoSize = true;
+            this.LabelIdProject.Location = new System.Drawing.Point(717, 35);
+            this.LabelIdProject.Name = "LabelIdProject";
+            this.LabelIdProject.Size = new System.Drawing.Size(159, 15);
+            this.LabelIdProject.TabIndex = 9;
+            this.LabelIdProject.Text = "Шифр выбранного проекта";
             // 
             // LabelChapterHint
             // 
@@ -117,21 +120,21 @@ namespace IUL
             this.LabelChapterHint.TabIndex = 6;
             this.LabelChapterHint.Text = "Шифр выбранного раздела";
             // 
-            // LabelNumberSubChapter
+            // LabelIdSubChapter
             // 
-            this.LabelNumberSubChapter.AutoSize = true;
-            this.LabelNumberSubChapter.Location = new System.Drawing.Point(15, 100);
-            this.LabelNumberSubChapter.Name = "LabelNumberSubChapter";
-            this.LabelNumberSubChapter.Size = new System.Drawing.Size(111, 15);
-            this.LabelNumberSubChapter.TabIndex = 23;
-            this.LabelNumberSubChapter.Text = "Номер подраздела";
+            this.LabelIdSubChapter.AutoSize = true;
+            this.LabelIdSubChapter.Location = new System.Drawing.Point(15, 100);
+            this.LabelIdSubChapter.Name = "LabelIdSubChapter";
+            this.LabelIdSubChapter.Size = new System.Drawing.Size(111, 15);
+            this.LabelIdSubChapter.TabIndex = 23;
+            this.LabelIdSubChapter.Text = "Номер подраздела";
             // 
-            // TextBoxSubChapter
+            // TextBoxIdSubChapter
             // 
-            this.TextBoxSubChapter.Location = new System.Drawing.Point(15, 118);
-            this.TextBoxSubChapter.Name = "TextBoxSubChapter";
-            this.TextBoxSubChapter.Size = new System.Drawing.Size(111, 23);
-            this.TextBoxSubChapter.TabIndex = 22;
+            this.TextBoxIdSubChapter.Location = new System.Drawing.Point(15, 118);
+            this.TextBoxIdSubChapter.Name = "TextBoxIdSubChapter";
+            this.TextBoxIdSubChapter.Size = new System.Drawing.Size(111, 23);
+            this.TextBoxIdSubChapter.TabIndex = 22;
             // 
             // ButtonSelecFileChapter
             // 
@@ -141,15 +144,7 @@ namespace IUL
             this.ButtonSelecFileChapter.TabIndex = 24;
             this.ButtonSelecFileChapter.Text = "Выбрать файл раздела";
             this.ButtonSelecFileChapter.UseVisualStyleBackColor = true;
-            // 
-            // LabelChapter
-            // 
-            this.LabelChapter.AutoSize = true;
-            this.LabelChapter.Location = new System.Drawing.Point(717, 80);
-            this.LabelChapter.Name = "LabelChapter";
-            this.LabelChapter.Size = new System.Drawing.Size(158, 15);
-            this.LabelChapter.TabIndex = 25;
-            this.LabelChapter.Text = "Шифр выбранного раздела";
+            this.ButtonSelecFileChapter.Click += new System.EventHandler(this.ButtonSelecFileChapter_Click);
             // 
             // LabelNameSubChapter
             // 
@@ -168,22 +163,33 @@ namespace IUL
             this.TextBoxNameSubChapter.Size = new System.Drawing.Size(744, 135);
             this.TextBoxNameSubChapter.TabIndex = 26;
             // 
+            // TextBoxIdChapter
+            // 
+            this.TextBoxIdChapter.Location = new System.Drawing.Point(717, 72);
+            this.TextBoxIdChapter.Name = "TextBoxIdChapter";
+            this.TextBoxIdChapter.Size = new System.Drawing.Size(159, 23);
+            this.TextBoxIdChapter.TabIndex = 28;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // CreateChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 261);
+            this.Controls.Add(this.TextBoxIdChapter);
             this.Controls.Add(this.TextBoxNameSubChapter);
             this.Controls.Add(this.LabelNameSubChapter);
-            this.Controls.Add(this.LabelChapter);
             this.Controls.Add(this.ButtonSelecFileChapter);
-            this.Controls.Add(this.LabelNumberSubChapter);
-            this.Controls.Add(this.TextBoxSubChapter);
-            this.Controls.Add(this.LabelCodeProject);
+            this.Controls.Add(this.LabelIdSubChapter);
+            this.Controls.Add(this.TextBoxIdSubChapter);
+            this.Controls.Add(this.LabelIdProject);
             this.Controls.Add(this.LabelNameChapters);
             this.Controls.Add(this.ComboBoxChapters);
             this.Controls.Add(this.LabelChapterHint);
-            this.Controls.Add(this.LabelCodeProjectHint);
+            this.Controls.Add(this.LabelIdProjectHint);
             this.Controls.Add(this.ButtonAddNewChapter);
             this.Controls.Add(this.ComboBoxNameProjects);
             this.Controls.Add(this.LabelNameProject);
@@ -207,13 +213,13 @@ namespace IUL
                 "Раздел 2. Схема планировочной организации земельного участка",
                 "Раздел 3. Архитектурные решения",
                 "Раздел 4. Конструктивные и объемно-планировочные решения",
-                "Раздел 5. Подраздел 5.1 Система электроснабжения",
-                "Раздел 5. Подраздел 5.2 Система водоснабжения",
-                "Раздел 5. Подраздел 5.3 Система водоотведения",
-                "Раздел 5. Подраздел 5.4 Отопление, вентиляция и кондиционирование воздуха, тепловые сети",
-                "Раздел 5. Подраздел 5.5 Сети связи",
-                "Раздел 5. Подраздел 5.6 Система газоснабжения",
-                "Раздел 5. Подраздел 5.7 Технологические решения",
+                "Подраздел 5.1 Система электроснабжения",
+                "Подраздел 5.2 Система водоснабжения",
+                "Подраздел 5.3 Система водоотведения",
+                "Подраздел 5.4 Отопление, вентиляция и кондиционирование воздуха, тепловые сети",
+                "Подраздел 5.5 Сети связи",
+                "Подраздел 5.6 Система газоснабжения",
+                "Подраздел 5.7 Технологические решения",
                 "Раздел 6. Проект организации строительства",
                 "Раздел 7. Проект организации работ по сносу или демонтажу объектов капитального строительства",
                 "Раздел 8. Перечень мероприятий по охране окружающей среды",
@@ -246,16 +252,18 @@ namespace IUL
         private System.Windows.Forms.Label LabelNameProject;
         private System.Windows.Forms.ComboBox ComboBoxNameProjects;
         private System.Windows.Forms.Button ButtonAddNewChapter;
-        private System.Windows.Forms.Label LabelCodeProjectHint;
+        private System.Windows.Forms.Label LabelIdProjectHint;
         private System.Windows.Forms.ComboBox ComboBoxChapters;
         private System.Windows.Forms.Label LabelNameChapters;
-        private System.Windows.Forms.Label LabelCodeProject;
+        private System.Windows.Forms.Label LabelIdProject;
         private System.Windows.Forms.Label LabelChapterHint;
-        private System.Windows.Forms.Label LabelNumberSubChapter;
-        private System.Windows.Forms.TextBox TextBoxSubChapter;
+        private System.Windows.Forms.Label LabelIdSubChapter;
+        private System.Windows.Forms.TextBox TextBoxIdSubChapter;
         private System.Windows.Forms.Button ButtonSelecFileChapter;
-        private System.Windows.Forms.Label LabelChapter;
         private System.Windows.Forms.Label LabelNameSubChapter;
         private System.Windows.Forms.TextBox TextBoxNameSubChapter;
+        private System.Windows.Forms.TextBox TextBoxIdChapter;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

@@ -14,7 +14,7 @@ namespace IUL
         /// Ключом выступает код раздела.
         /// Значением выступает объект класса IUL.
         /// </summary>
-        private Dictionary<string, Chapter> _chapters;
+        private Dictionary<string, ChapterInfoForIULs> _chapters;
         public Employee GIP 
         {
             get { return _GIP; }
@@ -23,17 +23,16 @@ namespace IUL
         {
             get { return _NKontr; }
         }
-        
         public IULs(string codeProject) 
         {
             int countChapters = DbProviderFactories.GetCountСolumnsChapters(codeProject);
             HashSet<string> chaptersCode = GetChaptersCode(countChapters, codeProject);
-            _chapters = new Dictionary<string, Chapter>(countChapters);
+            _chapters = new Dictionary<string, ChapterInfoForIULs>(countChapters);
             InitializationGip(codeProject);
             InitializationNkontr(codeProject);
             foreach(var chapterCode in chaptersCode) 
             {
-                _chapters.Add(chapterCode, new Chapter(chapterCode, codeProject));
+                _chapters.Add(chapterCode, new ChapterInfoForIULs(chapterCode, codeProject));
             }
         }
         private void InitializationGip(string codeProject) 
@@ -120,7 +119,7 @@ namespace IUL
             }
             return chaptersName;
         }
-        public ref Dictionary<string, Chapter> GetChapters() 
+        public ref Dictionary<string, ChapterInfoForIULs> GetChapters() 
         {
             return ref this._chapters;
         } 

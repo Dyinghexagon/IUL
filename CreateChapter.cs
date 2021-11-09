@@ -10,77 +10,77 @@ namespace IUL
 {
     public partial class CreateChapter : Form
     {
-        private Dictionary<string, string> _codeNamePair;
+        private Project _selectedProject;
+        private Chapter _newChapter;
         public CreateChapter()
         {
             InitializeComponent();
             InitializeProjects();
+            _newChapter = new Chapter();
         }
 
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
-            Project selectedProject = new Project(nameProject);
-            LabelCodeProject.Text = selectedProject.Id;
-            _codeNamePair = new Dictionary<string, string>();
-
-            if (selectedProject.CapitalOrLinear) 
+            _selectedProject = new Project(nameProject);
+            LabelIdProject.Text = _selectedProject.Id;
+            if (_selectedProject.CapitalOrLinear) 
             {
                 FilingComboBoxCapitalChapter();
-                _codeNamePair.Add("Раздел 1. Пояснительная записка", "ПЗ");
-                _codeNamePair.Add("Раздел 2. Схема планировочной организации земельного участка", "ПЗУ");
-                _codeNamePair.Add("Раздел 3. Архитектурные решения", "АР");
-                _codeNamePair.Add("Раздел 4. Конструктивные и объемно - планировочные решения", "КР");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.1 Система электроснабжения", "ИОС5.1");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.2 Система водоснабжения", "ИОС5.2");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.3 Система водоотведения", "ИОС5.3");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.4 Отопление, вентиляция и кондиционирование воздуха, тепловые сети", "ИОС5.4");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.5 Сети связи", "ИОС5.5");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.6 Система газоснабжения", "ИОС5.6");
-                _codeNamePair.Add("Раздел 5. Подраздел 5.7 Технологические решения", "ИОС5.7");
-
-                _codeNamePair.Add("Раздел 6. Проект организации строительства", "ПОС");
-                _codeNamePair.Add("Раздел 7. Проект организации работ по сносу или демонтажу объектов капитального строительства", "ПОД");
-                _codeNamePair.Add("Раздел 8. Перечень мероприятий по охране окружающей среды", "ООС");
-                _codeNamePair.Add("Раздел 9. Мероприятия по обеспечению пожарной безопасности", "ПБ");
-                _codeNamePair.Add("Раздел 10. Мероприятия по обеспечению доступа инвалидов", "ОДИ");
-                _codeNamePair.Add("Раздел 10_1. Мероприятия по обеспечению соблюдения требований энергетической эффективности", "ЭЭ");
-                _codeNamePair.Add("Раздел 11. Смета на строительство объектов капитального строительства", "СМ");
-                _codeNamePair.Add("Раздел 12. Иная документация в случаях, предусмотренных федеральными законами", "КР");
-
             }
             else 
             {
                 FilingComboBoxLinearChapter();
-                _codeNamePair.Add("Раздел 1. Пояснительная записка", "ПЗ");
-                _codeNamePair.Add("Раздел 2. Проект полосы отвода", "ППО");
-                _codeNamePair.Add("Раздел 3. Технологические и конструктивные решения линейного объекта. Искусственные сооружения", "ТКР");
-                _codeNamePair.Add("Раздел 4. Здания, строения и сооружения, входящие в инфраструктуру линейного объекта", "ИЛО");
-                _codeNamePair.Add("Раздел 5. Проект организации строительства", "ПОС");
-                _codeNamePair.Add("Раздел 6. Проект организации работ по сносу (демонтажу) линейного объекта", "ПОД");
-                _codeNamePair.Add("Раздел 7. Мероприятия по охране окружающей среды", "ООС");
-                _codeNamePair.Add("Раздел 8. Мероприятия по обеспечению пожарной безопасности", "ПБ");
-                _codeNamePair.Add("Раздел 9. Смета на строительство", "СМ");
             }
-
         }
-
         private void ComboBoxChapters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string codeChapter = LabelCodeProject.Text;
-            string nameChapter = "Проектная документация. ";
-            string res = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
-            if (ComboBoxChapters.SelectedIndex >= 4 && ComboBoxChapters.SelectedIndex <= 10)
+            int selectedIndex = ComboBoxChapters.SelectedIndex;
+            if (this._selectedProject.CapitalOrLinear && selectedIndex >= 4 && selectedIndex <= 10)
             {
-                string chapter5 = "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, перечень инженерно-технических мероприятий, содержание технологических решений";
-                nameChapter += chapter5;
+                this._newChapter.ChapterName =
+                    "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +
+                    "перечень инженерно-технических мероприятий, содержание технологических решений ";
             }
-            //ИСПРАВИТЬ ДЛЯ СЛУЧАЯ С РАЗДЕЛОМ 5
-                nameChapter += res;
-            
-            codeChapter += "-" + _codeNamePair[res];
-            Console.WriteLine(codeChapter);
-            Console.WriteLine(nameChapter);
+            this._newChapter.ChapterName += ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
+        }
+        private void ButtonAddNewChapter_Click(object sender, EventArgs e)
+        {
+            this._newChapter.ChapterId = LabelIdProject.Text;
+            if (TextBoxIdChapter.Text.Length != 0 && ComboBoxChapters.SelectedIndex != -1)
+            {
+                this._newChapter.ChapterId += "-"+ TextBoxIdChapter?.Text;
+            }
+            else
+            {
+                MessageBox.Show("Выберите раздел и/или напишите впишите шифр!");
+            }
+            if (TextBoxIdSubChapter.Text.Length != 0)
+            {
+                this._newChapter.ChapterId += "." + TextBoxIdSubChapter?.Text;
+                if (TextBoxNameSubChapter.Text.Length != 0)
+                {
+                    this._newChapter.ChapterName += " Часть "+ TextBoxIdSubChapter.Text + ". " + TextBoxNameSubChapter.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Введите наименование подраздела!");
+                }
+            }
+
+            this._newChapter.ProjectId = this.LabelIdProject.Text;
+            if (this._newChapter.InsertNewChapter())
+            {
+                MessageBox.Show("Раздел добавлен!");
+                TextBoxNameSubChapter.Clear();
+                TextBoxIdSubChapter.Clear();
+            }
+        }
+
+        private void ButtonSelecFileChapter_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                this._newChapter.NameFileChapter = openFileDialog1.SafeFileName;
         }
     }
 }
