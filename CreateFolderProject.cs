@@ -171,14 +171,16 @@ namespace IUL
         {
             CreateProject createProject = new CreateProject();
             createProject.Show();
-            this.Close();
+            this.Hide();
+            Program.PreviosPage = this;
+
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
-            main.Show();
-            this.Close();
+            Program.PreviosPage.Show();
+            this.Hide();
+            Program.PreviosPage = this;
         }
     }
 }

@@ -38,6 +38,7 @@ namespace IUL
             this.LabelRoleEmployee = new System.Windows.Forms.Label();
             this.ComboBoxRoles = new System.Windows.Forms.ComboBox();
             this.ButtonAddNewPerformer = new System.Windows.Forms.Button();
+            this.ButtonBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LabelNameChapters
@@ -122,11 +123,22 @@ namespace IUL
             this.ButtonAddNewPerformer.UseVisualStyleBackColor = true;
             this.ButtonAddNewPerformer.Click += new System.EventHandler(this.ButtonAddNewPerformer_Click);
             // 
+            // ButtonBack
+            // 
+            this.ButtonBack.Location = new System.Drawing.Point(529, 146);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(88, 44);
+            this.ButtonBack.TabIndex = 18;
+            this.ButtonBack.Text = "Назад";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
+            // 
             // CreatePerformer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 198);
+            this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonAddNewPerformer);
             this.Controls.Add(this.LabelRoleEmployee);
             this.Controls.Add(this.ComboBoxRoles);
@@ -154,5 +166,6 @@ namespace IUL
         private System.Windows.Forms.Label LabelRoleEmployee;
         private System.Windows.Forms.ComboBox ComboBoxRoles;
         private System.Windows.Forms.Button ButtonAddNewPerformer;
+        private System.Windows.Forms.Button ButtonBack;
     }
 }

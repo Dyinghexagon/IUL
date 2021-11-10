@@ -248,32 +248,6 @@ namespace IUL
             }
             return path;
         }
-        public static List<KeyValuePair<string, string>> GetIdAndNameProject()
-        {
-            List<KeyValuePair<string, string>> idAndNameProject = new List<KeyValuePair<string, string>>();
-            string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]," +
-                "[IUL].[dbo].[PROJECTS].[PROJECT_NAME]" +
-                "FROM [IUL].[dbo].[PROJECTS];";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            string id = reader.GetValue(0).ToString().Trim();
-                            string projectName = reader.GetValue(1).ToString().Trim();
-                            idAndNameProject.Add(new KeyValuePair<string, string>(id, projectName));
-                        }
-                    }
-                }
-            }
-            return idAndNameProject;
-        }
         public static string[] GetProjectsArray() 
         {
             int countProjects = DbProviderFactories.GetCountСolumns("PROJECTS");

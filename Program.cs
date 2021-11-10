@@ -8,6 +8,7 @@ namespace IUL
 {
     static class Program
     {
+        public static Form PreviosPage;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

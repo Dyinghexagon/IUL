@@ -32,7 +32,7 @@ namespace IUL
             this.GroupBoxChoosingTyoeProject = new System.Windows.Forms.GroupBox();
             this.RadioButtonCapital = new System.Windows.Forms.RadioButton();
             this.RadioButtonLinear = new System.Windows.Forms.RadioButton();
-            this.CheckedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.CheckedListBoxResearchs = new System.Windows.Forms.CheckedListBox();
             this.LabelResearch = new System.Windows.Forms.Label();
             this.ComboBoxChoosingGIP = new System.Windows.Forms.ComboBox();
             this.LabelGIP = new System.Windows.Forms.Label();
@@ -47,6 +47,8 @@ namespace IUL
             this.ButtonChoosingMainFolder = new System.Windows.Forms.Button();
             this.ButtonAddProject = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.ButtonCrossCreateNewChapter = new System.Windows.Forms.Button();
+            this.ButtonBack = new System.Windows.Forms.Button();
             this.GroupBoxChoosingTyoeProject.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,10 +85,10 @@ namespace IUL
             this.RadioButtonLinear.UseVisualStyleBackColor = true;
             this.RadioButtonLinear.CheckedChanged += new System.EventHandler(this.RadioButtonLinear_CheckedChanged);
             // 
-            // CheckedListBox1
+            // CheckedListBoxResearchs
             // 
-            this.CheckedListBox1.FormattingEnabled = true;
-            this.CheckedListBox1.Items.AddRange(new object[] {
+            this.CheckedListBoxResearchs.FormattingEnabled = true;
+            this.CheckedListBoxResearchs.Items.AddRange(new object[] {
             "Инженерно-геодезические изыскания",
             "Инженерно-геологические изыскания",
             "Инженерно-экологические изыскания",
@@ -94,10 +96,10 @@ namespace IUL
             "Инженерно-геотехнические изыскания",
             "Археологические изыскания",
             "Техническое обсследование здания"});
-            this.CheckedListBox1.Location = new System.Drawing.Point(12, 27);
-            this.CheckedListBox1.Name = "CheckedListBox1";
-            this.CheckedListBox1.Size = new System.Drawing.Size(302, 130);
-            this.CheckedListBox1.TabIndex = 19;
+            this.CheckedListBoxResearchs.Location = new System.Drawing.Point(12, 26);
+            this.CheckedListBoxResearchs.Name = "CheckedListBoxResearchs";
+            this.CheckedListBoxResearchs.Size = new System.Drawing.Size(302, 130);
+            this.CheckedListBoxResearchs.TabIndex = 19;
             // 
             // LabelResearch
             // 
@@ -113,7 +115,7 @@ namespace IUL
             this.ComboBoxChoosingGIP.FormattingEnabled = true;
             this.ComboBoxChoosingGIP.Location = new System.Drawing.Point(558, 26);
             this.ComboBoxChoosingGIP.Name = "ComboBoxChoosingGIP";
-            this.ComboBoxChoosingGIP.Size = new System.Drawing.Size(121, 23);
+            this.ComboBoxChoosingGIP.Size = new System.Drawing.Size(176, 23);
             this.ComboBoxChoosingGIP.TabIndex = 21;
             this.ComboBoxChoosingGIP.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChoosingGIP_SelectedIndexChanged);
             // 
@@ -140,21 +142,21 @@ namespace IUL
             this.ComboBoxChoosingNkontr.FormattingEnabled = true;
             this.ComboBoxChoosingNkontr.Location = new System.Drawing.Point(558, 70);
             this.ComboBoxChoosingNkontr.Name = "ComboBoxChoosingNkontr";
-            this.ComboBoxChoosingNkontr.Size = new System.Drawing.Size(121, 23);
+            this.ComboBoxChoosingNkontr.Size = new System.Drawing.Size(176, 23);
             this.ComboBoxChoosingNkontr.TabIndex = 23;
             this.ComboBoxChoosingNkontr.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChoosingNkontr_SelectedIndexChanged);
             // 
             // TextBoxCodeProject
             // 
-            this.TextBoxCodeProject.Location = new System.Drawing.Point(320, 134);
+            this.TextBoxCodeProject.Location = new System.Drawing.Point(318, 133);
             this.TextBoxCodeProject.Name = "TextBoxCodeProject";
-            this.TextBoxCodeProject.Size = new System.Drawing.Size(465, 23);
+            this.TextBoxCodeProject.Size = new System.Drawing.Size(416, 23);
             this.TextBoxCodeProject.TabIndex = 25;
             // 
             // LabelCodeProject
             // 
             this.LabelCodeProject.AutoSize = true;
-            this.LabelCodeProject.Location = new System.Drawing.Point(320, 116);
+            this.LabelCodeProject.Location = new System.Drawing.Point(318, 115);
             this.LabelCodeProject.Name = "LabelCodeProject";
             this.LabelCodeProject.Size = new System.Drawing.Size(88, 15);
             this.LabelCodeProject.TabIndex = 26;
@@ -163,7 +165,7 @@ namespace IUL
             // LabelNameProject
             // 
             this.LabelNameProject.AutoSize = true;
-            this.LabelNameProject.Location = new System.Drawing.Point(12, 164);
+            this.LabelNameProject.Location = new System.Drawing.Point(10, 160);
             this.LabelNameProject.Name = "LabelNameProject";
             this.LabelNameProject.Size = new System.Drawing.Size(137, 15);
             this.LabelNameProject.TabIndex = 28;
@@ -171,16 +173,16 @@ namespace IUL
             // 
             // TextBoxNameProject
             // 
-            this.TextBoxNameProject.Location = new System.Drawing.Point(12, 182);
+            this.TextBoxNameProject.Location = new System.Drawing.Point(12, 178);
             this.TextBoxNameProject.Multiline = true;
             this.TextBoxNameProject.Name = "TextBoxNameProject";
-            this.TextBoxNameProject.Size = new System.Drawing.Size(773, 90);
+            this.TextBoxNameProject.Size = new System.Drawing.Size(722, 90);
             this.TextBoxNameProject.TabIndex = 27;
             // 
             // LabelNameCustomer
             // 
             this.LabelNameCustomer.AutoSize = true;
-            this.LabelNameCustomer.Location = new System.Drawing.Point(12, 278);
+            this.LabelNameCustomer.Location = new System.Drawing.Point(10, 271);
             this.LabelNameCustomer.Name = "LabelNameCustomer";
             this.LabelNameCustomer.Size = new System.Drawing.Size(147, 15);
             this.LabelNameCustomer.TabIndex = 30;
@@ -188,17 +190,17 @@ namespace IUL
             // 
             // TextBoxNameCustomer
             // 
-            this.TextBoxNameCustomer.Location = new System.Drawing.Point(12, 296);
+            this.TextBoxNameCustomer.Location = new System.Drawing.Point(12, 289);
             this.TextBoxNameCustomer.Multiline = true;
             this.TextBoxNameCustomer.Name = "TextBoxNameCustomer";
-            this.TextBoxNameCustomer.Size = new System.Drawing.Size(773, 90);
+            this.TextBoxNameCustomer.Size = new System.Drawing.Size(722, 90);
             this.TextBoxNameCustomer.TabIndex = 29;
             // 
             // ButtonChoosingMainFolder
             // 
-            this.ButtonChoosingMainFolder.Location = new System.Drawing.Point(686, 70);
+            this.ButtonChoosingMainFolder.Location = new System.Drawing.Point(530, 385);
             this.ButtonChoosingMainFolder.Name = "ButtonChoosingMainFolder";
-            this.ButtonChoosingMainFolder.Size = new System.Drawing.Size(99, 47);
+            this.ButtonChoosingMainFolder.Size = new System.Drawing.Size(99, 58);
             this.ButtonChoosingMainFolder.TabIndex = 31;
             this.ButtonChoosingMainFolder.Text = "Выбрать папку проекта";
             this.ButtonChoosingMainFolder.UseVisualStyleBackColor = true;
@@ -206,19 +208,41 @@ namespace IUL
             // 
             // ButtonAddProject
             // 
-            this.ButtonAddProject.Location = new System.Drawing.Point(686, 17);
+            this.ButtonAddProject.Location = new System.Drawing.Point(635, 385);
             this.ButtonAddProject.Name = "ButtonAddProject";
-            this.ButtonAddProject.Size = new System.Drawing.Size(99, 47);
+            this.ButtonAddProject.Size = new System.Drawing.Size(99, 58);
             this.ButtonAddProject.TabIndex = 32;
             this.ButtonAddProject.Text = "Добавить новый проект";
             this.ButtonAddProject.UseVisualStyleBackColor = true;
             this.ButtonAddProject.Click += new System.EventHandler(this.ButtonAddProject_Click);
             // 
+            // ButtonCrossCreateNewChapter
+            // 
+            this.ButtonCrossCreateNewChapter.Location = new System.Drawing.Point(425, 385);
+            this.ButtonCrossCreateNewChapter.Name = "ButtonCrossCreateNewChapter";
+            this.ButtonCrossCreateNewChapter.Size = new System.Drawing.Size(99, 58);
+            this.ButtonCrossCreateNewChapter.TabIndex = 33;
+            this.ButtonCrossCreateNewChapter.Text = "Перейти к добавлению разделов";
+            this.ButtonCrossCreateNewChapter.UseVisualStyleBackColor = true;
+            this.ButtonCrossCreateNewChapter.Click += new System.EventHandler(this.ButtonCreateNewChapter_Click);
+            // 
+            // ButtonBack
+            // 
+            this.ButtonBack.Location = new System.Drawing.Point(320, 385);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(99, 58);
+            this.ButtonBack.TabIndex = 34;
+            this.ButtonBack.Text = "Назад";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
+            // 
             // CreateProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 397);
+            this.ClientSize = new System.Drawing.Size(744, 448);
+            this.Controls.Add(this.ButtonBack);
+            this.Controls.Add(this.ButtonCrossCreateNewChapter);
             this.Controls.Add(this.ButtonAddProject);
             this.Controls.Add(this.ButtonChoosingMainFolder);
             this.Controls.Add(this.LabelNameCustomer);
@@ -232,7 +256,7 @@ namespace IUL
             this.Controls.Add(this.LabelGIP);
             this.Controls.Add(this.ComboBoxChoosingGIP);
             this.Controls.Add(this.GroupBoxChoosingTyoeProject);
-            this.Controls.Add(this.CheckedListBox1);
+            this.Controls.Add(this.CheckedListBoxResearchs);
             this.Controls.Add(this.LabelResearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateProject";
@@ -258,7 +282,7 @@ namespace IUL
         private System.Windows.Forms.GroupBox GroupBoxChoosingTyoeProject;
         private System.Windows.Forms.RadioButton RadioButtonCapital;
         private System.Windows.Forms.RadioButton RadioButtonLinear;
-        private System.Windows.Forms.CheckedListBox CheckedListBox1;
+        private System.Windows.Forms.CheckedListBox CheckedListBoxResearchs;
         private System.Windows.Forms.Label LabelResearch;
         private System.Windows.Forms.ComboBox ComboBoxChoosingGIP;
         private System.Windows.Forms.Label LabelGIP;
@@ -273,5 +297,7 @@ namespace IUL
         private System.Windows.Forms.Button ButtonChoosingMainFolder;
         private System.Windows.Forms.Button ButtonAddProject;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button ButtonCrossCreateNewChapter;
+        private System.Windows.Forms.Button ButtonBack;
     }
 }

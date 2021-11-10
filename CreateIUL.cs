@@ -9,21 +9,18 @@ namespace IUL
 {
     public partial class CreateIUL : Form
     {
-        static List<KeyValuePair<string, string>> idAndNameProjects;
         public CreateIUL()
         {
             InitializeComponent();
-            idAndNameProjects = new List<KeyValuePair<string, string>>(Project.GetIdAndNameProject());
-            foreach(var nameProject in idAndNameProjects) 
-            {
-                comboBox1.Items.Add(nameProject.Value);
-            }
+            Project.InitializeComboBoxProjects(this.comboBox1);
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                string codeProject = idAndNameProjects[comboBox1.SelectedIndex].Key;
+                Project selectedProject = new Project(comboBox1.Items[comboBox1.SelectedIndex].ToString());
+                string codeProject = selectedProject.Id;
                 string pathMainFolder = Project.GetPathMainFolder(codeProject);
                 folderBrowserDialog1.SelectedPath = pathMainFolder;
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
@@ -36,13 +33,13 @@ namespace IUL
                 {
                     CreateTable(pathMainFolder, chapter.Key, chapter.Value, chapter.Value.GetAuthorChapter(), dateSign, iuls.GIP, iuls.Nkontr);
                 }
-                
+
             }
-            catch(System.ArgumentOutOfRangeException ex) 
+            catch (System.ArgumentOutOfRangeException ex)
             {
                 MessageBox.Show("Необходимо выбрать проект!");
             }
-            finally 
+            finally
             {
                 MessageBox.Show("ИУЛы готовы");
             }
@@ -181,7 +178,7 @@ namespace IUL
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                     table.AddCell(cell);
-                    iTextSharp.text.Image signGip = iTextSharp.text.Image.GetInstance(GIP.Sign,BaseColor.WHITE);
+                    iTextSharp.text.Image signGip = iTextSharp.text.Image.GetInstance(GIP.Sign, BaseColor.WHITE);
                     cell = new PdfPCell(signGip);
                     signGip.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                     cell.Colspan = 1;
@@ -296,6 +293,12 @@ namespace IUL
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            Program.PreviosPage.Show();
+            this.Hide();
+            Program.PreviosPage = this;
         }
     }
 }

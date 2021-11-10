@@ -15,23 +15,23 @@ namespace IUL
         private string _MD5;
         private string _dateChange;
         private long _sizeFile;
-        public string NameChapter 
+        public string NameChapter
         {
             get { return _nameChapter; }
         }
-        public string NameFile 
+        public string NameFile
         {
             get { return _nameFile; }
         }
-        public string MD5 
+        public string MD5
         {
             get { return _MD5; }
         }
-        public string DateChange 
+        public string DateChange
         {
             get { return _dateChange; }
         }
-        public long SizeFile 
+        public long SizeFile
         {
             get { return _sizeFile; }
         }
@@ -44,15 +44,15 @@ namespace IUL
             InitializationAuthorsChapter(chapterId);
             InitializationFileInfo(chapterId, projectId);
         }
-        public ref List<KeyValuePair<string, Employee>> GetAuthorChapter() 
+        public ref List<KeyValuePair<string, Employee>> GetAuthorChapter()
         {
             return ref this._authorsChapter;
         }
-        private void InitializationAuthorsChapter(string chapterId) 
+        private void InitializationAuthorsChapter(string chapterId)
         {
             string query = "USE IUL;" +
                 "SELECT" +
-                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME]," +
+                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
                 "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME]" +
                 "FROM [IUL].[dbo].[PERFORMERS]" +
                 "JOIN [IUL].[dbo].[EMPLOYEES]" +
@@ -79,7 +79,7 @@ namespace IUL
                 }
             }
         }
-        private void InitializationNameChapter(string chapterId) 
+        private void InitializationNameChapter(string chapterId)
         {
             string query = "USE IUL;" +
                 "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME]" +
@@ -131,7 +131,7 @@ namespace IUL
                 }
             }
         }
-        private void InitializationFileInfo(string chapterId, string projectId) 
+        private void InitializationFileInfo(string chapterId, string projectId)
         {
             string path = GetPathMainFolder(projectId) + "\\" + this._nameFile;
             using (FileStream fs = System.IO.File.OpenRead(path))
@@ -146,7 +146,7 @@ namespace IUL
             this._sizeFile = fileInfo.Length;
             this._dateChange = fileInfo.LastWriteTime.ToShortDateString() + " " + fileInfo.LastWriteTime.ToLongTimeString();
         }
-        private string GetFileName(string chapterId) 
+        private string GetFileName(string chapterId)
         {
             string fileName = "";
             string query = "USE IUL;" +

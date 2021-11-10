@@ -34,13 +34,13 @@ namespace IUL
             {
                 if (CheckingFieldsAreFull())
                 {
-                    this._newProject.IsGeodetiSurveys = this.CheckedListBox1.GetItemChecked(0);
-                    this._newProject.IsGeologicalSurveysSurveys = this.CheckedListBox1.GetItemChecked(1);
-                    this._newProject.IsEnvironmentalSurveys = this.CheckedListBox1.GetItemChecked(2);
-                    this._newProject.IsMeteorologicalSurveys = this.CheckedListBox1.GetItemChecked(3);
-                    this._newProject.IsGeotechnicalSurveys = this.CheckedListBox1.GetItemChecked(4);
-                    this._newProject.IsArchaeologicalSurveys = this.CheckedListBox1.GetItemChecked(5);
-                    this._newProject.IsInspectionOfTechnicalCondition = this.CheckedListBox1.GetItemChecked(6);
+                    this._newProject.IsGeodetiSurveys = this.CheckedListBoxResearchs.GetItemChecked(0);
+                    this._newProject.IsGeologicalSurveysSurveys = this.CheckedListBoxResearchs.GetItemChecked(1);
+                    this._newProject.IsEnvironmentalSurveys = this.CheckedListBoxResearchs.GetItemChecked(2);
+                    this._newProject.IsMeteorologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(3);
+                    this._newProject.IsGeotechnicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(4);
+                    this._newProject.IsArchaeologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(5);
+                    this._newProject.IsInspectionOfTechnicalCondition = this.CheckedListBoxResearchs.GetItemChecked(6);
                     this._newProject.Id = TextBoxCodeProject.Text;
                     this._newProject.Name = TextBoxNameProject.Text;
                     this._newProject.NameCustomer = TextBoxNameCustomer.Text;
@@ -122,6 +122,22 @@ namespace IUL
         private void RadioButtonCapital_CheckedChanged(object sender, EventArgs e)
         {
             this._newProject.CapitalOrLinear = true;
+        }
+
+        private void ButtonCreateNewChapter_Click(object sender, EventArgs e)
+        {
+            CreateChapter createChapter = new CreateChapter();
+            createChapter.Show();
+            this.Hide();
+            Program.PreviosPage = this;
+
+        }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            Program.PreviosPage.Show();
+            this.Hide();
+            Program.PreviosPage = this;
         }
     }
 }

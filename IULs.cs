@@ -15,30 +15,30 @@ namespace IUL
         /// Значением выступает объект класса IUL.
         /// </summary>
         private Dictionary<string, ChapterInfoForIULs> _chapters;
-        public Employee GIP 
+        public Employee GIP
         {
             get { return _GIP; }
         }
-        public Employee Nkontr 
+        public Employee Nkontr
         {
             get { return _NKontr; }
         }
-        public IULs(string codeProject) 
+        public IULs(string codeProject)
         {
             int countChapters = DbProviderFactories.GetCountСolumnsChapters(codeProject);
             HashSet<string> chaptersCode = GetChaptersCode(countChapters, codeProject);
             _chapters = new Dictionary<string, ChapterInfoForIULs>(countChapters);
             InitializationGip(codeProject);
             InitializationNkontr(codeProject);
-            foreach(var chapterCode in chaptersCode) 
+            foreach (var chapterCode in chaptersCode)
             {
                 _chapters.Add(chapterCode, new ChapterInfoForIULs(chapterCode, codeProject));
             }
         }
-        private void InitializationGip(string codeProject) 
+        private void InitializationGip(string codeProject)
         {
             string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME]" +
+                "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
                 "FROM [IUL].[dbo].[PROJECTS]" +
                 "JOIN [IUL].[dbo].[EMPLOYEES]" +
                 "ON [IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
@@ -66,7 +66,7 @@ namespace IUL
         private void InitializationNkontr(string codeProject)
         {
             string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME]" +
+                "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
                 "FROM [IUL].[dbo].[PROJECTS]" +
                 "JOIN [IUL].[dbo].[EMPLOYEES]" +
                 "ON [IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
@@ -91,7 +91,7 @@ namespace IUL
             }
             this._NKontr = new Employee(nkont);
         }
-        private HashSet<string> GetChaptersCode(int countChapters, string codeProject) 
+        private HashSet<string> GetChaptersCode(int countChapters, string codeProject)
         {
             HashSet<string> chaptersName = new HashSet<string>(countChapters);
             string query = "USE IUL;" +
@@ -119,9 +119,9 @@ namespace IUL
             }
             return chaptersName;
         }
-        public ref Dictionary<string, ChapterInfoForIULs> GetChapters() 
+        public ref Dictionary<string, ChapterInfoForIULs> GetChapters()
         {
             return ref this._chapters;
-        } 
+        }
     }
 }

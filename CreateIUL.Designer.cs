@@ -35,11 +35,12 @@ namespace IUL
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ButtonBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 59);
+            this.button2.Location = new System.Drawing.Point(129, 59);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 30);
             this.button2.TabIndex = 4;
@@ -80,11 +81,22 @@ namespace IUL
             this.comboBox1.Size = new System.Drawing.Size(453, 23);
             this.comboBox1.TabIndex = 10;
             // 
+            // ButtonBack
+            // 
+            this.ButtonBack.Location = new System.Drawing.Point(12, 59);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(60, 30);
+            this.ButtonBack.TabIndex = 11;
+            this.ButtonBack.Text = "Назад";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
+            // 
             // CreateIUL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 100);
+            this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -104,6 +116,7 @@ namespace IUL
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button ButtonBack;
     }
 }
 

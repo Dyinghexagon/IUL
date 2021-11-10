@@ -91,5 +91,12 @@ namespace IUL
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            Program.PreviosPage.Show();
+            this.Hide();
+            Program.PreviosPage = this;
+        }
     }
 }

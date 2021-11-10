@@ -90,5 +90,20 @@ namespace IUL
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 this._newChapter.NameFileChapter = openFileDialog1.SafeFileName;
         }
+
+        private void ButtonCrossCreatePerformer_Click(object sender, EventArgs e)
+        {
+            CreatePerformer createPerformer = new CreatePerformer();
+            createPerformer.Show();
+            this.Hide();
+            Program.PreviosPage = this;
+        }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            Program.PreviosPage.Show();
+            this.Hide();
+            Program.PreviosPage = this;
+        }
     }
 }

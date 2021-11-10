@@ -44,6 +44,8 @@ namespace IUL
             this.TextBoxNameSubChapter = new System.Windows.Forms.TextBox();
             this.TextBoxIdChapter = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ButtonCrossCreatePerformer = new System.Windows.Forms.Button();
+            this.ButtonBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LabelNameProjects
@@ -159,7 +161,7 @@ namespace IUL
             this.TextBoxNameSubChapter.Location = new System.Drawing.Point(132, 118);
             this.TextBoxNameSubChapter.Multiline = true;
             this.TextBoxNameSubChapter.Name = "TextBoxNameSubChapter";
-            this.TextBoxNameSubChapter.Size = new System.Drawing.Size(744, 135);
+            this.TextBoxNameSubChapter.Size = new System.Drawing.Size(744, 228);
             this.TextBoxNameSubChapter.TabIndex = 26;
             // 
             // TextBoxIdChapter
@@ -173,11 +175,33 @@ namespace IUL
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // ButtonCrossCreatePerformer
+            // 
+            this.ButtonCrossCreatePerformer.Location = new System.Drawing.Point(15, 259);
+            this.ButtonCrossCreatePerformer.Name = "ButtonCrossCreatePerformer";
+            this.ButtonCrossCreatePerformer.Size = new System.Drawing.Size(111, 54);
+            this.ButtonCrossCreatePerformer.TabIndex = 29;
+            this.ButtonCrossCreatePerformer.Text = "Перейти к добавлению исполнителей";
+            this.ButtonCrossCreatePerformer.UseVisualStyleBackColor = true;
+            this.ButtonCrossCreatePerformer.Click += new System.EventHandler(this.ButtonCrossCreatePerformer_Click);
+            // 
+            // ButtonBack
+            // 
+            this.ButtonBack.Location = new System.Drawing.Point(15, 319);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(111, 27);
+            this.ButtonBack.TabIndex = 30;
+            this.ButtonBack.Text = "Назад";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
+            // 
             // CreateChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 261);
+            this.ClientSize = new System.Drawing.Size(883, 357);
+            this.Controls.Add(this.ButtonBack);
+            this.Controls.Add(this.ButtonCrossCreatePerformer);
             this.Controls.Add(this.TextBoxIdChapter);
             this.Controls.Add(this.TextBoxNameSubChapter);
             this.Controls.Add(this.LabelNameSubChapter);
@@ -259,5 +283,7 @@ namespace IUL
         private System.Windows.Forms.TextBox TextBoxNameSubChapter;
         private System.Windows.Forms.TextBox TextBoxIdChapter;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button ButtonCrossCreatePerformer;
+        private System.Windows.Forms.Button ButtonBack;
     }
 }
