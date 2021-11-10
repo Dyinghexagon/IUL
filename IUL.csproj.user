@@ -4,6 +4,9 @@
     <Compile Update="CreateChapter.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CreatePerformer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CreateProject.cs">
       <SubType>Form</SubType>
     </Compile>

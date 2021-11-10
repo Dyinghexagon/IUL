@@ -42,40 +42,13 @@ namespace IUL
         public Employee(string surname) 
         {
             this._surname = surname;
-            Initialization();
-        } 
-        public static string[] GetSurnameEmployees() 
-        {
-            int countEmployees = DbProviderFactories.GetCountСolumns("EMPLOYEES");
-            string[] surnameEmployees = new string[countEmployees];
-            string query = "SELECT [EMPLOYEES].[EMPLOYEE_SURNAME]" +
-                "FROM [EMPLOYEES];";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                    {
-                        for(int i = 0; reader.Read(); i++) 
-                        {
-                            surnameEmployees[i] = reader.GetValue(0).ToString().Trim();
-                        }
-                    }
-                }
-            }
-            return surnameEmployees;
-        }
-        private void Initialization() 
-        {
             string query = "USE IUL;" +
                 "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]," +
                 "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
                 "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_PATROMIC]," +
                 "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
                 "FROM [IUL].[dbo].[EMPLOYEES] " +
-                "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_FNAME] = @surname;";
+                "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME] = @surname;";
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 connection.Open();
@@ -95,6 +68,29 @@ namespace IUL
                     }
                 }
             }
+        } 
+        public static string[] GetSurnameEmployees() 
+        {
+            int countEmployees = DbProviderFactories.GetCountСolumns("EMPLOYEES");
+            string[] surnameEmployees = new string[countEmployees];
+            string query = "SELECT  [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
+                "FROM  [IUL].[dbo].[EMPLOYEES];";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        for(int i = 0; reader.Read(); i++) 
+                        {
+                            surnameEmployees[i] = reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
+            }
+            return surnameEmployees;
         }
         public static void UpdateImageSignEmployee(string path, int id)
         {
@@ -115,6 +111,10 @@ namespace IUL
             }
             fileStream.Close();
             reader.Close();
+        }
+        public static void InitializeComboBoxEmployees(System.Windows.Forms.ComboBox fillingComboBox)
+        {
+            fillingComboBox.Items.AddRange(Employee.GetSurnameEmployees());
         }
     }
 }

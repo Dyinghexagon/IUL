@@ -297,6 +297,10 @@ namespace IUL
                 }
             }
             return projects;
-        }     
+        }
+        public static void InitializeComboBoxProjects(System.Windows.Forms.ComboBox fillingComboBox) 
+        {
+            fillingComboBox.Items.AddRange(Project.GetProjectsArray());
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace IUL
         /// </summary>
         private void InitializeComponent()
         {
-            this.LabelNameProject = new System.Windows.Forms.Label();
+            this.LabelNameProjects = new System.Windows.Forms.Label();
             this.ComboBoxNameProjects = new System.Windows.Forms.ComboBox();
             this.ButtonAddNewChapter = new System.Windows.Forms.Button();
             this.LabelIdProjectHint = new System.Windows.Forms.Label();
@@ -43,18 +43,17 @@ namespace IUL
             this.LabelNameSubChapter = new System.Windows.Forms.Label();
             this.TextBoxNameSubChapter = new System.Windows.Forms.TextBox();
             this.TextBoxIdChapter = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // LabelNameProject
+            // LabelNameProjects
             // 
-            this.LabelNameProject.AutoSize = true;
-            this.LabelNameProject.Location = new System.Drawing.Point(12, 8);
-            this.LabelNameProject.Name = "LabelNameProject";
-            this.LabelNameProject.Size = new System.Drawing.Size(102, 15);
-            this.LabelNameProject.TabIndex = 1;
-            this.LabelNameProject.Text = "Выберите проект";
+            this.LabelNameProjects.AutoSize = true;
+            this.LabelNameProjects.Location = new System.Drawing.Point(12, 8);
+            this.LabelNameProjects.Name = "LabelNameProjects";
+            this.LabelNameProjects.Size = new System.Drawing.Size(102, 15);
+            this.LabelNameProjects.TabIndex = 1;
+            this.LabelNameProjects.Text = "Выберите проект";
             // 
             // ComboBoxNameProjects
             // 
@@ -192,17 +191,13 @@ namespace IUL
             this.Controls.Add(this.LabelIdProjectHint);
             this.Controls.Add(this.ButtonAddNewChapter);
             this.Controls.Add(this.ComboBoxNameProjects);
-            this.Controls.Add(this.LabelNameProject);
+            this.Controls.Add(this.LabelNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateChapter";
             this.Text = "Добавление раздела";
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-        private void InitializeProjects() 
-        {
-            this.ComboBoxNameProjects.Items.AddRange(Project.GetProjectsArray());
         }
         private void FilingComboBoxCapitalChapter()
         {
@@ -249,7 +244,7 @@ namespace IUL
         }
         #endregion
 
-        private System.Windows.Forms.Label LabelNameProject;
+        private System.Windows.Forms.Label LabelNameProjects;
         private System.Windows.Forms.ComboBox ComboBoxNameProjects;
         private System.Windows.Forms.Button ButtonAddNewChapter;
         private System.Windows.Forms.Label LabelIdProjectHint;
@@ -263,7 +258,6 @@ namespace IUL
         private System.Windows.Forms.Label LabelNameSubChapter;
         private System.Windows.Forms.TextBox TextBoxNameSubChapter;
         private System.Windows.Forms.TextBox TextBoxIdChapter;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

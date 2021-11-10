@@ -34,12 +34,13 @@ namespace IUL
             this.GroupBoxFunctionSelection = new System.Windows.Forms.GroupBox();
             this.ButtonCreateFolder = new System.Windows.Forms.Button();
             this.ButtonAddChapters = new System.Windows.Forms.Button();
+            this.ButtonAddPerformers = new System.Windows.Forms.Button();
             this.GroupBoxFunctionSelection.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonNewProject
             // 
-            this.ButtonNewProject.Location = new System.Drawing.Point(6, 22);
+            this.ButtonNewProject.Location = new System.Drawing.Point(105, 22);
             this.ButtonNewProject.Name = "ButtonNewProject";
             this.ButtonNewProject.Size = new System.Drawing.Size(93, 53);
             this.ButtonNewProject.TabIndex = 0;
@@ -49,7 +50,7 @@ namespace IUL
             // 
             // ButtonCreateIULs
             // 
-            this.ButtonCreateIULs.Location = new System.Drawing.Point(6, 81);
+            this.ButtonCreateIULs.Location = new System.Drawing.Point(58, 81);
             this.ButtonCreateIULs.Name = "ButtonCreateIULs";
             this.ButtonCreateIULs.Size = new System.Drawing.Size(93, 53);
             this.ButtonCreateIULs.TabIndex = 2;
@@ -59,20 +60,21 @@ namespace IUL
             // 
             // GroupBoxFunctionSelection
             // 
+            this.GroupBoxFunctionSelection.Controls.Add(this.ButtonAddPerformers);
             this.GroupBoxFunctionSelection.Controls.Add(this.ButtonCreateFolder);
             this.GroupBoxFunctionSelection.Controls.Add(this.ButtonAddChapters);
             this.GroupBoxFunctionSelection.Controls.Add(this.ButtonNewProject);
             this.GroupBoxFunctionSelection.Controls.Add(this.ButtonCreateIULs);
             this.GroupBoxFunctionSelection.Location = new System.Drawing.Point(12, 12);
             this.GroupBoxFunctionSelection.Name = "GroupBoxFunctionSelection";
-            this.GroupBoxFunctionSelection.Size = new System.Drawing.Size(207, 142);
+            this.GroupBoxFunctionSelection.Size = new System.Drawing.Size(307, 144);
             this.GroupBoxFunctionSelection.TabIndex = 4;
             this.GroupBoxFunctionSelection.TabStop = false;
             this.GroupBoxFunctionSelection.Text = "Выбор функции";
             // 
             // ButtonCreateFolder
             // 
-            this.ButtonCreateFolder.Location = new System.Drawing.Point(105, 22);
+            this.ButtonCreateFolder.Location = new System.Drawing.Point(6, 22);
             this.ButtonCreateFolder.Name = "ButtonCreateFolder";
             this.ButtonCreateFolder.Size = new System.Drawing.Size(93, 53);
             this.ButtonCreateFolder.TabIndex = 4;
@@ -82,7 +84,7 @@ namespace IUL
             // 
             // ButtonAddChapters
             // 
-            this.ButtonAddChapters.Location = new System.Drawing.Point(105, 81);
+            this.ButtonAddChapters.Location = new System.Drawing.Point(204, 22);
             this.ButtonAddChapters.Name = "ButtonAddChapters";
             this.ButtonAddChapters.Size = new System.Drawing.Size(93, 53);
             this.ButtonAddChapters.TabIndex = 3;
@@ -90,14 +92,25 @@ namespace IUL
             this.ButtonAddChapters.UseVisualStyleBackColor = true;
             this.ButtonAddChapters.Click += new System.EventHandler(this.ButtonAddChapters_Click);
             // 
+            // ButtonAddPerformers
+            // 
+            this.ButtonAddPerformers.Location = new System.Drawing.Point(157, 81);
+            this.ButtonAddPerformers.Name = "ButtonAddPerformers";
+            this.ButtonAddPerformers.Size = new System.Drawing.Size(97, 53);
+            this.ButtonAddPerformers.TabIndex = 5;
+            this.ButtonAddPerformers.Text = "Добавить исполнителей к проекту";
+            this.ButtonAddPerformers.UseVisualStyleBackColor = true;
+            this.ButtonAddPerformers.Click += new System.EventHandler(this.ButtonAddPerformers_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 159);
+            this.ClientSize = new System.Drawing.Size(326, 160);
             this.Controls.Add(this.GroupBoxFunctionSelection);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "Выбор функции";
             this.GroupBoxFunctionSelection.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -110,5 +123,6 @@ namespace IUL
         private System.Windows.Forms.GroupBox GroupBoxFunctionSelection;
         private System.Windows.Forms.Button ButtonAddChapters;
         private System.Windows.Forms.Button ButtonCreateFolder;
+        private System.Windows.Forms.Button ButtonAddPerformers;
     }
 }

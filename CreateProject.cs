@@ -30,23 +30,32 @@ namespace IUL
 
         private void ButtonAddProject_Click(object sender, EventArgs e)
         {
-            if (CheckingFieldsAreFull())
+            try 
             {
-                this._newProject.IsGeodetiSurveys = this.CheckedListBox1.GetItemChecked(0);
-                this._newProject.IsGeologicalSurveysSurveys = this.CheckedListBox1.GetItemChecked(1);
-                this._newProject.IsEnvironmentalSurveys = this.CheckedListBox1.GetItemChecked(2);
-                this._newProject.IsMeteorologicalSurveys = this.CheckedListBox1.GetItemChecked(3);
-                this._newProject.IsGeotechnicalSurveys = this.CheckedListBox1.GetItemChecked(4);
-                this._newProject.IsArchaeologicalSurveys = this.CheckedListBox1.GetItemChecked(5);
-                this._newProject.IsInspectionOfTechnicalCondition = this.CheckedListBox1.GetItemChecked(6);
-                this._newProject.Id = TextBoxCodeProject.Text;
-                this._newProject.Name = TextBoxNameProject.Text;
-                this._newProject.NameCustomer = TextBoxNameCustomer.Text;
-                if (this._newProject.InsertNewProject())
+                if (CheckingFieldsAreFull())
                 {
-                    MessageBox.Show("Новый проект добавлен!");
+                    this._newProject.IsGeodetiSurveys = this.CheckedListBox1.GetItemChecked(0);
+                    this._newProject.IsGeologicalSurveysSurveys = this.CheckedListBox1.GetItemChecked(1);
+                    this._newProject.IsEnvironmentalSurveys = this.CheckedListBox1.GetItemChecked(2);
+                    this._newProject.IsMeteorologicalSurveys = this.CheckedListBox1.GetItemChecked(3);
+                    this._newProject.IsGeotechnicalSurveys = this.CheckedListBox1.GetItemChecked(4);
+                    this._newProject.IsArchaeologicalSurveys = this.CheckedListBox1.GetItemChecked(5);
+                    this._newProject.IsInspectionOfTechnicalCondition = this.CheckedListBox1.GetItemChecked(6);
+                    this._newProject.Id = TextBoxCodeProject.Text;
+                    this._newProject.Name = TextBoxNameProject.Text;
+                    this._newProject.NameCustomer = TextBoxNameCustomer.Text;
+                    this._newProject.InsertNewProject();
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
+            finally
+            {
+                MessageBox.Show("Новый проект добавлен!");
+            }
+
         }
         private bool CheckingFieldsAreFull()
         {

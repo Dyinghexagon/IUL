@@ -36,11 +36,15 @@ namespace IUL
                 {
                     CreateTable(pathMainFolder, chapter.Key, chapter.Value, chapter.Value.GetAuthorChapter(), dateSign, iuls.GIP, iuls.Nkontr);
                 }
-                MessageBox.Show("ИУЛы готовы");
+                
             }
             catch(System.ArgumentOutOfRangeException ex) 
             {
                 MessageBox.Show("Необходимо выбрать проект!");
+            }
+            finally 
+            {
+                MessageBox.Show("ИУЛы готовы");
             }
 
         }

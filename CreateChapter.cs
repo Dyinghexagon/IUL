@@ -15,7 +15,7 @@ namespace IUL
         public CreateChapter()
         {
             InitializeComponent();
-            InitializeProjects();
+            Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
             _newChapter = new Chapter();
         }
 
@@ -46,30 +46,38 @@ namespace IUL
         }
         private void ButtonAddNewChapter_Click(object sender, EventArgs e)
         {
-            this._newChapter.ChapterId = LabelIdProject.Text;
-            if (TextBoxIdChapter.Text.Length != 0 && ComboBoxChapters.SelectedIndex != -1)
+            try 
             {
-                this._newChapter.ChapterId += "-"+ TextBoxIdChapter?.Text;
-            }
-            else
-            {
-                MessageBox.Show("Выберите раздел и/или напишите впишите шифр!");
-            }
-            if (TextBoxIdSubChapter.Text.Length != 0)
-            {
-                this._newChapter.ChapterId += "." + TextBoxIdSubChapter?.Text;
-                if (TextBoxNameSubChapter.Text.Length != 0)
+                this._newChapter.ChapterId = LabelIdProject.Text;
+                if (TextBoxIdChapter.Text.Length != 0 && ComboBoxChapters.SelectedIndex != -1)
                 {
-                    this._newChapter.ChapterName += " Часть "+ TextBoxIdSubChapter.Text + ". " + TextBoxNameSubChapter.Text;
+                    this._newChapter.ChapterId += "-" + TextBoxIdChapter?.Text;
                 }
                 else
                 {
-                    MessageBox.Show("Введите наименование подраздела!");
+                    MessageBox.Show("Выберите раздел и/или напишите впишите шифр!");
                 }
-            }
+                if (TextBoxIdSubChapter.Text.Length != 0)
+                {
+                    this._newChapter.ChapterId += "." + TextBoxIdSubChapter?.Text;
+                    if (TextBoxNameSubChapter.Text.Length != 0)
+                    {
+                        this._newChapter.ChapterName += " Часть " + TextBoxIdSubChapter.Text + ". " + TextBoxNameSubChapter.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите наименование подраздела!");
+                    }
+                }
 
-            this._newChapter.ProjectId = this.LabelIdProject.Text;
-            if (this._newChapter.InsertNewChapter())
+                this._newChapter.ProjectId = this.LabelIdProject.Text;
+                this._newChapter.InsertNewChapter();
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
+            finally 
             {
                 MessageBox.Show("Раздел добавлен!");
                 TextBoxNameSubChapter.Clear();

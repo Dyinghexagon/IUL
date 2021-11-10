@@ -47,6 +47,32 @@ namespace IUL
             this._chapterName = "";
             this._nameFileChapter = "";
         }
+        public void InitializeChapter() 
+        {
+            string query = "USE IUL;" +
+                "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_ID]" +
+                ",[IUL].[dbo].[CHAPTERS].[CHAPTER_FILE_NAME]" +
+                "FROM [IUL].[dbo].[CHAPTERS]" +
+                "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] LIKE @chapterName AND[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@chapterName", SqlDbType.Text).Value = this._chapterName;
+                command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._projectId;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            this._chapterId = reader.GetValue(0).ToString().Trim();
+                            this._nameFileChapter = reader.GetValue(1).ToString().Trim();
+                        }
+                    }
+                }
+            }
+        }
         public bool InsertNewChapter()
         {
             string query = "USE IUL;" +
@@ -71,6 +97,49 @@ namespace IUL
                 command.ExecuteNonQuery();
             }
             return true;
+        }
+        public string[] GetChaptersArray()
+        {
+            int countChapters = this.GetCountChaptersInProject();
+            string[] chapters = new string[countChapters];
+            string query = "USE IUL;" +
+                "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] " +
+                "FROM [IUL].[dbo].[CHAPTERS] " +
+                "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId;";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@projectId", System.Data.SqlDbType.NChar).Value = this._projectId;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        for (int i = 0; reader.Read(); i++)
+                        {
+                            chapters[i] = reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
+            }
+            return chapters;
+        }
+        private int GetCountChaptersInProject() 
+        {
+
+            int count = 0;
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                string query = "USE IUL;" +
+                    "SELECT COUNT(*) FROM[IUL].[dbo].[CHAPTERS] WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId;";
+                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                {
+                    getchild.Parameters.Add("@projectId", System.Data.SqlDbType.NChar).Value = this._projectId;
+                    count = Convert.ToInt32(getchild.ExecuteScalar());
+                }
+            }
+            return count;
         }
     }
 }
