@@ -4,12 +4,12 @@ namespace IUL
     partial class CreateIUL
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -24,99 +24,89 @@ namespace IUL
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ComboBoxNameProjects = new System.Windows.Forms.ComboBox();
+            this.LabelNameProjectsHint = new System.Windows.Forms.Label();
             this.ButtonBack = new System.Windows.Forms.Button();
+            this.ButtonCreateIULs = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
-            // button2
+            // ComboBoxNameProjects
             // 
-            this.button2.Location = new System.Drawing.Point(129, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 30);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Выгрузить ИУЛы";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ComboBoxNameProjects.FormattingEnabled = true;
+            this.ComboBoxNameProjects.Location = new System.Drawing.Point(12, 26);
+            this.ComboBoxNameProjects.Name = "ComboBoxNameProjects";
+            this.ComboBoxNameProjects.Size = new System.Drawing.Size(465, 23);
+            this.ComboBoxNameProjects.TabIndex = 0;
+            this.ComboBoxNameProjects.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
             // 
-            // dateTimePicker1
+            // LabelNameProjectsHint
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(265, 66);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Дата подписания";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 15);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Список проектов";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(453, 23);
-            this.comboBox1.TabIndex = 10;
+            this.LabelNameProjectsHint.AutoSize = true;
+            this.LabelNameProjectsHint.Location = new System.Drawing.Point(12, 8);
+            this.LabelNameProjectsHint.Name = "LabelNameProjectsHint";
+            this.LabelNameProjectsHint.Size = new System.Drawing.Size(114, 15);
+            this.LabelNameProjectsHint.TabIndex = 1;
+            this.LabelNameProjectsHint.Text = "Перечень разделов";
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(12, 59);
+            this.ButtonBack.Location = new System.Drawing.Point(12, 55);
             this.ButtonBack.Name = "ButtonBack";
-            this.ButtonBack.Size = new System.Drawing.Size(60, 30);
-            this.ButtonBack.TabIndex = 11;
+            this.ButtonBack.Size = new System.Drawing.Size(75, 23);
+            this.ButtonBack.TabIndex = 2;
             this.ButtonBack.Text = "Назад";
             this.ButtonBack.UseVisualStyleBackColor = true;
             this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
-            // CreateIUL
+            // ButtonCreateIULs
+            // 
+            this.ButtonCreateIULs.Location = new System.Drawing.Point(93, 55);
+            this.ButtonCreateIULs.Name = "ButtonCreateIULs";
+            this.ButtonCreateIULs.Size = new System.Drawing.Size(75, 23);
+            this.ButtonCreateIULs.TabIndex = 3;
+            this.ButtonCreateIULs.Text = "Выгрузить";
+            this.ButtonCreateIULs.UseVisualStyleBackColor = true;
+            this.ButtonCreateIULs.Click += new System.EventHandler(this.ButtonCreateIULs_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(277, 53);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 100);
-            this.Controls.Add(this.ButtonBack);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(484, 86);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ButtonCreateIULs);
+            this.Controls.Add(this.ButtonBack);
+            this.Controls.Add(this.LabelNameProjectsHint);
+            this.Controls.Add(this.ComboBoxNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "CreateIUL";
-            this.Text = "Выгрузка ИУЛов";
+            this.Name = "Form1";
+            this.Text = "Создание ИУЛов";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
         #endregion
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+
+        private System.Windows.Forms.ComboBox ComboBoxNameProjects;
+        private System.Windows.Forms.Label LabelNameProjectsHint;
         private System.Windows.Forms.Button ButtonBack;
+        private System.Windows.Forms.Button ButtonCreateIULs;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
-
