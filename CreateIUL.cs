@@ -38,7 +38,7 @@ namespace IUL
             }
             catch (Exception ex) 
             {
-                MessageBox.Show(ex.Message, ex.GetType().BaseType.ToString());
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)

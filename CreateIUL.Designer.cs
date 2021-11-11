@@ -82,8 +82,9 @@ namespace IUL
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker1.TabIndex = 4;
             // 
-            // Form1
+            // CreateIUL
             // 
+            this.MaximizeBox = false;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 86);
@@ -93,7 +94,7 @@ namespace IUL
             this.Controls.Add(this.LabelNameProjectsHint);
             this.Controls.Add(this.ComboBoxNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form1";
+            this.Name = "CreateIUL";
             this.Text = "Создание ИУЛов";
             this.ResumeLayout(false);
             this.PerformLayout();
