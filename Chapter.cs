@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
+using System.IO;
+using System.Security.Cryptography;
 namespace IUL
 {
     class Chapter
@@ -11,7 +13,35 @@ namespace IUL
         private string _projectId;
         private string _chapterName;
         private string _nameFileChapter;
+        private string _pathToFileChapter;
+        private List<KeyValuePair<string, Employee>> _authorsChapter;
+        private FileInfo _fileInfo;
 
+        public long SizeFileChapter 
+        {
+            get { return this._fileInfo.Length; }
+        }
+        public string DateChange 
+        {
+            get { return this._fileInfo.LastWriteTime.ToShortDateString() + " " + this._fileInfo.LastWriteTime.ToLongTimeString(); }
+        }
+        public string MD5 
+        {
+            get 
+            {
+                string path = Project.GetPathMainFolder(this._projectId) + "\\" + this._nameFileChapter;
+                string MD5 = "";
+                using (FileStream fs = System.IO.File.OpenRead(path))
+                {
+                    MD5 md5 = new MD5CryptoServiceProvider();
+                    byte[] fileData = new byte[fs.Length];
+                    fs.Read(fileData, 0, (int)fs.Length);
+                    byte[] checkSum = md5.ComputeHash(fileData);
+                    MD5 = BitConverter.ToString(checkSum).Replace("-", String.Empty);
+                }
+                return MD5;
+            }
+        }
         public string ChapterId
         {
             get { return this._chapterId; }
@@ -32,6 +62,14 @@ namespace IUL
             get { return this._nameFileChapter; }
             set { this._nameFileChapter = value; }
         }
+        public int CountAuthorChapter 
+        {
+            get { return this._authorsChapter.Count; }
+        }
+        public KeyValuePair<string, Employee> this[int index] 
+        {
+            get { return this._authorsChapter[index]; }
+        }
         Chapter(string chapterId, string projectId, string chapterName, string nameFileChapter)
         {
             this._chapterId = chapterId;
@@ -39,13 +77,22 @@ namespace IUL
             this._chapterName = chapterName;
             this._nameFileChapter = nameFileChapter;
         }
-
         public Chapter()
         {
             this._chapterId = "";
             this._projectId = "";
             this._chapterName = "";
             this._nameFileChapter = "";
+        }
+        public Chapter(string projectId, string chapterName) 
+        {
+            this._authorsChapter = new List<KeyValuePair<string, Employee>>(4);
+            this._projectId = projectId;
+            this._chapterName = chapterName;
+            this.InitializeChapter();//инциализирую поля шифра раздела и имени файла
+            this.InitializeAuthorsChapter();//инциализирую состав авторского коллектива для раздела
+            this._pathToFileChapter =  Project.GetPathMainFolder(this._projectId) + "\\" + this._nameFileChapter;
+            this._fileInfo = new FileInfo(this._pathToFileChapter);
         }
         public void InitializeChapter() 
         {
@@ -140,6 +187,37 @@ namespace IUL
                 }
             }
             return count;
+        }
+        private void InitializeAuthorsChapter() 
+        {
+            string query = "USE IUL;" +
+                "SELECT" +
+                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
+                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME]" +
+                "FROM [IUL].[dbo].[PERFORMERS]" +
+                "JOIN [IUL].[dbo].[EMPLOYEES]" +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
+                "JOIN [IUL].[dbo].[ROLES]" +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID]" +
+                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @chapterId;";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string authorSurname = reader.GetValue(0).ToString().Trim();
+                            string authorRole = reader.GetValue(1).ToString().Trim();
+                            this._authorsChapter.Add(new KeyValuePair<string, Employee>(authorRole, new Employee(authorSurname)));
+                        }
+                    }
+                }
+            }
         }
     }
 }
