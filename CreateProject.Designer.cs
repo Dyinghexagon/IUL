@@ -268,16 +268,6 @@ namespace IUL
             this.PerformLayout();
 
         }
-
-        private void FillingComboBoxGIP()
-        {
-            this.ComboBoxChoosingGIP.Items.AddRange(Employee.GetSurnameEmployees());
-        }
-
-        private void FillingComboBoxNkontr()
-        {
-            this.ComboBoxChoosingNkontr.Items.AddRange(Employee.GetSurnameEmployees());
-        }
         #endregion
 
         private System.Windows.Forms.GroupBox GroupBoxChoosingTyoeProject;

@@ -49,14 +49,7 @@ namespace IUL
             try 
             {
                 this._newChapter.ChapterId = LabelIdProject.Text;
-                if (TextBoxIdChapter.Text.Length != 0 && ComboBoxChapters.SelectedIndex != -1)
-                {
-                    this._newChapter.ChapterId += "-" + TextBoxIdChapter?.Text;
-                }
-                else
-                {
-                    MessageBox.Show("Выберите раздел и/или напишите впишите шифр!");
-                }
+                this._newChapter.ChapterId += "-" + TextBoxIdChapter?.Text;
                 if (TextBoxIdSubChapter.Text.Length != 0)
                 {
                     this._newChapter.ChapterId += "." + TextBoxIdSubChapter?.Text;

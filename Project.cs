@@ -213,56 +213,62 @@ namespace IUL
                 }
             }
         }
-        
-        public bool InsertNewProject()
-        {
-            string query = "USE [IUL];" +
-                           "INSERT INTO [IUL].[dbo].[PROJECTS]([PROJECT_ID]" +
-                           ",[PROJECT_NAME]" +
-                           ",[PROJECT_CAPITAL_OR_LINEAR]" +
-                           ",[PROJECT_GEODETI_SURVEYS]" +
-                           ",[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
-                           ",[PROJECT_ENVIRONMENTAL_SURVEYS]" +
-                           ",[PROJECT_METEOROLOGICAL_SURVEYS]" +
-                           ",[PROJECT_GEOTECHNICAL_SURVEYS]" +
-                           ",[PROJECT_ARCHAEOLOGICAL_SURVEYS]" +
-                           ",[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION]" +
-                           ",[PROJECT_CUSTOMER]" +
-                           ",[PROJECT_GIP_ID]" +
-                           ",[PROJECT_N_KONTR_ID]" +
-                           ",[PROJECT_PATH_FOLDER]) " +
-                           "VALUES(@id, @name, " +
-                           "@capitalOrLinear, @isGeodetiSurveys," +
-                           "@isGeologicalSurveysSurveys, @isEnvironmentalSurveys," +
-                           "@isMeteorologicalSurveys, @isGeotechnicalSurveys, " +
-                           "@isArchaeologicalSurveys, @isInspectionOfTechnicalCondition, " +
-                           "@nameCustomer, @idGIP, " +
-                           "@idNkont, @path);";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@id", SqlDbType.VarChar).Value = this._id;
-                command.Parameters.Add("@name", SqlDbType.Text).Value = this._name;
-                command.Parameters.Add("@capitalOrLinear", SqlDbType.Bit).Value = this._capitalOrLinear;
-                command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this._isGeodetiSurveys;
-                command.Parameters.Add("@isGeologicalSurveysSurveys", SqlDbType.Bit).Value =
-                    this._isGeologicalSurveysSurveys;
-                command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this._isEnvironmentalSurveys;
-                command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this._isMeteorologicalSurveys;
-                command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this._isGeotechnicalSurveys;
-                command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this._isArchaeologicalSurveys;
-                command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
-                    this._isInspectionOfTechnicalCondition;
-                command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
-                command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._idGIP;
-                command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._idNkont;
-                command.Parameters.Add("@path", SqlDbType.Text).Value = this._path;
-                command.ExecuteNonQuery();
-            }
 
-            return true;
+        public void InsertNewProject()
+        {
+            try
+            {
+                string query = "USE [IUL];" +
+               "INSERT INTO [IUL].[dbo].[PROJECTS]([PROJECT_ID]" +
+               ",[PROJECT_NAME]" +
+               ",[PROJECT_CAPITAL_OR_LINEAR]" +
+               ",[PROJECT_GEODETI_SURVEYS]" +
+               ",[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
+               ",[PROJECT_ENVIRONMENTAL_SURVEYS]" +
+               ",[PROJECT_METEOROLOGICAL_SURVEYS]" +
+               ",[PROJECT_GEOTECHNICAL_SURVEYS]" +
+               ",[PROJECT_ARCHAEOLOGICAL_SURVEYS]" +
+               ",[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION]" +
+               ",[PROJECT_CUSTOMER]" +
+               ",[PROJECT_GIP_ID]" +
+               ",[PROJECT_N_KONTR_ID]" +
+               ",[PROJECT_PATH_FOLDER]) " +
+               "VALUES(@id, @name, " +
+               "@capitalOrLinear, @isGeodetiSurveys," +
+               "@isGeologicalSurveysSurveys, @isEnvironmentalSurveys," +
+               "@isMeteorologicalSurveys, @isGeotechnicalSurveys, " +
+               "@isArchaeologicalSurveys, @isInspectionOfTechnicalCondition, " +
+               "@nameCustomer, @idGIP, " +
+               "@idNkont, @path);";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = this._id;
+                    command.Parameters.Add("@name", SqlDbType.Text).Value = this._name;
+                    command.Parameters.Add("@capitalOrLinear", SqlDbType.Bit).Value = this._capitalOrLinear;
+                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this._isGeodetiSurveys;
+                    command.Parameters.Add("@isGeologicalSurveysSurveys", SqlDbType.Bit).Value =
+                        this._isGeologicalSurveysSurveys;
+                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this._isEnvironmentalSurveys;
+                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this._isMeteorologicalSurveys;
+                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this._isGeotechnicalSurveys;
+                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this._isArchaeologicalSurveys;
+                    command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
+                        this._isInspectionOfTechnicalCondition;
+                    command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
+                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._idGIP;
+                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._idNkont;
+                    command.Parameters.Add("@path", SqlDbType.Text).Value = this._path;
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
+   
         public static string GetPathMainFolder(string codeProject)
         {
             string path = "";
