@@ -396,6 +396,17 @@ namespace IUL
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
 
+                        cell = new PdfPCell(new Phrase("CRC32", font));
+                        cell.Colspan = 2;
+                        cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+                        cell = new PdfPCell(new Phrase(this._chapters[iter].CRC32, font));
+                        cell.Colspan = 2;
+                        cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+
                         cell = new PdfPCell(new Phrase("Наименование файла", font));
                         cell.Colspan = 2;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;

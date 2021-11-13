@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.IO;
 using System.Security.Cryptography;
+using Force.Crc32;
 namespace IUL
 {
     class Chapter
@@ -40,6 +41,23 @@ namespace IUL
                     MD5 = BitConverter.ToString(checkSum).Replace("-", String.Empty);
                 }
                 return MD5;
+            }
+        }
+        public string CRC32 
+        {
+            get 
+            {
+                Force.Crc32.Crc32Algorithm crc32 = new Force.Crc32.Crc32Algorithm();
+                String hash = String.Empty;
+                string path = Project.GetPathMainFolder(this._projectId) + "\\" + this._nameFileChapter;
+                using (FileStream fs = File.OpenRead(path))
+                {
+                    foreach (byte b in crc32.ComputeHash(fs))
+                    {
+                        hash += b.ToString("x2").ToLower();
+                    }
+                }
+                return hash;
             }
         }
         public string ChapterId
