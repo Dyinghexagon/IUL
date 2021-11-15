@@ -294,7 +294,7 @@ namespace IUL
             }
             return path;
         }
-        public static string[] GetProjectsArray()
+        public static void InitializeComboBoxProjects(System.Windows.Forms.ComboBox fillingComboBox)
         {
             int countProjects = DbProviderFactories.GetCountСolumns("PROJECTS");
             string[] projects = new string[countProjects];
@@ -316,13 +316,9 @@ namespace IUL
                     }
                 }
             }
-            return projects;
+            fillingComboBox.Items.AddRange(projects);
         }
-        public static void InitializeComboBoxProjects(System.Windows.Forms.ComboBox fillingComboBox)
-        {
-            fillingComboBox.Items.AddRange(Project.GetProjectsArray());
-        }
-        public void CreateTable(string dateSigning, string pathToMainFile)
+        public void RolloutIULsForProject(string dateSigning, string pathToMainFile)
         {
             try
             {
@@ -573,6 +569,7 @@ namespace IUL
                         doc.Add(table);
                         doc.Close();
                     }
+                   
                 }
             }
             catch (Exception e)

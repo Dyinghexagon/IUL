@@ -10,6 +10,8 @@ namespace IUL
     public partial class CreateProject : Form
     {
         private Project _newProject;
+        private Employee _GIP;
+        private Employee _Nkontr;
         public CreateProject()
         {
             InitializeComponent();
@@ -86,12 +88,12 @@ namespace IUL
                 MessageBox.Show("Необходимо выбрать папку проекта!");
                 return false;
             }
-            if (this._newProject.IdGIP == 0)
+            if (this._GIP == null)
             {
                 MessageBox.Show("Необходимо выбрать Главного Инженера Проекта проекта!");
                 return false;
             }
-            if (this._newProject.IdNkont == 0)
+            if (this._Nkontr == null)
             {
                 MessageBox.Show("Необходимо выбрать Нормоконтролера проекта!");
                 return false;
@@ -104,12 +106,16 @@ namespace IUL
 
         private void ComboBoxChoosingGIP_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this._newProject.IdGIP = ComboBoxChoosingGIP.SelectedIndex;
+            string surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+            this._GIP = new Employee(surnameGIP);
+            this._newProject.IdGIP = this._GIP.Id;
         }
 
         private void ComboBoxChoosingNkontr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this._newProject.IdNkont = ComboBoxChoosingNkontr.SelectedIndex;
+            string surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+            this._Nkontr = new Employee(surnameNkont);
+            this._newProject.IdNkont = this._Nkontr.Id;
         }
 
         private void RadioButtonLinear_CheckedChanged(object sender, EventArgs e)

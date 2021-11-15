@@ -36,14 +36,11 @@ namespace IUL
             try 
             {
                 this._newPerformer.InsertNewPerformer();
+                MessageBox.Show("Исполнитель добавлен!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
-            }
-            finally 
-            {
-                MessageBox.Show("Исполнитель добавлен!");
             }
         }
 

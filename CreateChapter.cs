@@ -36,13 +36,14 @@ namespace IUL
         private void ComboBoxChapters_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = ComboBoxChapters.SelectedIndex;
+            string nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
             if (this._selectedProject.CapitalOrLinear && selectedIndex >= 4 && selectedIndex <= 10)
             {
                 this._newChapter.ChapterName =
                     "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +
                     "перечень инженерно-технических мероприятий, содержание технологических решений ";
             }
-            this._newChapter.ChapterName += ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
+            this._newChapter.ChapterName = nameSelectedChapter;
         }
         private void ButtonAddNewChapter_Click(object sender, EventArgs e)
         {
@@ -65,14 +66,14 @@ namespace IUL
 
                 this._newChapter.ProjectId = this.LabelIdProject.Text;
                 this._newChapter.InsertNewChapter();
+                MessageBox.Show("Раздел добавлен!");
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
             finally 
-            {
-                MessageBox.Show("Раздел добавлен!");
+            { 
                 TextBoxNameSubChapter.Clear();
                 TextBoxIdSubChapter.Clear();
             }

@@ -33,7 +33,7 @@ namespace IUL
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 pathMainFolder = folderBrowserDialog1.SelectedPath;
-                this._selectedProject.CreateTable(dateSigning, pathMainFolder);
+                this._selectedProject.RolloutIULsForProject(dateSigning, pathMainFolder);
                 MessageBox.Show("ИУЛы готовы!");
             }
             catch (Exception ex) 
