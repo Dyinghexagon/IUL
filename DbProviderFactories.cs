@@ -14,9 +14,16 @@ namespace IUL
     {
         public static SqlConnection GetDBConnection()
         {
-            string connectionString = ConfigurationManager.AppSettings.Get("conn");
-            SqlConnection conn = new SqlConnection(connectionString);
-            return conn;
+            try 
+            {
+                string connectionString = ConfigurationManager.AppSettings.Get("conn");
+                SqlConnection conn = new SqlConnection(connectionString);
+                return conn;
+            }
+            catch(Exception ex) 
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         public static async Task<int> GetCountRowsAsync(string tableName)
         {
@@ -34,69 +41,97 @@ namespace IUL
         }
         public static int GetCountRows(string tableName)
         {
-            int count = 0;
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
-                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                int count = 0;
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    count = Convert.ToInt32(getchild.ExecuteScalarAsync());
+                    connection.Open();
+                    string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
+                    using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                    {
+                        count = Convert.ToInt32(getchild.ExecuteScalarAsync());
+                    }
                 }
+                return count;
             }
-            return count;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         public static async Task<int> GetCountСolumnsAsync(string tableName)
         {
-            object count = 0;
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                await connection.OpenAsync();
-                string query = "SELECT count(*) FROM ["+tableName+"]";
-                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                object count = 0;
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    count = await getchild.ExecuteScalarAsync();
+                    await connection.OpenAsync();
+                    string query = "SELECT count(*) FROM [" + tableName + "]";
+                    using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                    {
+                        count = await getchild.ExecuteScalarAsync();
+                    }
                 }
+                return Convert.ToInt32(count);
             }
-            return Convert.ToInt32(count);
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         public static int GetCountСolumns(string tableName)
         {
-            int count = 0;
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                string query = "SELECT count(*) FROM [" + tableName + "]";
-                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                int count = 0;
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    count = Convert.ToInt32(getchild.ExecuteScalar());
+                    connection.Open();
+                    string query = "SELECT count(*) FROM [" + tableName + "]";
+                    using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                    {
+                        count = Convert.ToInt32(getchild.ExecuteScalar());
+                    }
                 }
+                return count;
             }
-            return count;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         public static int GetCountСolumnsChapters(string codeProject)
         {
-            int count = 0;
-            string query = "SELECT COUNT(*) FROM [IUL].[dbo].[CHAPTERS] " +
-    "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @codeProject" + ";";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
-                command.Parameters.Add(codeProjectParam);
-                using (SqlDataReader reader = command.ExecuteReader())
+                int count = 0;
+                string query = "SELECT COUNT(*) FROM [IUL].[dbo].[CHAPTERS] " +
+        "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @codeProject" + ";";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
+                    command.Parameters.Add(codeProjectParam);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            count = Convert.ToInt32(reader.GetValue(0));
+                            while (reader.Read())
+                            {
+                                count = Convert.ToInt32(reader.GetValue(0));
+                            }
                         }
                     }
                 }
+                return count;
             }
-            return count;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
     }
 }

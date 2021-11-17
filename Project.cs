@@ -138,79 +138,86 @@ namespace IUL
         public Project() { }
         public Project(string nameProject)
         {
-            this._name = nameProject;
-            this._chapters = new List<Chapter>(30);
-            string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_ENVIRONMENTAL_SURVEYS]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_METEOROLOGICAL_SURVEYS]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOTECHNICAL_SURVEYS]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_CUSTOMER]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID]" +
-                ",[IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER]" +
-                ",[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
-                ",[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
-                "FROM [IUL].[dbo].[PROJECTS]" +
-                "JOIN [IUL].[dbo].[EMPLOYEES]" +
-                "ON [IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] " +
-                "AND [IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
-                "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_NAME] LIKE @nameProject; ";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@nameProject", SqlDbType.Text).Value = this._name;
-                using (SqlDataReader reader = command.ExecuteReader())
+                this._name = nameProject;
+                this._chapters = new List<Chapter>(30);
+                string query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_ENVIRONMENTAL_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_METEOROLOGICAL_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOTECHNICAL_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_CUSTOMER]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER]" +
+                    ",[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
+                    ",[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
+                    "FROM [IUL].[dbo].[PROJECTS]" +
+                    "JOIN [IUL].[dbo].[EMPLOYEES]" +
+                    "ON [IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] " +
+                    "AND [IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
+                    "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_NAME] LIKE @nameProject; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@nameProject", SqlDbType.Text).Value = this._name;
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
-                            this._id = reader.GetValue(0).ToString().Trim();
-                            this._capitalOrLinear = Convert.ToBoolean(reader.GetValue(1));
-                            this._isGeodetiSurveys = Convert.ToBoolean(reader.GetValue(2));
-                            this._isGeologicalSurveysSurveys = Convert.ToBoolean(reader.GetValue(3));
-                            this._isEnvironmentalSurveys = Convert.ToBoolean(reader.GetValue(4));
-                            this._isMeteorologicalSurveys = Convert.ToBoolean(reader.GetValue(5));
-                            this._isGeotechnicalSurveys = Convert.ToBoolean(reader.GetValue(6));
-                            this._isArchaeologicalSurveys = Convert.ToBoolean(reader.GetValue(7));
-                            this._isInspectionOfTechnicalCondition = Convert.ToBoolean(reader.GetValue(8));
-                            this._nameCustomer = reader.GetValue(9).ToString().Trim();
-                            this._idGIP = Convert.ToInt32(reader.GetValue(10));
-                            this._idNkont = Convert.ToInt32(reader.GetValue(11));
-                            this._path = reader.GetValue(12).ToString().Trim();
-                            this._GIP = new Employee(reader.GetValue(13).ToString().Trim());
-                            this._Nkontr = new Employee(reader.GetValue(14).ToString().Trim());
+                            if (reader.Read())
+                            {
+                                this._id = reader.GetValue(0).ToString().Trim();
+                                this._capitalOrLinear = Convert.ToBoolean(reader.GetValue(1));
+                                this._isGeodetiSurveys = Convert.ToBoolean(reader.GetValue(2));
+                                this._isGeologicalSurveysSurveys = Convert.ToBoolean(reader.GetValue(3));
+                                this._isEnvironmentalSurveys = Convert.ToBoolean(reader.GetValue(4));
+                                this._isMeteorologicalSurveys = Convert.ToBoolean(reader.GetValue(5));
+                                this._isGeotechnicalSurveys = Convert.ToBoolean(reader.GetValue(6));
+                                this._isArchaeologicalSurveys = Convert.ToBoolean(reader.GetValue(7));
+                                this._isInspectionOfTechnicalCondition = Convert.ToBoolean(reader.GetValue(8));
+                                this._nameCustomer = reader.GetValue(9).ToString().Trim();
+                                this._idGIP = Convert.ToInt32(reader.GetValue(10));
+                                this._idNkont = Convert.ToInt32(reader.GetValue(11));
+                                this._path = reader.GetValue(12).ToString().Trim();
+                                this._GIP = new Employee(reader.GetValue(13).ToString().Trim());
+                                this._Nkontr = new Employee(reader.GetValue(14).ToString().Trim());
+                            }
+                        }
+                    }
+                }
+                query = "USE IUL;" +
+                    "SELECT[IUL].[dbo].[CHAPTERS].[CHAPTER_NAME]" +
+                    "FROM[IUL].[dbo].[CHAPTERS]" +
+                    "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._id;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string chapterName = reader.GetValue(0).ToString().Trim();
+                                this._chapters.Add(new Chapter(this._id, chapterName));
+                            }
                         }
                     }
                 }
             }
-            query = "USE IUL;" +
-                "SELECT[IUL].[dbo].[CHAPTERS].[CHAPTER_NAME]" +
-                "FROM[IUL].[dbo].[CHAPTERS]" +
-                "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            catch (Exception ex)
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._id;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            string chapterName = reader.GetValue(0).ToString().Trim();
-                            this._chapters.Add(new Chapter(this._id, chapterName));
-                        }
-                    }
-                }
+                throw new Exception(ex.Message, ex);
             }
         }
 
@@ -265,58 +272,72 @@ namespace IUL
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message, ex);
             }
         }
    
         public static string GetPathMainFolder(string codeProject)
         {
-            string path = "";
-            string query = "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER] " +
-                "FROM [IUL].[dbo].[PROJECTS] " +
-                "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
-                command.Parameters.Add(codeProjectParam);
-                using (SqlDataReader reader = command.ExecuteReader())
+                string path = "";
+                string query = "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER] " +
+                    "FROM [IUL].[dbo].[PROJECTS] " +
+                    "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
+                    command.Parameters.Add(codeProjectParam);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            path = reader.GetValue(0).ToString().Trim();
+                            while (reader.Read())
+                            {
+                                path = reader.GetValue(0).ToString().Trim();
+                            }
                         }
                     }
                 }
+                return path;
             }
-            return path;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         public static void InitializeComboBoxProjects(System.Windows.Forms.ComboBox fillingComboBox)
         {
-            int countProjects = DbProviderFactories.GetCountСolumns("PROJECTS");
-            string[] projects = new string[countProjects];
-            string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_NAME] " +
-                "FROM [IUL].[dbo].[PROJECTS]; ";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                using (SqlDataReader reader = command.ExecuteReader())
+                int countProjects = DbProviderFactories.GetCountСolumns("PROJECTS");
+                string[] projects = new string[countProjects];
+                string query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_NAME] " +
+                    "FROM [IUL].[dbo].[PROJECTS]; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        for (int i = 0; reader.Read(); i++)
+                        if (reader.HasRows)
                         {
-                            projects[i] = reader.GetValue(0).ToString().Trim();
+                            for (int i = 0; reader.Read(); i++)
+                            {
+                                projects[i] = reader.GetValue(0).ToString().Trim();
+                            }
                         }
                     }
                 }
+                fillingComboBox.Items.AddRange(projects);
             }
-            fillingComboBox.Items.AddRange(projects);
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
         public void RolloutIULsForProject(string dateSigning, string pathToMainFile)
         {

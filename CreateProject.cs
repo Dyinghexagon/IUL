@@ -14,18 +14,31 @@ namespace IUL
         private Employee _Nkontr;
         public CreateProject()
         {
-            InitializeComponent();
-            Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingGIP);
-            Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingNkontr);
-            this._newProject = new Project();
-
+            try 
+            {
+                InitializeComponent();
+                Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingGIP);
+                Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingNkontr);
+                this._newProject = new Project();
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonChoosingMainFolder_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            this._newProject.Path = folderBrowserDialog1.SelectedPath;
+            try 
+            {
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+                this._newProject.Path = folderBrowserDialog1.SelectedPath;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonAddProject_Click(object sender, EventArgs e)
@@ -45,103 +58,148 @@ namespace IUL
                     this._newProject.Name = TextBoxNameProject.Text;
                     this._newProject.NameCustomer = TextBoxNameCustomer.Text;
                     this._newProject.InsertNewProject();
+					MessageBox.Show("Новый проект добавлен!");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
-            finally
-            {
-                MessageBox.Show("Новый проект добавлен!");
-            }
 
         }
         private bool CheckingFieldsAreFull()
         {
-            if (TextBoxCodeProject.Text.Length == 0)
+            try 
             {
-                MessageBox.Show("Необходимо ввести шифр нового проекта!");
-                return false;
-            }
+                if (TextBoxCodeProject.Text.Length == 0)
+                {
+                    MessageBox.Show("Необходимо ввести шифр нового проекта!");
+                    return false;
+                }
 
-            if (TextBoxNameCustomer.Text.Length == 0)
-            {
-                MessageBox.Show("Необходимо ввести наименование заказчика!");
-                return false;
-            }
+                if (TextBoxNameCustomer.Text.Length == 0)
+                {
+                    MessageBox.Show("Необходимо ввести наименование заказчика!");
+                    return false;
+                }
 
-            if (TextBoxNameProject.Text.Length == 0)
-            {
-                MessageBox.Show("Необходимо ввести наименование проекта!");
-                return false;
-            }
+                if (TextBoxNameProject.Text.Length == 0)
+                {
+                    MessageBox.Show("Необходимо ввести наименование проекта!");
+                    return false;
+                }
 
-            if (RadioButtonCapital.Checked == false && RadioButtonLinear.Checked == false)
-            {
-                MessageBox.Show("Необходимо выбрать тип проекта!");
-                return false;
-            }
+                if (RadioButtonCapital.Checked == false && RadioButtonLinear.Checked == false)
+                {
+                    MessageBox.Show("Необходимо выбрать тип проекта!");
+                    return false;
+                }
 
-            if (String.IsNullOrEmpty(this._newProject.Path))
-            {
-                MessageBox.Show("Необходимо выбрать папку проекта!");
-                return false;
+                if (String.IsNullOrEmpty(this._newProject.Path))
+                {
+                    MessageBox.Show("Необходимо выбрать папку проекта!");
+                    return false;
+                }
+                if (this._GIP == null)
+                {
+                    MessageBox.Show("Необходимо выбрать Главного Инженера Проекта проекта!");
+                    return false;
+                }
+                if (this._Nkontr == null)
+                {
+                    MessageBox.Show("Необходимо выбрать Нормоконтролера проекта!");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            if (this._GIP == null)
+            catch(Exception ex) 
             {
-                MessageBox.Show("Необходимо выбрать Главного Инженера Проекта проекта!");
-                return false;
-            }
-            if (this._Nkontr == null)
-            {
-                MessageBox.Show("Необходимо выбрать Нормоконтролера проекта!");
-                return false;
-            }
-            else
-            {
-                return true;
+                throw new Exception(ex.Message, ex);
             }
         }
 
         private void ComboBoxChoosingGIP_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
-            this._GIP = new Employee(surnameGIP);
-            this._newProject.IdGIP = this._GIP.Id;
+            try 
+            {
+                string surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+                this._GIP = new Employee(surnameGIP);
+                this._newProject.IdGIP = this._GIP.Id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ComboBoxChoosingNkontr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
-            this._Nkontr = new Employee(surnameNkont);
-            this._newProject.IdNkont = this._Nkontr.Id;
+            try 
+            {
+                string surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+                this._Nkontr = new Employee(surnameNkont);
+                this._newProject.IdNkont = this._Nkontr.Id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void RadioButtonLinear_CheckedChanged(object sender, EventArgs e)
         {
-            this._newProject.CapitalOrLinear = false;
+            try 
+            {
+                this._newProject.CapitalOrLinear = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void RadioButtonCapital_CheckedChanged(object sender, EventArgs e)
         {
-            this._newProject.CapitalOrLinear = true;
+            try 
+            {
+                this._newProject.CapitalOrLinear = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonCreateNewChapter_Click(object sender, EventArgs e)
         {
-            CreateChapter createChapter = new CreateChapter();
-            createChapter.Show();
-            this.Hide();
-            Program.PreviosPage = this;
-
+            try 
+            {
+                CreateChapter createChapter = new CreateChapter();
+                createChapter.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Program.PreviosPage.Show();
-            this.Hide();
-            Program.PreviosPage = this;
+            try 
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
     }
 }

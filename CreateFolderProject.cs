@@ -16,29 +16,7 @@ namespace IUL
         }
         private void ButtonCreateFolder_Click(object sender, EventArgs e)
         {
-            CreateMainFolder();
-        }
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadioButtonLinear.Checked)
-            {
-                FilingComboBoxLinearChapter();
-            }
-            if (RadioButtonCapital.Checked)
-            {
-                FilingComboBoxCapitalChapter();
-            }
-            this.ClientSize = new System.Drawing.Size(this.ClientSize.Width,
-    CheckedListBoxChapters.Size.Height + this.ButtonCrossCreateProject.Size.Height + this.ButtonBack.Size.Height
-    + this.ButtonCreateFolder.Size.Height + this.ButtonSelectAllChapters.Size.Height + this.ButtonSelectAllReseach.Size.Height + 70);
-            Point pointButtonCross = new Point(558, 181);
-            Point pointButtonBack = new Point(558, 245);
-            ButtonCrossCreateProject.Location = new Point(ButtonCrossCreateProject.Location.X, pointButtonCross.Y + CheckedListBoxChapters.Height);
-            ButtonBack.Location = new Point(ButtonBack.Location.X, pointButtonBack.Y + CheckedListBoxChapters.Height);
-        }
-        private void CreateMainFolder()
-        {
-            try 
+            try
             {
                 List<string> _chapters = new List<string>(20);
                 foreach (var chapter in CheckedListBoxChapters.CheckedItems)
@@ -65,13 +43,13 @@ namespace IUL
                                                               // pathMainFolder - путь самой папки проекта, т. е. путь к главной папке + её название
                 string pathMainFolder = pathToMainFolder + "\\" + nameMaiFolder;
                 List<string> subFolders = new List<string>()
-            {
+                 {
                 "!Изыскания",
                 "!ПД",
                 "!ИРД",
                 "!ИУЛ",
                 "!Экспертиза"
-            };
+                 };
                 //Создание папок
                 foreach (var subFolder in subFolders)
                 {
@@ -85,14 +63,36 @@ namespace IUL
 
                 }
                 CreateFolderSource(_chapters, pathPD);
+                MessageBox.Show("Папка проекта создана!");
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
-            finally 
+        }
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show("Папка проекта создана!");
+                if (RadioButtonLinear.Checked)
+                {
+                    FilingComboBoxLinearChapter();
+                }
+                if (RadioButtonCapital.Checked)
+                {
+                    FilingComboBoxCapitalChapter();
+                }
+                this.ClientSize = new System.Drawing.Size(this.ClientSize.Width,
+                        CheckedListBoxChapters.Size.Height + this.ButtonCrossCreateProject.Size.Height + this.ButtonBack.Size.Height
+                      + this.ButtonCreateFolder.Size.Height + this.ButtonSelectAllChapters.Size.Height + this.ButtonSelectAllReseach.Size.Height + 70);
+                Point pointButtonCross = new Point(558, 181);
+                Point pointButtonBack = new Point(558, 245);
+                ButtonCrossCreateProject.Location = new Point(ButtonCrossCreateProject.Location.X, pointButtonCross.Y + CheckedListBoxChapters.Height);
+                ButtonBack.Location = new Point(ButtonBack.Location.X, pointButtonBack.Y + CheckedListBoxChapters.Height);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
         /// <summary>
@@ -102,18 +102,25 @@ namespace IUL
         /// <param name="path">Путь к папке</param>
         private void CreateFolder(string folderName, string path)
         {
-            if (folderName.Equals("!Изыскания"))
+            try 
             {
-                CreateResearchs(path + "\\" + "!Изыскания");
-            }
-            else
-            {
-                DirectoryInfo dirInfo = new DirectoryInfo(path);
-                if (!dirInfo.Exists)
+                if (folderName.Equals("!Изыскания"))
                 {
-                    dirInfo.Create();
+                    CreateResearchs(path + "\\" + "!Изыскания");
                 }
-                dirInfo.CreateSubdirectory(folderName);
+                else
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(path);
+                    if (!dirInfo.Exists)
+                    {
+                        dirInfo.Create();
+                    }
+                    dirInfo.CreateSubdirectory(folderName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
         /// <summary>
@@ -122,16 +129,23 @@ namespace IUL
         /// <param name="path">Путь к папке !Изыскания</param>
         private void CreateResearchs(string path)
         {
-            foreach (var chls in CheckedListBoxResearchs.CheckedItems)
+            try 
             {
-                CreateFolder(chls.ToString(), path);
+                foreach (var chls in CheckedListBoxResearchs.CheckedItems)
+                {
+                    CreateFolder(chls.ToString(), path);
+                }
+                List<string> sourse = new List<string>();
+                foreach (var chls in CheckedListBoxResearchs.CheckedItems)
+                {
+                    sourse.Add(chls.ToString());
+                }
+                CreateFolderSource(sourse, path);
             }
-            List<string> sourse = new List<string>();
-            foreach (var chls in CheckedListBoxResearchs.CheckedItems)
+            catch (Exception ex)
             {
-                sourse.Add(chls.ToString());
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
-            CreateFolderSource(sourse, path);
         }
         /// <summary>
         /// Метод создает подпапки "pdf" и "dwg" в папках разделов и изысканий
@@ -140,47 +154,81 @@ namespace IUL
         /// <param name="path">Путь к папке в которой лежат папки для которых нужно создать подпаки "pdf" и "dwg"</param>
         private void CreateFolderSource(List<string> folders, string path)
         {
-            foreach (var folder in folders)
+            try 
             {
-                CreateFolder("dwg", (path + "\\" + folder));
-                CreateFolder("pdf", (path + "\\" + folder));
+                foreach (var folder in folders)
+                {
+                    CreateFolder("dwg", (path + "\\" + folder));
+                    CreateFolder("pdf", (path + "\\" + folder));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
 
         private void ButtonSelectAllChapters_Click(object sender, EventArgs e)
         {
-            if (CheckedListBoxChapters.Items.Count == 0)
+            try 
             {
-                MessageBox.Show("Необходимо выбрать тип проекта!", "Ошибка!");
-                return;
+                if (CheckedListBoxChapters.Items.Count == 0)
+                {
+                    MessageBox.Show("Необходимо выбрать тип проекта!", "Ошибка!");
+                    return;
+                }
+                for (int i = 0; i < CheckedListBoxChapters.Items.Count; i++)
+                {
+                    CheckedListBoxChapters.SetItemChecked(i, true);
+                }
             }
-            for (int i = 0; i < CheckedListBoxChapters.Items.Count; i++)
+            catch (Exception ex)
             {
-                CheckedListBoxChapters.SetItemChecked(i, true);
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
         private void ButtonSelectAllReseach_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < CheckedListBoxResearchs.Items.Count; i++)
+            try 
             {
-                CheckedListBoxResearchs.SetItemChecked(i, true);
+                for (int i = 0; i < CheckedListBoxResearchs.Items.Count; i++)
+                {
+                    CheckedListBoxResearchs.SetItemChecked(i, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
 
         private void ButtonCrossCreateProject_Click(object sender, EventArgs e)
         {
-            CreateProject createProject = new CreateProject();
-            createProject.Show();
-            this.Hide();
-            Program.PreviosPage = this;
-
+            try 
+            {
+                CreateProject createProject = new CreateProject();
+                createProject.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Program.PreviosPage.Show();
-            this.Hide();
-            Program.PreviosPage = this;
+            try 
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
     }
 }

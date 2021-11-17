@@ -41,80 +41,70 @@ namespace IUL
         }
         public Employee(string surname) 
         {
-            this._surname = surname;
-            string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]," +
-                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
-                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_PATROMIC]," +
-                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
-                "FROM [IUL].[dbo].[EMPLOYEES] " +
-                "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME] = @surname;";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@surname", System.Data.SqlDbType.VarChar).Value = this._surname;
-                using (SqlDataReader reader = command.ExecuteReader())
+                this._surname = surname;
+                string query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]," +
+                    "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
+                    "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_PATROMIC]," +
+                    "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
+                    "FROM [IUL].[dbo].[EMPLOYEES] " +
+                    "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME] = @surname;";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@surname", System.Data.SqlDbType.VarChar).Value = this._surname;
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            this._id = Convert.ToInt32(reader.GetValue(0));
-                            this._name = reader.GetValue(1).ToString().Trim();
-                            this._patromic = reader.GetValue(2).ToString().Trim();
-                            this._sign = (byte[])reader.GetValue(3);
+                            while (reader.Read())
+                            {
+                                this._id = Convert.ToInt32(reader.GetValue(0));
+                                this._name = reader.GetValue(1).ToString().Trim();
+                                this._patromic = reader.GetValue(2).ToString().Trim();
+                                this._sign = (byte[])reader.GetValue(3);
+                            }
                         }
                     }
                 }
+            }
+            catch(Exception ex) 
+            {
+                throw new Exception(ex.Message, ex);
             }
         } 
-        public static string[] GetSurnameEmployees() 
+        public static void InitializeComboBoxEmployees(System.Windows.Forms.ComboBox fillingComboBox)
         {
-            int countEmployees = DbProviderFactories.GetCountСolumns("EMPLOYEES");
-            string[] surnameEmployees = new string[countEmployees];
-            string query = "SELECT  [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
-                "FROM  [IUL].[dbo].[EMPLOYEES];";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                using (SqlDataReader reader = command.ExecuteReader())
+                int countEmployees = DbProviderFactories.GetCountСolumns("EMPLOYEES");
+                string[] surnameEmployees = new string[countEmployees];
+                string query = "SELECT  [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
+                    "FROM  [IUL].[dbo].[EMPLOYEES];";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        for(int i = 0; reader.Read(); i++) 
+                        if (reader.HasRows)
                         {
-                            surnameEmployees[i] = reader.GetValue(0).ToString().Trim();
+                            for (int i = 0; reader.Read(); i++)
+                            {
+                                surnameEmployees[i] = reader.GetValue(0).ToString().Trim();
+                            }
                         }
                     }
                 }
+                fillingComboBox.Items.AddRange(surnameEmployees);
             }
-            return surnameEmployees;
-        }
-        public static void UpdateImageSignEmployee(string path, int id)
-        {
-            FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            BinaryReader reader = new BinaryReader(fileStream);
-            byte[] signData = reader.ReadBytes((int)fileStream.Length);
-            string query = "USE IUL;" +
-                           "UPDATE [IUL].[dbo].[EMPLOYEES]" +
-                           "SET [EMPLOYEE_SIGN] = @sign " +
-                           "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id;";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            catch (Exception ex)
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@sign", System.Data.SqlDbType.Image, signData.Length).Value = signData;
-                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
-                command.ExecuteNonQuery();
+                throw new Exception(ex.Message, ex);
             }
-            fileStream.Close();
-            reader.Close();
-        }
-        public static void InitializeComboBoxEmployees(System.Windows.Forms.ComboBox fillingComboBox)
-        {
-            fillingComboBox.Items.AddRange(Employee.GetSurnameEmployees());
         }
     }
 }

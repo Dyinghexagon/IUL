@@ -15,20 +15,34 @@ namespace IUL
         private Chapter _selectedChapter;
         public CreatePerformer()
         {
-            InitializeComponent();
-            Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
-            Employee.InitializeComboBoxEmployees(this.ComboBoxEmployees);
-            Role.InitializeComboBoxRoles(this.ComboBoxRoles);
-            this._newPerformer = new Performer();
+            try 
+            {
+                InitializeComponent();
+                Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+                Employee.InitializeComboBoxEmployees(this.ComboBoxEmployees);
+                Role.InitializeComboBoxRoles(this.ComboBoxRoles);
+                this._newPerformer = new Performer();
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nameSelectedProject = this.ComboBoxNameProjects.Items[this.ComboBoxNameProjects.SelectedIndex].ToString();
-            this._selectedProject = new Project(nameSelectedProject);
-            this._selectedChapter = new Chapter();
-            this._selectedChapter.ProjectId = this._selectedProject.Id;
-            this.ComboBoxChapters.Items.AddRange(this._selectedChapter.GetChaptersArray());
+            try 
+            {
+                string nameSelectedProject = this.ComboBoxNameProjects.Items[this.ComboBoxNameProjects.SelectedIndex].ToString();
+                this._selectedProject = new Project(nameSelectedProject);
+                this._selectedChapter = new Chapter();
+                this._selectedChapter.ProjectId = this._selectedProject.Id;
+                Chapter.InitializeComboBoxChapters(this.ComboBoxChapters, this._selectedChapter.ProjectId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonAddNewPerformer_Click(object sender, EventArgs e)
@@ -91,9 +105,16 @@ namespace IUL
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Program.PreviosPage.Show();
-            this.Hide();
-            Program.PreviosPage = this;
+            try
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
     }
 }

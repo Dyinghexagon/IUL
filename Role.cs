@@ -28,57 +28,67 @@ namespace IUL
         }
         public Role(string roleAbbreviatedName) 
         {
-            this._abbreviatedName = roleAbbreviatedName;
-            string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[ROLES].[ROLE_ID]" +
-                ",[IUL].[dbo].[ROLES].[ROLE_FULL_NAME]" +
-                "FROM [IUL].[dbo].[ROLES]" +
-                "WHERE [IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME] = @abbreviatedName; ";
-            using(SqlConnection connection = DbProviderFactories.GetDBConnection()) 
+            try 
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@abbreviatedName", System.Data.SqlDbType.NChar).Value = this._abbreviatedName;
-                using(SqlDataReader reader = command.ExecuteReader()) 
+                this._abbreviatedName = roleAbbreviatedName;
+                string query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[ROLES].[ROLE_ID]" +
+                    ",[IUL].[dbo].[ROLES].[ROLE_FULL_NAME]" +
+                    "FROM [IUL].[dbo].[ROLES]" +
+                    "WHERE [IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME] = @abbreviatedName; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
-                    if (reader.HasRows) 
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@abbreviatedName", System.Data.SqlDbType.NChar).Value = this._abbreviatedName;
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read()) 
+                        if (reader.HasRows)
                         {
-                            this._id = Convert.ToInt32(reader.GetValue(0));
-                            this._fullName = reader.GetValue(1).ToString().Trim();
+                            if (reader.Read())
+                            {
+                                this._id = Convert.ToInt32(reader.GetValue(0));
+                                this._fullName = reader.GetValue(1).ToString().Trim();
+                            }
                         }
                     }
                 }
             }
-        }
-        private static string[] GetFullOrAbbreviatedNameRole()
-        {
-            int countRoles = DbProviderFactories.GetCountСolumns("ROLES");
-            string[] roles = new string[countRoles];
-            string query = "USE IUL;" +
-                "SELECT [IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME] " +
-                "FROM [IUL].[dbo].[ROLES]; ";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            catch (Exception ex)
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                    {
-                        for(int i = 0; reader.Read(); i++) 
-                        {
-                            roles[i] = reader.GetValue(0).ToString().Trim();
-                        }
-                    }
-                }
+                throw new Exception(ex.Message, ex);
             }
-            return roles;
         }
         public static void InitializeComboBoxRoles(System.Windows.Forms.ComboBox fillingComboBox)
         {
-            fillingComboBox.Items.AddRange(Role.GetFullOrAbbreviatedNameRole());
+            try 
+            {
+                int countRoles = DbProviderFactories.GetCountСolumns("ROLES");
+                string[] roles = new string[countRoles];
+                string query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME] " +
+                    "FROM [IUL].[dbo].[ROLES]; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            for (int i = 0; reader.Read(); i++)
+                            {
+                                roles[i] = reader.GetValue(0).ToString().Trim();
+                            }
+                        }
+                    }
+                }
+                fillingComboBox.Items.AddRange(roles);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
     }
 }

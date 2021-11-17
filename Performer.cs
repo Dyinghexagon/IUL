@@ -25,22 +25,17 @@ namespace IUL
             get { return this._roleId; }
             set { this._roleId = value; }
         }
-
-        public Performer(string chapterId, int employeeId, int roleId) 
-        {
-            this._chapterId = chapterId;
-            this._employeeId = employeeId;
-            this._roleId = roleId;
-        }
         public Performer() 
         {
             this._chapterId = "";
             this._employeeId = 0;
             this._roleId = 0;
         }
-        public bool InsertNewPerformer() 
+        public void InsertNewPerformer() 
         {
-            string query = "USE IUL;" +
+            try 
+            {
+                string query = "USE IUL;" +
                 "INSERT INTO[IUL].[dbo].[PERFORMERS]" +
                 "([PERFORMER_CHAPTER_ID]" +
                 ",[PERFORMER_EMPLOYEE_ID]" +
@@ -49,16 +44,20 @@ namespace IUL
                 "(@chapterId" +
                 ",@employeeId" +
                 ",@roleId);";
-            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
-                command.Parameters.Add("@employeeId", System.Data.SqlDbType.Int).Value = this._employeeId;
-                command.Parameters.Add("@roleId", System.Data.SqlDbType.Int).Value = this._roleId;
-                command.ExecuteNonQuery();
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
+                    command.Parameters.Add("@employeeId", System.Data.SqlDbType.Int).Value = this._employeeId;
+                    command.Parameters.Add("@roleId", System.Data.SqlDbType.Int).Value = this._roleId;
+                    command.ExecuteNonQuery();
+                }
             }
-            return true;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
     }
 }

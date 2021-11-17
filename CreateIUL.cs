@@ -13,16 +13,29 @@ namespace IUL
         Project _selectedProject;
         public CreateIUL()
         {
-            InitializeComponent();
-            Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
-            
+            try 
+            {
+                InitializeComponent();
+                Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Program.PreviosPage.Show();
-            this.Hide();
-            Program.PreviosPage = this;
+            try 
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
         private void ButtonCreateIULs_Click(object sender, EventArgs e)
         {
@@ -36,15 +49,22 @@ namespace IUL
                 this._selectedProject.RolloutIULsForProject(dateSigning, pathMainFolder);
                 MessageBox.Show("ИУЛы готовы!");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string projectName = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
-            this._selectedProject = new Project(projectName);
+            try 
+            {
+                string projectName = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                this._selectedProject = new Project(projectName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
     }
 }

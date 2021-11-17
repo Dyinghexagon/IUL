@@ -14,36 +14,57 @@ namespace IUL
         private Chapter _newChapter;
         public CreateChapter()
         {
-            InitializeComponent();
-            Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
-            _newChapter = new Chapter();
+            try 
+            {
+                InitializeComponent();
+                Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+                _newChapter = new Chapter();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
-            _selectedProject = new Project(nameProject);
-            LabelIdProject.Text = _selectedProject.Id;
-            if (_selectedProject.CapitalOrLinear) 
+            try 
             {
-                FilingComboBoxCapitalChapter();
+                string nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                _selectedProject = new Project(nameProject);
+                LabelIdProject.Text = _selectedProject.Id;
+                if (_selectedProject.CapitalOrLinear)
+                {
+                    FilingComboBoxCapitalChapter();
+                }
+                else
+                {
+                    FilingComboBoxLinearChapter();
+                }
             }
-            else 
+            catch (Exception ex)
             {
-                FilingComboBoxLinearChapter();
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
         private void ComboBoxChapters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = ComboBoxChapters.SelectedIndex;
-            string nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
-            if (this._selectedProject.CapitalOrLinear && selectedIndex >= 4 && selectedIndex <= 10)
+            try 
             {
-                this._newChapter.ChapterName =
-                    "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +
-                    "перечень инженерно-технических мероприятий, содержание технологических решений ";
+                int selectedIndex = ComboBoxChapters.SelectedIndex;
+                string nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
+                if (this._selectedProject.CapitalOrLinear && selectedIndex >= 4 && selectedIndex <= 10)
+                {
+                    this._newChapter.ChapterName =
+                        "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +
+                        "перечень инженерно-технических мероприятий, содержание технологических решений ";
+                }
+                this._newChapter.ChapterName = nameSelectedChapter;
             }
-            this._newChapter.ChapterName = nameSelectedChapter;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
         private void ButtonAddNewChapter_Click(object sender, EventArgs e)
         {
@@ -81,23 +102,44 @@ namespace IUL
 
         private void ButtonSelecFileChapter_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                this._newChapter.NameFileChapter = openFileDialog1.SafeFileName;
+            try 
+            {
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    this._newChapter.NameFileChapter = openFileDialog1.SafeFileName;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonCrossCreatePerformer_Click(object sender, EventArgs e)
         {
-            CreatePerformer createPerformer = new CreatePerformer();
-            createPerformer.Show();
-            this.Hide();
-            Program.PreviosPage = this;
+            try 
+            {
+                CreatePerformer createPerformer = new CreatePerformer();
+                createPerformer.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Program.PreviosPage.Show();
-            this.Hide();
-            Program.PreviosPage = this;
+            try 
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
     }
 }
