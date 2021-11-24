@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Threading.Tasks;
 namespace IUL
 {
     class Project
@@ -25,7 +26,7 @@ namespace IUL
         private string _nameCustomer;
         private int _idGIP;
         private int _idNkont;
-        private string _path;
+        private string _pathToMainFolder;
         private List<Chapter> _chapters;
         private Employee _GIP;
         private Employee _Nkontr;
@@ -127,8 +128,8 @@ namespace IUL
         }
         public string Path
         {
-            get { return this._path; }
-            set { this._path = value; }
+            get { return this._pathToMainFolder; }
+            set { this._pathToMainFolder = value; }
 
         }
         public Chapter this[int index]
@@ -186,7 +187,7 @@ namespace IUL
                                 this._nameCustomer = reader.GetValue(9).ToString().Trim();
                                 this._idGIP = Convert.ToInt32(reader.GetValue(10));
                                 this._idNkont = Convert.ToInt32(reader.GetValue(11));
-                                this._path = reader.GetValue(12).ToString().Trim();
+                                this._pathToMainFolder = reader.GetValue(12).ToString().Trim();
                                 this._GIP = new Employee(reader.GetValue(13).ToString().Trim());
                                 this._Nkontr = new Employee(reader.GetValue(14).ToString().Trim());
                             }
@@ -220,7 +221,6 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-
         public void InsertNewProject()
         {
             try
@@ -266,7 +266,7 @@ namespace IUL
                     command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
                     command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._idGIP;
                     command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._idNkont;
-                    command.Parameters.Add("@path", SqlDbType.Text).Value = this._path;
+                    command.Parameters.Add("@path", SqlDbType.Text).Value = this._pathToMainFolder;
                     command.ExecuteNonQuery();
                 }
             }

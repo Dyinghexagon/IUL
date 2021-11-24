@@ -31,10 +31,10 @@ namespace IUL
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 await connection.OpenAsync();
-                string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
-                using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
+                string query = "SELECT COUNT(*) FROM SYSCOLUMNS WHERE id = object_id('[" + tableName + "]');";
+                using (SqlCommand command = new SqlCommand(query, connection)) //SQL queries
                 {
-                    count =Convert.ToInt32(getchild.ExecuteScalarAsync());
+                    count =Convert.ToInt32(command.ExecuteScalarAsync());
                 }
             }
             return count;
@@ -119,7 +119,7 @@ namespace IUL
                     {
                         if (reader.HasRows)
                         {
-                            while (reader.Read())
+                            if (reader.Read())
                             {
                                 count = Convert.ToInt32(reader.GetValue(0));
                             }

@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
 namespace IUL
 {
     public partial class CreateIUL : Form
@@ -41,6 +40,7 @@ namespace IUL
         {
             try 
             {
+
                 string dateSigning = dateTimePicker1.Value.ToShortDateString();
                 string pathMainFolder = "";
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
@@ -49,17 +49,22 @@ namespace IUL
                 this._selectedProject.RolloutIULsForProject(dateSigning, pathMainFolder);
                 MessageBox.Show("ИУЛы готовы!");
             }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Необходимо выбрать проект!", "Ошибка");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
+
         }
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             try 
             {
-                string projectName = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
-                this._selectedProject = new Project(projectName);
+                string nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                this._selectedProject = new Project(nameProject);
             }
             catch (Exception ex)
             {
