@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Security.Cryptography;
 using Force.Crc32;
+using System.Linq;
 namespace IUL
 {
     class Chapter
@@ -30,9 +31,8 @@ namespace IUL
         {
             get 
             {
-                string path = Project.GetPathMainFolder(this._projectId) + "\\" + this._nameFileChapter;
                 string MD5 = "";
-                using (FileStream fs = System.IO.File.OpenRead(path))
+                using (FileStream fs = System.IO.File.OpenRead(this._pathToFileChapter))
                 {
                     MD5 md5 = new MD5CryptoServiceProvider();
                     byte[] fileData = new byte[fs.Length];
@@ -49,8 +49,7 @@ namespace IUL
             {
                 Force.Crc32.Crc32Algorithm crc32 = new Force.Crc32.Crc32Algorithm();
                 String hash = String.Empty;
-                string path = Project.GetPathMainFolder(this._projectId) + "\\" + this._nameFileChapter;
-                using (FileStream fs = File.OpenRead(path))
+                using (FileStream fs = File.OpenRead(this._pathToFileChapter))
                 {
                     foreach (byte b in crc32.ComputeHash(fs))
                     {
@@ -104,7 +103,6 @@ namespace IUL
                 this._chapterName = chapterName;
                 this.InitializeChapter();//инциализирую поля шифра раздела и имени файла
                 this.InitializeAuthorsChapter();//инциализирую состав авторского коллектива для раздела
-                this._pathToFileChapter = Project.GetPathMainFolder(this._projectId) + "\\" + this._nameFileChapter;
                 this._fileInfo = new FileInfo(this._pathToFileChapter);
             }
             catch (Exception ex)
@@ -134,7 +132,8 @@ namespace IUL
                             if (reader.Read())
                             {
                                 this._chapterId = reader.GetValue(0).ToString().Trim();
-                                this._nameFileChapter = reader.GetValue(1).ToString().Trim();
+                                this._pathToFileChapter = reader.GetValue(1).ToString().Trim();
+                                this._nameFileChapter = this._pathToFileChapter.Split('\\').Last();
                             }
                         }
                     }
@@ -251,7 +250,7 @@ namespace IUL
                         }
                     }
                 }
-
+                fillingComboBox.Items.AddRange(chapters);
             }
             catch(Exception ex) 
             {

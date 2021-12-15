@@ -275,39 +275,6 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-   
-        public static string GetPathMainFolder(string codeProject)
-        {
-            try 
-            {
-                string path = "";
-                string query = "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER] " +
-                    "FROM [IUL].[dbo].[PROJECTS] " +
-                    "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_ID] = @codeProject" + ";";
-                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlParameter codeProjectParam = new SqlParameter("@codeProject", codeProject);
-                    command.Parameters.Add(codeProjectParam);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                path = reader.GetValue(0).ToString().Trim();
-                            }
-                        }
-                    }
-                }
-                return path;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
         public static void InitializeComboBoxProjects(System.Windows.Forms.ComboBox fillingComboBox)
         {
             try 
