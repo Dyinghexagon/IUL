@@ -146,7 +146,7 @@ namespace IUL
                     "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS]" +
-                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
+                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL_SURVEYS_SURVEYS]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_ENVIRONMENTAL_SURVEYS]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_METEOROLOGICAL_SURVEYS]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_GEOTECHNICAL_SURVEYS]" +
@@ -161,8 +161,8 @@ namespace IUL
                     "FROM [IUL].[dbo].[PROJECTS]" +
                     "JOIN [IUL].[dbo].[EMPLOYEES]" +
                     "ON [IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] " +
-                    "AND [IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
-                    "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_NAME] LIKE @nameProject; ";
+                    "OR [IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
+                    "WHERE [IUL].[dbo].[PROJECTS].[PROJECT_NAME] LIKE @nameProject;";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
@@ -194,9 +194,9 @@ namespace IUL
                     }
                 }
                 query = "USE IUL;" +
-                    "SELECT[IUL].[dbo].[CHAPTERS].[CHAPTER_NAME]" +
-                    "FROM[IUL].[dbo].[CHAPTERS]" +
-                    "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
+                    "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME]" +
+                    "FROM [IUL].[dbo].[CHAPTERS]" +
+                    "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
@@ -217,7 +217,7 @@ namespace IUL
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new Exception("projectException " + ex.Message,ex);
             }
         }
 
@@ -230,7 +230,7 @@ namespace IUL
                ",[PROJECT_NAME]" +
                ",[PROJECT_CAPITAL_OR_LINEAR]" +
                ",[PROJECT_GEODETI_SURVEYS]" +
-               ",[PROJECT_GEOLOGICAL SURVEYS_SURVEYS]" +
+               ",[PROJECT_GEOLOGICAL_SURVEYS_SURVEYS]" +
                ",[PROJECT_ENVIRONMENTAL_SURVEYS]" +
                ",[PROJECT_METEOROLOGICAL_SURVEYS]" +
                ",[PROJECT_GEOTECHNICAL_SURVEYS]" +
@@ -310,7 +310,7 @@ namespace IUL
         {
             try
             {
-                float scale = 0.4f;
+                float scale = 0.09f;
                 BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
                 for (int iter = 0; iter < this._chapters.Count; iter++)

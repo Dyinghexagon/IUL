@@ -19,6 +19,12 @@ namespace IUL
         private List<KeyValuePair<string, Employee>> _authorsChapter;
         private FileInfo _fileInfo;
 
+
+        public String PathToFileChapter 
+        {
+            get { return this._pathToFileChapter; }
+            set { this._pathToFileChapter = value; }
+        }
         public long SizeFileChapter 
         {
             get { return this._fileInfo.Length; }
@@ -107,7 +113,7 @@ namespace IUL
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new Exception("ChapterException " + ex.Message, ex);
             }
         }
         public void InitializeChapter() 
@@ -118,7 +124,7 @@ namespace IUL
                 "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_ID]" +
                 ",[IUL].[dbo].[CHAPTERS].[CHAPTER_FILE_NAME]" +
                 "FROM [IUL].[dbo].[CHAPTERS]" +
-                "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] LIKE @chapterName AND[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
+                "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] LIKE @chapterName AND [IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId; ";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
@@ -158,7 +164,7 @@ namespace IUL
                "(@chapterId" +
                ", @projectId" +
                ", @chapterName" +
-               ", @nameFileChapter); ";
+               ", @pathFileChapter); ";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
@@ -166,7 +172,7 @@ namespace IUL
                     command.Parameters.Add("@chapterId", SqlDbType.NChar).Value = this._chapterId;
                     command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._projectId;
                     command.Parameters.Add("@chapterName", SqlDbType.Text).Value = this._chapterName;
-                    command.Parameters.Add("@nameFileChapter", SqlDbType.Text).Value = this._nameFileChapter;
+                    command.Parameters.Add("@pathFileChapter", SqlDbType.Text).Value = this._pathToFileChapter;
                     command.ExecuteNonQuery();
                 }
             }

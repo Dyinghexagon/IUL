@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Linq;
 namespace IUL
 {
     public partial class CreateChapter : Form
@@ -104,8 +104,11 @@ namespace IUL
         {
             try 
             {
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                    this._newChapter.NameFileChapter = openFileDialog1.SafeFileName;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK) 
+                {
+                    this._newChapter.PathToFileChapter = openFileDialog1.FileName;
+                    this._newChapter.NameFileChapter = this._newChapter.PathToFileChapter.Split("\\").Last();
+                }
             }
             catch (Exception ex)
             {
