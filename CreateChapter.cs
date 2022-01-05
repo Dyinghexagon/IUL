@@ -70,11 +70,11 @@ namespace IUL
         {
             try 
             {
-                this._newChapter.ChapterId = LabelIdProject.Text;
-                this._newChapter.ChapterId += "-" + TextBoxIdChapter?.Text;
+                this._newChapter.Id = LabelIdProject.Text;
+                this._newChapter.Id += "-" + TextBoxIdChapter?.Text;
                 if (TextBoxIdSubChapter.Text.Length != 0)
                 {
-                    this._newChapter.ChapterId += "." + TextBoxIdSubChapter?.Text;
+                    this._newChapter.Id += "." + TextBoxIdSubChapter?.Text;
                     if (TextBoxNameSubChapter.Text.Length != 0)
                     {
                         this._newChapter.ChapterName += " Часть " + TextBoxIdSubChapter.Text + ". " + TextBoxNameSubChapter.Text;

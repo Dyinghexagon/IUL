@@ -16,7 +16,7 @@ namespace IUL
         {
             try 
             {
-                string connectionString = ConfigurationManager.AppSettings.Get("conn");
+                String connectionString = ConfigurationManager.AppSettings.Get("conn");
                 SqlConnection conn = new SqlConnection(connectionString);
                 return conn;
             }
@@ -25,13 +25,13 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static async Task<int> GetCountRowsAsync(string tableName)
+        public static async Task<Int32> GetCountRowsAsync(String tableName)
         {
-            int count = 0;
+            Int32 count = 0;
             using (SqlConnection connection = DbProviderFactories.GetDBConnection())
             {
                 await connection.OpenAsync();
-                string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
+                String query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
                 using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
                 {
                     count =Convert.ToInt32(getchild.ExecuteScalarAsync());
@@ -39,15 +39,15 @@ namespace IUL
             }
             return count;
         }
-        public static int GetCountRows(string tableName)
+        public static Int32 GetCountRows(String tableName)
         {
             try 
             {
-                int count = 0;
+                Int32 count = 0;
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
-                    string query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
+                    String query = "select count(*) from syscolumns where id = object_id('" + tableName + "');";
                     using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
                     {
                         count = Convert.ToInt32(getchild.ExecuteScalarAsync());
@@ -60,7 +60,7 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static async Task<int> GetCountСolumnsAsync(string tableName)
+        public static async Task<Int32> GetCountСolumnsAsync(String tableName)
         {
             try 
             {
@@ -81,15 +81,15 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static int GetCountСolumns(string tableName)
+        public static Int32 GetCountСolumns(String tableName)
         {
             try 
             {
-                int count = 0;
+                Int32 count = 0;
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
-                    string query = "SELECT count(*) FROM [" + tableName + "]";
+                    String query = "SELECT count(*) FROM [" + tableName + "]";
                     using (SqlCommand getchild = new SqlCommand(query, connection)) //SQL queries
                     {
                         count = Convert.ToInt32(getchild.ExecuteScalar());
@@ -102,12 +102,12 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static int GetCountСolumnsChapters(string codeProject)
+        public static Int32 GetCountСolumnsChapters(String codeProject)
         {
             try 
             {
-                int count = 0;
-                string query = "SELECT COUNT(*) FROM [IUL].[dbo].[CHAPTERS] " +
+                Int32 count = 0;
+                String query = "SELECT COUNT(*) FROM [IUL].[dbo].[CHAPTERS] " +
         "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @codeProject" + ";";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {

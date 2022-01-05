@@ -352,7 +352,7 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].ChapterId, font));
+                        cell = new PdfPCell(new Phrase(this._chapters[iter].Id, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -521,7 +521,7 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].ChapterId + "-УЛ", font));
+                        cell = new PdfPCell(new Phrase(this._chapters[iter].Id + "-УЛ", font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;

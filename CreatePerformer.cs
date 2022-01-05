@@ -12,7 +12,6 @@ namespace IUL
     {
         private Performer _newPerformer;
         private Project _selectedProject;
-        private Chapter _selectedChapter;
         public CreatePerformer()
         {
             try 
@@ -35,9 +34,7 @@ namespace IUL
             {
                 string nameSelectedProject = this.ComboBoxNameProjects.Items[this.ComboBoxNameProjects.SelectedIndex].ToString();
                 this._selectedProject = new Project(nameSelectedProject);
-                this._selectedChapter = new Chapter();
-                this._selectedChapter.ProjectId = this._selectedProject.Id;
-                Chapter.InitializeComboBoxChapters(this.ComboBoxChapters, this._selectedChapter.ProjectId);
+                Chapter.InitializeComboBoxChapters(this.ComboBoxChapters, this._selectedProject.Id);
             }
             catch (Exception ex)
             {
@@ -92,9 +89,8 @@ namespace IUL
             try
             {
                 string selectedNameChapter = this.ComboBoxChapters.Items[this.ComboBoxChapters.SelectedIndex].ToString();
-                this._selectedChapter.ChapterName = selectedNameChapter;
-                this._selectedChapter.InitializeChapter();
-                this._newPerformer.ChapterId = this._selectedChapter.ChapterId;
+                Chapter chapter = new Chapter(this._selectedProject.Id, selectedNameChapter);
+                this._newPerformer.ChapterId = chapter.Id;
 
             }
             catch (Exception ex)

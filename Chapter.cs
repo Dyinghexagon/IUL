@@ -11,12 +11,12 @@ namespace IUL
 {
     class Chapter
     {
-        private string _chapterId;
-        private string _projectId;
-        private string _chapterName;
-        private string _nameFileChapter;
-        private string _pathToFileChapter;
-        private List<KeyValuePair<string, Employee>> _authorsChapter;
+        private String _chapterId;
+        private String _projectId;
+        private String _chapterName;
+        private String _nameFileChapter;
+        private String _pathToFileChapter;
+        private List<KeyValuePair<String, Employee>> _authorsChapter;
         private FileInfo _fileInfo;
 
 
@@ -25,31 +25,31 @@ namespace IUL
             get { return this._pathToFileChapter; }
             set { this._pathToFileChapter = value; }
         }
-        public long SizeFileChapter 
+        public Int64 SizeFileChapter 
         {
             get { return this._fileInfo.Length; }
         }
-        public string DateChange 
+        public String DateChange 
         {
             get { return this._fileInfo.LastWriteTime.ToShortDateString() + " " + this._fileInfo.LastWriteTime.ToLongTimeString(); }
         }
-        public string MD5 
+        public String MD5 
         {
             get 
             {
-                string MD5 = "";
+                String MD5 = "";
                 using (FileStream fs = System.IO.File.OpenRead(this._pathToFileChapter))
                 {
                     MD5 md5 = new MD5CryptoServiceProvider();
-                    byte[] fileData = new byte[fs.Length];
-                    fs.Read(fileData, 0, (int)fs.Length);
-                    byte[] checkSum = md5.ComputeHash(fileData);
+                    Byte[] fileData = new byte[fs.Length];
+                    fs.Read(fileData, 0, (Int32)fs.Length);
+                    Byte[] checkSum = md5.ComputeHash(fileData);
                     MD5 = BitConverter.ToString(checkSum).Replace("-", String.Empty);
                 }
                 return MD5;
             }
         }
-        public string CRC32 
+        public String CRC32 
         {
             get 
             {
@@ -57,7 +57,7 @@ namespace IUL
                 String hash = String.Empty;
                 using (FileStream fs = File.OpenRead(this._pathToFileChapter))
                 {
-                    foreach (byte b in crc32.ComputeHash(fs))
+                    foreach (Byte b in crc32.ComputeHash(fs))
                     {
                         hash += b.ToString("x2").ToLower();
                     }
@@ -65,31 +65,31 @@ namespace IUL
                 return hash;
             }
         }
-        public string ChapterId
+        public String Id
         {
             get { return this._chapterId; }
             set { this._chapterId = value; }
         }
-        public string ProjectId
+        public String ProjectId
         {
             get { return this._projectId; }
             set { this._projectId = value; }
         }
-        public string ChapterName
+        public String ChapterName
         {
             get { return this._chapterName; }
             set { this._chapterName = value; }
         }
-        public string NameFileChapter
+        public String NameFileChapter
         {
             get { return this._nameFileChapter; }
             set { this._nameFileChapter = value; }
         }
-        public int CountAuthorChapter 
+        public Int32 CountAuthorChapter 
         {
             get { return this._authorsChapter.Count; }
         }
-        public KeyValuePair<string, Employee> this[int index] 
+        public KeyValuePair<String, Employee> this[Int32 index] 
         {
             get { return this._authorsChapter[index]; }
         }
@@ -100,27 +100,15 @@ namespace IUL
             this._chapterName = "";
             this._nameFileChapter = "";
         }
-        public Chapter(string projectId, string chapterName) 
+        public Chapter(String projectId, String chapterName) 
         {
             try 
             {
-                this._authorsChapter = new List<KeyValuePair<string, Employee>>(4);
+                this._authorsChapter = new List<KeyValuePair<String, Employee>>(4);
                 this._projectId = projectId;
                 this._chapterName = chapterName;
-                this.InitializeChapter();//инциализирую поля шифра раздела и имени файла
-                this.InitializeAuthorsChapter();//инциализирую состав авторского коллектива для раздела
-                this._fileInfo = new FileInfo(this._pathToFileChapter);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("ChapterException " + ex.Message, ex);
-            }
-        }
-        public void InitializeChapter() 
-        {
-            try 
-            {
-                string query = "USE IUL;" +
+                //инциализирую поля шифра раздела и имени файла
+                String query = "USE IUL;" +
                 "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_ID]" +
                 ",[IUL].[dbo].[CHAPTERS].[CHAPTER_FILE_NAME]" +
                 "FROM [IUL].[dbo].[CHAPTERS]" +
@@ -144,17 +132,47 @@ namespace IUL
                         }
                     }
                 }
+                //инциализирую состав авторского коллектива для раздела
+                query = "USE IUL;" +
+                "SELECT" +
+                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
+                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME]" +
+                "FROM [IUL].[dbo].[PERFORMERS]" +
+                "JOIN [IUL].[dbo].[EMPLOYEES]" +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
+                "JOIN [IUL].[dbo].[ROLES]" +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID]" +
+                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @chapterId;";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                String authorSurname = reader.GetValue(0).ToString().Trim();
+                                String authorRole = reader.GetValue(1).ToString().Trim();
+                                this._authorsChapter.Add(new KeyValuePair<String, Employee>(authorRole, new Employee(authorSurname)));
+                            }
+                        }
+                    }
+                }
+                this._fileInfo = new FileInfo(this._pathToFileChapter);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new Exception("ChapterСonstructorException " + ex.Message, ex);
             }
         }
         public void InsertNewChapter()
         {
             try 
             {
-                string query = "USE IUL;" +
+               String query = "USE IUL;" +
                "INSERT INTO[IUL].[dbo].[CHAPTERS]" +
                "([CHAPTER_ID]" +
                ",[CHAPTER_PROJECT_ID]" +
@@ -181,53 +199,15 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        private void InitializeAuthorsChapter() 
+        public static void InitializeComboBoxChapters(System.Windows.Forms.ComboBox fillingComboBox, String projectId) 
         {
             try 
             {
-                string query = "USE IUL;" +
-                                "SELECT" +
-                                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
-                                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME]" +
-                                "FROM [IUL].[dbo].[PERFORMERS]" +
-                                "JOIN [IUL].[dbo].[EMPLOYEES]" +
-                                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
-                                "JOIN [IUL].[dbo].[ROLES]" +
-                                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID]" +
-                                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @chapterId;";
+                Int32 countChapters;
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string authorSurname = reader.GetValue(0).ToString().Trim();
-                                string authorRole = reader.GetValue(1).ToString().Trim();
-                                this._authorsChapter.Add(new KeyValuePair<string, Employee>(authorRole, new Employee(authorSurname)));
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
-        public static void InitializeComboBoxChapters(System.Windows.Forms.ComboBox fillingComboBox, string projectId) 
-        {
-            try 
-            {
-                int countChapters;
-                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-                {
-                    connection.Open();
-                    string queryCount = "USE IUL;" +
+                    String queryCount = "USE IUL;" +
                         "SELECT COUNT(*) FROM[IUL].[dbo].[CHAPTERS] WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId;";
                     using (SqlCommand getchild = new SqlCommand(queryCount, connection)) //SQL queries
                     {
@@ -235,8 +215,8 @@ namespace IUL
                         countChapters = Convert.ToInt32(getchild.ExecuteScalar());
                     }
                 }
-                string[] chapters = new string[countChapters];
-                string querySelect = "USE IUL;" +
+                String[] chapters = new String[countChapters];
+                String querySelect = "USE IUL;" +
                     "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] " +
                     "FROM [IUL].[dbo].[CHAPTERS] " +
                     "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId;";
@@ -249,7 +229,7 @@ namespace IUL
                     {
                         if (reader.HasRows)
                         {
-                            for (int i = 0; reader.Read(); i++)
+                            for (Int32 i = 0; reader.Read(); i++)
                             {
                                 chapters[i] = reader.GetValue(0).ToString().Trim();
                             }
