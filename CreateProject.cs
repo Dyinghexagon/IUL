@@ -17,8 +17,10 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingGIP);
-                Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingNkontr);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxChoosingGIP, Tables.EMPLOYEES);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxChoosingNkontr, Tables.EMPLOYEES);
+                //Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingGIP);
+                //Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingNkontr);
                 this._newProject = new Project();
             }
             catch(Exception ex) 
@@ -125,7 +127,7 @@ namespace IUL
         {
             try 
             {
-                string surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+                String surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
                 this._GIP = new Employee(surnameGIP);
                 this._newProject.IdGIP = this._GIP.Id;
             }
@@ -139,7 +141,7 @@ namespace IUL
         {
             try 
             {
-                string surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+                String surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
                 this._Nkontr = new Employee(surnameNkont);
                 this._newProject.IdNkont = this._Nkontr.Id;
             }

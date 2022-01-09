@@ -136,7 +136,7 @@ namespace IUL
                 query = "USE IUL;" +
                 "SELECT" +
                 "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
-                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED _NAME]" +
+                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME]" +
                 "FROM [IUL].[dbo].[PERFORMERS]" +
                 "JOIN [IUL].[dbo].[EMPLOYEES]" +
                 "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +

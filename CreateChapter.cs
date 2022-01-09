@@ -17,7 +17,9 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+
+                //Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
                 _newChapter = new Chapter();
             }
             catch (Exception ex)
@@ -30,7 +32,7 @@ namespace IUL
         {
             try 
             {
-                string nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                String nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
                 _selectedProject = new Project(nameProject);
                 LabelIdProject.Text = _selectedProject.Id;
                 if (_selectedProject.CapitalOrLinear)
@@ -51,8 +53,8 @@ namespace IUL
         {
             try 
             {
-                int selectedIndex = ComboBoxChapters.SelectedIndex;
-                string nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
+                Int32 selectedIndex = ComboBoxChapters.SelectedIndex;
+                String nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
                 if (this._selectedProject.CapitalOrLinear && selectedIndex >= 4 && selectedIndex <= 10)
                 {
                     this._newChapter.ChapterName =
@@ -87,7 +89,6 @@ namespace IUL
 
                 this._newChapter.ProjectId = this.LabelIdProject.Text;
                 this._newChapter.InsertNewChapter();
-                MessageBox.Show("Раздел добавлен!");
             }
             catch(Exception ex) 
             {
@@ -98,6 +99,8 @@ namespace IUL
                 TextBoxNameSubChapter.Clear();
                 TextBoxIdSubChapter.Clear();
             }
+            MessageBox.Show("Раздел добавлен!");
+
         }
 
         private void ButtonSelecFileChapter_Click(object sender, EventArgs e)

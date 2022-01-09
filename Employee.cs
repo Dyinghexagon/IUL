@@ -7,24 +7,24 @@ namespace IUL
 {
     class Employee
     {
-        private int _id;
-        private string _surname;
-        private string _name;
-        private string _patromic;
-        private byte[] _sign;
-        public int Id
+        private Int32 _id;
+        private String _surname;
+        private String _name;
+        private String _patromic;
+        private Byte[] _sign;
+        public Int32 Id
         {
             get { return this._id; }
         }
-        public string Surname
+        public String Surname
         {
             get { return this._surname; }
         }
-        public string Name
+        public String Name
         {
             get { return this._name; }
         }
-        public string Patromic
+        public String Patromic
         {
             get { return this._patromic; }
         }
@@ -39,12 +39,12 @@ namespace IUL
                 }
             }
         }
-        public Employee(string surname) 
+        public Employee(String surname) 
         {
             try 
             {
                 this._surname = surname;
-                string query = "USE IUL;" +
+                String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]," +
                     "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
                     "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_PATROMIC]," +
@@ -76,35 +76,5 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         } 
-        public static void InitializeComboBoxEmployees(System.Windows.Forms.ComboBox fillingComboBox)
-        {
-            try 
-            {
-                int countEmployees = DbProviderFactories.GetCountСolumns("EMPLOYEES");
-                string[] surnameEmployees = new string[countEmployees];
-                string query = "SELECT  [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
-                    "FROM  [IUL].[dbo].[EMPLOYEES];";
-                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            for (int i = 0; reader.Read(); i++)
-                            {
-                                surnameEmployees[i] = reader.GetValue(0).ToString().Trim();
-                            }
-                        }
-                    }
-                }
-                fillingComboBox.Items.AddRange(surnameEmployees);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
     }
 }

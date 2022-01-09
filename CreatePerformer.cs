@@ -17,9 +17,12 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
-                Employee.InitializeComboBoxEmployees(this.ComboBoxEmployees);
-                Role.InitializeComboBoxRoles(this.ComboBoxRoles);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxRoles, Tables.ROLES);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxEmployees, Tables.EMPLOYEES);
+                //Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+                //Employee.InitializeComboBoxEmployees(this.ComboBoxEmployees);
+                //Role.InitializeComboBoxRoles(this.ComboBoxRoles);
                 this._newPerformer = new Performer();
             }
             catch(Exception ex) 
@@ -32,7 +35,7 @@ namespace IUL
         {
             try 
             {
-                string nameSelectedProject = this.ComboBoxNameProjects.Items[this.ComboBoxNameProjects.SelectedIndex].ToString();
+                String nameSelectedProject = this.ComboBoxNameProjects.Items[this.ComboBoxNameProjects.SelectedIndex].ToString();
                 this._selectedProject = new Project(nameSelectedProject);
                 Chapter.InitializeComboBoxChapters(this.ComboBoxChapters, this._selectedProject.Id);
             }
@@ -59,7 +62,7 @@ namespace IUL
         {
             try 
             {
-                string selectedSurnameEmployee = this.ComboBoxEmployees.Items[this.ComboBoxEmployees.SelectedIndex].ToString();
+                String selectedSurnameEmployee = this.ComboBoxEmployees.Items[this.ComboBoxEmployees.SelectedIndex].ToString();
                 Employee selectedEmployee = new Employee(selectedSurnameEmployee);
                 this._newPerformer.EmployeeId = selectedEmployee.Id;
             }
@@ -73,7 +76,7 @@ namespace IUL
         {
             try 
             {
-                string selecteAbbreviatedNameRole = this.ComboBoxRoles.Items[this.ComboBoxRoles.SelectedIndex].ToString();
+                String selecteAbbreviatedNameRole = this.ComboBoxRoles.Items[this.ComboBoxRoles.SelectedIndex].ToString();
                 Role selectedRole = new Role(selecteAbbreviatedNameRole);
                 this._newPerformer.RoleId = selectedRole.Id;
 
@@ -88,7 +91,7 @@ namespace IUL
         {
             try
             {
-                string selectedNameChapter = this.ComboBoxChapters.Items[this.ComboBoxChapters.SelectedIndex].ToString();
+                String selectedNameChapter = this.ComboBoxChapters.Items[this.ComboBoxChapters.SelectedIndex].ToString();
                 Chapter chapter = new Chapter(this._selectedProject.Id, selectedNameChapter);
                 this._newPerformer.ChapterId = chapter.Id;
 

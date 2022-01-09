@@ -18,16 +18,16 @@ namespace IUL
         {
             try
             {
-                List<string> _chapters = new List<string>(20);
+                List<String> _chapters = new List<String>(20);
                 foreach (var chapter in CheckedListBoxChapters.CheckedItems)
                 {
                     _chapters.Add(chapter.ToString());
                 }
-                string pathToMainFolder;
+                String pathToMainFolder;
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 pathToMainFolder = folderBrowserDialog1.SelectedPath;
-                string nameMaiFolder;
+                String nameMaiFolder;
                 if (TextBoxNameMainFolder.Text.Length == 0)
                 {
                     MessageBox.Show("Необходимо заполнить поле с названием папки проекта!", "Ошибка!");
@@ -41,8 +41,8 @@ namespace IUL
                 CreateFolder(nameMaiFolder, pathToMainFolder);//Создание папки проекта 
                                                               // pathToMainFolder - путь к папке где необходимо создать папку проекта
                                                               // pathMainFolder - путь самой папки проекта, т. е. путь к главной папке + её название
-                string pathMainFolder = pathToMainFolder + "\\" + nameMaiFolder;
-                List<string> subFolders = new List<string>()
+                String pathMainFolder = pathToMainFolder + "\\" + nameMaiFolder;
+                List<String> subFolders = new List<String>()
                  {
                 "!Изыскания",
                 "!ПД",
@@ -55,8 +55,8 @@ namespace IUL
                 {
                     CreateFolder(subFolder, pathMainFolder);
                 }
-                string keyFilePd = "!ПД";
-                string pathPD = pathMainFolder + "\\" + keyFilePd + "\\";
+                String keyFilePd = "!ПД";
+                String pathPD = pathMainFolder + "\\" + keyFilePd + "\\";
                 foreach (var chapter in _chapters)
                 {
                     CreateFolder(chapter, pathPD);
@@ -135,7 +135,7 @@ namespace IUL
                 {
                     CreateFolder(chls.ToString(), path);
                 }
-                List<string> sourse = new List<string>();
+                List<String> sourse = new List<String>();
                 foreach (var chls in CheckedListBoxResearchs.CheckedItems)
                 {
                     sourse.Add(chls.ToString());
@@ -152,7 +152,7 @@ namespace IUL
         /// </summary>
         /// <param name="folders">Перечень папок, в которых буду созданы подпапки</param>
         /// <param name="path">Путь к папке в которой лежат папки для которых нужно создать подпаки "pdf" и "dwg"</param>
-        private void CreateFolderSource(List<string> folders, string path)
+        private void CreateFolderSource(List<String> folders, string path)
         {
             try 
             {

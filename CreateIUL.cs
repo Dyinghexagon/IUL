@@ -16,9 +16,11 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+                //Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
+
             }
-            catch(Exception ex) 
+            catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
@@ -41,8 +43,8 @@ namespace IUL
         {
             try 
             {
-                string dateSigning = dateTimePicker1.Value.ToShortDateString();
-                string pathMainFolder = "";
+                String dateSigning = dateTimePicker1.Value.ToShortDateString();
+                String pathMainFolder = "";
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 pathMainFolder = folderBrowserDialog1.SelectedPath;
@@ -58,7 +60,7 @@ namespace IUL
         {
             try 
             {
-                string projectName = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                String projectName = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
                 this._selectedProject = new Project(projectName);
             }
             catch (Exception ex)

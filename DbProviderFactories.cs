@@ -10,6 +10,12 @@ using System.Collections.Specialized;
 
 namespace IUL
 {
+    public enum Tables 
+    {
+        ROLES,
+        PROJECTS,
+        EMPLOYEES
+    }
     class DbProviderFactories
     {
         public static SqlConnection GetDBConnection()
@@ -131,6 +137,68 @@ namespace IUL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
+            }
+        }
+        public static void InitializeComboBox(System.Windows.Forms.ComboBox fillingComboBox, Tables table)
+        {
+            try
+            {
+                String query = String.Empty;
+                String nameTable = String.Empty;
+                switch (table) 
+                {
+                    case Tables.ROLES: 
+                        {
+                            query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME] " +
+                    "FROM [IUL].[dbo].[ROLES]; ";
+                            nameTable = "ROLES";
+                            break;
+                        }
+                    case Tables.PROJECTS:
+                        {
+                            query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_NAME] " +
+                    "FROM [IUL].[dbo].[PROJECTS]; ";
+                            nameTable = "PROJECTS";
+
+                            break;
+                        }
+                    case Tables.EMPLOYEES:
+                        {
+                            query = "SELECT  [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
+                    "FROM [IUL].[dbo].[EMPLOYEES];";
+                            nameTable = "EMPLOYEES";
+
+                            break;
+                        }
+                    default: 
+                        {
+                            throw new Exception("Error selected table!");
+                        }
+                }
+                Int32 count = DbProviderFactories.GetCountСolumns(nameTable);
+                String[] valuesFromSelectedTable = new string[count];
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            for (Int32 i = 0; reader.Read(); i++)
+                            {
+                                valuesFromSelectedTable[i] = reader.GetValue(0).ToString().Trim();
+                            }
+                        }
+                    }
+                }
+                fillingComboBox.Items.AddRange(valuesFromSelectedTable);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("InitializeComboBox(DbProviderFactories) "+ex.Message, ex);
             }
         }
     }

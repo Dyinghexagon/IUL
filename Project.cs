@@ -12,35 +12,35 @@ namespace IUL
 {
     class Project
     {
-        private string _id;
-        private string _name;
-        private bool _capitalOrLinear;
-        private bool _isGeodetiSurveys;
-        private bool _isGeologicalSurveysSurveys;
-        private bool _isEnvironmentalSurveys;
-        private bool _isMeteorologicalSurveys;
-        private bool _isGeotechnicalSurveys;
-        private bool _isArchaeologicalSurveys;
-        private bool _isInspectionOfTechnicalCondition;
-        private string _nameCustomer;
-        private int _idGIP;
-        private int _idNkont;
-        private string _path;
+        private String _id;
+        private String _name;
+        private Boolean _capitalOrLinear;
+        private Boolean _isGeodetiSurveys;
+        private Boolean _isGeologicalSurveysSurveys;
+        private Boolean _isEnvironmentalSurveys;
+        private Boolean _isMeteorologicalSurveys;
+        private Boolean _isGeotechnicalSurveys;
+        private Boolean _isArchaeologicalSurveys;
+        private Boolean _isInspectionOfTechnicalCondition;
+        private String _nameCustomer;
+        private Int32 _idGIP;
+        private Int32 _idNkont;
+        private String _path;
         private List<Chapter> _chapters;
         private Employee _GIP;
         private Employee _Nkontr;
-        public string Id
+        public String Id
         {
             get { return this._id; }
             set { this._id = value; }
         }
-        public string Name
+        public String Name
         {
             get { return this._name; }
             set { this._name = value; }
 
         }
-        public bool CapitalOrLinear
+        public Boolean CapitalOrLinear
         {
             get { return this._capitalOrLinear; }
             set { this._capitalOrLinear = value; }
@@ -49,7 +49,7 @@ namespace IUL
         /// <summary>
         /// Инженерно-геодезические изыскания
         /// </summary>
-        public bool IsGeodetiSurveys
+        public Boolean IsGeodetiSurveys
         {
             get { return this._isGeodetiSurveys; }
             set { this._isGeodetiSurveys = value; }
@@ -58,7 +58,7 @@ namespace IUL
         /// <summary>
         /// Инженерно-геологические изыскания
         /// </summary>
-        public bool IsGeologicalSurveysSurveys
+        public Boolean IsGeologicalSurveysSurveys
         {
             get { return this._isGeologicalSurveysSurveys; }
             set { this._isGeologicalSurveysSurveys = value; }
@@ -67,7 +67,7 @@ namespace IUL
         /// <summary>
         /// Инженерно-экологические изыскания
         /// </summary>
-        public bool IsEnvironmentalSurveys
+        public Boolean IsEnvironmentalSurveys
         {
             get { return this._isEnvironmentalSurveys; }
             set { this._isEnvironmentalSurveys = value; }
@@ -76,7 +76,7 @@ namespace IUL
         /// <summary>
         /// Инженерно-гидрометеорологические изыскания
         /// </summary>
-        public bool IsMeteorologicalSurveys
+        public Boolean IsMeteorologicalSurveys
         {
             get { return this._isMeteorologicalSurveys; }
             set { this._isMeteorologicalSurveys = value; }
@@ -84,7 +84,7 @@ namespace IUL
         /// <summary>
         /// Инженерно-геотехнические изыскания
         /// </summary>
-        public bool IsGeotechnicalSurveys
+        public Boolean IsGeotechnicalSurveys
         {
             get { return this._isGeotechnicalSurveys; }
             set { this._isGeotechnicalSurveys = value; }
@@ -92,7 +92,7 @@ namespace IUL
         /// <summary>
         /// Археологические изыскания
         /// </summary>
-        public bool IsArchaeologicalSurveys
+        public Boolean IsArchaeologicalSurveys
         {
             get { return this._isArchaeologicalSurveys; }
             set { this._isArchaeologicalSurveys = value; }
@@ -101,31 +101,31 @@ namespace IUL
         /// <summary>
         /// Техническое обследование здания/сооружения
         /// </summary>
-        public bool IsInspectionOfTechnicalCondition
+        public Boolean IsInspectionOfTechnicalCondition
         {
             get { return this._isInspectionOfTechnicalCondition; }
             set { this._isInspectionOfTechnicalCondition = value; }
 
         }
-        public string NameCustomer
+        public String NameCustomer
         {
             get { return this._nameCustomer; }
             set { this._nameCustomer = value; }
 
         }
-        public int IdGIP
+        public Int32 IdGIP
         {
             get { return this._idGIP; }
             set { this._idGIP = value; }
 
         }
-        public int IdNkont
+        public Int32 IdNkont
         {
             get { return this._idNkont; }
             set { this._idNkont = value; }
 
         }
-        public string Path
+        public String Path
         {
             get { return this._path; }
             set { this._path = value; }
@@ -136,13 +136,13 @@ namespace IUL
             get { return this._chapters[index]; }
         }
         public Project() { }
-        public Project(string nameProject)
+        public Project(String nameProject)
         {
             try 
             {
                 this._name = nameProject;
                 this._chapters = new List<Chapter>(30);
-                string query = "USE IUL;" +
+                String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS]" +
@@ -208,7 +208,7 @@ namespace IUL
                         {
                             while (reader.Read())
                             {
-                                string chapterName = reader.GetValue(0).ToString().Trim();
+                                String chapterName = reader.GetValue(0).ToString().Trim();
                                 this._chapters.Add(new Chapter(this._id, chapterName));
                             }
                         }
@@ -225,7 +225,7 @@ namespace IUL
         {
             try
             {
-                string query = "USE [IUL];" +
+                String query = "USE [IUL];" +
                "INSERT INTO [IUL].[dbo].[PROJECTS]([PROJECT_ID]" +
                ",[PROJECT_NAME]" +
                ",[PROJECT_CAPITAL_OR_LINEAR]" +
@@ -275,50 +275,19 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static void InitializeComboBoxProjects(System.Windows.Forms.ComboBox fillingComboBox)
-        {
-            try 
-            {
-                int countProjects = DbProviderFactories.GetCountСolumns("PROJECTS");
-                string[] projects = new string[countProjects];
-                string query = "USE IUL;" +
-                    "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_NAME] " +
-                    "FROM [IUL].[dbo].[PROJECTS]; ";
-                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            for (int i = 0; reader.Read(); i++)
-                            {
-                                projects[i] = reader.GetValue(0).ToString().Trim();
-                            }
-                        }
-                    }
-                }
-                fillingComboBox.Items.AddRange(projects);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
-        public void RolloutIULsForProject(string dateSigning, string pathToMainFile)
+        public void RolloutIULsForProject(String dateSigning, String pathToMainFile)
         {
             try
             {
                 float scale = 0.09f;
                 BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
-                for (int iter = 0; iter < this._chapters.Count; iter++)
+                for (Int32 iter = 0; iter < this._chapters.Count; iter++)
                 {
-                    string nameFile = this._chapters[iter].NameFileChapter
+                    String nameFile = this._chapters[iter].NameFileChapter
                         .Remove(this._chapters[iter].NameFileChapter.Length - 4, 4);
                     nameFile += "-УЛ.pdf";
-                    string path = pathToMainFile + "\\" + nameFile;
+                    String path = pathToMainFile + "\\" + nameFile;
                     using (FileStream fileStream = new FileStream(path, FileMode.Create))
                     {
                         Document doc = new Document(PageSize.A4);

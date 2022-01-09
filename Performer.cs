@@ -6,21 +6,21 @@ namespace IUL
 {
     class Performer
     {
-        private string _chapterId;
-        private int _employeeId;
-        private int _roleId;
+        private String _chapterId;
+        private Int32 _employeeId;
+        private Int32 _roleId;
 
-        public string ChapterId 
+        public String ChapterId 
         {
             get { return this._chapterId; }
             set { this._chapterId = value; }
         }
-        public int EmployeeId
+        public Int32 EmployeeId
         {
             get { return this._employeeId; }
             set { this._employeeId = value; }
         }
-        public int RoleId
+        public Int32 RoleId
         {
             get { return this._roleId; }
             set { this._roleId = value; }
@@ -35,7 +35,7 @@ namespace IUL
         {
             try 
             {
-                string query = "USE IUL;" +
+                String query = "USE IUL;" +
                 "INSERT INTO[IUL].[dbo].[PERFORMERS]" +
                 "([PERFORMER_CHAPTER_ID]" +
                 ",[PERFORMER_EMPLOYEE_ID]" +
