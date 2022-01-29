@@ -20,9 +20,6 @@ namespace IUL
                 DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
                 DbProviderFactories.InitializeComboBox(this.ComboBoxRoles, Tables.ROLES);
                 DbProviderFactories.InitializeComboBox(this.ComboBoxEmployees, Tables.EMPLOYEES);
-                //Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
-                //Employee.InitializeComboBoxEmployees(this.ComboBoxEmployees);
-                //Role.InitializeComboBoxRoles(this.ComboBoxRoles);
                 this._newPerformer = new Performer();
             }
             catch(Exception ex) 

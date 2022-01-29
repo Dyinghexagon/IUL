@@ -134,14 +134,14 @@ namespace IUL
                 }
                 //инциализирую состав авторского коллектива для раздела
                 query = "USE IUL;" +
-                "SELECT" +
-                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
-                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME]" +
-                "FROM [IUL].[dbo].[PERFORMERS]" +
-                "JOIN [IUL].[dbo].[EMPLOYEES]" +
-                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]" +
-                "JOIN [IUL].[dbo].[ROLES]" +
-                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID]" +
+                "SELECT " +
+                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME], " +
+                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME] " +
+                "FROM [IUL].[dbo].[PERFORMERS] " +
+                "JOIN [IUL].[dbo].[EMPLOYEES] " +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] " +
+                "JOIN [IUL].[dbo].[ROLES] " +
+                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID] " +
                 "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @chapterId;";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
