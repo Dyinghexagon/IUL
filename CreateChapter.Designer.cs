@@ -38,7 +38,6 @@ namespace IUL
             this.LabelIdProject = new System.Windows.Forms.Label();
             this.LabelChapterHint = new System.Windows.Forms.Label();
             this.LabelIdSubChapter = new System.Windows.Forms.Label();
-            this.TextBoxIdSubChapter = new System.Windows.Forms.TextBox();
             this.ButtonSelecFileChapter = new System.Windows.Forms.Button();
             this.LabelNameSubChapter = new System.Windows.Forms.Label();
             this.TextBoxNameSubChapter = new System.Windows.Forms.TextBox();
@@ -68,7 +67,7 @@ namespace IUL
             // 
             // ButtonAddNewChapter
             // 
-            this.ButtonAddNewChapter.Location = new System.Drawing.Point(15, 203);
+            this.ButtonAddNewChapter.Location = new System.Drawing.Point(15, 174);
             this.ButtonAddNewChapter.Name = "ButtonAddNewChapter";
             this.ButtonAddNewChapter.Size = new System.Drawing.Size(111, 50);
             this.ButtonAddNewChapter.TabIndex = 3;
@@ -92,7 +91,6 @@ namespace IUL
             this.ComboBoxChapters.Name = "ComboBoxChapters";
             this.ComboBoxChapters.Size = new System.Drawing.Size(699, 23);
             this.ComboBoxChapters.TabIndex = 7;
-            this.ComboBoxChapters.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChapters_SelectedIndexChanged);
             // 
             // LabelNameChapters
             // 
@@ -130,16 +128,9 @@ namespace IUL
             this.LabelIdSubChapter.TabIndex = 23;
             this.LabelIdSubChapter.Text = "Номер подраздела";
             // 
-            // TextBoxIdSubChapter
-            // 
-            this.TextBoxIdSubChapter.Location = new System.Drawing.Point(15, 118);
-            this.TextBoxIdSubChapter.Name = "TextBoxIdSubChapter";
-            this.TextBoxIdSubChapter.Size = new System.Drawing.Size(111, 23);
-            this.TextBoxIdSubChapter.TabIndex = 22;
-            // 
             // ButtonSelecFileChapter
             // 
-            this.ButtonSelecFileChapter.Location = new System.Drawing.Point(15, 147);
+            this.ButtonSelecFileChapter.Location = new System.Drawing.Point(15, 118);
             this.ButtonSelecFileChapter.Name = "ButtonSelecFileChapter";
             this.ButtonSelecFileChapter.Size = new System.Drawing.Size(111, 50);
             this.ButtonSelecFileChapter.TabIndex = 24;
@@ -161,7 +152,7 @@ namespace IUL
             this.TextBoxNameSubChapter.Location = new System.Drawing.Point(132, 118);
             this.TextBoxNameSubChapter.Multiline = true;
             this.TextBoxNameSubChapter.Name = "TextBoxNameSubChapter";
-            this.TextBoxNameSubChapter.Size = new System.Drawing.Size(744, 228);
+            this.TextBoxNameSubChapter.Size = new System.Drawing.Size(744, 199);
             this.TextBoxNameSubChapter.TabIndex = 26;
             // 
             // TextBoxIdChapter
@@ -177,7 +168,7 @@ namespace IUL
             // 
             // ButtonCrossCreatePerformer
             // 
-            this.ButtonCrossCreatePerformer.Location = new System.Drawing.Point(15, 259);
+            this.ButtonCrossCreatePerformer.Location = new System.Drawing.Point(15, 230);
             this.ButtonCrossCreatePerformer.Name = "ButtonCrossCreatePerformer";
             this.ButtonCrossCreatePerformer.Size = new System.Drawing.Size(111, 54);
             this.ButtonCrossCreatePerformer.TabIndex = 29;
@@ -187,7 +178,7 @@ namespace IUL
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(15, 319);
+            this.ButtonBack.Location = new System.Drawing.Point(15, 290);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(111, 27);
             this.ButtonBack.TabIndex = 30;
@@ -197,10 +188,9 @@ namespace IUL
             // 
             // CreateChapter
             // 
-            this.MaximizeBox = false;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 357);
+            this.ClientSize = new System.Drawing.Size(883, 326);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonCrossCreatePerformer);
             this.Controls.Add(this.TextBoxIdChapter);
@@ -208,7 +198,6 @@ namespace IUL
             this.Controls.Add(this.LabelNameSubChapter);
             this.Controls.Add(this.ButtonSelecFileChapter);
             this.Controls.Add(this.LabelIdSubChapter);
-            this.Controls.Add(this.TextBoxIdSubChapter);
             this.Controls.Add(this.LabelIdProject);
             this.Controls.Add(this.LabelNameChapters);
             this.Controls.Add(this.ComboBoxChapters);
@@ -218,6 +207,7 @@ namespace IUL
             this.Controls.Add(this.ComboBoxNameProjects);
             this.Controls.Add(this.LabelNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CreateChapter";
             this.Text = "Добавление раздела";
             this.ResumeLayout(false);
@@ -250,7 +240,6 @@ namespace IUL
                 "Раздел 12. Иная документация в случаях, предусмотренных федеральными законами"
             });
         }
-
         private void FilingComboBoxLinearChapter()
         {
             this.ComboBoxChapters.Items.Clear();
@@ -278,7 +267,6 @@ namespace IUL
         private System.Windows.Forms.Label LabelIdProject;
         private System.Windows.Forms.Label LabelChapterHint;
         private System.Windows.Forms.Label LabelIdSubChapter;
-        private System.Windows.Forms.TextBox TextBoxIdSubChapter;
         private System.Windows.Forms.Button ButtonSelecFileChapter;
         private System.Windows.Forms.Label LabelNameSubChapter;
         private System.Windows.Forms.TextBox TextBoxNameSubChapter;

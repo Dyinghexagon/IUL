@@ -17,8 +17,6 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-
-                //Project.InitializeComboBoxProjects(this.ComboBoxNameProjects);
                 DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
                 _newChapter = new Chapter();
             }
@@ -43,13 +41,14 @@ namespace IUL
                 {
                     FilingComboBoxLinearChapter();
                 }
+                this.ComboBoxChapters.Items.AddRange(this._selectedProject.Surveys.GetSurveys());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
-        private void ComboBoxChapters_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonAddNewChapter_Click(object sender, EventArgs e)
         {
             try 
             {
@@ -62,31 +61,8 @@ namespace IUL
                         "перечень инженерно-технических мероприятий, содержание технологических решений ";
                 }
                 this._newChapter.ChapterName = nameSelectedChapter;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().Name);
-            }
-        }
-        private void ButtonAddNewChapter_Click(object sender, EventArgs e)
-        {
-            try 
-            {
-                this._newChapter.Id = LabelIdProject.Text;
-                this._newChapter.Id += "-" + TextBoxIdChapter?.Text;
-                if (TextBoxIdSubChapter.Text.Length != 0)
-                {
-                    this._newChapter.Id += "." + TextBoxIdSubChapter?.Text;
-                    if (TextBoxNameSubChapter.Text.Length != 0)
-                    {
-                        this._newChapter.ChapterName += " Часть " + TextBoxIdSubChapter.Text + ". " + TextBoxNameSubChapter.Text;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Введите наименование подраздела!");
-                    }
-                }
-
+                this._newChapter.Id = LabelIdProject.Text + "-" + TextBoxIdChapter?.Text;
+                this._newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;
                 this._newChapter.ProjectId = this.LabelIdProject.Text;
                 this._newChapter.InsertNewChapter();
             }
@@ -97,7 +73,7 @@ namespace IUL
             finally 
             { 
                 TextBoxNameSubChapter.Clear();
-                TextBoxIdSubChapter.Clear();
+                this._newChapter.ChapterName = String.Empty;
             }
             MessageBox.Show("Раздел добавлен!");
 

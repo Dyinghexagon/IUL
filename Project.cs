@@ -15,13 +15,8 @@ namespace IUL
         private String _id;
         private String _name;
         private Boolean _capitalOrLinear;
-        private Boolean _isGeodetiSurveys;
-        private Boolean _isGeologicalSurveysSurveys;
-        private Boolean _isEnvironmentalSurveys;
-        private Boolean _isMeteorologicalSurveys;
-        private Boolean _isGeotechnicalSurveys;
-        private Boolean _isArchaeologicalSurveys;
-        private Boolean _isInspectionOfTechnicalCondition;
+
+        private Surveys _surveys;
         private String _nameCustomer;
         private Int32 _idGIP;
         private Int32 _idNkont;
@@ -49,64 +44,6 @@ namespace IUL
         /// <summary>
         /// Инженерно-геодезические изыскания
         /// </summary>
-        public Boolean IsGeodetiSurveys
-        {
-            get { return this._isGeodetiSurveys; }
-            set { this._isGeodetiSurveys = value; }
-
-        }
-        /// <summary>
-        /// Инженерно-геологические изыскания
-        /// </summary>
-        public Boolean IsGeologicalSurveysSurveys
-        {
-            get { return this._isGeologicalSurveysSurveys; }
-            set { this._isGeologicalSurveysSurveys = value; }
-
-        }
-        /// <summary>
-        /// Инженерно-экологические изыскания
-        /// </summary>
-        public Boolean IsEnvironmentalSurveys
-        {
-            get { return this._isEnvironmentalSurveys; }
-            set { this._isEnvironmentalSurveys = value; }
-
-        }
-        /// <summary>
-        /// Инженерно-гидрометеорологические изыскания
-        /// </summary>
-        public Boolean IsMeteorologicalSurveys
-        {
-            get { return this._isMeteorologicalSurveys; }
-            set { this._isMeteorologicalSurveys = value; }
-        }
-        /// <summary>
-        /// Инженерно-геотехнические изыскания
-        /// </summary>
-        public Boolean IsGeotechnicalSurveys
-        {
-            get { return this._isGeotechnicalSurveys; }
-            set { this._isGeotechnicalSurveys = value; }
-        }
-        /// <summary>
-        /// Археологические изыскания
-        /// </summary>
-        public Boolean IsArchaeologicalSurveys
-        {
-            get { return this._isArchaeologicalSurveys; }
-            set { this._isArchaeologicalSurveys = value; }
-
-        }
-        /// <summary>
-        /// Техническое обследование здания/сооружения
-        /// </summary>
-        public Boolean IsInspectionOfTechnicalCondition
-        {
-            get { return this._isInspectionOfTechnicalCondition; }
-            set { this._isInspectionOfTechnicalCondition = value; }
-
-        }
         public String NameCustomer
         {
             get { return this._nameCustomer; }
@@ -131,11 +68,15 @@ namespace IUL
             set { this._path = value; }
 
         }
-        public Chapter this[int index]
+        public Surveys Surveys 
         {
-            get { return this._chapters[index]; }
+            get { return this._surveys;}
+            set { this._surveys = value;}
         }
-        public Project() { }
+        public Project() 
+        {
+            Surveys = new Surveys(true, true, true, true, true, true, true);
+        }
         public Project(String nameProject)
         {
             try 
@@ -176,13 +117,11 @@ namespace IUL
                             {
                                 this._id = reader.GetValue(0).ToString().Trim();
                                 this._capitalOrLinear = Convert.ToBoolean(reader.GetValue(1));
-                                this._isGeodetiSurveys = Convert.ToBoolean(reader.GetValue(2));
-                                this._isGeologicalSurveysSurveys = Convert.ToBoolean(reader.GetValue(3));
-                                this._isEnvironmentalSurveys = Convert.ToBoolean(reader.GetValue(4));
-                                this._isMeteorologicalSurveys = Convert.ToBoolean(reader.GetValue(5));
-                                this._isGeotechnicalSurveys = Convert.ToBoolean(reader.GetValue(6));
-                                this._isArchaeologicalSurveys = Convert.ToBoolean(reader.GetValue(7));
-                                this._isInspectionOfTechnicalCondition = Convert.ToBoolean(reader.GetValue(8));
+                                this._surveys = new Surveys(
+                                    Convert.ToBoolean(reader.GetValue(2)), Convert.ToBoolean(reader.GetValue(3)),
+                                    Convert.ToBoolean(reader.GetValue(4)), Convert.ToBoolean(reader.GetValue(5)), 
+                                    Convert.ToBoolean(reader.GetValue(6)), Convert.ToBoolean(reader.GetValue(7)), 
+                                    Convert.ToBoolean(reader.GetValue(8)));
                                 this._nameCustomer = reader.GetValue(9).ToString().Trim();
                                 this._idGIP = Convert.ToInt32(reader.GetValue(10));
                                 this._idNkont = Convert.ToInt32(reader.GetValue(11));
@@ -220,7 +159,6 @@ namespace IUL
                 throw new Exception("projectException " + ex.Message,ex);
             }
         }
-
         public void InsertNewProject()
         {
             try
@@ -254,15 +192,15 @@ namespace IUL
                     command.Parameters.Add("@id", SqlDbType.VarChar).Value = this._id;
                     command.Parameters.Add("@name", SqlDbType.Text).Value = this._name;
                     command.Parameters.Add("@capitalOrLinear", SqlDbType.Bit).Value = this._capitalOrLinear;
-                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this._isGeodetiSurveys;
+                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeodetiSurveys;
                     command.Parameters.Add("@isGeologicalSurveysSurveys", SqlDbType.Bit).Value =
-                        this._isGeologicalSurveysSurveys;
-                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this._isEnvironmentalSurveys;
-                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this._isMeteorologicalSurveys;
-                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this._isGeotechnicalSurveys;
-                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this._isArchaeologicalSurveys;
+                        this.Surveys.IsGeologicalSurveysSurveys;
+                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this.Surveys.IsEnvironmentalSurveys;
+                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsMeteorologicalSurveys;
+                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeotechnicalSurveys;
+                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsArchaeologicalSurveys;
                     command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
-                        this._isInspectionOfTechnicalCondition;
+                        this.Surveys.IsInspectionOfTechnicalCondition;
                     command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
                     command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._idGIP;
                     command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._idNkont;

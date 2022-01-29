@@ -49,13 +49,13 @@ namespace IUL
             {
                 if (CheckingFieldsAreFull())
                 {
-                    this._newProject.IsGeodetiSurveys = this.CheckedListBoxResearchs.GetItemChecked(0);
-                    this._newProject.IsGeologicalSurveysSurveys = this.CheckedListBoxResearchs.GetItemChecked(1);
-                    this._newProject.IsEnvironmentalSurveys = this.CheckedListBoxResearchs.GetItemChecked(2);
-                    this._newProject.IsMeteorologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(3);
-                    this._newProject.IsGeotechnicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(4);
-                    this._newProject.IsArchaeologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(5);
-                    this._newProject.IsInspectionOfTechnicalCondition = this.CheckedListBoxResearchs.GetItemChecked(6);
+                    this._newProject.Surveys.IsGeodetiSurveys = this.CheckedListBoxResearchs.GetItemChecked(0);
+                    this._newProject.Surveys.IsGeologicalSurveysSurveys = this.CheckedListBoxResearchs.GetItemChecked(1);
+                    this._newProject.Surveys.IsEnvironmentalSurveys = this.CheckedListBoxResearchs.GetItemChecked(2);
+                    this._newProject.Surveys.IsMeteorologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(3);
+                    this._newProject.Surveys.IsGeotechnicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(4);
+                    this._newProject.Surveys.IsArchaeologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(5);
+                    this._newProject.Surveys.IsInspectionOfTechnicalCondition = this.CheckedListBoxResearchs.GetItemChecked(6);
                     this._newProject.Id = TextBoxCodeProject.Text;
                     this._newProject.Name = TextBoxNameProject.Text;
                     this._newProject.NameCustomer = TextBoxNameCustomer.Text;
