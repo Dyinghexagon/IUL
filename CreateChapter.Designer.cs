@@ -45,6 +45,7 @@ namespace IUL
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ButtonCrossCreatePerformer = new System.Windows.Forms.Button();
             this.ButtonBack = new System.Windows.Forms.Button();
+            this.CheckBoxUniqueIdChapter = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // LabelNameProjects
@@ -78,7 +79,7 @@ namespace IUL
             // LabelIdProjectHint
             // 
             this.LabelIdProjectHint.AutoSize = true;
-            this.LabelIdProjectHint.Location = new System.Drawing.Point(717, 9);
+            this.LabelIdProjectHint.Location = new System.Drawing.Point(717, 27);
             this.LabelIdProjectHint.Name = "LabelIdProjectHint";
             this.LabelIdProjectHint.Size = new System.Drawing.Size(159, 15);
             this.LabelIdProjectHint.TabIndex = 5;
@@ -104,7 +105,7 @@ namespace IUL
             // LabelIdProject
             // 
             this.LabelIdProject.AutoSize = true;
-            this.LabelIdProject.Location = new System.Drawing.Point(717, 35);
+            this.LabelIdProject.Location = new System.Drawing.Point(882, 27);
             this.LabelIdProject.Name = "LabelIdProject";
             this.LabelIdProject.Size = new System.Drawing.Size(159, 15);
             this.LabelIdProject.TabIndex = 9;
@@ -152,14 +153,14 @@ namespace IUL
             this.TextBoxNameSubChapter.Location = new System.Drawing.Point(132, 118);
             this.TextBoxNameSubChapter.Multiline = true;
             this.TextBoxNameSubChapter.Name = "TextBoxNameSubChapter";
-            this.TextBoxNameSubChapter.Size = new System.Drawing.Size(744, 199);
+            this.TextBoxNameSubChapter.Size = new System.Drawing.Size(901, 199);
             this.TextBoxNameSubChapter.TabIndex = 26;
             // 
             // TextBoxIdChapter
             // 
             this.TextBoxIdChapter.Location = new System.Drawing.Point(717, 72);
             this.TextBoxIdChapter.Name = "TextBoxIdChapter";
-            this.TextBoxIdChapter.Size = new System.Drawing.Size(159, 23);
+            this.TextBoxIdChapter.Size = new System.Drawing.Size(186, 23);
             this.TextBoxIdChapter.TabIndex = 28;
             // 
             // openFileDialog1
@@ -186,11 +187,22 @@ namespace IUL
             this.ButtonBack.UseVisualStyleBackColor = true;
             this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
+            // CheckBoxUniqueIdChapter
+            // 
+            this.CheckBoxUniqueIdChapter.AutoSize = true;
+            this.CheckBoxUniqueIdChapter.Location = new System.Drawing.Point(909, 72);
+            this.CheckBoxUniqueIdChapter.Name = "CheckBoxUniqueIdChapter";
+            this.CheckBoxUniqueIdChapter.Size = new System.Drawing.Size(132, 19);
+            this.CheckBoxUniqueIdChapter.TabIndex = 31;
+            this.CheckBoxUniqueIdChapter.Text = "Уникальный шифр";
+            this.CheckBoxUniqueIdChapter.UseVisualStyleBackColor = true;
+            // 
             // CreateChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 326);
+            this.ClientSize = new System.Drawing.Size(1045, 326);
+            this.Controls.Add(this.CheckBoxUniqueIdChapter);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonCrossCreatePerformer);
             this.Controls.Add(this.TextBoxIdChapter);
@@ -274,5 +286,6 @@ namespace IUL
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button ButtonCrossCreatePerformer;
         private System.Windows.Forms.Button ButtonBack;
+        private System.Windows.Forms.CheckBox CheckBoxUniqueIdChapter;
     }
 }

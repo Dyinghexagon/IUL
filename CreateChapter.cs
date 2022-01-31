@@ -61,7 +61,8 @@ namespace IUL
                         "перечень инженерно-технических мероприятий, содержание технологических решений ";
                 }
                 this._newChapter.ChapterName = nameSelectedChapter;
-                this._newChapter.Id = LabelIdProject.Text + "-" + TextBoxIdChapter?.Text;
+                
+                this._newChapter.Id = (this.CheckBoxUniqueIdChapter.Checked)? this.TextBoxIdChapter.Text : LabelIdProject.Text + "-" + TextBoxIdChapter?.Text;
                 this._newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;
                 this._newChapter.ProjectId = this.LabelIdProject.Text;
                 this._newChapter.InsertNewChapter();
