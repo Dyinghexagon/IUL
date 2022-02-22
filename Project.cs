@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
-using System.Net.Http.Headers;
+using System.Linq;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -15,13 +15,13 @@ namespace IUL
         private String _id;
         private String _name;
         private Boolean _capitalOrLinear;
-
         private Surveys _surveys;
         private String _nameCustomer;
         private Int32 _idGIP;
         private Int32 _idNkont;
         private String _path;
         private List<Chapter> _chapters;
+        private Dictionary<Chapter, Boolean> _chaptersDict;
         private Employee _GIP;
         private Employee _Nkontr;
         public String Id
@@ -83,6 +83,7 @@ namespace IUL
             {
                 this._name = nameProject;
                 this._chapters = new List<Chapter>(30);
+                this._chaptersDict = new Dictionary<Chapter, Boolean>(30);
                 String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
@@ -149,6 +150,7 @@ namespace IUL
                             {
                                 String chapterName = reader.GetValue(0).ToString().Trim();
                                 this._chapters.Add(new Chapter(this._id, chapterName));
+                                this._chaptersDict.Add(new Chapter(this._id, chapterName), true);
                             }
                         }
                     }
@@ -213,6 +215,265 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
+        //public void RolloutIULsForProject(String dateSigning, String pathToMainFile)
+        //{
+        //    try
+        //    {
+        //        float scale = 0.09f;
+        //        BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        //        iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
+        //        for (Int32 iter = 0; iter < this._chapters.Count; iter++)
+        //        {
+        //            String nameFile = this._chapters[iter].NameFileChapter
+        //                .Remove(this._chapters[iter].NameFileChapter.Length - 4, 4);
+        //            nameFile += "-УЛ.pdf";
+        //            String path = pathToMainFile + "\\" + nameFile;
+        //            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+        //            {
+        //                Document doc = new Document(PageSize.A4);
+        //                PdfWriter pdfWriter = PdfWriter.GetInstance(doc, fileStream);
+        //                doc.Open();
+        //                PdfPTable table = new PdfPTable(4);
+
+        //                PdfPCell cell = new PdfPCell(new Phrase("Номер п/п", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Обозначение документа", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Наименование документа", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Номер последнего изменения (версии)", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase("", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].Id, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].ChapterName, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("1", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase("MD5", font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].MD5, font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase("CRC32", font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].CRC32, font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase("Наименование файла", font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Дата и время последнего изменения файла", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Размер файла, байт", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].NameFileChapter, font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].DateChange, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].SizeFileChapter.ToString(), font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase("Характер работы", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Фамилия", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Подпись", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase("Дата подписания", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                //ГИП
+        //                cell = new PdfPCell(new Phrase("ГИП", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._GIP.Surname, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                iTextSharp.text.Image signGip = iTextSharp.text.Image.GetInstance(this._GIP.Sign, BaseColor.WHITE);
+        //                cell = new PdfPCell(signGip);
+        //                signGip.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(dateSigning, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                int countAuthors = this._chapters[iter].CountAuthorChapter;
+        //                for (int i = 0; i < countAuthors; i++)
+        //                {
+        //                    cell = new PdfPCell(new Phrase(this._chapters[iter][i].Key, font));
+        //                    cell.Colspan = 1;
+        //                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                    table.AddCell(cell);
+        //                    cell = new PdfPCell(new Phrase(this._chapters[iter][i].Value.Surname, font));
+        //                    cell.Colspan = 1;
+        //                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                    table.AddCell(cell);
+        //                    iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(this._chapters[iter][i].Value.Sign, BaseColor.WHITE);
+        //                    cell = new PdfPCell(signAuthor);
+        //                    signAuthor.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
+        //                    cell.Colspan = 1;
+        //                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                    table.AddCell(cell);
+        //                    cell = new PdfPCell(new Phrase(dateSigning, font));
+        //                    cell.Colspan = 1;
+        //                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                    table.AddCell(cell);
+        //                }
+        //                //Н.КОНТР
+        //                cell = new PdfPCell(new Phrase("Н. контр", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._Nkontr.Surname, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                iTextSharp.text.Image signNkontr = iTextSharp.text.Image.GetInstance(this._Nkontr.Sign, BaseColor.WHITE);
+        //                cell = new PdfPCell(signNkontr);
+        //                signNkontr.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(dateSigning, font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                cell = new PdfPCell(new Phrase("Информационно-удостоверяющий лист", font));
+        //                cell.Colspan = 2;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                cell = new PdfPCell(new Phrase(this._chapters[iter].Id + "-УЛ", font));
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+        //                PdfPTable subTable = new PdfPTable(2);
+        //                PdfPCell subCell = new PdfPCell(new Phrase("Лист", font));
+        //                subCell.Colspan = 1;
+        //                subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                subTable.AddCell(subCell);
+        //                subCell = new PdfPCell(new Phrase("Листов", font));
+        //                subCell.Colspan = 1;
+        //                subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                subTable.AddCell(subCell);
+        //                subCell = new PdfPCell(new Phrase("", font));
+        //                subCell.Colspan = 1;
+        //                subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                subTable.AddCell(subCell);
+        //                subCell = new PdfPCell(new Phrase("   ", font));
+        //                subCell.Colspan = 1;
+        //                subCell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                subCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                subTable.AddCell(subCell);
+        //                cell = new PdfPCell(subTable);
+        //                cell.Colspan = 1;
+        //                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+        //                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //                table.AddCell(cell);
+
+        //                doc.Open();
+        //                doc.Add(table);
+        //                doc.Close();
+        //            }
+
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception(e.Message);
+        //    }
+        //}
         public void RolloutIULsForProject(String dateSigning, String pathToMainFile)
         {
             try
@@ -220,10 +481,11 @@ namespace IUL
                 float scale = 0.09f;
                 BaseFont baseFont = BaseFont.CreateFont(@"C:\\Windows\\Fonts\\times.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 11.5f, iTextSharp.text.Font.NORMAL);
-                for (Int32 iter = 0; iter < this._chapters.Count; iter++)
+                foreach(var chapter in this._chaptersDict) 
                 {
-                    String nameFile = this._chapters[iter].NameFileChapter
-                        .Remove(this._chapters[iter].NameFileChapter.Length - 4, 4);
+                    if (!chapter.Value) continue;
+                    String nameFile = chapter.Key.NameFileChapter
+                        .Remove(chapter.Key.NameFileChapter.Length - 4, 4);
                     nameFile += "-УЛ.pdf";
                     String path = pathToMainFile + "\\" + nameFile;
                     using (FileStream fileStream = new FileStream(path, FileMode.Create))
@@ -259,13 +521,13 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].Id, font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.Id, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
 
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].ChapterName, font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.ChapterName, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -281,7 +543,7 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].MD5, font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.MD5, font));
                         cell.Colspan = 2;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -292,7 +554,7 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].CRC32, font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.CRC32, font));
                         cell.Colspan = 2;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -314,17 +576,17 @@ namespace IUL
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
 
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].NameFileChapter, font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.NameFileChapter, font));
                         cell.Colspan = 2;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].DateChange, font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.DateChange, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].SizeFileChapter.ToString(), font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.SizeFileChapter.ToString(), font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -373,20 +635,20 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        int countAuthors = this._chapters[iter].CountAuthorChapter;
+                        int countAuthors = chapter.Key.CountAuthorChapter;
                         for (int i = 0; i < countAuthors; i++)
                         {
-                            cell = new PdfPCell(new Phrase(this._chapters[iter][i].Key, font));
+                            cell = new PdfPCell(new Phrase(chapter.Key[i].Key, font));
                             cell.Colspan = 1;
                             cell.HorizontalAlignment = Element.ALIGN_CENTER;
                             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                             table.AddCell(cell);
-                            cell = new PdfPCell(new Phrase(this._chapters[iter][i].Value.Surname, font));
+                            cell = new PdfPCell(new Phrase(chapter.Key[i].Value.Surname, font));
                             cell.Colspan = 1;
                             cell.HorizontalAlignment = Element.ALIGN_CENTER;
                             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                             table.AddCell(cell);
-                            iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(this._chapters[iter][i].Value.Sign, BaseColor.WHITE);
+                            iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(chapter.Key[i].Value.Sign, BaseColor.WHITE);
                             cell = new PdfPCell(signAuthor);
                             signAuthor.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                             cell.Colspan = 1;
@@ -428,7 +690,7 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._chapters[iter].Id + "-УЛ", font));
+                        cell = new PdfPCell(new Phrase(chapter.Key.Id + "-УЛ", font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
@@ -464,12 +726,36 @@ namespace IUL
                         doc.Add(table);
                         doc.Close();
                     }
-                   
                 }
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+        public void FillingListBoxChapters(System.Windows.Forms.CheckedListBox fillingCheckList) 
+        {
+            String[] chaptersName = new String[this._chaptersDict.Keys.Count];
+            for(int i = 0; i < chaptersName.Length; i++) 
+            {
+                chaptersName[i] = this._chapters[i].ChapterName;
+            }
+            fillingCheckList.Items.AddRange(chaptersName);
+            for(int i = 0; i < fillingCheckList.Items.Count; i++) 
+            {
+                fillingCheckList.SetItemChecked(i, true);
+            }
+            fillingCheckList.Size = new System.Drawing.Size(fillingCheckList.Width, 
+                fillingCheckList.Height * chaptersName.Length-1);
+        }
+        public void ChangeSelectedRolloutChapters(String chapterName) 
+        {
+            foreach(var chapter in this._chaptersDict.Keys.ToList()) 
+            {
+                if (chapter.ChapterName.Equals(chapterName)) 
+                {
+                    _chaptersDict[chapter] = !_chaptersDict[chapter];
+                }
             }
         }
     }

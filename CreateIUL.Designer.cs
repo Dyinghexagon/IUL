@@ -35,6 +35,8 @@ namespace IUL
             this.ButtonCreateIULs = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.CheckedListBoxChapters = new System.Windows.Forms.CheckedListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ComboBoxNameProjects
@@ -57,7 +59,7 @@ namespace IUL
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(12, 55);
+            this.ButtonBack.Location = new System.Drawing.Point(12, 57);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(75, 23);
             this.ButtonBack.TabIndex = 2;
@@ -67,7 +69,7 @@ namespace IUL
             // 
             // ButtonCreateIULs
             // 
-            this.ButtonCreateIULs.Location = new System.Drawing.Point(93, 55);
+            this.ButtonCreateIULs.Location = new System.Drawing.Point(93, 57);
             this.ButtonCreateIULs.Name = "ButtonCreateIULs";
             this.ButtonCreateIULs.Size = new System.Drawing.Size(75, 23);
             this.ButtonCreateIULs.TabIndex = 3;
@@ -77,23 +79,44 @@ namespace IUL
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(277, 53);
+            this.dateTimePicker1.Location = new System.Drawing.Point(277, 55);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker1.TabIndex = 4;
             // 
+            // CheckedListBoxChapters
+            // 
+            this.CheckedListBoxChapters.FormattingEnabled = true;
+            this.CheckedListBoxChapters.Location = new System.Drawing.Point(12, 101);
+            this.CheckedListBoxChapters.Name = "CheckedListBoxChapters";
+            this.CheckedListBoxChapters.Size = new System.Drawing.Size(465, 22);
+            this.CheckedListBoxChapters.TabIndex = 5;
+            this.CheckedListBoxChapters.Click += new System.EventHandler(this.CheckedListBoxChapters_Click);
+            this.CheckedListBoxChapters.SelectedIndexChanged += new System.EventHandler(this.CheckedListBoxChapters_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Список доступных ИУЛов";
+            // 
             // CreateIUL
             // 
-            this.MaximizeBox = false;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 86);
+            this.ClientSize = new System.Drawing.Size(484, 127);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CheckedListBoxChapters);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.ButtonCreateIULs);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.LabelNameProjectsHint);
             this.Controls.Add(this.ComboBoxNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CreateIUL";
             this.Text = "Создание ИУЛов";
             this.ResumeLayout(false);
@@ -109,5 +132,7 @@ namespace IUL
         private System.Windows.Forms.Button ButtonCreateIULs;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.CheckedListBox CheckedListBoxChapters;
+        private System.Windows.Forms.Label label1;
     }
 }
