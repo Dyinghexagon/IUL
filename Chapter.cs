@@ -7,6 +7,7 @@ using System.IO;
 using System.Security.Cryptography;
 using Force.Crc32;
 using System.Linq;
+using Aspose.Pdf;
 namespace IUL
 {
     class Chapter
@@ -31,7 +32,12 @@ namespace IUL
         }
         public String DateChange 
         {
-            get { return this._fileInfo.LastWriteTime.ToShortDateString() + " " + this._fileInfo.LastWriteTime.ToLongTimeString(); }
+            get
+            {
+                Document pdfDocument = new Document(_pathToFileChapter);
+                DocumentInfo docInfo = pdfDocument.Info;
+                return docInfo.ModDate.ToShortDateString()+ " " + docInfo.ModDate.ToLongTimeString();
+            }
         }
         public String MD5 
         {

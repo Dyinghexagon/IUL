@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspose.PDF" Version="22.3.0" />
     <PackageReference Include="Crc32.NET" Version="1.2.0" />
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <PackageReference Include="MySql.Data" Version="8.0.26" />
