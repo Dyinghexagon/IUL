@@ -17,20 +17,46 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
                 _newChapter = new Chapter();
+
+                ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
+                ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
+                ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
+
+                ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
+                ComboBoxChapterNames.DrawItem += Main.ComboBox_DrawItem;
+                ComboBoxChapterNames.MeasureItem += Main.ComboBox_MeasureItem;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
+        private void ComboBox_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var text = lbox.Items[e.Index].ToString();
+            var width = lbox.ClientSize.Width;
+            var size = e.Graphics.MeasureString(text, lbox.Font, width);
+            e.ItemHeight = (int)size.Height;
+        }
 
+        private void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var color = SystemColors.Window;
+            using (var brush = new SolidBrush(color))
+            {
+                e.Graphics.FillRectangle(brush, e.Bounds);
+                e.Graphics.DrawString(lbox.Items[e.Index].ToString(), e.Font, SystemBrushes.WindowText, e.Bounds);
+            }
+        }
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             try 
             {
-                String nameProject = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                String nameProject = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
                 _selectedProject = new Project(nameProject);
                 LabelIdProject.Text = _selectedProject.Id;
                 if (_selectedProject.CapitalOrLinear)
@@ -41,7 +67,7 @@ namespace IUL
                 {
                     FilingComboBoxLinearChapter();
                 }
-                this.ComboBoxChapters.Items.AddRange(this._selectedProject.Surveys.GetSurveys());
+                this.ComboBoxChapterNames.Items.AddRange(this._selectedProject.Surveys.GetSurveys());
             }
             catch (Exception ex)
             {
@@ -52,8 +78,8 @@ namespace IUL
         {
             try 
             {
-                String nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
-                this._newChapter.NumberChapter = ComboBoxChapters.SelectedIndex++;
+                String nameSelectedChapter = ComboBoxChapterNames.Items[ComboBoxChapterNames.SelectedIndex].ToString();
+                this._newChapter.NumberChapter = ComboBoxChapterNames.SelectedIndex++;
                 MessageBox.Show(this._newChapter.NumberChapter.ToString());
                 if (this._selectedProject.CapitalOrLinear && (this._newChapter.NumberChapter >= 4 && this._newChapter.NumberChapter <= 10))
                 {

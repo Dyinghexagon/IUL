@@ -17,10 +17,18 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
                 DbProviderFactories.InitializeComboBox(this.ComboBoxRoles, Tables.ROLES);
                 DbProviderFactories.InitializeComboBox(this.ComboBoxEmployees, Tables.EMPLOYEES);
                 this._newPerformer = new Performer();
+
+                ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
+                ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
+                ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
+
+                ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
+                ComboBoxChapterNames.DrawItem += Main.ComboBox_DrawItem;
+                ComboBoxChapterNames.MeasureItem += Main.ComboBox_MeasureItem;
             }
             catch(Exception ex) 
             {
@@ -32,9 +40,9 @@ namespace IUL
         {
             try 
             {
-                String nameSelectedProject = this.ComboBoxNameProjects.Items[this.ComboBoxNameProjects.SelectedIndex].ToString();
+                String nameSelectedProject = this.ComboBoxProjectNames.Items[this.ComboBoxProjectNames.SelectedIndex].ToString();
                 this._selectedProject = new Project(nameSelectedProject);
-                Chapter.InitializeComboBoxChapters(this.ComboBoxChapters, this._selectedProject.Id);
+                Chapter.InitializeComboBoxChapters(this.ComboBoxChapterNames, this._selectedProject.Id);
             }
             catch (Exception ex)
             {
@@ -88,7 +96,7 @@ namespace IUL
         {
             try
             {
-                String selectedNameChapter = this.ComboBoxChapters.Items[this.ComboBoxChapters.SelectedIndex].ToString();
+                String selectedNameChapter = this.ComboBoxChapterNames.Items[this.ComboBoxChapterNames.SelectedIndex].ToString();
                 Chapter chapter = new Chapter(this._selectedProject.Id, selectedNameChapter);
                 this._newPerformer.ChapterId = chapter.Id;
 

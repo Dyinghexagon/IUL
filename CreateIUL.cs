@@ -54,6 +54,11 @@ namespace IUL
                     _checkCol, _textCol 
                 });
                 DataGridViewChapterNames.ClearSelection();
+
+                ComboBoxNameProjects.DrawMode = DrawMode.OwnerDrawVariable;
+                ComboBoxNameProjects.DrawItem += Main.ComboBox_DrawItem;
+                ComboBoxNameProjects.MeasureItem += Main.ComboBox_MeasureItem;
+
             }
             catch (Exception ex) 
             {
@@ -66,6 +71,26 @@ namespace IUL
             if (row.Selected)
             {
                 row.Cells[_checkCol.Index].Value = !(bool)row.Cells[_checkCol.Index].Value;
+            }
+        }
+
+        private void ComboBoxNameProjects_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var text = lbox.Items[e.Index].ToString();
+            var width = lbox.ClientSize.Width;
+            var size = e.Graphics.MeasureString(text, lbox.Font, width);
+            e.ItemHeight = (int)size.Height;
+        }
+
+        private void ComboBoxNameProjects_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var color =  SystemColors.Window;
+            using (var brush = new SolidBrush(color))
+            {
+                e.Graphics.FillRectangle(brush, e.Bounds);
+                e.Graphics.DrawString(lbox.Items[e.Index].ToString(), e.Font, SystemBrushes.WindowText, e.Bounds);
             }
         }
         private void ButtonBack_Click(object sender, EventArgs e)

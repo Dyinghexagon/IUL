@@ -91,5 +91,25 @@ namespace IUL
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
+
+        public static void ComboBox_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var text = lbox.Items[e.Index].ToString();
+            var width = lbox.ClientSize.Width;
+            var size = e.Graphics.MeasureString(text, lbox.Font, width);
+            e.ItemHeight = (int)size.Height;
+        }
+
+        public static void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var color = SystemColors.Window;
+            using (var brush = new SolidBrush(color))
+            {
+                e.Graphics.FillRectangle(brush, e.Bounds);
+                e.Graphics.DrawString(lbox.Items[e.Index].ToString(), e.Font, SystemBrushes.WindowText, e.Bounds);
+            }
+        }
     }
 }

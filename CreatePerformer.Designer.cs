@@ -30,8 +30,8 @@ namespace IUL
         private void InitializeComponent()
         {
             this.LabelNameChapters = new System.Windows.Forms.Label();
-            this.ComboBoxChapters = new System.Windows.Forms.ComboBox();
-            this.ComboBoxNameProjects = new System.Windows.Forms.ComboBox();
+            this.ComboBoxChapterNames = new System.Windows.Forms.ComboBox();
+            this.ComboBoxProjectNames = new System.Windows.Forms.ComboBox();
             this.LabelNameProjects = new System.Windows.Forms.Label();
             this.LabelSurnameEmploeey = new System.Windows.Forms.Label();
             this.ComboBoxEmployees = new System.Windows.Forms.ComboBox();
@@ -50,23 +50,23 @@ namespace IUL
             this.LabelNameChapters.TabIndex = 12;
             this.LabelNameChapters.Text = "Перечень разделов";
             // 
-            // ComboBoxChapters
+            // ComboBoxChapterNames
             // 
-            this.ComboBoxChapters.FormattingEnabled = true;
-            this.ComboBoxChapters.Location = new System.Drawing.Point(12, 73);
-            this.ComboBoxChapters.Name = "ComboBoxChapters";
-            this.ComboBoxChapters.Size = new System.Drawing.Size(699, 23);
-            this.ComboBoxChapters.TabIndex = 11;
-            this.ComboBoxChapters.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChapters_SelectedIndexChanged);
+            this.ComboBoxChapterNames.FormattingEnabled = true;
+            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 73);
+            this.ComboBoxChapterNames.Name = "ComboBoxChapterNames";
+            this.ComboBoxChapterNames.Size = new System.Drawing.Size(699, 23);
+            this.ComboBoxChapterNames.TabIndex = 11;
+            this.ComboBoxChapterNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChapters_SelectedIndexChanged);
             // 
-            // ComboBoxNameProjects
+            // ComboBoxProjectNames
             // 
-            this.ComboBoxNameProjects.FormattingEnabled = true;
-            this.ComboBoxNameProjects.Location = new System.Drawing.Point(12, 28);
-            this.ComboBoxNameProjects.Name = "ComboBoxNameProjects";
-            this.ComboBoxNameProjects.Size = new System.Drawing.Size(699, 23);
-            this.ComboBoxNameProjects.TabIndex = 10;
-            this.ComboBoxNameProjects.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
+            this.ComboBoxProjectNames.FormattingEnabled = true;
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 28);
+            this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
+            this.ComboBoxProjectNames.Size = new System.Drawing.Size(699, 23);
+            this.ComboBoxProjectNames.TabIndex = 10;
+            this.ComboBoxProjectNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
             // 
             // LabelNameProjects
             // 
@@ -135,7 +135,6 @@ namespace IUL
             // 
             // CreatePerformer
             // 
-            this.MaximizeBox = false;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 198);
@@ -146,10 +145,11 @@ namespace IUL
             this.Controls.Add(this.LabelSurnameEmploeey);
             this.Controls.Add(this.ComboBoxEmployees);
             this.Controls.Add(this.LabelNameChapters);
-            this.Controls.Add(this.ComboBoxChapters);
-            this.Controls.Add(this.ComboBoxNameProjects);
+            this.Controls.Add(this.ComboBoxChapterNames);
+            this.Controls.Add(this.ComboBoxProjectNames);
             this.Controls.Add(this.LabelNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CreatePerformer";
             this.Text = "Добавление исполнителей для раздела";
             this.ResumeLayout(false);
@@ -159,8 +159,8 @@ namespace IUL
         #endregion
 
         private System.Windows.Forms.Label LabelNameChapters;
-        private System.Windows.Forms.ComboBox ComboBoxChapters;
-        private System.Windows.Forms.ComboBox ComboBoxNameProjects;
+        private System.Windows.Forms.ComboBox ComboBoxChapterNames;
+        private System.Windows.Forms.ComboBox ComboBoxProjectNames;
         private System.Windows.Forms.Label LabelNameProjects;
         private System.Windows.Forms.Label LabelSurnameEmploeey;
         private System.Windows.Forms.ComboBox ComboBoxEmployees;

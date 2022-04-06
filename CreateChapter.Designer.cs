@@ -30,10 +30,10 @@ namespace IUL
         private void InitializeComponent()
         {
             this.LabelNameProjects = new System.Windows.Forms.Label();
-            this.ComboBoxNameProjects = new System.Windows.Forms.ComboBox();
+            this.ComboBoxProjectNames = new System.Windows.Forms.ComboBox();
             this.ButtonAddNewChapter = new System.Windows.Forms.Button();
             this.LabelIdProjectHint = new System.Windows.Forms.Label();
-            this.ComboBoxChapters = new System.Windows.Forms.ComboBox();
+            this.ComboBoxChapterNames = new System.Windows.Forms.ComboBox();
             this.LabelNameChapters = new System.Windows.Forms.Label();
             this.LabelIdProject = new System.Windows.Forms.Label();
             this.LabelChapterHint = new System.Windows.Forms.Label();
@@ -57,14 +57,14 @@ namespace IUL
             this.LabelNameProjects.TabIndex = 1;
             this.LabelNameProjects.Text = "Выберите проект";
             // 
-            // ComboBoxNameProjects
+            // ComboBoxProjectNames
             // 
-            this.ComboBoxNameProjects.FormattingEnabled = true;
-            this.ComboBoxNameProjects.Location = new System.Drawing.Point(12, 27);
-            this.ComboBoxNameProjects.Name = "ComboBoxNameProjects";
-            this.ComboBoxNameProjects.Size = new System.Drawing.Size(699, 23);
-            this.ComboBoxNameProjects.TabIndex = 2;
-            this.ComboBoxNameProjects.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
+            this.ComboBoxProjectNames.FormattingEnabled = true;
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 27);
+            this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
+            this.ComboBoxProjectNames.Size = new System.Drawing.Size(699, 23);
+            this.ComboBoxProjectNames.TabIndex = 2;
+            this.ComboBoxProjectNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
             // 
             // ButtonAddNewChapter
             // 
@@ -85,13 +85,13 @@ namespace IUL
             this.LabelIdProjectHint.TabIndex = 5;
             this.LabelIdProjectHint.Text = "Шифр выбранного проекта";
             // 
-            // ComboBoxChapters
+            // ComboBoxChapterNames
             // 
-            this.ComboBoxChapters.FormattingEnabled = true;
-            this.ComboBoxChapters.Location = new System.Drawing.Point(12, 72);
-            this.ComboBoxChapters.Name = "ComboBoxChapters";
-            this.ComboBoxChapters.Size = new System.Drawing.Size(699, 23);
-            this.ComboBoxChapters.TabIndex = 7;
+            this.ComboBoxChapterNames.FormattingEnabled = true;
+            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 72);
+            this.ComboBoxChapterNames.Name = "ComboBoxChapterNames";
+            this.ComboBoxChapterNames.Size = new System.Drawing.Size(699, 23);
+            this.ComboBoxChapterNames.TabIndex = 7;
             // 
             // LabelNameChapters
             // 
@@ -212,11 +212,11 @@ namespace IUL
             this.Controls.Add(this.LabelIdSubChapter);
             this.Controls.Add(this.LabelIdProject);
             this.Controls.Add(this.LabelNameChapters);
-            this.Controls.Add(this.ComboBoxChapters);
+            this.Controls.Add(this.ComboBoxChapterNames);
             this.Controls.Add(this.LabelChapterHint);
             this.Controls.Add(this.LabelIdProjectHint);
             this.Controls.Add(this.ButtonAddNewChapter);
-            this.Controls.Add(this.ComboBoxNameProjects);
+            this.Controls.Add(this.ComboBoxProjectNames);
             this.Controls.Add(this.LabelNameProjects);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -228,8 +228,8 @@ namespace IUL
         }
         private void FilingComboBoxCapitalChapter()
         {
-            this.ComboBoxChapters.Items.Clear();
-            this.ComboBoxChapters.Items.AddRange(new object[]
+            this.ComboBoxChapterNames.Items.Clear();
+            this.ComboBoxChapterNames.Items.AddRange(new object[]
             {
                 "Раздел 1. Пояснительная записка",
                 "Раздел 2. Схема планировочной организации земельного участка",
@@ -254,8 +254,8 @@ namespace IUL
         }
         private void FilingComboBoxLinearChapter()
         {
-            this.ComboBoxChapters.Items.Clear();
-            this.ComboBoxChapters.Items.AddRange(new object[]
+            this.ComboBoxChapterNames.Items.Clear();
+            this.ComboBoxChapterNames.Items.AddRange(new object[]
             {
                 "Раздел 1. Пояснительная записка",
                 "Раздел 2. Проект полосы отвода",
@@ -271,10 +271,10 @@ namespace IUL
         #endregion
 
         private System.Windows.Forms.Label LabelNameProjects;
-        private System.Windows.Forms.ComboBox ComboBoxNameProjects;
+        private System.Windows.Forms.ComboBox ComboBoxProjectNames;
         private System.Windows.Forms.Button ButtonAddNewChapter;
         private System.Windows.Forms.Label LabelIdProjectHint;
-        private System.Windows.Forms.ComboBox ComboBoxChapters;
+        private System.Windows.Forms.ComboBox ComboBoxChapterNames;
         private System.Windows.Forms.Label LabelNameChapters;
         private System.Windows.Forms.Label LabelIdProject;
         private System.Windows.Forms.Label LabelChapterHint;
