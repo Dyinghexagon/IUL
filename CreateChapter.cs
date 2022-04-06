@@ -52,15 +52,16 @@ namespace IUL
         {
             try 
             {
-                Int32 selectedIndex = ComboBoxChapters.SelectedIndex;
                 String nameSelectedChapter = ComboBoxChapters.Items[ComboBoxChapters.SelectedIndex].ToString();
-                if (this._selectedProject.CapitalOrLinear && selectedIndex >= 4 && selectedIndex <= 10)
+                this._newChapter.NumberChapter = ComboBoxChapters.SelectedIndex++;
+                MessageBox.Show(this._newChapter.NumberChapter.ToString());
+                if (this._selectedProject.CapitalOrLinear && (this._newChapter.NumberChapter >= 4 && this._newChapter.NumberChapter <= 10))
                 {
                     this._newChapter.ChapterName =
                         "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +
                         "перечень инженерно-технических мероприятий, содержание технологических решений ";
                 }
-                this._newChapter.ChapterName = nameSelectedChapter;
+                this._newChapter.ChapterName += nameSelectedChapter;
                 
                 this._newChapter.Id = (this.CheckBoxUniqueIdChapter.Checked)? this.TextBoxIdChapter.Text : LabelIdProject.Text + "-" + TextBoxIdChapter?.Text;
                 this._newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;

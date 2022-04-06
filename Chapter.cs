@@ -17,6 +17,7 @@ namespace IUL
         private String _chapterName;
         private String _nameFileChapter;
         private String _pathToFileChapter;
+        private Int32 _numberChapter;
         private List<KeyValuePair<String, Employee>> _authorsChapter;
         private FileInfo _fileInfo;
 
@@ -95,10 +96,16 @@ namespace IUL
         {
             get { return this._authorsChapter.Count; }
         }
+        public Int32 NumberChapter 
+        {
+            get { return _numberChapter; }
+            set { _numberChapter = value; }
+        }
         public KeyValuePair<String, Employee> this[Int32 index] 
         {
             get { return this._authorsChapter[index]; }
         }
+        
         public Chapter()
         {
             this._chapterId = "";
