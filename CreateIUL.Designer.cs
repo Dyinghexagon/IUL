@@ -35,12 +35,14 @@ namespace IUL
             this.ButtonCreateIULs = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.CheckedListBoxChapters = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // ComboBoxNameProjects
             // 
+            this.ComboBoxNameProjects.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ComboBoxNameProjects.FormattingEnabled = true;
             this.ComboBoxNameProjects.Location = new System.Drawing.Point(12, 26);
             this.ComboBoxNameProjects.Name = "ComboBoxNameProjects";
@@ -84,16 +86,6 @@ namespace IUL
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker1.TabIndex = 4;
             // 
-            // CheckedListBoxChapters
-            // 
-            this.CheckedListBoxChapters.FormattingEnabled = true;
-            this.CheckedListBoxChapters.Location = new System.Drawing.Point(12, 101);
-            this.CheckedListBoxChapters.Name = "CheckedListBoxChapters";
-            this.CheckedListBoxChapters.Size = new System.Drawing.Size(465, 22);
-            this.CheckedListBoxChapters.TabIndex = 5;
-            this.CheckedListBoxChapters.Click += new System.EventHandler(this.CheckedListBoxChapters_Click);
-            this.CheckedListBoxChapters.SelectedIndexChanged += new System.EventHandler(this.CheckedListBoxChapters_SelectedIndexChanged);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -103,13 +95,23 @@ namespace IUL
             this.label1.TabIndex = 6;
             this.label1.Text = "Список доступных ИУЛов";
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(12, 101);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 25;
+            this.dataGridView.Size = new System.Drawing.Size(465, 177);
+            this.dataGridView.TabIndex = 7;
+            this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
+            // 
             // CreateIUL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 127);
+            this.ClientSize = new System.Drawing.Size(490, 290);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.CheckedListBoxChapters);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.ButtonCreateIULs);
             this.Controls.Add(this.ButtonBack);
@@ -119,6 +121,7 @@ namespace IUL
             this.MaximizeBox = false;
             this.Name = "CreateIUL";
             this.Text = "Создание ИУЛов";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,7 +135,7 @@ namespace IUL
         private System.Windows.Forms.Button ButtonCreateIULs;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.CheckedListBox CheckedListBoxChapters;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
