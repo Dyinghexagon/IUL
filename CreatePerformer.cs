@@ -12,6 +12,7 @@ namespace IUL
     {
         private Performer _newPerformer;
         private Project _selectedProject;
+        DataGridViewTextBoxColumn _textCol;
         public CreatePerformer()
         {
             try 
@@ -21,6 +22,38 @@ namespace IUL
                 DbProviderFactories.InitializeComboBox(this.ComboBoxRoles, Tables.ROLES);
                 DbProviderFactories.InitializeComboBox(this.ComboBoxEmployees, Tables.EMPLOYEES);
                 this._newPerformer = new Performer();
+
+                var textColCellStyle = new DataGridViewCellStyle();
+                textColCellStyle.WrapMode = DataGridViewTriState.True;
+
+                _textCol = new DataGridViewTextBoxColumn();
+                _textCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                _textCol.Name = "TextCol";
+                _textCol.HeaderText = "TextCol";
+                _textCol.DefaultCellStyle = textColCellStyle;
+                _textCol.ReadOnly = true;
+
+                DataGridViewSelectedChapter.AllowUserToAddRows = false;
+                DataGridViewSelectedChapter.AllowUserToDeleteRows = false;
+                DataGridViewSelectedChapter.AllowUserToResizeColumns = false;
+                DataGridViewSelectedChapter.AllowUserToResizeRows = false;
+                DataGridViewSelectedChapter.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                DataGridViewSelectedChapter.CellBorderStyle = DataGridViewCellBorderStyle.None;
+                DataGridViewSelectedChapter.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                DataGridViewSelectedChapter.ColumnHeadersVisible = false;
+                DataGridViewSelectedChapter.BackgroundColor = Color.White;
+                DataGridViewSelectedChapter.MultiSelect = false;
+                DataGridViewSelectedChapter.RowHeadersVisible = false;
+                DataGridViewSelectedChapter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+                DataGridViewSelectedChapter.Columns.AddRange(_textCol);
+                DataGridViewSelectedChapter.ClearSelection();
+
+                DataGridViewSelectedChapter.Visible = false;
+                LableSelectedChapter.Visible = false;
+
+                this.Height -= DataGridViewSelectedChapter.Height;
+                this.Height -= LableSelectedChapter.Height;
+
 
                 ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
                 ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
@@ -35,7 +68,6 @@ namespace IUL
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
-
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             try 
@@ -99,7 +131,11 @@ namespace IUL
                 String selectedNameChapter = this.ComboBoxChapterNames.Items[this.ComboBoxChapterNames.SelectedIndex].ToString();
                 Chapter chapter = new Chapter(this._selectedProject.Id, selectedNameChapter);
                 this._newPerformer.ChapterId = chapter.Id;
+                if (!CheckBoxIsAddMultiple.Checked) 
+                {
 
+                }
+                DataGridViewSelectedChapter.Rows.Add(selectedNameChapter);
             }
             catch (Exception ex)
             {
@@ -119,6 +155,15 @@ namespace IUL
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
+        }
+
+        private void CheckBoxIsAddMultiple_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewSelectedChapter.Visible = !DataGridViewSelectedChapter.Visible;
+            LableSelectedChapter.Visible = !LableSelectedChapter.Visible;
+
+                this.Height += DataGridViewSelectedChapter.Height;
+                this.Height += LableSelectedChapter.Height;
         }
     }
 }

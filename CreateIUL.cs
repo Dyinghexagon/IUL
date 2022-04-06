@@ -41,7 +41,7 @@ namespace IUL
                 DataGridViewChapterNames.AllowUserToResizeRows = false;
                 DataGridViewChapterNames.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 DataGridViewChapterNames.CellBorderStyle = DataGridViewCellBorderStyle.None;
-                DataGridViewChapterNames.CellMouseDown += dataGridView_CellMouseDown;
+                DataGridViewChapterNames.CellMouseDown += DataGridView_CellMouseDown;
                 DataGridViewChapterNames.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
                 DataGridViewChapterNames.ColumnHeadersVisible = false;
                 DataGridViewChapterNames.BackgroundColor = Color.White;
@@ -65,7 +65,7 @@ namespace IUL
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
-        private void dataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             var row = ((DataGridView)sender).Rows[e.RowIndex];
             if (row.Selected)
@@ -73,7 +73,6 @@ namespace IUL
                 row.Cells[_checkCol.Index].Value = !(bool)row.Cells[_checkCol.Index].Value;
             }
         }
-
         private void ComboBoxNameProjects_MeasureItem(object sender, MeasureItemEventArgs e)
         {
             var lbox = (ComboBox)sender;
