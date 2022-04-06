@@ -36,8 +36,8 @@ namespace IUL
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.DataGridViewChapterNames = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterNames)).BeginInit();
             this.SuspendLayout();
             // 
             // ComboBoxNameProjects
@@ -95,22 +95,22 @@ namespace IUL
             this.label1.TabIndex = 6;
             this.label1.Text = "Список доступных ИУЛов";
             // 
-            // dataGridView
+            // DataGridViewChapterNames
             // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(12, 101);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(465, 177);
-            this.dataGridView.TabIndex = 7;
-            this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
+            this.DataGridViewChapterNames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewChapterNames.Location = new System.Drawing.Point(12, 101);
+            this.DataGridViewChapterNames.Name = "DataGridViewChapterNames";
+            this.DataGridViewChapterNames.RowTemplate.Height = 25;
+            this.DataGridViewChapterNames.Size = new System.Drawing.Size(465, 177);
+            this.DataGridViewChapterNames.TabIndex = 7;
+            this.DataGridViewChapterNames.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
             // CreateIUL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 290);
-            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.DataGridViewChapterNames);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.ButtonCreateIULs);
@@ -121,7 +121,7 @@ namespace IUL
             this.MaximizeBox = false;
             this.Name = "CreateIUL";
             this.Text = "Создание ИУЛов";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterNames)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +136,6 @@ namespace IUL
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridView DataGridViewChapterNames;
     }
 }
