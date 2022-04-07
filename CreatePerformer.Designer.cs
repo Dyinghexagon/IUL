@@ -151,9 +151,9 @@ namespace IUL
             this.LableSelectedChapter.AutoSize = true;
             this.LableSelectedChapter.Location = new System.Drawing.Point(13, 200);
             this.LableSelectedChapter.Name = "LableSelectedChapter";
-            this.LableSelectedChapter.Size = new System.Drawing.Size(113, 15);
+            this.LableSelectedChapter.Size = new System.Drawing.Size(121, 15);
             this.LableSelectedChapter.TabIndex = 20;
-            this.LableSelectedChapter.Text = "Выбранный раздел";
+            this.LableSelectedChapter.Text = "Выбранные разделы";
             // 
             // CheckBoxIsAddMultiple
             // 

@@ -13,6 +13,8 @@ namespace IUL
         private Performer _newPerformer;
         private Project _selectedProject;
         DataGridViewTextBoxColumn _textCol;
+        Int32 _height = 0;
+        HashSet<String> _selectedChapters;
         public CreatePerformer()
         {
             try 
@@ -53,7 +55,8 @@ namespace IUL
 
                 this.Height -= DataGridViewSelectedChapter.Height;
                 this.Height -= LableSelectedChapter.Height;
-
+                _height = this.Height;
+                _selectedChapters = new HashSet<String>();
 
                 ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
                 ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
@@ -84,15 +87,37 @@ namespace IUL
 
         private void ButtonAddNewPerformer_Click(object sender, EventArgs e)
         {
-            try 
+            if (this.CheckBoxIsAddMultiple.Checked) 
             {
-                this._newPerformer.InsertNewPerformer();
-                MessageBox.Show("Исполнитель добавлен!");
+                try 
+                {
+                    Performer performer = new Performer();
+                    performer.EmployeeId = this._newPerformer.EmployeeId;
+                    performer.RoleId = this._newPerformer.RoleId;
+                    foreach(var chapterName in _selectedChapters) 
+                    {
+                        Chapter chapter = new Chapter(this._selectedProject.Id, chapterName);
+                        performer.ChapterId = chapter.Id;
+                        performer.InsertNewPerformer();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().Name);
+                }
             }
-            catch (Exception ex)
+            else 
             {
-                MessageBox.Show(ex.Message, ex.GetType().Name);
+                try 
+                {
+                    this._newPerformer.InsertNewPerformer();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().Name);
+                }
             }
+            MessageBox.Show("Исполнитель добавлен!");
         }
 
         private void ComboBoxEmployees_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,11 +156,7 @@ namespace IUL
                 String selectedNameChapter = this.ComboBoxChapterNames.Items[this.ComboBoxChapterNames.SelectedIndex].ToString();
                 Chapter chapter = new Chapter(this._selectedProject.Id, selectedNameChapter);
                 this._newPerformer.ChapterId = chapter.Id;
-                if (!CheckBoxIsAddMultiple.Checked) 
-                {
-
-                }
-                DataGridViewSelectedChapter.Rows.Add(selectedNameChapter);
+                if(_selectedChapters.Add(selectedNameChapter)) DataGridViewSelectedChapter.Rows.Add(selectedNameChapter);
             }
             catch (Exception ex)
             {
@@ -161,9 +182,15 @@ namespace IUL
         {
             DataGridViewSelectedChapter.Visible = !DataGridViewSelectedChapter.Visible;
             LableSelectedChapter.Visible = !LableSelectedChapter.Visible;
-
+            if (DataGridViewSelectedChapter.Visible)
+            {
                 this.Height += DataGridViewSelectedChapter.Height;
                 this.Height += LableSelectedChapter.Height;
+            }
+            else 
+            {
+                this.Height = _height;
+            }
         }
     }
 }
