@@ -212,6 +212,13 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
+        public IEnumerable<String> Authors() 
+        {
+            foreach(var author in _authorsChapter) 
+            {
+                yield return author.Value.Name;
+            }
+        }
         
     }
 }
