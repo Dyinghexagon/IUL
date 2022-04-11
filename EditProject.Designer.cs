@@ -34,6 +34,10 @@
             this.ButtonBack = new System.Windows.Forms.Button();
             this.LabelChapterNames = new System.Windows.Forms.Label();
             this.ComboBoxChapterNames = new System.Windows.Forms.ComboBox();
+            this.LabelGIP = new System.Windows.Forms.Label();
+            this.TextBoxGIP = new System.Windows.Forms.TextBox();
+            this.TextBoxNkontr = new System.Windows.Forms.TextBox();
+            this.LabelNkontr = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ComboBoxProjectNames
@@ -56,7 +60,7 @@
             // 
             // ButtonEdicting
             // 
-            this.ButtonEdicting.Location = new System.Drawing.Point(377, 426);
+            this.ButtonEdicting.Location = new System.Drawing.Point(381, 423);
             this.ButtonEdicting.Name = "ButtonEdicting";
             this.ButtonEdicting.Size = new System.Drawing.Size(101, 23);
             this.ButtonEdicting.TabIndex = 2;
@@ -65,7 +69,7 @@
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(12, 430);
+            this.ButtonBack.Location = new System.Drawing.Point(12, 423);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(75, 23);
             this.ButtonBack.TabIndex = 3;
@@ -90,11 +94,49 @@
             this.ComboBoxChapterNames.Size = new System.Drawing.Size(470, 23);
             this.ComboBoxChapterNames.TabIndex = 6;
             // 
+            // LabelGIP
+            // 
+            this.LabelGIP.AutoSize = true;
+            this.LabelGIP.Location = new System.Drawing.Point(12, 101);
+            this.LabelGIP.Name = "LabelGIP";
+            this.LabelGIP.Size = new System.Drawing.Size(158, 15);
+            this.LabelGIP.TabIndex = 8;
+            this.LabelGIP.Text = "Главный Инженер Проекта";
+            // 
+            // TextBoxGIP
+            // 
+            this.TextBoxGIP.Enabled = false;
+            this.TextBoxGIP.Location = new System.Drawing.Point(175, 98);
+            this.TextBoxGIP.Name = "TextBoxGIP";
+            this.TextBoxGIP.Size = new System.Drawing.Size(307, 23);
+            this.TextBoxGIP.TabIndex = 9;
+            // 
+            // TextBoxNkontr
+            // 
+            this.TextBoxNkontr.Enabled = false;
+            this.TextBoxNkontr.Location = new System.Drawing.Point(175, 127);
+            this.TextBoxNkontr.Name = "TextBoxNkontr";
+            this.TextBoxNkontr.Size = new System.Drawing.Size(307, 23);
+            this.TextBoxNkontr.TabIndex = 11;
+            // 
+            // LabelNkontr
+            // 
+            this.LabelNkontr.AutoSize = true;
+            this.LabelNkontr.Location = new System.Drawing.Point(12, 130);
+            this.LabelNkontr.Name = "LabelNkontr";
+            this.LabelNkontr.Size = new System.Drawing.Size(105, 15);
+            this.LabelNkontr.TabIndex = 10;
+            this.LabelNkontr.Text = "Нормоконтролер";
+            // 
             // EditProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 458);
+            this.ClientSize = new System.Drawing.Size(489, 451);
+            this.Controls.Add(this.TextBoxNkontr);
+            this.Controls.Add(this.LabelNkontr);
+            this.Controls.Add(this.TextBoxGIP);
+            this.Controls.Add(this.LabelGIP);
             this.Controls.Add(this.LabelChapterNames);
             this.Controls.Add(this.ComboBoxChapterNames);
             this.Controls.Add(this.ButtonBack);
@@ -116,5 +158,9 @@
         private System.Windows.Forms.Button ButtonBack;
         private System.Windows.Forms.Label LabelChapterNames;
         private System.Windows.Forms.ComboBox ComboBoxChapterNames;
+        private System.Windows.Forms.Label LabelGIP;
+        private System.Windows.Forms.TextBox TextBoxGIP;
+        private System.Windows.Forms.TextBox TextBoxNkontr;
+        private System.Windows.Forms.Label LabelNkontr;
     }
 }

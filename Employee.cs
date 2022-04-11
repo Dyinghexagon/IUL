@@ -75,6 +75,43 @@ namespace IUL
             {
                 throw new Exception(ex.Message, ex);
             }
-        } 
+        }
+        public Employee(Int32 id)
+        {
+            try
+            {
+                this._id = id;
+                String query = "USE IUL;" +
+                    "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
+                    "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
+                    "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_PATROMIC]," +
+                    "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SIGN]" +
+                    "FROM [IUL].[dbo].[EMPLOYEES] " +
+                    "WHERE [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id;";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = this._id;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                this._surname = reader.GetValue(0).ToString().Trim();
+                                this._name = reader.GetValue(1).ToString().Trim();
+                                this._patromic = reader.GetValue(2).ToString().Trim();
+                                this._sign = (byte[])reader.GetValue(3);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
     }
 }

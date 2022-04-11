@@ -43,6 +43,10 @@ namespace IUL
             {
                 ComboBoxChapterNames.Items.Add(chapter.ChapterName);
             }
+            Employee GIP = new Employee(_selectedProject.IdGIP);
+            Employee Nkontr = new Employee(_selectedProject.IdNkont);
+            TextBoxGIP.Text = GIP.Surname;
+            TextBoxNkontr.Text = Nkontr.Surname;
         }
     }
 }
