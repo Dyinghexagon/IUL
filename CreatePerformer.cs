@@ -75,9 +75,13 @@ namespace IUL
         {
             try 
             {
+                ComboBoxChapterNames.Items.Clear();
                 String nameSelectedProject = this.ComboBoxProjectNames.Items[this.ComboBoxProjectNames.SelectedIndex].ToString();
                 this._selectedProject = new Project(nameSelectedProject);
-                Chapter.InitializeComboBoxChapters(this.ComboBoxChapterNames, this._selectedProject.Id);
+                foreach(var chapter in _selectedProject.Chapters()) 
+                {
+                    ComboBoxChapterNames.Items.Add(chapter.ChapterName);
+                }
             }
             catch (Exception ex)
             {

@@ -58,7 +58,7 @@ namespace IUL
             {
                 String nameProject = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
                 _selectedProject = new Project(nameProject);
-                LabelIdProject.Text = _selectedProject.Id;
+                LabelProjectIdValue.Text = _selectedProject.Id;
                 if (_selectedProject.CapitalOrLinear)
                 {
                     FilingComboBoxCapitalChapter();
@@ -89,9 +89,9 @@ namespace IUL
                 }
                 this._newChapter.ChapterName += nameSelectedChapter;
                 
-                this._newChapter.Id = (this.CheckBoxUniqueIdChapter.Checked)? this.TextBoxIdChapter.Text : LabelIdProject.Text + "-" + TextBoxIdChapter?.Text;
+                this._newChapter.Id = (this.CheckBoxUniqueChapterId.Checked)? this.TextBoxChapterId.Text : LabelProjectIdValue.Text + "-" + TextBoxChapterId?.Text;
                 this._newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;
-                this._newChapter.ProjectId = this.LabelIdProject.Text;
+                this._newChapter.ProjectId = this.LabelProjectIdValue.Text;
                 this._newChapter.InsertNewChapter();
             }
             catch(Exception ex) 

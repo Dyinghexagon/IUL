@@ -212,49 +212,6 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static void InitializeComboBoxChapters(System.Windows.Forms.ComboBox fillingComboBox, String projectId) 
-        {
-            try 
-            {
-                Int32 countChapters;
-                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-                {
-                    connection.Open();
-                    String queryCount = "USE IUL;" +
-                        "SELECT COUNT(*) FROM[IUL].[dbo].[CHAPTERS] WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId;";
-                    using (SqlCommand getchild = new SqlCommand(queryCount, connection)) //SQL queries
-                    {
-                        getchild.Parameters.Add("@projectId", System.Data.SqlDbType.NChar).Value = projectId;
-                        countChapters = Convert.ToInt32(getchild.ExecuteScalar());
-                    }
-                }
-                String[] chapters = new String[countChapters];
-                String querySelect = "USE IUL;" +
-                    "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] " +
-                    "FROM [IUL].[dbo].[CHAPTERS] " +
-                    "WHERE [IUL].[dbo].[CHAPTERS].[CHAPTER_PROJECT_ID] = @projectId;";
-                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(querySelect, connection);
-                    command.Parameters.Add("@projectId", System.Data.SqlDbType.NChar).Value = projectId;
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            for (Int32 i = 0; reader.Read(); i++)
-                            {
-                                chapters[i] = reader.GetValue(0).ToString().Trim();
-                            }
-                        }
-                    }
-                }
-                fillingComboBox.Items.AddRange(chapters);
-            }
-            catch(Exception ex) 
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
+        
     }
 }

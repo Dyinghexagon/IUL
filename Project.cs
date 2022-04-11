@@ -489,6 +489,14 @@ namespace IUL
                 }
             }
         }
+
+        public IEnumerable<Chapter> Chapters() 
+        {
+            foreach(var chapter in _chaptersDict) 
+            {
+                yield return chapter.Key;
+            }
+        }
     }
 }
         

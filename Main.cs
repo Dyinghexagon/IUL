@@ -112,5 +112,19 @@ namespace IUL
             }
         }
 
+        private void ButtonEditProject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EditProject editProject = new EditProject();
+                Program.PreviosPage = this;
+                editProject.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
+        }
     }
 }

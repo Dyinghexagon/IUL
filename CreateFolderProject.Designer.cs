@@ -29,7 +29,7 @@ namespace IUL
         /// </summary>
         private void InitializeComponent()
         {
-            this.LabelResearchsHint = new System.Windows.Forms.Label();
+            this.LabelResearchs = new System.Windows.Forms.Label();
             this.CheckedListBoxResearchs = new System.Windows.Forms.CheckedListBox();
             this.LabelChapters = new System.Windows.Forms.Label();
             this.CheckedListBoxChapters = new System.Windows.Forms.CheckedListBox();
@@ -47,14 +47,14 @@ namespace IUL
             this.GroupBoxChoosTypeProject.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LabelResearchsHint
+            // LabelResearchs
             // 
-            this.LabelResearchsHint.AutoSize = true;
-            this.LabelResearchsHint.Location = new System.Drawing.Point(12, 4);
-            this.LabelResearchsHint.Name = "LabelResearchsHint";
-            this.LabelResearchsHint.Size = new System.Drawing.Size(68, 15);
-            this.LabelResearchsHint.TabIndex = 5;
-            this.LabelResearchsHint.Text = "Изыскания";
+            this.LabelResearchs.AutoSize = true;
+            this.LabelResearchs.Location = new System.Drawing.Point(12, 4);
+            this.LabelResearchs.Name = "LabelResearchs";
+            this.LabelResearchs.Size = new System.Drawing.Size(68, 15);
+            this.LabelResearchs.TabIndex = 5;
+            this.LabelResearchs.Text = "Изыскания";
             // 
             // CheckedListBoxResearchs
             // 
@@ -190,7 +190,6 @@ namespace IUL
             // 
             // CreateFolderProject
             // 
-            this.MaximizeBox = false;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(656, 450);
@@ -205,8 +204,9 @@ namespace IUL
             this.Controls.Add(this.CheckedListBoxChapters);
             this.Controls.Add(this.LabelChapters);
             this.Controls.Add(this.CheckedListBoxResearchs);
-            this.Controls.Add(this.LabelResearchsHint);
+            this.Controls.Add(this.LabelResearchs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CreateFolderProject";
             this.Text = "Создание папки проекта";
             this.GroupBoxChoosTypeProject.ResumeLayout(false);
@@ -265,7 +265,7 @@ namespace IUL
 
         #endregion
 
-        private System.Windows.Forms.Label LabelResearchsHint;
+        private System.Windows.Forms.Label LabelResearchs;
         private System.Windows.Forms.CheckedListBox CheckedListBoxResearchs;
         private System.Windows.Forms.Label LabelChapters;
         private System.Windows.Forms.CheckedListBox CheckedListBoxChapters;

@@ -56,8 +56,8 @@ namespace IUL
                     this._newProject.Surveys.IsGeotechnicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(4);
                     this._newProject.Surveys.IsArchaeologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(5);
                     this._newProject.Surveys.IsInspectionOfTechnicalCondition = this.CheckedListBoxResearchs.GetItemChecked(6);
-                    this._newProject.Id = TextBoxCodeProject.Text;
-                    this._newProject.Name = TextBoxNameProject.Text;
+                    this._newProject.Id = TextBoxProjectId.Text;
+                    this._newProject.Name = TextBoxProjectName.Text;
                     this._newProject.NameCustomer = TextBoxNameCustomer.Text;
                     this._newProject.InsertNewProject();
 					MessageBox.Show("Новый проект добавлен!");
@@ -73,7 +73,7 @@ namespace IUL
         {
             try 
             {
-                if (TextBoxCodeProject.Text.Length == 0)
+                if (TextBoxProjectId.Text.Length == 0)
                 {
                     MessageBox.Show("Необходимо ввести шифр нового проекта!");
                     return false;
@@ -85,7 +85,7 @@ namespace IUL
                     return false;
                 }
 
-                if (TextBoxNameProject.Text.Length == 0)
+                if (TextBoxProjectName.Text.Length == 0)
                 {
                     MessageBox.Show("Необходимо ввести наименование проекта!");
                     return false;

@@ -38,10 +38,10 @@ namespace IUL
             this.LabelGIP = new System.Windows.Forms.Label();
             this.LabelNkontr = new System.Windows.Forms.Label();
             this.ComboBoxChoosingNkontr = new System.Windows.Forms.ComboBox();
-            this.TextBoxCodeProject = new System.Windows.Forms.TextBox();
-            this.LabelCodeProject = new System.Windows.Forms.Label();
-            this.LabelNameProject = new System.Windows.Forms.Label();
-            this.TextBoxNameProject = new System.Windows.Forms.TextBox();
+            this.TextBoxProjectId = new System.Windows.Forms.TextBox();
+            this.LabelProjectId = new System.Windows.Forms.Label();
+            this.LabelProjectName = new System.Windows.Forms.Label();
+            this.TextBoxProjectName = new System.Windows.Forms.TextBox();
             this.LabelNameCustomer = new System.Windows.Forms.Label();
             this.TextBoxNameCustomer = new System.Windows.Forms.TextBox();
             this.ButtonChoosingMainFolder = new System.Windows.Forms.Button();
@@ -146,38 +146,38 @@ namespace IUL
             this.ComboBoxChoosingNkontr.TabIndex = 23;
             this.ComboBoxChoosingNkontr.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChoosingNkontr_SelectedIndexChanged);
             // 
-            // TextBoxCodeProject
+            // TextBoxProjectId
             // 
-            this.TextBoxCodeProject.Location = new System.Drawing.Point(318, 133);
-            this.TextBoxCodeProject.Name = "TextBoxCodeProject";
-            this.TextBoxCodeProject.Size = new System.Drawing.Size(416, 23);
-            this.TextBoxCodeProject.TabIndex = 25;
+            this.TextBoxProjectId.Location = new System.Drawing.Point(318, 133);
+            this.TextBoxProjectId.Name = "TextBoxProjectId";
+            this.TextBoxProjectId.Size = new System.Drawing.Size(416, 23);
+            this.TextBoxProjectId.TabIndex = 25;
             // 
-            // LabelCodeProject
+            // LabelProjectId
             // 
-            this.LabelCodeProject.AutoSize = true;
-            this.LabelCodeProject.Location = new System.Drawing.Point(318, 115);
-            this.LabelCodeProject.Name = "LabelCodeProject";
-            this.LabelCodeProject.Size = new System.Drawing.Size(88, 15);
-            this.LabelCodeProject.TabIndex = 26;
-            this.LabelCodeProject.Text = "Шифр проекта";
+            this.LabelProjectId.AutoSize = true;
+            this.LabelProjectId.Location = new System.Drawing.Point(318, 115);
+            this.LabelProjectId.Name = "LabelProjectId";
+            this.LabelProjectId.Size = new System.Drawing.Size(88, 15);
+            this.LabelProjectId.TabIndex = 26;
+            this.LabelProjectId.Text = "Шифр проекта";
             // 
-            // LabelNameProject
+            // LabelProjectName
             // 
-            this.LabelNameProject.AutoSize = true;
-            this.LabelNameProject.Location = new System.Drawing.Point(10, 160);
-            this.LabelNameProject.Name = "LabelNameProject";
-            this.LabelNameProject.Size = new System.Drawing.Size(137, 15);
-            this.LabelNameProject.TabIndex = 28;
-            this.LabelNameProject.Text = "Наименование проекта";
+            this.LabelProjectName.AutoSize = true;
+            this.LabelProjectName.Location = new System.Drawing.Point(10, 160);
+            this.LabelProjectName.Name = "LabelProjectName";
+            this.LabelProjectName.Size = new System.Drawing.Size(137, 15);
+            this.LabelProjectName.TabIndex = 28;
+            this.LabelProjectName.Text = "Наименование проекта";
             // 
-            // TextBoxNameProject
+            // TextBoxProjectName
             // 
-            this.TextBoxNameProject.Location = new System.Drawing.Point(12, 178);
-            this.TextBoxNameProject.Multiline = true;
-            this.TextBoxNameProject.Name = "TextBoxNameProject";
-            this.TextBoxNameProject.Size = new System.Drawing.Size(722, 90);
-            this.TextBoxNameProject.TabIndex = 27;
+            this.TextBoxProjectName.Location = new System.Drawing.Point(12, 178);
+            this.TextBoxProjectName.Multiline = true;
+            this.TextBoxProjectName.Name = "TextBoxProjectName";
+            this.TextBoxProjectName.Size = new System.Drawing.Size(722, 90);
+            this.TextBoxProjectName.TabIndex = 27;
             // 
             // LabelNameCustomer
             // 
@@ -238,7 +238,6 @@ namespace IUL
             // 
             // CreateProject
             // 
-            this.MaximizeBox = false;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 448);
@@ -248,10 +247,10 @@ namespace IUL
             this.Controls.Add(this.ButtonChoosingMainFolder);
             this.Controls.Add(this.LabelNameCustomer);
             this.Controls.Add(this.TextBoxNameCustomer);
-            this.Controls.Add(this.LabelNameProject);
-            this.Controls.Add(this.TextBoxNameProject);
-            this.Controls.Add(this.LabelCodeProject);
-            this.Controls.Add(this.TextBoxCodeProject);
+            this.Controls.Add(this.LabelProjectName);
+            this.Controls.Add(this.TextBoxProjectName);
+            this.Controls.Add(this.LabelProjectId);
+            this.Controls.Add(this.TextBoxProjectId);
             this.Controls.Add(this.LabelNkontr);
             this.Controls.Add(this.ComboBoxChoosingNkontr);
             this.Controls.Add(this.LabelGIP);
@@ -260,6 +259,7 @@ namespace IUL
             this.Controls.Add(this.CheckedListBoxResearchs);
             this.Controls.Add(this.LabelResearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CreateProject";
             this.Text = "Создать новый проект";
             this.GroupBoxChoosingTyoeProject.ResumeLayout(false);
@@ -279,10 +279,10 @@ namespace IUL
         private System.Windows.Forms.Label LabelGIP;
         private System.Windows.Forms.Label LabelNkontr;
         private System.Windows.Forms.ComboBox ComboBoxChoosingNkontr;
-        private System.Windows.Forms.TextBox TextBoxCodeProject;
-        private System.Windows.Forms.Label LabelCodeProject;
-        private System.Windows.Forms.Label LabelNameProject;
-        private System.Windows.Forms.TextBox TextBoxNameProject;
+        private System.Windows.Forms.TextBox TextBoxProjectId;
+        private System.Windows.Forms.Label LabelProjectId;
+        private System.Windows.Forms.Label LabelProjectName;
+        private System.Windows.Forms.TextBox TextBoxProjectName;
         private System.Windows.Forms.Label LabelNameCustomer;
         private System.Windows.Forms.TextBox TextBoxNameCustomer;
         private System.Windows.Forms.Button ButtonChoosingMainFolder;

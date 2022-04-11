@@ -29,10 +29,10 @@ namespace IUL
         /// </summary>
         private void InitializeComponent()
         {
-            this.LabelNameChapters = new System.Windows.Forms.Label();
+            this.LabelChapterNames = new System.Windows.Forms.Label();
             this.ComboBoxChapterNames = new System.Windows.Forms.ComboBox();
             this.ComboBoxProjectNames = new System.Windows.Forms.ComboBox();
-            this.LabelNameProjects = new System.Windows.Forms.Label();
+            this.LabelProjectNames = new System.Windows.Forms.Label();
             this.LabelSurnameEmploeey = new System.Windows.Forms.Label();
             this.ComboBoxEmployees = new System.Windows.Forms.ComboBox();
             this.LabelRoleEmployee = new System.Windows.Forms.Label();
@@ -45,14 +45,14 @@ namespace IUL
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSelectedChapter)).BeginInit();
             this.SuspendLayout();
             // 
-            // LabelNameChapters
+            // LabelChapterNames
             // 
-            this.LabelNameChapters.AutoSize = true;
-            this.LabelNameChapters.Location = new System.Drawing.Point(12, 55);
-            this.LabelNameChapters.Name = "LabelNameChapters";
-            this.LabelNameChapters.Size = new System.Drawing.Size(114, 15);
-            this.LabelNameChapters.TabIndex = 12;
-            this.LabelNameChapters.Text = "Перечень разделов";
+            this.LabelChapterNames.AutoSize = true;
+            this.LabelChapterNames.Location = new System.Drawing.Point(12, 55);
+            this.LabelChapterNames.Name = "LabelChapterNames";
+            this.LabelChapterNames.Size = new System.Drawing.Size(114, 15);
+            this.LabelChapterNames.TabIndex = 12;
+            this.LabelChapterNames.Text = "Перечень разделов";
             // 
             // ComboBoxChapterNames
             // 
@@ -72,14 +72,14 @@ namespace IUL
             this.ComboBoxProjectNames.TabIndex = 10;
             this.ComboBoxProjectNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
             // 
-            // LabelNameProjects
+            // LabelProjectNames
             // 
-            this.LabelNameProjects.AutoSize = true;
-            this.LabelNameProjects.Location = new System.Drawing.Point(12, 9);
-            this.LabelNameProjects.Name = "LabelNameProjects";
-            this.LabelNameProjects.Size = new System.Drawing.Size(102, 15);
-            this.LabelNameProjects.TabIndex = 9;
-            this.LabelNameProjects.Text = "Выберите проект";
+            this.LabelProjectNames.AutoSize = true;
+            this.LabelProjectNames.Location = new System.Drawing.Point(12, 9);
+            this.LabelProjectNames.Name = "LabelProjectNames";
+            this.LabelProjectNames.Size = new System.Drawing.Size(102, 15);
+            this.LabelProjectNames.TabIndex = 9;
+            this.LabelProjectNames.Text = "Выберите проект";
             // 
             // LabelSurnameEmploeey
             // 
@@ -180,10 +180,10 @@ namespace IUL
             this.Controls.Add(this.ComboBoxRoles);
             this.Controls.Add(this.LabelSurnameEmploeey);
             this.Controls.Add(this.ComboBoxEmployees);
-            this.Controls.Add(this.LabelNameChapters);
+            this.Controls.Add(this.LabelChapterNames);
             this.Controls.Add(this.ComboBoxChapterNames);
             this.Controls.Add(this.ComboBoxProjectNames);
-            this.Controls.Add(this.LabelNameProjects);
+            this.Controls.Add(this.LabelProjectNames);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "CreatePerformer";
@@ -195,10 +195,10 @@ namespace IUL
         }
         #endregion
 
-        private System.Windows.Forms.Label LabelNameChapters;
+        private System.Windows.Forms.Label LabelChapterNames;
         private System.Windows.Forms.ComboBox ComboBoxChapterNames;
         private System.Windows.Forms.ComboBox ComboBoxProjectNames;
-        private System.Windows.Forms.Label LabelNameProjects;
+        private System.Windows.Forms.Label LabelProjectNames;
         private System.Windows.Forms.Label LabelSurnameEmploeey;
         private System.Windows.Forms.ComboBox ComboBoxEmployees;
         private System.Windows.Forms.Label LabelRoleEmployee;

@@ -29,35 +29,35 @@ namespace IUL
         /// </summary>
         private void InitializeComponent()
         {
-            this.ComboBoxNameProjects = new System.Windows.Forms.ComboBox();
-            this.LabelNameProjectsHint = new System.Windows.Forms.Label();
+            this.ComboBoxProjectNames = new System.Windows.Forms.ComboBox();
+            this.LabelProjectNames = new System.Windows.Forms.Label();
             this.ButtonBack = new System.Windows.Forms.Button();
             this.ButtonCreateIULs = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LabelAvailableIULs = new System.Windows.Forms.Label();
             this.DataGridViewChapterNames = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterNames)).BeginInit();
             this.SuspendLayout();
             // 
-            // ComboBoxNameProjects
+            // ComboBoxProjectNames
             // 
-            this.ComboBoxNameProjects.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ComboBoxNameProjects.FormattingEnabled = true;
-            this.ComboBoxNameProjects.Location = new System.Drawing.Point(12, 26);
-            this.ComboBoxNameProjects.Name = "ComboBoxNameProjects";
-            this.ComboBoxNameProjects.Size = new System.Drawing.Size(465, 23);
-            this.ComboBoxNameProjects.TabIndex = 0;
-            this.ComboBoxNameProjects.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
+            this.ComboBoxProjectNames.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ComboBoxProjectNames.FormattingEnabled = true;
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 26);
+            this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
+            this.ComboBoxProjectNames.Size = new System.Drawing.Size(470, 23);
+            this.ComboBoxProjectNames.TabIndex = 0;
+            this.ComboBoxProjectNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNameProjects_SelectedIndexChanged);
             // 
-            // LabelNameProjectsHint
+            // LabelProjectNames
             // 
-            this.LabelNameProjectsHint.AutoSize = true;
-            this.LabelNameProjectsHint.Location = new System.Drawing.Point(12, 8);
-            this.LabelNameProjectsHint.Name = "LabelNameProjectsHint";
-            this.LabelNameProjectsHint.Size = new System.Drawing.Size(114, 15);
-            this.LabelNameProjectsHint.TabIndex = 1;
-            this.LabelNameProjectsHint.Text = "Перечень разделов";
+            this.LabelProjectNames.AutoSize = true;
+            this.LabelProjectNames.Location = new System.Drawing.Point(12, 8);
+            this.LabelProjectNames.Name = "LabelProjectNames";
+            this.LabelProjectNames.Size = new System.Drawing.Size(115, 15);
+            this.LabelProjectNames.TabIndex = 1;
+            this.LabelProjectNames.Text = "Перечень проектов";
             // 
             // ButtonBack
             // 
@@ -79,21 +79,21 @@ namespace IUL
             this.ButtonCreateIULs.UseVisualStyleBackColor = true;
             this.ButtonCreateIULs.Click += new System.EventHandler(this.ButtonCreateIULs_Click);
             // 
-            // dateTimePicker1
+            // DateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(277, 55);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 4;
+            this.DateTimePicker.Location = new System.Drawing.Point(282, 57);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.DateTimePicker.TabIndex = 4;
             // 
-            // label1
+            // LabelAvailableIULs
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 83);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Список доступных ИУЛов";
+            this.LabelAvailableIULs.AutoSize = true;
+            this.LabelAvailableIULs.Location = new System.Drawing.Point(12, 83);
+            this.LabelAvailableIULs.Name = "LabelAvailableIULs";
+            this.LabelAvailableIULs.Size = new System.Drawing.Size(150, 15);
+            this.LabelAvailableIULs.TabIndex = 6;
+            this.LabelAvailableIULs.Text = "Список доступных ИУЛов";
             // 
             // DataGridViewChapterNames
             // 
@@ -101,7 +101,7 @@ namespace IUL
             this.DataGridViewChapterNames.Location = new System.Drawing.Point(12, 101);
             this.DataGridViewChapterNames.Name = "DataGridViewChapterNames";
             this.DataGridViewChapterNames.RowTemplate.Height = 25;
-            this.DataGridViewChapterNames.Size = new System.Drawing.Size(465, 177);
+            this.DataGridViewChapterNames.Size = new System.Drawing.Size(470, 177);
             this.DataGridViewChapterNames.TabIndex = 7;
             this.DataGridViewChapterNames.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
@@ -111,12 +111,12 @@ namespace IUL
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 290);
             this.Controls.Add(this.DataGridViewChapterNames);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.LabelAvailableIULs);
+            this.Controls.Add(this.DateTimePicker);
             this.Controls.Add(this.ButtonCreateIULs);
             this.Controls.Add(this.ButtonBack);
-            this.Controls.Add(this.LabelNameProjectsHint);
-            this.Controls.Add(this.ComboBoxNameProjects);
+            this.Controls.Add(this.LabelProjectNames);
+            this.Controls.Add(this.ComboBoxProjectNames);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "CreateIUL";
@@ -129,13 +129,13 @@ namespace IUL
 
         #endregion
 
-        private System.Windows.Forms.ComboBox ComboBoxNameProjects;
-        private System.Windows.Forms.Label LabelNameProjectsHint;
+        private System.Windows.Forms.ComboBox ComboBoxProjectNames;
+        private System.Windows.Forms.Label LabelProjectNames;
         private System.Windows.Forms.Button ButtonBack;
         private System.Windows.Forms.Button ButtonCreateIULs;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelAvailableIULs;
         private System.Windows.Forms.DataGridView DataGridViewChapterNames;
     }
 }

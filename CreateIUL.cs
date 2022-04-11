@@ -18,7 +18,7 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxNameProjects, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
                 _checkCol = new DataGridViewCheckBoxColumn();
                 _checkCol.Name = "CheckCol";
                 _checkCol.HeaderText = "CheckCol";
@@ -55,9 +55,9 @@ namespace IUL
                 });
                 DataGridViewChapterNames.ClearSelection();
 
-                ComboBoxNameProjects.DrawMode = DrawMode.OwnerDrawVariable;
-                ComboBoxNameProjects.DrawItem += Main.ComboBox_DrawItem;
-                ComboBoxNameProjects.MeasureItem += Main.ComboBox_MeasureItem;
+                ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
+                ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
+                ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
 
             }
             catch (Exception ex) 
@@ -109,7 +109,7 @@ namespace IUL
         {
             try 
             {
-                String dateSigning = dateTimePicker1.Value.ToShortDateString();
+                String dateSigning = DateTimePicker.Value.ToShortDateString();
                 String pathMainFolder = String.Empty;
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
@@ -126,7 +126,7 @@ namespace IUL
         {
             try 
             {
-                String projectName = ComboBoxNameProjects.Items[ComboBoxNameProjects.SelectedIndex].ToString();
+                String projectName = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
                 this._selectedProject = new Project(projectName);
                 this._selectedProject.FillingDataGridViewChapters(this.DataGridViewChapterNames);
 
