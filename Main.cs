@@ -116,9 +116,9 @@ namespace IUL
         {
             try
             {
-                EditProject editProject = new EditProject();
+                ChoiseEdit choiseEdit = new ChoiseEdit();
                 Program.PreviosPage = this;
-                editProject.Show();
+                choiseEdit.Show();
                 this.Hide();
             }
             catch (Exception ex)

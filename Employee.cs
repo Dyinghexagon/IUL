@@ -14,19 +14,26 @@ namespace IUL
         private Byte[] _sign;
         public Int32 Id
         {
-            get { return this._id; }
+            get { return _id; }
+            set { _id = value; }
         }
         public String Surname
         {
-            get { return this._surname; }
+            get { return _surname; }
+            set { _surname = value; }
+
         }
         public String Name
         {
-            get { return this._name; }
+            get { return _name; }
+            set { _name = value; }
+
         }
         public String Patromic
         {
             get { return this._patromic; }
+            set { _patromic = value; }
+
         }
         public System.Drawing.Image Sign 
         {
@@ -36,6 +43,14 @@ namespace IUL
                 {
                     System.Drawing.Image imgSign = System.Drawing.Image.FromStream(ms);
                     return imgSign;
+                }
+            }
+            set 
+            {
+                using(var ms = new MemoryStream()) 
+                {
+                    value.Save(ms, value.RawFormat);
+                    _sign = ms.ToArray();
                 }
             }
         }
@@ -111,6 +126,18 @@ namespace IUL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
+            }
+        }
+        public Employee(Employee employee) 
+        {
+            _id = employee.Id;
+            _name = employee.Name;
+            _surname = employee.Surname;
+            _patromic = employee.Patromic;
+            using (var ms = new MemoryStream())
+            {
+                employee.Sign.Save(ms, employee.Sign.RawFormat);
+                _sign = ms.ToArray();
             }
         }
     }

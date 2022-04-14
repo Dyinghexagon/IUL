@@ -17,8 +17,6 @@ namespace IUL
         private Boolean _capitalOrLinear;
         private Surveys _surveys;
         private String _nameCustomer;
-        private Int32 _idGIP;
-        private Int32 _idNkont;
         private String _path;
         private Dictionary<Chapter, Boolean> _chaptersDict;
         private Employee _GIP;
@@ -49,17 +47,15 @@ namespace IUL
             set { this._nameCustomer = value; }
 
         }
-        public Int32 IdGIP
+        public Employee GIP 
         {
-            get { return this._idGIP; }
-            set { this._idGIP = value; }
-
+            get { return _GIP; }
+            set { _GIP = new Employee(value); }
         }
-        public Int32 IdNkont
+        public Employee Nkontr 
         {
-            get { return this._idNkont; }
-            set { this._idNkont = value; }
-
+            get { return _Nkontr; }
+            set { _Nkontr = new Employee(value); }
         }
         public String Path
         {
@@ -93,8 +89,6 @@ namespace IUL
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_CUSTOMER]" +
-                    ",[IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID]" +
-                    ",[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_PATH_FOLDER]" +
                     ",[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
                     ",[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]" +
@@ -122,11 +116,9 @@ namespace IUL
                                     Convert.ToBoolean(reader.GetValue(6)), Convert.ToBoolean(reader.GetValue(7)), 
                                     Convert.ToBoolean(reader.GetValue(8)));
                                 this._nameCustomer = reader.GetValue(9).ToString().Trim();
-                                this._idGIP = Convert.ToInt32(reader.GetValue(10));
-                                this._idNkont = Convert.ToInt32(reader.GetValue(11));
-                                this._path = reader.GetValue(12).ToString().Trim();
-                                this._GIP = new Employee(reader.GetValue(13).ToString().Trim());
-                                this._Nkontr = new Employee(reader.GetValue(14).ToString().Trim());
+                                this._path = reader.GetValue(10).ToString().Trim();
+                                this._GIP = new Employee(reader.GetValue(11).ToString().Trim());
+                                this._Nkontr = new Employee(reader.GetValue(12).ToString().Trim());
                             }
                         }
                     }
@@ -201,8 +193,8 @@ namespace IUL
                     command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
                         this.Surveys.IsInspectionOfTechnicalCondition;
                     command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
-                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._idGIP;
-                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._idNkont;
+                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._GIP.Id;
+                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._Nkontr.Id;
                     command.Parameters.Add("@path", SqlDbType.Text).Value = this._path;
                     command.ExecuteNonQuery();
                 }
@@ -489,12 +481,56 @@ namespace IUL
                 }
             }
         }
-
         public IEnumerable<Chapter> Chapters() 
         {
             foreach(var chapter in _chaptersDict) 
             {
                 yield return chapter.Key;
+            }
+        }
+        public void UpdateProject() 
+        {
+            try 
+            {
+                String query = "USE IUL; " +
+                    "UPDATE[IUL].[dbo].[PROJECTS] " +
+                    "SET[IUL].[dbo].[PROJECTS].[PROJECT_CUSTOMER] = @nameCustomer, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_NAME] = @name, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = @idGIP, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = @idNkpntr, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS] = @isGeodetiSurveys, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL_SURVEYS_SURVEYS] = @isGeologicalSurveysSurveys, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_ENVIRONMENTAL_SURVEYS] = @isEnvironmentalSurveys, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_METEOROLOGICAL_SURVEYS] = @isMeteorologicalSurveys, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_GEOTECHNICAL_SURVEYS] = @isGeotechnicalSurveys, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS] = @isInspectionOfTechnicalCondition, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION] = @insOfRec " +
+                    "WHERE[IUL].[dbo].[PROJECTS].[PROJECT_ID] = @id;";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = this._id;
+                    command.Parameters.Add("@name", SqlDbType.Text).Value = this._name;
+                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeodetiSurveys;
+                    command.Parameters.Add("@isGeologicalSurveysSurveys", SqlDbType.Bit).Value =
+                        this.Surveys.IsGeologicalSurveysSurveys;
+                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this.Surveys.IsEnvironmentalSurveys;
+                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsMeteorologicalSurveys;
+                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeotechnicalSurveys;
+                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsArchaeologicalSurveys;
+                    command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
+                        this.Surveys.IsInspectionOfTechnicalCondition;
+                    command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
+                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._GIP.Id;
+                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._Nkontr.Id;
+                    command.ExecuteNonQuery();
+                }
+
+            }
+            catch(Exception ex) 
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

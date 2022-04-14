@@ -32,8 +32,6 @@
             this.LabelProjectNames = new System.Windows.Forms.Label();
             this.ButtonEdicting = new System.Windows.Forms.Button();
             this.ButtonBack = new System.Windows.Forms.Button();
-            this.LabelChapterNames = new System.Windows.Forms.Label();
-            this.ComboBoxChapterNames = new System.Windows.Forms.ComboBox();
             this.LabelGIP = new System.Windows.Forms.Label();
             this.TextBoxGIP = new System.Windows.Forms.TextBox();
             this.TextBoxNkontr = new System.Windows.Forms.TextBox();
@@ -44,13 +42,19 @@
             this.LabelEmployeesNkontr = new System.Windows.Forms.Label();
             this.ComboBoxeEmployeesNkontr = new System.Windows.Forms.ComboBox();
             this.CheckBoxChangeNkontr = new System.Windows.Forms.CheckBox();
-            this.LabelAuthors = new System.Windows.Forms.Label();
-            this.CheckBoxChangeAuthors = new System.Windows.Forms.CheckBox();
-            this.LabelEmployeesAuthor = new System.Windows.Forms.Label();
-            this.DataGridViewChapterAuthors = new System.Windows.Forms.DataGridView();
-            this.DataGridViewAuthors = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).BeginInit();
+            this.TextBoxCustomer = new System.Windows.Forms.TextBox();
+            this.LabelCustomer = new System.Windows.Forms.Label();
+            this.CheckBoxChangeCustomer = new System.Windows.Forms.CheckBox();
+            this.TextBoxNewCustomer = new System.Windows.Forms.TextBox();
+            this.LabelNewCustomer = new System.Windows.Forms.Label();
+            this.CheckedListBoxResearchs = new System.Windows.Forms.CheckedListBox();
+            this.LabelResearch = new System.Windows.Forms.Label();
+            this.СheckBoxChangeResearchs = new System.Windows.Forms.CheckBox();
+            this.TextBoxNewProjectName = new System.Windows.Forms.TextBox();
+            this.LabelNewProjectName = new System.Windows.Forms.Label();
+            this.CheckBoxChangeProjectName = new System.Windows.Forms.CheckBox();
+            this.TextBoxProjectName = new System.Windows.Forms.TextBox();
+            this.LabelProjectName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ComboBoxProjectNames
@@ -58,7 +62,7 @@
             this.ComboBoxProjectNames.FormattingEnabled = true;
             this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 26);
             this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
-            this.ComboBoxProjectNames.Size = new System.Drawing.Size(488, 23);
+            this.ComboBoxProjectNames.Size = new System.Drawing.Size(806, 23);
             this.ComboBoxProjectNames.TabIndex = 0;
             this.ComboBoxProjectNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxProjectNames_SelectedIndexChanged);
             // 
@@ -73,7 +77,7 @@
             // 
             // ButtonEdicting
             // 
-            this.ButtonEdicting.Location = new System.Drawing.Point(399, 416);
+            this.ButtonEdicting.Location = new System.Drawing.Point(717, 406);
             this.ButtonEdicting.Name = "ButtonEdicting";
             this.ButtonEdicting.Size = new System.Drawing.Size(101, 23);
             this.ButtonEdicting.TabIndex = 2;
@@ -83,7 +87,7 @@
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(12, 416);
+            this.ButtonBack.Location = new System.Drawing.Point(418, 406);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(75, 23);
             this.ButtonBack.TabIndex = 3;
@@ -91,28 +95,10 @@
             this.ButtonBack.UseVisualStyleBackColor = true;
             this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
-            // LabelChapterNames
-            // 
-            this.LabelChapterNames.AutoSize = true;
-            this.LabelChapterNames.Location = new System.Drawing.Point(12, 51);
-            this.LabelChapterNames.Name = "LabelChapterNames";
-            this.LabelChapterNames.Size = new System.Drawing.Size(114, 15);
-            this.LabelChapterNames.TabIndex = 7;
-            this.LabelChapterNames.Text = "Перечень разделов";
-            // 
-            // ComboBoxChapterNames
-            // 
-            this.ComboBoxChapterNames.FormattingEnabled = true;
-            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 69);
-            this.ComboBoxChapterNames.Name = "ComboBoxChapterNames";
-            this.ComboBoxChapterNames.Size = new System.Drawing.Size(488, 23);
-            this.ComboBoxChapterNames.TabIndex = 6;
-            this.ComboBoxChapterNames.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChapterNames_SelectedIndexChanged);
-            // 
             // LabelGIP
             // 
             this.LabelGIP.AutoSize = true;
-            this.LabelGIP.Location = new System.Drawing.Point(12, 101);
+            this.LabelGIP.Location = new System.Drawing.Point(12, 248);
             this.LabelGIP.Name = "LabelGIP";
             this.LabelGIP.Size = new System.Drawing.Size(158, 15);
             this.LabelGIP.TabIndex = 8;
@@ -121,23 +107,23 @@
             // TextBoxGIP
             // 
             this.TextBoxGIP.Enabled = false;
-            this.TextBoxGIP.Location = new System.Drawing.Point(12, 119);
+            this.TextBoxGIP.Location = new System.Drawing.Point(12, 266);
             this.TextBoxGIP.Name = "TextBoxGIP";
-            this.TextBoxGIP.Size = new System.Drawing.Size(201, 23);
+            this.TextBoxGIP.Size = new System.Drawing.Size(400, 23);
             this.TextBoxGIP.TabIndex = 9;
             // 
             // TextBoxNkontr
             // 
             this.TextBoxNkontr.Enabled = false;
-            this.TextBoxNkontr.Location = new System.Drawing.Point(12, 162);
+            this.TextBoxNkontr.Location = new System.Drawing.Point(11, 361);
             this.TextBoxNkontr.Name = "TextBoxNkontr";
-            this.TextBoxNkontr.Size = new System.Drawing.Size(201, 23);
+            this.TextBoxNkontr.Size = new System.Drawing.Size(401, 23);
             this.TextBoxNkontr.TabIndex = 11;
             // 
             // LabelNkontr
             // 
             this.LabelNkontr.AutoSize = true;
-            this.LabelNkontr.Location = new System.Drawing.Point(12, 144);
+            this.LabelNkontr.Location = new System.Drawing.Point(11, 343);
             this.LabelNkontr.Name = "LabelNkontr";
             this.LabelNkontr.Size = new System.Drawing.Size(105, 15);
             this.LabelNkontr.TabIndex = 10;
@@ -146,7 +132,7 @@
             // CheckBoxChangeGIP
             // 
             this.CheckBoxChangeGIP.AutoSize = true;
-            this.CheckBoxChangeGIP.Location = new System.Drawing.Point(415, 123);
+            this.CheckBoxChangeGIP.Location = new System.Drawing.Point(327, 247);
             this.CheckBoxChangeGIP.Name = "CheckBoxChangeGIP";
             this.CheckBoxChangeGIP.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxChangeGIP.TabIndex = 12;
@@ -157,7 +143,7 @@
             // LabelEmployeesGIP
             // 
             this.LabelEmployeesGIP.AutoSize = true;
-            this.LabelEmployeesGIP.Location = new System.Drawing.Point(219, 101);
+            this.LabelEmployeesGIP.Location = new System.Drawing.Point(11, 292);
             this.LabelEmployeesGIP.Name = "LabelEmployeesGIP";
             this.LabelEmployeesGIP.Size = new System.Drawing.Size(143, 15);
             this.LabelEmployeesGIP.TabIndex = 14;
@@ -167,15 +153,15 @@
             // 
             this.ComboBoxeEmployeesGIP.Enabled = false;
             this.ComboBoxeEmployeesGIP.FormattingEnabled = true;
-            this.ComboBoxeEmployeesGIP.Location = new System.Drawing.Point(219, 119);
+            this.ComboBoxeEmployeesGIP.Location = new System.Drawing.Point(11, 310);
             this.ComboBoxeEmployeesGIP.Name = "ComboBoxeEmployeesGIP";
-            this.ComboBoxeEmployeesGIP.Size = new System.Drawing.Size(190, 23);
+            this.ComboBoxeEmployeesGIP.Size = new System.Drawing.Size(401, 23);
             this.ComboBoxeEmployeesGIP.TabIndex = 13;
             // 
             // LabelEmployeesNkontr
             // 
             this.LabelEmployeesNkontr.AutoSize = true;
-            this.LabelEmployeesNkontr.Location = new System.Drawing.Point(219, 144);
+            this.LabelEmployeesNkontr.Location = new System.Drawing.Point(11, 387);
             this.LabelEmployeesNkontr.Name = "LabelEmployeesNkontr";
             this.LabelEmployeesNkontr.Size = new System.Drawing.Size(143, 15);
             this.LabelEmployeesNkontr.TabIndex = 16;
@@ -185,15 +171,15 @@
             // 
             this.ComboBoxeEmployeesNkontr.Enabled = false;
             this.ComboBoxeEmployeesNkontr.FormattingEnabled = true;
-            this.ComboBoxeEmployeesNkontr.Location = new System.Drawing.Point(219, 162);
+            this.ComboBoxeEmployeesNkontr.Location = new System.Drawing.Point(12, 406);
             this.ComboBoxeEmployeesNkontr.Name = "ComboBoxeEmployeesNkontr";
-            this.ComboBoxeEmployeesNkontr.Size = new System.Drawing.Size(190, 23);
+            this.ComboBoxeEmployeesNkontr.Size = new System.Drawing.Size(400, 23);
             this.ComboBoxeEmployeesNkontr.TabIndex = 15;
             // 
             // CheckBoxChangeNkontr
             // 
             this.CheckBoxChangeNkontr.AutoSize = true;
-            this.CheckBoxChangeNkontr.Location = new System.Drawing.Point(415, 166);
+            this.CheckBoxChangeNkontr.Location = new System.Drawing.Point(326, 339);
             this.CheckBoxChangeNkontr.Name = "CheckBoxChangeNkontr";
             this.CheckBoxChangeNkontr.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxChangeNkontr.TabIndex = 17;
@@ -201,64 +187,154 @@
             this.CheckBoxChangeNkontr.UseVisualStyleBackColor = true;
             this.CheckBoxChangeNkontr.CheckedChanged += new System.EventHandler(this.CheckBoxChangeNkontr_CheckedChanged);
             // 
-            // LabelAuthors
+            // TextBoxCustomer
             // 
-            this.LabelAuthors.AutoSize = true;
-            this.LabelAuthors.Location = new System.Drawing.Point(12, 190);
-            this.LabelAuthors.Name = "LabelAuthors";
-            this.LabelAuthors.Size = new System.Drawing.Size(161, 15);
-            this.LabelAuthors.TabIndex = 19;
-            this.LabelAuthors.Text = "Перечень авторов разделов";
+            this.TextBoxCustomer.Enabled = false;
+            this.TextBoxCustomer.Location = new System.Drawing.Point(11, 73);
+            this.TextBoxCustomer.Multiline = true;
+            this.TextBoxCustomer.Name = "TextBoxCustomer";
+            this.TextBoxCustomer.Size = new System.Drawing.Size(400, 75);
+            this.TextBoxCustomer.TabIndex = 19;
             // 
-            // CheckBoxChangeAuthors
+            // LabelCustomer
             // 
-            this.CheckBoxChangeAuthors.AutoSize = true;
-            this.CheckBoxChangeAuthors.Location = new System.Drawing.Point(415, 191);
-            this.CheckBoxChangeAuthors.Name = "CheckBoxChangeAuthors";
-            this.CheckBoxChangeAuthors.Size = new System.Drawing.Size(85, 19);
-            this.CheckBoxChangeAuthors.TabIndex = 22;
-            this.CheckBoxChangeAuthors.Text = "Изменить?";
-            this.CheckBoxChangeAuthors.UseVisualStyleBackColor = true;
-            this.CheckBoxChangeAuthors.CheckedChanged += new System.EventHandler(this.CheckBoxChangeAuthors_CheckedChanged);
+            this.LabelCustomer.AutoSize = true;
+            this.LabelCustomer.Location = new System.Drawing.Point(11, 51);
+            this.LabelCustomer.Name = "LabelCustomer";
+            this.LabelCustomer.Size = new System.Drawing.Size(147, 15);
+            this.LabelCustomer.TabIndex = 18;
+            this.LabelCustomer.Text = "Наименование заказчика";
             // 
-            // LabelEmployeesAuthor
+            // CheckBoxChangeCustomer
             // 
-            this.LabelEmployeesAuthor.AutoSize = true;
-            this.LabelEmployeesAuthor.Location = new System.Drawing.Point(260, 190);
-            this.LabelEmployeesAuthor.Name = "LabelEmployeesAuthor";
-            this.LabelEmployeesAuthor.Size = new System.Drawing.Size(143, 15);
-            this.LabelEmployeesAuthor.TabIndex = 21;
-            this.LabelEmployeesAuthor.Text = "Перечень исполнителей";
+            this.CheckBoxChangeCustomer.AutoSize = true;
+            this.CheckBoxChangeCustomer.Location = new System.Drawing.Point(326, 51);
+            this.CheckBoxChangeCustomer.Name = "CheckBoxChangeCustomer";
+            this.CheckBoxChangeCustomer.Size = new System.Drawing.Size(85, 19);
+            this.CheckBoxChangeCustomer.TabIndex = 20;
+            this.CheckBoxChangeCustomer.Text = "Изменить?";
+            this.CheckBoxChangeCustomer.UseVisualStyleBackColor = true;
+            this.CheckBoxChangeCustomer.CheckedChanged += new System.EventHandler(this.CheckBoxChangeCustomer_CheckedChanged);
             // 
-            // DataGridViewChapterAuthors
+            // TextBoxNewCustomer
             // 
-            this.DataGridViewChapterAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewChapterAuthors.Location = new System.Drawing.Point(12, 212);
-            this.DataGridViewChapterAuthors.Name = "DataGridViewChapterAuthors";
-            this.DataGridViewChapterAuthors.RowTemplate.Height = 25;
-            this.DataGridViewChapterAuthors.Size = new System.Drawing.Size(240, 200);
-            this.DataGridViewChapterAuthors.TabIndex = 23;
+            this.TextBoxNewCustomer.Enabled = false;
+            this.TextBoxNewCustomer.Location = new System.Drawing.Point(12, 166);
+            this.TextBoxNewCustomer.Multiline = true;
+            this.TextBoxNewCustomer.Name = "TextBoxNewCustomer";
+            this.TextBoxNewCustomer.Size = new System.Drawing.Size(400, 75);
+            this.TextBoxNewCustomer.TabIndex = 22;
             // 
-            // DataGridViewAuthors
+            // LabelNewCustomer
             // 
-            this.DataGridViewAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewAuthors.Enabled = false;
-            this.DataGridViewAuthors.Location = new System.Drawing.Point(260, 212);
-            this.DataGridViewAuthors.Name = "DataGridViewAuthors";
-            this.DataGridViewAuthors.RowTemplate.Height = 25;
-            this.DataGridViewAuthors.Size = new System.Drawing.Size(240, 200);
-            this.DataGridViewAuthors.TabIndex = 24;
+            this.LabelNewCustomer.AutoSize = true;
+            this.LabelNewCustomer.Location = new System.Drawing.Point(12, 151);
+            this.LabelNewCustomer.Name = "LabelNewCustomer";
+            this.LabelNewCustomer.Size = new System.Drawing.Size(183, 15);
+            this.LabelNewCustomer.TabIndex = 21;
+            this.LabelNewCustomer.Text = "Новое наименование заказчика";
+            // 
+            // CheckedListBoxResearchs
+            // 
+            this.CheckedListBoxResearchs.Enabled = false;
+            this.CheckedListBoxResearchs.FormattingEnabled = true;
+            this.CheckedListBoxResearchs.Items.AddRange(new object[] {
+            "Инженерно-геодезические изыскания",
+            "Инженерно-геологические изыскания",
+            "Инженерно-экологические изыскания",
+            "Инженерно-гидрометеорологические изыскания",
+            "Инженерно-геотехнические изыскания",
+            "Археологические изыскания",
+            "Техническое обсследование здания"});
+            this.CheckedListBoxResearchs.Location = new System.Drawing.Point(418, 266);
+            this.CheckedListBoxResearchs.Name = "CheckedListBoxResearchs";
+            this.CheckedListBoxResearchs.Size = new System.Drawing.Size(400, 130);
+            this.CheckedListBoxResearchs.TabIndex = 24;
+            // 
+            // LabelResearch
+            // 
+            this.LabelResearch.AutoSize = true;
+            this.LabelResearch.Location = new System.Drawing.Point(418, 248);
+            this.LabelResearch.Name = "LabelResearch";
+            this.LabelResearch.Size = new System.Drawing.Size(68, 15);
+            this.LabelResearch.TabIndex = 23;
+            this.LabelResearch.Text = "Изыскания";
+            // 
+            // СheckBoxChangeResearchs
+            // 
+            this.СheckBoxChangeResearchs.AutoSize = true;
+            this.СheckBoxChangeResearchs.Location = new System.Drawing.Point(730, 247);
+            this.СheckBoxChangeResearchs.Name = "СheckBoxChangeResearchs";
+            this.СheckBoxChangeResearchs.Size = new System.Drawing.Size(85, 19);
+            this.СheckBoxChangeResearchs.TabIndex = 25;
+            this.СheckBoxChangeResearchs.Text = "Изменить?";
+            this.СheckBoxChangeResearchs.UseVisualStyleBackColor = true;
+            // 
+            // TextBoxNewProjectName
+            // 
+            this.TextBoxNewProjectName.Enabled = false;
+            this.TextBoxNewProjectName.Location = new System.Drawing.Point(418, 166);
+            this.TextBoxNewProjectName.Multiline = true;
+            this.TextBoxNewProjectName.Name = "TextBoxNewProjectName";
+            this.TextBoxNewProjectName.Size = new System.Drawing.Size(400, 75);
+            this.TextBoxNewProjectName.TabIndex = 36;
+            // 
+            // LabelNewProjectName
+            // 
+            this.LabelNewProjectName.AutoSize = true;
+            this.LabelNewProjectName.Location = new System.Drawing.Point(418, 148);
+            this.LabelNewProjectName.Name = "LabelNewProjectName";
+            this.LabelNewProjectName.Size = new System.Drawing.Size(183, 15);
+            this.LabelNewProjectName.TabIndex = 35;
+            this.LabelNewProjectName.Text = "Новое наименование заказчика";
+            // 
+            // CheckBoxChangeProjectName
+            // 
+            this.CheckBoxChangeProjectName.AutoSize = true;
+            this.CheckBoxChangeProjectName.Location = new System.Drawing.Point(730, 51);
+            this.CheckBoxChangeProjectName.Name = "CheckBoxChangeProjectName";
+            this.CheckBoxChangeProjectName.Size = new System.Drawing.Size(85, 19);
+            this.CheckBoxChangeProjectName.TabIndex = 34;
+            this.CheckBoxChangeProjectName.Text = "Изменить?";
+            this.CheckBoxChangeProjectName.UseVisualStyleBackColor = true;
+            this.CheckBoxChangeProjectName.CheckedChanged += new System.EventHandler(this.CheckBoxChangeProjectName_CheckedChanged);
+            // 
+            // TextBoxProjectName
+            // 
+            this.TextBoxProjectName.Enabled = false;
+            this.TextBoxProjectName.Location = new System.Drawing.Point(418, 73);
+            this.TextBoxProjectName.Multiline = true;
+            this.TextBoxProjectName.Name = "TextBoxProjectName";
+            this.TextBoxProjectName.Size = new System.Drawing.Size(400, 75);
+            this.TextBoxProjectName.TabIndex = 33;
+            // 
+            // LabelProjectName
+            // 
+            this.LabelProjectName.AutoSize = true;
+            this.LabelProjectName.Location = new System.Drawing.Point(418, 55);
+            this.LabelProjectName.Name = "LabelProjectName";
+            this.LabelProjectName.Size = new System.Drawing.Size(137, 15);
+            this.LabelProjectName.TabIndex = 32;
+            this.LabelProjectName.Text = "Наименование проекта";
             // 
             // EditProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 451);
-            this.Controls.Add(this.DataGridViewAuthors);
-            this.Controls.Add(this.DataGridViewChapterAuthors);
-            this.Controls.Add(this.CheckBoxChangeAuthors);
-            this.Controls.Add(this.LabelEmployeesAuthor);
-            this.Controls.Add(this.LabelAuthors);
+            this.ClientSize = new System.Drawing.Size(827, 431);
+            this.Controls.Add(this.TextBoxNewProjectName);
+            this.Controls.Add(this.LabelNewProjectName);
+            this.Controls.Add(this.CheckBoxChangeProjectName);
+            this.Controls.Add(this.TextBoxProjectName);
+            this.Controls.Add(this.LabelProjectName);
+            this.Controls.Add(this.СheckBoxChangeResearchs);
+            this.Controls.Add(this.CheckedListBoxResearchs);
+            this.Controls.Add(this.LabelResearch);
+            this.Controls.Add(this.TextBoxNewCustomer);
+            this.Controls.Add(this.LabelNewCustomer);
+            this.Controls.Add(this.CheckBoxChangeCustomer);
+            this.Controls.Add(this.TextBoxCustomer);
+            this.Controls.Add(this.LabelCustomer);
             this.Controls.Add(this.CheckBoxChangeNkontr);
             this.Controls.Add(this.LabelEmployeesNkontr);
             this.Controls.Add(this.ComboBoxeEmployeesNkontr);
@@ -269,16 +345,12 @@
             this.Controls.Add(this.LabelNkontr);
             this.Controls.Add(this.TextBoxGIP);
             this.Controls.Add(this.LabelGIP);
-            this.Controls.Add(this.LabelChapterNames);
-            this.Controls.Add(this.ComboBoxChapterNames);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonEdicting);
             this.Controls.Add(this.LabelProjectNames);
             this.Controls.Add(this.ComboBoxProjectNames);
             this.Name = "EditProject";
             this.Text = "Редактирование информации о проекте";
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,8 +362,6 @@
         private System.Windows.Forms.Label LabelProjectNames;
         private System.Windows.Forms.Button ButtonEdicting;
         private System.Windows.Forms.Button ButtonBack;
-        private System.Windows.Forms.Label LabelChapterNames;
-        private System.Windows.Forms.ComboBox ComboBoxChapterNames;
         private System.Windows.Forms.Label LabelGIP;
         private System.Windows.Forms.TextBox TextBoxGIP;
         private System.Windows.Forms.TextBox TextBoxNkontr;
@@ -302,10 +372,18 @@
         private System.Windows.Forms.Label LabelEmployeesNkontr;
         private System.Windows.Forms.ComboBox ComboBoxeEmployeesNkontr;
         private System.Windows.Forms.CheckBox CheckBoxChangeNkontr;
-        private System.Windows.Forms.Label LabelAuthors;
-        private System.Windows.Forms.CheckBox CheckBoxChangeAuthors;
-        private System.Windows.Forms.Label LabelEmployeesAuthor;
-        private System.Windows.Forms.DataGridView DataGridViewChapterAuthors;
-        private System.Windows.Forms.DataGridView DataGridViewAuthors;
+        private System.Windows.Forms.TextBox TextBoxCustomer;
+        private System.Windows.Forms.Label LabelCustomer;
+        private System.Windows.Forms.CheckBox CheckBoxChangeCustomer;
+        private System.Windows.Forms.TextBox TextBoxNewCustomer;
+        private System.Windows.Forms.Label LabelNewCustomer;
+        private System.Windows.Forms.CheckedListBox CheckedListBoxResearchs;
+        private System.Windows.Forms.Label LabelResearch;
+        private System.Windows.Forms.CheckBox СheckBoxChangeResearchs;
+        private System.Windows.Forms.TextBox TextBoxNewProjectName;
+        private System.Windows.Forms.Label LabelNewProjectName;
+        private System.Windows.Forms.CheckBox CheckBoxChangeProjectName;
+        private System.Windows.Forms.TextBox TextBoxProjectName;
+        private System.Windows.Forms.Label LabelProjectName;
     }
 }

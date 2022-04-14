@@ -17,101 +17,15 @@ namespace IUL
     public partial class EditProject : Form
     {
         Project _selectedProject;
-        DataGridViewCheckBoxColumn _checkColDataGridViewChapterAuthors;
-        DataGridViewTextBoxColumn _textColDataGridViewChapterAuthors;
-        DataGridViewCheckBoxColumn _checkColDataGridViewAuthors;
-        DataGridViewTextBoxColumn _textColDataGridViewAuthors;
         public EditProject()
         {
             InitializeComponent();
-            DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
-            ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
-            ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
-            ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
-            ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
-            ComboBoxChapterNames.DrawItem += Main.ComboBox_DrawItem;
-            ComboBoxChapterNames.MeasureItem += Main.ComboBox_MeasureItem;
+            DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
             DbProviderFactories.InitializeComboBox(ComboBoxeEmployeesGIP, Tables.EMPLOYEES);
             DbProviderFactories.InitializeComboBox(ComboBoxeEmployeesNkontr, Tables.EMPLOYEES);
 
-            _checkColDataGridViewChapterAuthors = new DataGridViewCheckBoxColumn();
-            _checkColDataGridViewChapterAuthors.Name = "CheckColDataGridViewChapterAuthors";
-            _checkColDataGridViewChapterAuthors.HeaderText = "CheckColDataGridViewChapterAuthors";
-            _checkColDataGridViewChapterAuthors.Resizable = DataGridViewTriState.False;
-            _checkColDataGridViewChapterAuthors.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-            var textColCellStyle = new DataGridViewCellStyle();
-            textColCellStyle.WrapMode = DataGridViewTriState.True;
-
-            _textColDataGridViewChapterAuthors = new DataGridViewTextBoxColumn();
-            _textColDataGridViewChapterAuthors.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            _textColDataGridViewChapterAuthors.Name = "TextColDataGridViewChapterAuthors";
-            _textColDataGridViewChapterAuthors.HeaderText = "TextColDataGridViewChapterAuthors";
-            _textColDataGridViewChapterAuthors.DefaultCellStyle = textColCellStyle;
-            _textColDataGridViewChapterAuthors.ReadOnly = true;
-
-            DataGridViewChapterAuthors.AllowUserToAddRows = false;
-            DataGridViewChapterAuthors.AllowUserToDeleteRows = false;
-            DataGridViewChapterAuthors.AllowUserToResizeColumns = false;
-            DataGridViewChapterAuthors.AllowUserToResizeRows = false;
-            DataGridViewChapterAuthors.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            DataGridViewChapterAuthors.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            DataGridViewChapterAuthors.CellMouseDown += DataGridView_CellMouseDown;
-            DataGridViewChapterAuthors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewChapterAuthors.ColumnHeadersVisible = false;
-            DataGridViewChapterAuthors.BackgroundColor = Color.White;
-            DataGridViewChapterAuthors.MultiSelect = false;
-            DataGridViewChapterAuthors.RowHeadersVisible = false;
-            DataGridViewChapterAuthors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-            DataGridViewChapterAuthors.Columns.AddRange(new DataGridViewColumn[]
-            {
-                    _checkColDataGridViewChapterAuthors, _textColDataGridViewChapterAuthors
-            });
-            DataGridViewChapterAuthors.ClearSelection();
-
-            _checkColDataGridViewAuthors = new DataGridViewCheckBoxColumn();
-            _checkColDataGridViewAuthors.Name = "CheckColDataGridViewAuthors";
-            _checkColDataGridViewAuthors.HeaderText = "CheckColDataGridViewAuthors";
-            _checkColDataGridViewAuthors.Resizable = DataGridViewTriState.False;
-            _checkColDataGridViewAuthors.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-            _textColDataGridViewAuthors = new DataGridViewTextBoxColumn();
-            _textColDataGridViewAuthors.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            _textColDataGridViewAuthors.Name = "TextColDataGridViewAuthors";
-            _textColDataGridViewAuthors.HeaderText = "TextColDataGridViewAuthors";
-            _textColDataGridViewAuthors.DefaultCellStyle = textColCellStyle;
-            _textColDataGridViewAuthors.ReadOnly = true;
-
-            DataGridViewAuthors.AllowUserToAddRows = false;
-            DataGridViewAuthors.AllowUserToDeleteRows = false;
-            DataGridViewAuthors.AllowUserToResizeColumns = false;
-            DataGridViewAuthors.AllowUserToResizeRows = false;
-            DataGridViewAuthors.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            DataGridViewAuthors.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            DataGridViewAuthors.CellMouseDown += DataGridView_CellMouseDown;
-            DataGridViewAuthors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewAuthors.ColumnHeadersVisible = false;
-            DataGridViewAuthors.BackgroundColor = Color.White;
-            DataGridViewAuthors.MultiSelect = false;
-            DataGridViewAuthors.RowHeadersVisible = false;
-            DataGridViewAuthors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-            DataGridViewAuthors.Columns.AddRange(new DataGridViewColumn[]
-            {
-                    _checkColDataGridViewAuthors, _textColDataGridViewAuthors
-            });
-            DataGridViewAuthors.ClearSelection();
-            
         }
-        private void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            var row = ((DataGridView)sender).Rows[e.RowIndex];
-            if (row.Selected)
-            {
-                row.Cells[_checkColDataGridViewChapterAuthors.Index].Value = !(bool)row.Cells[_checkColDataGridViewChapterAuthors.Index].Value;
-            }
-        }
+
         private void ButtonBack_Click(object sender, EventArgs e)
         {
             try
@@ -129,43 +43,42 @@ namespace IUL
         {
             try 
             {
-                ComboBoxChapterNames.Items.Clear();
                 String projectName = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
                 _selectedProject = new Project(projectName);
-                foreach (var chapter in _selectedProject.Chapters())
-                {
-                    ComboBoxChapterNames.Items.Add(chapter.ChapterName);
-                }
-                Employee GIP = new Employee(_selectedProject.IdGIP);
-                Employee Nkontr = new Employee(_selectedProject.IdNkont);
-                TextBoxGIP.Text = GIP.Surname;
-                TextBoxNkontr.Text = Nkontr.Surname;
+                TextBoxGIP.Text = _selectedProject.GIP.Surname;
+                TextBoxNkontr.Text = _selectedProject.Nkontr.Surname;
+                TextBoxCustomer.Text = _selectedProject.NameCustomer;
+                TextBoxProjectName.Text = _selectedProject.Name;
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message, ex.Source);
             }
         }
-        private void ComboBoxChapterNames_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DataGridViewChapterAuthors.Rows.Clear();
-                String chapterName = ComboBoxChapterNames.Items[ComboBoxChapterNames.SelectedIndex].ToString();
-                Chapter selectedChapter = new Chapter(_selectedProject.Id, chapterName);
-                foreach (var author in selectedChapter.Authors())
-                {
-                    DataGridViewChapterAuthors.Rows.Add(true, author);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.Source);
-            }
-        }
         private void ButtonEdicting_Click(object sender, EventArgs e)
         {
-
+            if(CheckBoxChangeCustomer.Checked && TextBoxNewCustomer.Text.Length != 0) 
+            {
+                _selectedProject.NameCustomer = TextBoxNewCustomer.Text;
+            }
+            if (CheckBoxChangeProjectName.Checked && TextBoxNewProjectName.Text.Length != 0)
+            {
+                _selectedProject.Name = TextBoxNewProjectName.Text;
+            }
+            if (CheckBoxChangeGIP.Checked) 
+            {
+                String selectedEmployee = ComboBoxeEmployeesGIP.Items[ComboBoxeEmployeesGIP.SelectedIndex].ToString();
+                Employee employee = new Employee(selectedEmployee);
+                _selectedProject.GIP = employee;
+            }
+            if (CheckBoxChangeNkontr.Checked) 
+            {
+                String selectedEmployee = ComboBoxeEmployeesNkontr.Items[ComboBoxeEmployeesNkontr.SelectedIndex].ToString();
+                Employee employee = new Employee(selectedEmployee);
+                _selectedProject.Nkontr = employee;
+            }
+            if (СheckBoxChangeResearchs.Checked) 
+            {            }
         }
         private void CheckBoxChangeGIP_CheckedChanged(object sender, EventArgs e)
         {
@@ -176,23 +89,18 @@ namespace IUL
             ComboBoxeEmployeesNkontr.Enabled = !ComboBoxeEmployeesNkontr.Enabled;
 
         }
-        private void CheckBoxChangeAuthors_CheckedChanged(object sender, EventArgs e)
+
+        private void CheckBoxChangeCustomer_CheckedChanged(object sender, EventArgs e)
         {
-            DataGridViewAuthors.Enabled = !DataGridViewAuthors.Enabled;
-            try 
-            {
-                DataGridViewAuthors.Rows.Clear();
-                foreach(String employee in ComboBoxeEmployeesGIP.Items) 
-                {
-                    DataGridViewAuthors.Rows.Add(false, employee.ToString());
-                }
+            TextBoxCustomer.Enabled = !TextBoxCustomer.Enabled;
+            TextBoxNewCustomer.Enabled = !TextBoxNewCustomer.Enabled;
+        }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.Source);
-            }
 
+        private void CheckBoxChangeProjectName_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxProjectName.Enabled = !TextBoxProjectName.Enabled;
+            TextBoxNewProjectName.Enabled = !TextBoxNewProjectName.Enabled;
         }
     }
 }

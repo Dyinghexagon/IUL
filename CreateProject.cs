@@ -129,7 +129,7 @@ namespace IUL
             {
                 String surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
                 this._GIP = new Employee(surnameGIP);
-                this._newProject.IdGIP = this._GIP.Id;
+                this._newProject.GIP = this._GIP;
             }
             catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace IUL
             {
                 String surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
                 this._Nkontr = new Employee(surnameNkont);
-                this._newProject.IdNkont = this._Nkontr.Id;
+                this._newProject.Nkontr = this._Nkontr;
             }
             catch (Exception ex)
             {
