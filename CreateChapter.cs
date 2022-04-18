@@ -17,7 +17,7 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
                 _newChapter = new Chapter();
 
                 ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
@@ -67,7 +67,7 @@ namespace IUL
                 {
                     FilingComboBoxLinearChapter();
                 }
-                this.ComboBoxChapterNames.Items.AddRange(this._selectedProject.Surveys.GetSurveys());
+                ComboBoxChapterNames.Items.AddRange(_selectedProject.Surveys.GetSurveys());
             }
             catch (Exception ex)
             {
@@ -79,20 +79,20 @@ namespace IUL
             try 
             {
                 String nameSelectedChapter = ComboBoxChapterNames.Items[ComboBoxChapterNames.SelectedIndex].ToString();
-                this._newChapter.NumberChapter = ComboBoxChapterNames.SelectedIndex++;
-                MessageBox.Show(this._newChapter.NumberChapter.ToString());
-                if (this._selectedProject.CapitalOrLinear && (this._newChapter.NumberChapter >= 4 && this._newChapter.NumberChapter <= 10))
+                _newChapter.NumberChapter = ComboBoxChapterNames.SelectedIndex++;
+                MessageBox.Show(_newChapter.NumberChapter.ToString());
+                if (_selectedProject.CapitalOrLinear && (_newChapter.NumberChapter >= 4 && _newChapter.NumberChapter <= 10))
                 {
-                    this._newChapter.ChapterName =
+                    _newChapter.ChapterName =
                         "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +
                         "перечень инженерно-технических мероприятий, содержание технологических решений ";
                 }
-                this._newChapter.ChapterName += nameSelectedChapter;
+                _newChapter.ChapterName += nameSelectedChapter;
                 
-                this._newChapter.Id = (this.CheckBoxUniqueChapterId.Checked)? this.TextBoxChapterId.Text : LabelProjectIdValue.Text + "-" + TextBoxChapterId?.Text;
-                this._newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;
-                this._newChapter.ProjectId = this.LabelProjectIdValue.Text;
-                this._newChapter.InsertNewChapter();
+                _newChapter.Id = (CheckBoxUniqueChapterId.Checked)? TextBoxChapterId.Text : LabelProjectIdValue.Text + "-" + TextBoxChapterId?.Text;
+                _newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;
+                _newChapter.ProjectId = LabelProjectIdValue.Text;
+                _newChapter.InsertNewChapter();
             }
             catch(Exception ex) 
             {
@@ -101,7 +101,7 @@ namespace IUL
             finally 
             { 
                 TextBoxNameSubChapter.Clear();
-                this._newChapter.ChapterName = String.Empty;
+                _newChapter.ChapterName = String.Empty;
             }
             MessageBox.Show("Раздел добавлен!");
 
@@ -113,8 +113,8 @@ namespace IUL
             {
                 if (openFileDialog1.ShowDialog() == DialogResult.OK) 
                 {
-                    this._newChapter.PathToFileChapter = openFileDialog1.FileName;
-                    this._newChapter.NameFileChapter = this._newChapter.PathToFileChapter.Split("\\").Last();
+                    _newChapter.PathToFileChapter = openFileDialog1.FileName;
+                    _newChapter.NameFileChapter = _newChapter.PathToFileChapter.Split("\\").Last();
                 }
             }
             catch (Exception ex)

@@ -20,10 +20,10 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
-                DbProviderFactories.InitializeComboBox(this.ComboBoxRoles, Tables.ROLES);
-                DbProviderFactories.InitializeComboBox(this.ComboBoxEmployees, Tables.EMPLOYEES);
-                this._newPerformer = new Performer();
+                DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(ComboBoxRoles, Tables.ROLES);
+                DbProviderFactories.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
+                _newPerformer = new Performer();
 
                 var textColCellStyle = new DataGridViewCellStyle();
                 textColCellStyle.WrapMode = DataGridViewTriState.True;
@@ -53,8 +53,8 @@ namespace IUL
                 DataGridViewSelectedChapter.Visible = false;
                 LableSelectedChapter.Visible = false;
 
-                this.Height -= DataGridViewSelectedChapter.Height;
-                this.Height -= LableSelectedChapter.Height;
+                Height -= DataGridViewSelectedChapter.Height;
+                Height -= LableSelectedChapter.Height;
                 _height = this.Height;
                 _selectedChapters = new HashSet<String>();
 
@@ -76,8 +76,8 @@ namespace IUL
             try 
             {
                 ComboBoxChapterNames.Items.Clear();
-                String nameSelectedProject = this.ComboBoxProjectNames.Items[this.ComboBoxProjectNames.SelectedIndex].ToString();
-                this._selectedProject = new Project(nameSelectedProject);
+                String nameSelectedProject = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
+                _selectedProject = new Project(nameSelectedProject);
                 foreach(var chapter in _selectedProject.Chapters()) 
                 {
                     ComboBoxChapterNames.Items.Add(chapter.ChapterName);
@@ -91,16 +91,16 @@ namespace IUL
 
         private void ButtonAddNewPerformer_Click(object sender, EventArgs e)
         {
-            if (this.CheckBoxIsAddMultiple.Checked) 
+            if (CheckBoxIsAddMultiple.Checked) 
             {
                 try 
                 {
                     Performer performer = new Performer();
-                    performer.EmployeeId = this._newPerformer.EmployeeId;
-                    performer.RoleId = this._newPerformer.RoleId;
+                    performer.EmployeeId = _newPerformer.EmployeeId;
+                    performer.RoleId = _newPerformer.RoleId;
                     foreach(var chapterName in _selectedChapters) 
                     {
-                        Chapter chapter = new Chapter(this._selectedProject.Id, chapterName);
+                        Chapter chapter = new Chapter(_selectedProject.Id, chapterName);
                         performer.ChapterId = chapter.Id;
                         performer.InsertNewPerformer();
                     }
@@ -114,7 +114,7 @@ namespace IUL
             {
                 try 
                 {
-                    this._newPerformer.InsertNewPerformer();
+                    _newPerformer.InsertNewPerformer();
                 }
                 catch (Exception ex)
                 {
@@ -128,9 +128,9 @@ namespace IUL
         {
             try 
             {
-                String selectedSurnameEmployee = this.ComboBoxEmployees.Items[this.ComboBoxEmployees.SelectedIndex].ToString();
+                String selectedSurnameEmployee = ComboBoxEmployees.Items[ComboBoxEmployees.SelectedIndex].ToString();
                 Employee selectedEmployee = new Employee(selectedSurnameEmployee);
-                this._newPerformer.EmployeeId = selectedEmployee.Id;
+                _newPerformer.EmployeeId = selectedEmployee.Id;
             }
             catch(Exception ex) 
             {
@@ -142,9 +142,9 @@ namespace IUL
         {
             try 
             {
-                String selecteAbbreviatedNameRole = this.ComboBoxRoles.Items[this.ComboBoxRoles.SelectedIndex].ToString();
+                String selecteAbbreviatedNameRole = ComboBoxRoles.Items[ComboBoxRoles.SelectedIndex].ToString();
                 Role selectedRole = new Role(selecteAbbreviatedNameRole);
-                this._newPerformer.RoleId = selectedRole.Id;
+                _newPerformer.RoleId = selectedRole.Id;
 
             }
             catch(Exception ex) 
@@ -157,9 +157,9 @@ namespace IUL
         {
             try
             {
-                String selectedNameChapter = this.ComboBoxChapterNames.Items[this.ComboBoxChapterNames.SelectedIndex].ToString();
-                Chapter chapter = new Chapter(this._selectedProject.Id, selectedNameChapter);
-                this._newPerformer.ChapterId = chapter.Id;
+                String selectedNameChapter = ComboBoxChapterNames.Items[ComboBoxChapterNames.SelectedIndex].ToString();
+                Chapter chapter = new Chapter(_selectedProject.Id, selectedNameChapter);
+                _newPerformer.ChapterId = chapter.Id;
                 if(_selectedChapters.Add(selectedNameChapter)) DataGridViewSelectedChapter.Rows.Add(selectedNameChapter);
             }
             catch (Exception ex)

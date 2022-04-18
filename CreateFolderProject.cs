@@ -82,9 +82,9 @@ namespace IUL
                 {
                     FilingComboBoxCapitalChapter();
                 }
-                this.ClientSize = new System.Drawing.Size(this.ClientSize.Width,
-                        CheckedListBoxChapters.Size.Height + this.ButtonCrossCreateProject.Size.Height + this.ButtonBack.Size.Height
-                      + this.ButtonCreateFolder.Size.Height + this.ButtonSelectAllChapters.Size.Height + this.ButtonSelectAllReseach.Size.Height + 70);
+                ClientSize = new System.Drawing.Size(this.ClientSize.Width,
+                        CheckedListBoxChapters.Size.Height + ButtonCrossCreateProject.Size.Height + ButtonBack.Size.Height
+                      + ButtonCreateFolder.Size.Height + ButtonSelectAllChapters.Size.Height + ButtonSelectAllReseach.Size.Height + 70);
                 Point pointButtonCross = new Point(558, 181);
                 Point pointButtonBack = new Point(558, 245);
                 ButtonCrossCreateProject.Location = new Point(ButtonCrossCreateProject.Location.X, pointButtonCross.Y + CheckedListBoxChapters.Height);

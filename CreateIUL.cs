@@ -18,7 +18,7 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
+                DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
                 _checkCol = new DataGridViewCheckBoxColumn();
                 _checkCol.Name = "CheckCol";
                 _checkCol.HeaderText = "CheckCol";
@@ -114,7 +114,7 @@ namespace IUL
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
                 pathMainFolder = folderBrowserDialog1.SelectedPath;
-                this._selectedProject.RolloutIULsForProject(dateSigning, pathMainFolder);
+                _selectedProject.RolloutIULsForProject(dateSigning, pathMainFolder);
                 MessageBox.Show("ИУЛы готовы!");
             }
             catch (Exception ex)
@@ -127,8 +127,8 @@ namespace IUL
             try 
             {
                 String projectName = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
-                this._selectedProject = new Project(projectName);
-                this._selectedProject.FillingDataGridViewChapters(this.DataGridViewChapterNames);
+                _selectedProject = new Project(projectName);
+                _selectedProject.FillingDataGridViewChapters(DataGridViewChapterNames);
 
             }
             catch (Exception ex)

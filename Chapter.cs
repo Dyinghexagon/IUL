@@ -24,12 +24,12 @@ namespace IUL
 
         public String PathToFileChapter 
         {
-            get { return this._pathToFileChapter; }
-            set { this._pathToFileChapter = value; }
+            get { return _pathToFileChapter; }
+            set { _pathToFileChapter = value; }
         }
         public Int64 SizeFileChapter 
         {
-            get { return this._fileInfo.Length; }
+            get { return _fileInfo.Length; }
         }
         public String DateChange 
         {
@@ -45,7 +45,7 @@ namespace IUL
             get 
             {
                 String MD5 = "";
-                using (FileStream fs = System.IO.File.OpenRead(this._pathToFileChapter))
+                using (FileStream fs = System.IO.File.OpenRead(_pathToFileChapter))
                 {
                     MD5 md5 = new MD5CryptoServiceProvider();
                     Byte[] fileData = new byte[fs.Length];
@@ -62,7 +62,7 @@ namespace IUL
             {
                 Force.Crc32.Crc32Algorithm crc32 = new Force.Crc32.Crc32Algorithm();
                 String hash = String.Empty;
-                using (FileStream fs = File.OpenRead(this._pathToFileChapter))
+                using (FileStream fs = File.OpenRead(_pathToFileChapter))
                 {
                     foreach (Byte b in crc32.ComputeHash(fs))
                     {
@@ -74,27 +74,27 @@ namespace IUL
         }
         public String Id
         {
-            get { return this._chapterId; }
-            set { this._chapterId = value; }
+            get { return _chapterId; }
+            set { _chapterId = value; }
         }
         public String ProjectId
         {
-            get { return this._projectId; }
-            set { this._projectId = value; }
+            get { return _projectId; }
+            set { _projectId = value; }
         }
         public String ChapterName
         {
-            get { return this._chapterName; }
-            set { this._chapterName = value; }
+            get { return _chapterName; }
+            set { _chapterName = value; }
         }
         public String NameFileChapter
         {
-            get { return this._nameFileChapter; }
-            set { this._nameFileChapter = value; }
+            get { return _nameFileChapter; }
+            set { _nameFileChapter = value; }
         }
         public Int32 CountAuthorChapter 
         {
-            get { return this._authorsChapter.Count; }
+            get { return _authorsChapter.Count; }
         }
         public Int32 NumberChapter 
         {
@@ -108,18 +108,18 @@ namespace IUL
         
         public Chapter()
         {
-            this._chapterId = "";
-            this._projectId = "";
-            this._chapterName = "";
-            this._nameFileChapter = "";
+            _chapterId = "";
+            _projectId = "";
+            _chapterName = "";
+            _nameFileChapter = "";
         }
         public Chapter(String projectId, String chapterName) 
         {
             try 
             {
-                this._authorsChapter = new List<KeyValuePair<String, Employee>>(4);
-                this._projectId = projectId;
-                this._chapterName = chapterName;
+                _authorsChapter = new List<KeyValuePair<String, Employee>>(4);
+                _projectId = projectId;
+                _chapterName = chapterName;
                 //инциализирую поля шифра раздела и имени файла
                 String query = "USE IUL;" +
                 "SELECT [IUL].[dbo].[CHAPTERS].[CHAPTER_ID]" +
@@ -130,17 +130,17 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@chapterName", SqlDbType.Text).Value = this._chapterName;
-                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._projectId;
+                    command.Parameters.Add("@chapterName", SqlDbType.Text).Value = _chapterName;
+                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = _projectId;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             if (reader.Read())
                             {
-                                this._chapterId = reader.GetValue(0).ToString().Trim();
-                                this._pathToFileChapter = reader.GetValue(1).ToString().Trim();
-                                this._nameFileChapter = this._pathToFileChapter.Split('\\').Last();
+                                _chapterId = reader.GetValue(0).ToString().Trim();
+                                _pathToFileChapter = reader.GetValue(1).ToString().Trim();
+                                _nameFileChapter = _pathToFileChapter.Split('\\').Last();
                             }
                         }
                     }
@@ -160,7 +160,7 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
+                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = _chapterId;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -169,12 +169,12 @@ namespace IUL
                             {
                                 String authorSurname = reader.GetValue(0).ToString().Trim();
                                 String authorRole = reader.GetValue(1).ToString().Trim();
-                                this._authorsChapter.Add(new KeyValuePair<String, Employee>(authorRole, new Employee(authorSurname)));
+                                _authorsChapter.Add(new KeyValuePair<String, Employee>(authorRole, new Employee(authorSurname)));
                             }
                         }
                     }
                 }
-                this._fileInfo = new FileInfo(this._pathToFileChapter);
+                _fileInfo = new FileInfo(_pathToFileChapter);
             }
             catch (Exception ex)
             {
@@ -200,10 +200,10 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@chapterId", SqlDbType.NChar).Value = this._chapterId;
-                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._projectId;
-                    command.Parameters.Add("@chapterName", SqlDbType.Text).Value = this._chapterName;
-                    command.Parameters.Add("@pathFileChapter", SqlDbType.Text).Value = this._pathToFileChapter;
+                    command.Parameters.Add("@chapterId", SqlDbType.NChar).Value = _chapterId;
+                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = _projectId;
+                    command.Parameters.Add("@chapterName", SqlDbType.Text).Value = _chapterName;
+                    command.Parameters.Add("@pathFileChapter", SqlDbType.Text).Value = _pathToFileChapter;
                     command.ExecuteNonQuery();
                 }
             }

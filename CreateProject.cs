@@ -17,11 +17,9 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(this.ComboBoxChoosingGIP, Tables.EMPLOYEES);
-                DbProviderFactories.InitializeComboBox(this.ComboBoxChoosingNkontr, Tables.EMPLOYEES);
-                //Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingGIP);
-                //Employee.InitializeComboBoxEmployees(this.ComboBoxChoosingNkontr);
-                this._newProject = new Project();
+                DbProviderFactories.InitializeComboBox(ComboBoxChoosingGIP, Tables.EMPLOYEES);
+                DbProviderFactories.InitializeComboBox(ComboBoxChoosingNkontr, Tables.EMPLOYEES);
+                _newProject = new Project();
             }
             catch(Exception ex) 
             {
@@ -35,7 +33,7 @@ namespace IUL
             {
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.Cancel)
                     return;
-                this._newProject.Path = folderBrowserDialog1.SelectedPath;
+                _newProject.Path = folderBrowserDialog1.SelectedPath;
             }
             catch (Exception ex)
             {
@@ -49,17 +47,17 @@ namespace IUL
             {
                 if (CheckingFieldsAreFull())
                 {
-                    this._newProject.Surveys.IsGeodetiSurveys = this.CheckedListBoxResearchs.GetItemChecked(0);
-                    this._newProject.Surveys.IsGeologicalSurveysSurveys = this.CheckedListBoxResearchs.GetItemChecked(1);
-                    this._newProject.Surveys.IsEnvironmentalSurveys = this.CheckedListBoxResearchs.GetItemChecked(2);
-                    this._newProject.Surveys.IsMeteorologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(3);
-                    this._newProject.Surveys.IsGeotechnicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(4);
-                    this._newProject.Surveys.IsArchaeologicalSurveys = this.CheckedListBoxResearchs.GetItemChecked(5);
-                    this._newProject.Surveys.IsInspectionOfTechnicalCondition = this.CheckedListBoxResearchs.GetItemChecked(6);
-                    this._newProject.Id = TextBoxProjectId.Text;
-                    this._newProject.Name = TextBoxProjectName.Text;
-                    this._newProject.NameCustomer = TextBoxNameCustomer.Text;
-                    this._newProject.InsertNewProject();
+                    _newProject.Surveys.IsGeodetiSurveys = CheckedListBoxResearchs.GetItemChecked(0);
+                    _newProject.Surveys.IsGeologicalSurveysSurveys = CheckedListBoxResearchs.GetItemChecked(1);
+                    _newProject.Surveys.IsEnvironmentalSurveys = CheckedListBoxResearchs.GetItemChecked(2);
+                    _newProject.Surveys.IsMeteorologicalSurveys = CheckedListBoxResearchs.GetItemChecked(3);
+                    _newProject.Surveys.IsGeotechnicalSurveys = CheckedListBoxResearchs.GetItemChecked(4);
+                    _newProject.Surveys.IsArchaeologicalSurveys = CheckedListBoxResearchs.GetItemChecked(5);
+                    _newProject.Surveys.IsInspectionOfTechnicalCondition = CheckedListBoxResearchs.GetItemChecked(6);
+                    _newProject.Id = TextBoxProjectId.Text;
+                    _newProject.Name = TextBoxProjectName.Text;
+                    _newProject.NameCustomer = TextBoxNameCustomer.Text;
+                    _newProject.InsertNewProject();
 					MessageBox.Show("Новый проект добавлен!");
                 }
             }
@@ -127,9 +125,9 @@ namespace IUL
         {
             try 
             {
-                String surnameGIP = this.ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
-                this._GIP = new Employee(surnameGIP);
-                this._newProject.GIP = this._GIP;
+                String surnameGIP = ComboBoxChoosingGIP.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+                _GIP = new Employee(surnameGIP);
+                _newProject.GIP = _GIP;
             }
             catch (Exception ex)
             {
@@ -141,9 +139,9 @@ namespace IUL
         {
             try 
             {
-                String surnameNkont = this.ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
-                this._Nkontr = new Employee(surnameNkont);
-                this._newProject.Nkontr = this._Nkontr;
+                String surnameNkont = ComboBoxChoosingNkontr.Items[ComboBoxChoosingGIP.SelectedIndex].ToString();
+                _Nkontr = new Employee(surnameNkont);
+                _newProject.Nkontr = _Nkontr;
             }
             catch (Exception ex)
             {
@@ -155,7 +153,7 @@ namespace IUL
         {
             try 
             {
-                this._newProject.CapitalOrLinear = false;
+                _newProject.CapitalOrLinear = false;
             }
             catch (Exception ex)
             {
@@ -167,7 +165,7 @@ namespace IUL
         {
             try 
             {
-                this._newProject.CapitalOrLinear = true;
+                _newProject.CapitalOrLinear = true;
             }
             catch (Exception ex)
             {

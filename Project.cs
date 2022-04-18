@@ -23,19 +23,19 @@ namespace IUL
         private Employee _Nkontr;
         public String Id
         {
-            get { return this._id; }
-            set { this._id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
         public String Name
         {
-            get { return this._name; }
-            set { this._name = value; }
+            get { return _name; }
+            set { _name = value; }
 
         }
         public Boolean CapitalOrLinear
         {
-            get { return this._capitalOrLinear; }
-            set { this._capitalOrLinear = value; }
+            get { return _capitalOrLinear; }
+            set { _capitalOrLinear = value; }
 
         }
         /// <summary>
@@ -43,8 +43,8 @@ namespace IUL
         /// </summary>
         public String NameCustomer
         {
-            get { return this._nameCustomer; }
-            set { this._nameCustomer = value; }
+            get { return _nameCustomer; }
+            set { _nameCustomer = value; }
 
         }
         public Employee GIP 
@@ -59,14 +59,14 @@ namespace IUL
         }
         public String Path
         {
-            get { return this._path; }
-            set { this._path = value; }
+            get { return _path; }
+            set { _path = value; }
 
         }
         public Surveys Surveys 
         {
-            get { return this._surveys;}
-            set { this._surveys = value;}
+            get { return _surveys;}
+            set { _surveys = value;}
         }
         public Project() 
         {
@@ -76,8 +76,8 @@ namespace IUL
         {
             try 
             {
-                this._name = nameProject;
-                this._chaptersDict = new Dictionary<Chapter, Boolean>(30);
+                _name = nameProject;
+                _chaptersDict = new Dictionary<Chapter, Boolean>(30);
                 String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[PROJECTS].[PROJECT_ID]" +
                     ",[IUL].[dbo].[PROJECTS].[PROJECT_CAPITAL_OR_LINEAR]" +
@@ -101,24 +101,24 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@nameProject", SqlDbType.Text).Value = this._name;
+                    command.Parameters.Add("@nameProject", SqlDbType.Text).Value = _name;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             if (reader.Read())
                             {
-                                this._id = reader.GetValue(0).ToString().Trim();
-                                this._capitalOrLinear = Convert.ToBoolean(reader.GetValue(1));
-                                this._surveys = new Surveys(
+                                _id = reader.GetValue(0).ToString().Trim();
+                                _capitalOrLinear = Convert.ToBoolean(reader.GetValue(1));
+                                _surveys = new Surveys(
                                     Convert.ToBoolean(reader.GetValue(2)), Convert.ToBoolean(reader.GetValue(3)),
                                     Convert.ToBoolean(reader.GetValue(4)), Convert.ToBoolean(reader.GetValue(5)), 
                                     Convert.ToBoolean(reader.GetValue(6)), Convert.ToBoolean(reader.GetValue(7)), 
                                     Convert.ToBoolean(reader.GetValue(8)));
-                                this._nameCustomer = reader.GetValue(9).ToString().Trim();
-                                this._path = reader.GetValue(10).ToString().Trim();
-                                this._GIP = new Employee(reader.GetValue(11).ToString().Trim());
-                                this._Nkontr = new Employee(reader.GetValue(12).ToString().Trim());
+                                _nameCustomer = reader.GetValue(9).ToString().Trim();
+                                _path = reader.GetValue(10).ToString().Trim();
+                                _GIP = new Employee(reader.GetValue(11).ToString().Trim());
+                                _Nkontr = new Employee(reader.GetValue(12).ToString().Trim());
                             }
                         }
                     }
@@ -131,7 +131,7 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = this._id;
+                    command.Parameters.Add("@projectId", SqlDbType.NChar).Value = _id;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
@@ -139,7 +139,7 @@ namespace IUL
                             while (reader.Read())
                             {
                                 String chapterName = reader.GetValue(0).ToString().Trim();
-                                this._chaptersDict.Add(new Chapter(this._id, chapterName), true);
+                                _chaptersDict.Add(new Chapter(_id, chapterName), true);
                             }
                         }
                     }
@@ -180,22 +180,22 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = this._id;
-                    command.Parameters.Add("@name", SqlDbType.Text).Value = this._name;
-                    command.Parameters.Add("@capitalOrLinear", SqlDbType.Bit).Value = this._capitalOrLinear;
-                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeodetiSurveys;
+                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = _id;
+                    command.Parameters.Add("@name", SqlDbType.Text).Value = _name;
+                    command.Parameters.Add("@capitalOrLinear", SqlDbType.Bit).Value = _capitalOrLinear;
+                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = Surveys.IsGeodetiSurveys;
                     command.Parameters.Add("@isGeologicalSurveysSurveys", SqlDbType.Bit).Value =
-                        this.Surveys.IsGeologicalSurveysSurveys;
-                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this.Surveys.IsEnvironmentalSurveys;
-                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsMeteorologicalSurveys;
-                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeotechnicalSurveys;
-                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsArchaeologicalSurveys;
+                        Surveys.IsGeologicalSurveysSurveys;
+                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = Surveys.IsEnvironmentalSurveys;
+                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = Surveys.IsMeteorologicalSurveys;
+                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = Surveys.IsGeotechnicalSurveys;
+                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = Surveys.IsArchaeologicalSurveys;
                     command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
-                        this.Surveys.IsInspectionOfTechnicalCondition;
-                    command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
-                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._GIP.Id;
-                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._Nkontr.Id;
-                    command.Parameters.Add("@path", SqlDbType.Text).Value = this._path;
+                        Surveys.IsInspectionOfTechnicalCondition;
+                    command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = _nameCustomer;
+                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = _GIP.Id;
+                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = _Nkontr.Id;
+                    command.Parameters.Add("@path", SqlDbType.Text).Value = _path;
                     command.ExecuteNonQuery();
                 }
             }
@@ -348,12 +348,12 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._GIP.Surname, font));
+                        cell = new PdfPCell(new Phrase(_GIP.Surname, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        iTextSharp.text.Image signGip = iTextSharp.text.Image.GetInstance(this._GIP.Sign, BaseColor.WHITE);
+                        iTextSharp.text.Image signGip = iTextSharp.text.Image.GetInstance(_GIP.Sign, BaseColor.WHITE);
                         cell = new PdfPCell(signGip);
                         signGip.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                         cell.Colspan = 1;
@@ -397,12 +397,12 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(this._Nkontr.Surname, font));
+                        cell = new PdfPCell(new Phrase(_Nkontr.Surname, font));
                         cell.Colspan = 1;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        iTextSharp.text.Image signNkontr = iTextSharp.text.Image.GetInstance(this._Nkontr.Sign, BaseColor.WHITE);
+                        iTextSharp.text.Image signNkontr = iTextSharp.text.Image.GetInstance(_Nkontr.Sign, BaseColor.WHITE);
                         cell = new PdfPCell(signNkontr);
                         signNkontr.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                         cell.Colspan = 1;
@@ -473,7 +473,7 @@ namespace IUL
         }
         public void ChangeSelectedRolloutChapters(String chapterName) 
         {
-            foreach(var chapter in this._chaptersDict.Keys.ToList()) 
+            foreach(var chapter in _chaptersDict.Keys.ToList()) 
             {
                 if (chapter.ChapterName.Equals(chapterName)) 
                 {
@@ -510,20 +510,20 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = this._id;
-                    command.Parameters.Add("@name", SqlDbType.Text).Value = this._name;
-                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeodetiSurveys;
+                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = _id;
+                    command.Parameters.Add("@name", SqlDbType.Text).Value = _name;
+                    command.Parameters.Add("@isGeodetiSurveys", SqlDbType.Bit).Value = Surveys.IsGeodetiSurveys;
                     command.Parameters.Add("@isGeologicalSurveysSurveys", SqlDbType.Bit).Value =
-                        this.Surveys.IsGeologicalSurveysSurveys;
-                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = this.Surveys.IsEnvironmentalSurveys;
-                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsMeteorologicalSurveys;
-                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsGeotechnicalSurveys;
-                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = this.Surveys.IsArchaeologicalSurveys;
+                        Surveys.IsGeologicalSurveysSurveys;
+                    command.Parameters.Add("@isEnvironmentalSurveys", SqlDbType.Bit).Value = Surveys.IsEnvironmentalSurveys;
+                    command.Parameters.Add("@isMeteorologicalSurveys", SqlDbType.Bit).Value = Surveys.IsMeteorologicalSurveys;
+                    command.Parameters.Add("@isGeotechnicalSurveys", SqlDbType.Bit).Value = Surveys.IsGeotechnicalSurveys;
+                    command.Parameters.Add("@isArchaeologicalSurveys", SqlDbType.Bit).Value = Surveys.IsArchaeologicalSurveys;
                     command.Parameters.Add("@isInspectionOfTechnicalCondition", SqlDbType.Bit).Value =
-                        this.Surveys.IsInspectionOfTechnicalCondition;
-                    command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = this._nameCustomer;
-                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = this._GIP.Id;
-                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = this._Nkontr.Id;
+                        Surveys.IsInspectionOfTechnicalCondition;
+                    command.Parameters.Add("@nameCustomer", SqlDbType.Text).Value = _nameCustomer;
+                    command.Parameters.Add("@idGIP", SqlDbType.Int).Value = _GIP.Id;
+                    command.Parameters.Add("@idNkont", SqlDbType.Int).Value = _Nkontr.Id;
                     command.ExecuteNonQuery();
                 }
 

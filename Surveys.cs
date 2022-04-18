@@ -15,8 +15,8 @@ namespace IUL
         private Boolean _isInspectionOfTechnicalCondition;
         public Boolean IsGeodetiSurveys
         {
-            get { return this._isGeodetiSurveys; }
-            set { this._isGeodetiSurveys = value; }
+            get { return _isGeodetiSurveys; }
+            set { _isGeodetiSurveys = value; }
 
         }
         /// <summary>
@@ -24,8 +24,8 @@ namespace IUL
         /// </summary>
         public Boolean IsGeologicalSurveysSurveys
         {
-            get { return this._isGeologicalSurveysSurveys; }
-            set { this._isGeologicalSurveysSurveys = value; }
+            get { return _isGeologicalSurveysSurveys; }
+            set { _isGeologicalSurveysSurveys = value; }
 
         }
         /// <summary>
@@ -33,8 +33,8 @@ namespace IUL
         /// </summary>
         public Boolean IsEnvironmentalSurveys
         {
-            get { return this._isEnvironmentalSurveys; }
-            set { this._isEnvironmentalSurveys = value; }
+            get { return _isEnvironmentalSurveys; }
+            set { _isEnvironmentalSurveys = value; }
 
         }
         /// <summary>
@@ -42,24 +42,24 @@ namespace IUL
         /// </summary>
         public Boolean IsMeteorologicalSurveys
         {
-            get { return this._isMeteorologicalSurveys; }
-            set { this._isMeteorologicalSurveys = value; }
+            get { return _isMeteorologicalSurveys; }
+            set { _isMeteorologicalSurveys = value; }
         }
         /// <summary>
         /// Инженерно-геотехнические изыскания
         /// </summary>
         public Boolean IsGeotechnicalSurveys
         {
-            get { return this._isGeotechnicalSurveys; }
-            set { this._isGeotechnicalSurveys = value; }
+            get { return _isGeotechnicalSurveys; }
+            set { _isGeotechnicalSurveys = value; }
         }
         /// <summary>
         /// Археологические изыскания
         /// </summary>
         public Boolean IsArchaeologicalSurveys
         {
-            get { return this._isArchaeologicalSurveys; }
-            set { this._isArchaeologicalSurveys = value; }
+            get { return _isArchaeologicalSurveys; }
+            set { _isArchaeologicalSurveys = value; }
 
         }
         /// <summary>
@@ -67,8 +67,8 @@ namespace IUL
         /// </summary>
         public Boolean IsInspectionOfTechnicalCondition
         {
-            get { return this._isInspectionOfTechnicalCondition; }
-            set { this._isInspectionOfTechnicalCondition = value; }
+            get { return _isInspectionOfTechnicalCondition; }
+            set { _isInspectionOfTechnicalCondition = value; }
 
         }
         public Surveys
@@ -98,13 +98,13 @@ namespace IUL
             };
             Dictionary<String, Boolean> surveysDict = new Dictionary<String, Boolean>()
             {
-                {nameServeys[0], this._isGeodetiSurveys},
-                {nameServeys[1], this._isGeologicalSurveysSurveys},
-                {nameServeys[2], this._isEnvironmentalSurveys},
-                {nameServeys[3], this._isMeteorologicalSurveys},
-                {nameServeys[4], this._isGeotechnicalSurveys},
-                {nameServeys[5], this._isArchaeologicalSurveys},
-                {nameServeys[6], this._isInspectionOfTechnicalCondition}
+                {nameServeys[0], _isGeodetiSurveys},
+                {nameServeys[1], _isGeologicalSurveysSurveys},
+                {nameServeys[2], _isEnvironmentalSurveys},
+                {nameServeys[3], _isMeteorologicalSurveys},
+                {nameServeys[4], _isGeotechnicalSurveys},
+                {nameServeys[5], _isArchaeologicalSurveys},
+                {nameServeys[6], _isInspectionOfTechnicalCondition}
             };
             List<String> surveys = new List<string>();
             foreach (var s in surveysDict) 

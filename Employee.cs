@@ -31,7 +31,7 @@ namespace IUL
         }
         public String Patromic
         {
-            get { return this._patromic; }
+            get { return _patromic; }
             set { _patromic = value; }
 
         }
@@ -39,7 +39,7 @@ namespace IUL
         {
             get 
             { 
-                using(System.IO.MemoryStream ms = new System.IO.MemoryStream(this._sign)) 
+                using(System.IO.MemoryStream ms = new System.IO.MemoryStream(_sign)) 
                 {
                     System.Drawing.Image imgSign = System.Drawing.Image.FromStream(ms);
                     return imgSign;
@@ -58,7 +58,7 @@ namespace IUL
         {
             try 
             {
-                this._surname = surname;
+                _surname = surname;
                 String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID]," +
                     "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
@@ -70,17 +70,17 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@surname", System.Data.SqlDbType.VarChar).Value = this._surname;
+                    command.Parameters.Add("@surname", System.Data.SqlDbType.VarChar).Value = _surname;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             while (reader.Read())
                             {
-                                this._id = Convert.ToInt32(reader.GetValue(0));
-                                this._name = reader.GetValue(1).ToString().Trim();
-                                this._patromic = reader.GetValue(2).ToString().Trim();
-                                this._sign = (byte[])reader.GetValue(3);
+                                _id = Convert.ToInt32(reader.GetValue(0));
+                                _name = reader.GetValue(1).ToString().Trim();
+                                _patromic = reader.GetValue(2).ToString().Trim();
+                                _sign = (byte[])reader.GetValue(3);
                             }
                         }
                     }
@@ -95,7 +95,7 @@ namespace IUL
         {
             try
             {
-                this._id = id;
+                _id = id;
                 String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME]," +
                     "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_NAME]," +
@@ -107,17 +107,17 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = this._id;
+                    command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = _id;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             while (reader.Read())
                             {
-                                this._surname = reader.GetValue(0).ToString().Trim();
-                                this._name = reader.GetValue(1).ToString().Trim();
-                                this._patromic = reader.GetValue(2).ToString().Trim();
-                                this._sign = (byte[])reader.GetValue(3);
+                                _surname = reader.GetValue(0).ToString().Trim();
+                                _name = reader.GetValue(1).ToString().Trim();
+                                _patromic = reader.GetValue(2).ToString().Trim();
+                                _sign = (byte[])reader.GetValue(3);
                             }
                         }
                     }
