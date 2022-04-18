@@ -13,24 +13,24 @@ namespace IUL
 
         public Int32 Id 
         {
-            get { return this._id; }
-            set { this._id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
         public String FullName
         {
-            get { return this._fullName; }
-            set { this._fullName = value; }
+            get { return _fullName; }
+            set { _fullName = value; }
         }
         public String AbbreviatedName
         {
-            get { return this._abbreviatedName; }
-            set { this._abbreviatedName = value; }
+            get { return _abbreviatedName; }
+            set { _abbreviatedName = value; }
         }
         public Role(String roleAbbreviatedName) 
         {
             try 
             {
-                this._abbreviatedName = roleAbbreviatedName;
+                _abbreviatedName = roleAbbreviatedName;
                 String query = "USE IUL;" +
                     "SELECT [IUL].[dbo].[ROLES].[ROLE_ID]" +
                     ",[IUL].[dbo].[ROLES].[ROLE_FULL_NAME]" +
@@ -40,15 +40,15 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@abbreviatedName", System.Data.SqlDbType.NChar).Value = this._abbreviatedName;
+                    command.Parameters.Add("@abbreviatedName", System.Data.SqlDbType.NChar).Value = _abbreviatedName;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             if (reader.Read())
                             {
-                                this._id = Convert.ToInt32(reader.GetValue(0));
-                                this._fullName = reader.GetValue(1).ToString().Trim();
+                                _id = Convert.ToInt32(reader.GetValue(0));
+                                _fullName = reader.GetValue(1).ToString().Trim();
                             }
                         }
                     }

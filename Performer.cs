@@ -12,24 +12,24 @@ namespace IUL
 
         public String ChapterId 
         {
-            get { return this._chapterId; }
-            set { this._chapterId = value; }
+            get { return _chapterId; }
+            set { _chapterId = value; }
         }
         public Int32 EmployeeId
         {
-            get { return this._employeeId; }
-            set { this._employeeId = value; }
+            get { return _employeeId; }
+            set { _employeeId = value; }
         }
         public Int32 RoleId
         {
-            get { return this._roleId; }
-            set { this._roleId = value; }
+            get { return _roleId; }
+            set { _roleId = value; }
         }
         public Performer() 
         {
-            this._chapterId = "";
-            this._employeeId = 0;
-            this._roleId = 0;
+            _chapterId = "";
+            _employeeId = 0;
+            _roleId = 0;
         }
         public void InsertNewPerformer() 
         {
@@ -48,9 +48,9 @@ namespace IUL
                 {
                     connection.Open();
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = this._chapterId;
-                    command.Parameters.Add("@employeeId", System.Data.SqlDbType.Int).Value = this._employeeId;
-                    command.Parameters.Add("@roleId", System.Data.SqlDbType.Int).Value = this._roleId;
+                    command.Parameters.Add("@chapterId", System.Data.SqlDbType.NChar).Value = _chapterId;
+                    command.Parameters.Add("@employeeId", System.Data.SqlDbType.Int).Value = _employeeId;
+                    command.Parameters.Add("@roleId", System.Data.SqlDbType.Int).Value = _roleId;
                     command.ExecuteNonQuery();
                 }
             }
