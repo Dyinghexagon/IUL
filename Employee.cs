@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 namespace IUL
@@ -39,7 +40,7 @@ namespace IUL
         {
             get 
             { 
-                using(System.IO.MemoryStream ms = new System.IO.MemoryStream(_sign)) 
+                using(MemoryStream ms = new MemoryStream(_sign)) 
                 {
                     System.Drawing.Image imgSign = System.Drawing.Image.FromStream(ms);
                     return imgSign;
@@ -138,6 +139,35 @@ namespace IUL
             {
                 employee.Sign.Save(ms, employee.Sign.RawFormat);
                 _sign = ms.ToArray();
+            }
+        }
+
+        public void UpdateEmployee() 
+        {
+            try
+            {
+                String query = "use IUL;" +
+                    "UPDATE[IUL].[dbo].[EMPLOYEES] " +
+                    "SET[EMPLOYEE_NAME] = @name, " +
+                    "[EMPLOYEE_SURNAME] = @surname, " +
+                    "[EMPLOYEE_PATROMIC] = @patromic, " +
+                    "[EMPLOYEE_SIGN] = @sign " +
+                    "WHERE[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] = @id; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@name", SqlDbType.VarChar).Value = _name;
+                    command.Parameters.Add("@surname", SqlDbType.VarChar).Value = _surname;
+                    command.Parameters.Add("@patromic", SqlDbType.VarChar).Value = _patromic;
+                    command.Parameters.Add("@sign", SqlDbType.Image).Value = (object)_sign;
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = _id;
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
