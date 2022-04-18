@@ -497,14 +497,14 @@ namespace IUL
                     "SET[IUL].[dbo].[PROJECTS].[PROJECT_CUSTOMER] = @nameCustomer, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_NAME] = @name, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_GIP_ID] = @idGIP, " +
-                    "[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = @idNkpntr, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_N_KONTR_ID] = @idNkont, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_GEODETI_SURVEYS] = @isGeodetiSurveys, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_GEOLOGICAL_SURVEYS_SURVEYS] = @isGeologicalSurveysSurveys, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_ENVIRONMENTAL_SURVEYS] = @isEnvironmentalSurveys, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_METEOROLOGICAL_SURVEYS] = @isMeteorologicalSurveys, " +
                     "[IUL].[dbo].[PROJECTS].[PROJECT_GEOTECHNICAL_SURVEYS] = @isGeotechnicalSurveys, " +
-                    "[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS] = @isInspectionOfTechnicalCondition, " +
-                    "[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION] = @insOfRec " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_ARCHAEOLOGICAL_SURVEYS] = @IsArchaeologicalSurveys, " +
+                    "[IUL].[dbo].[PROJECTS].[PROJECT_INSPECTION_OF_TECHNICAL_CONDITION] = @isInspectionOfTechnicalCondition " +
                     "WHERE[IUL].[dbo].[PROJECTS].[PROJECT_ID] = @id;";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {

@@ -13,6 +13,9 @@ namespace IUL
         private Boolean _isGeotechnicalSurveys;
         private Boolean _isArchaeologicalSurveys;
         private Boolean _isInspectionOfTechnicalCondition;
+        /// <summary>
+        /// Инженерно-геодезические изыскания
+        /// </summary>
         public Boolean IsGeodetiSurveys
         {
             get { return _isGeodetiSurveys; }

@@ -269,6 +269,7 @@
             this.СheckBoxChangeResearchs.TabIndex = 25;
             this.СheckBoxChangeResearchs.Text = "Изменить?";
             this.СheckBoxChangeResearchs.UseVisualStyleBackColor = true;
+            this.СheckBoxChangeResearchs.CheckedChanged += new System.EventHandler(this.СheckBoxChangeResearchs_CheckedChanged);
             // 
             // TextBoxNewProjectName
             // 
