@@ -19,12 +19,12 @@ namespace IUL
             InitializeComponent();
             DbProviderFactories.InitializeComboBox(this.ComboBoxProjectNames, Tables.PROJECTS);
             ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
-            ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
-            ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
+            ComboBoxProjectNames.DrawItem += DbProviderFactories.ComboBox_DrawItem;
+            ComboBoxProjectNames.MeasureItem += DbProviderFactories.ComboBox_MeasureItem;
 
             ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
-            ComboBoxChapterNames.DrawItem += Main.ComboBox_DrawItem;
-            ComboBoxChapterNames.MeasureItem += Main.ComboBox_MeasureItem;
+            ComboBoxChapterNames.DrawItem += DbProviderFactories.ComboBox_DrawItem;
+            ComboBoxChapterNames.MeasureItem += DbProviderFactories.ComboBox_MeasureItem;
 
             _checkColDataGridViewChapterAuthors = new DataGridViewCheckBoxColumn();
             _checkColDataGridViewChapterAuthors.Name = "CheckColDataGridViewChapterAuthors";

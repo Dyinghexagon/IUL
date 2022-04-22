@@ -1,13 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Collections.Specialized;
-
+using System.Drawing;
+using System.Windows.Forms;
 namespace IUL
 {
     public enum Tables 
@@ -139,7 +135,7 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public static void InitializeComboBox(System.Windows.Forms.ComboBox fillingComboBox, Tables table)
+        public static void InitializeComboBox(ComboBox fillingComboBox, Tables table)
         {
             try
             {
@@ -199,6 +195,26 @@ namespace IUL
             catch (Exception ex)
             {
                 throw new Exception("InitializeComboBox(DbProviderFactories) "+ex.Message, ex);
+            }
+        }
+
+        public static void ComboBox_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var text = lbox.Items[e.Index].ToString();
+            var width = lbox.ClientSize.Width;
+            var size = e.Graphics.MeasureString(text, lbox.Font, width);
+            e.ItemHeight = (int)size.Height;
+        }
+
+        public static void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var lbox = (ComboBox)sender;
+            var color = SystemColors.Window;
+            using (var brush = new SolidBrush(color))
+            {
+                e.Graphics.FillRectangle(brush, e.Bounds);
+                e.Graphics.DrawString(lbox.Items[e.Index].ToString(), e.Font, SystemBrushes.WindowText, e.Bounds);
             }
         }
     }

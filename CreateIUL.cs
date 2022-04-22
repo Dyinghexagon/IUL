@@ -56,8 +56,8 @@ namespace IUL
                 DataGridViewChapterNames.ClearSelection();
 
                 ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
-                ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
-                ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
+                ComboBoxProjectNames.DrawItem += DbProviderFactories.ComboBox_DrawItem;
+                ComboBoxProjectNames.MeasureItem += DbProviderFactories.ComboBox_MeasureItem;
 
                 ToolStripMenuItem projectItem = new ToolStripMenuItem("Проект");
                 ToolStripMenuItem projectItemCreateFolder = new ToolStripMenuItem("Создать папку проекта");
