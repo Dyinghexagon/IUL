@@ -49,6 +49,7 @@
             this.CheckBoxEditSign = new System.Windows.Forms.CheckBox();
             this.ButtonEditEmployeeSign = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSelectedEmployeeSign)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,6 +242,14 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(419, 24);
+            this.menuStrip1.TabIndex = 20;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // EditEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -266,6 +275,8 @@
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.LabelEmployees);
             this.Controls.Add(this.ComboBoxEmployees);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "EditEmployee";
             this.Text = "Изменение данных о сотрудниках";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSelectedEmployeeSign)).EndInit();
@@ -297,5 +308,6 @@
         private System.Windows.Forms.CheckBox CheckBoxEditSign;
         private System.Windows.Forms.Button ButtonEditEmployeeSign;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }

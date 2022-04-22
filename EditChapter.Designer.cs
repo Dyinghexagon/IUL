@@ -37,6 +37,8 @@
             this.ComboBoxProjectNames = new System.Windows.Forms.ComboBox();
             this.LabelChapterNames = new System.Windows.Forms.Label();
             this.ComboBoxChapterNames = new System.Windows.Forms.ComboBox();
+            this.ButtonBack = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).BeginInit();
             this.SuspendLayout();
@@ -122,11 +124,33 @@
             this.ComboBoxChapterNames.Size = new System.Drawing.Size(488, 23);
             this.ComboBoxChapterNames.TabIndex = 42;
             // 
+            // ButtonBack
+            // 
+            this.ButtonBack.Location = new System.Drawing.Point(18, 334);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(75, 23);
+            this.ButtonBack.TabIndex = 44;
+            this.ButtonBack.Text = "Назад";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
+            // 
+            // ButtonEdit
+            // 
+            this.ButtonEdit.Location = new System.Drawing.Point(431, 334);
+            this.ButtonEdit.Name = "ButtonEdit";
+            this.ButtonEdit.Size = new System.Drawing.Size(75, 23);
+            this.ButtonEdit.TabIndex = 45;
+            this.ButtonEdit.Text = "Изменить";
+            this.ButtonEdit.UseVisualStyleBackColor = true;
+            this.ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
+            // 
             // EditChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(511, 367);
+            this.Controls.Add(this.ButtonEdit);
+            this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.LabelChapterNames);
             this.Controls.Add(this.ComboBoxChapterNames);
             this.Controls.Add(this.DataGridViewAuthors);
@@ -138,7 +162,6 @@
             this.Controls.Add(this.ComboBoxProjectNames);
             this.Name = "EditChapter";
             this.Text = "EditChapter";
-            this.Load += new System.EventHandler(this.EditChapter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).EndInit();
             this.ResumeLayout(false);
@@ -157,5 +180,7 @@
         private System.Windows.Forms.ComboBox ComboBoxProjectNames;
         private System.Windows.Forms.Label LabelChapterNames;
         private System.Windows.Forms.ComboBox ComboBoxChapterNames;
+        private System.Windows.Forms.Button ButtonBack;
+        private System.Windows.Forms.Button ButtonEdit;
     }
 }

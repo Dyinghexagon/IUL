@@ -103,9 +103,24 @@ namespace IUL
                 row.Cells[_checkColDataGridViewChapterAuthors.Index].Value = !(bool)row.Cells[_checkColDataGridViewChapterAuthors.Index].Value;
             }
         }
-        private void EditChapter_Load(object sender, EventArgs e)
+
+        private void ButtonEdit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
     }
 }

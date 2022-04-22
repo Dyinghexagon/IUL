@@ -19,7 +19,16 @@ namespace IUL
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Program.PreviosPage.Show();
+                this.Hide();
+                Program.PreviosPage = this;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
         }
 
         private void ComboBoxEmployees_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,6 +96,66 @@ namespace IUL
                 Image newSign = Image.FromFile(pathToSign);
                 _selectedEmployee.Sign = newSign;
             }
+        }
+
+        private void LabelSelectedEmployeeSign_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxSelectedEmployeeSign_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxEditEmployeePatronymic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelSelectedEmployeePatronymic_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxSelectedEmployeePatronymic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxEditEmployeeName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelSelectedEmployeeName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxSelectedEmployeeName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxEditEmployeeSurname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelSelectedEmployeeSurname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxSelectedEmployeeSurname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelEmployees_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
