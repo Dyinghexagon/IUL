@@ -20,9 +20,9 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
-                DbProviderFactories.InitializeComboBox(ComboBoxRoles, Tables.ROLES);
-                DbProviderFactories.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
+                Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
+                Program.InitializeComboBox(ComboBoxRoles, Tables.ROLES);
+                Program.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
                 _newPerformer = new Performer();
 
                 var textColCellStyle = new DataGridViewCellStyle();
@@ -59,12 +59,12 @@ namespace IUL
                 _selectedChapters = new HashSet<String>();
 
                 ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
-                ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
-                ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
+                ComboBoxProjectNames.DrawItem += Program.ComboBox_DrawItem;
+                ComboBoxProjectNames.MeasureItem += Program.ComboBox_MeasureItem;
 
                 ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
-                ComboBoxChapterNames.DrawItem += Main.ComboBox_DrawItem;
-                ComboBoxChapterNames.MeasureItem += Main.ComboBox_MeasureItem;
+                ComboBoxChapterNames.DrawItem += Program.ComboBox_DrawItem;
+                ComboBoxChapterNames.MeasureItem += Program.ComboBox_MeasureItem;
             }
             catch(Exception ex) 
             {

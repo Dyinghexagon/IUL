@@ -20,9 +20,12 @@ namespace IUL
         public EditProject()
         {
             InitializeComponent();
-            DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
-            DbProviderFactories.InitializeComboBox(ComboBoxeEmployeesGIP, Tables.EMPLOYEES);
-            DbProviderFactories.InitializeComboBox(ComboBoxeEmployeesNkontr, Tables.EMPLOYEES);
+            Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
+            Program.InitializeComboBox(ComboBoxeEmployeesGIP, Tables.EMPLOYEES);
+            Program.InitializeComboBox(ComboBoxeEmployeesNkontr, Tables.EMPLOYEES);
+            ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
+            ComboBoxProjectNames.DrawItem += Program.ComboBox_DrawItem;
+            ComboBoxProjectNames.MeasureItem += Program.ComboBox_MeasureItem;
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
@@ -122,7 +125,6 @@ namespace IUL
             TextBoxProjectName.Enabled = !TextBoxProjectName.Enabled;
             TextBoxNewProjectName.Enabled = !TextBoxNewProjectName.Enabled;
         }
-
         private void СheckBoxChangeResearchs_CheckedChanged(object sender, EventArgs e)
         {
             CheckedListBoxResearchs.Enabled = !CheckedListBoxResearchs.Enabled;

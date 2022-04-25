@@ -14,7 +14,7 @@ namespace IUL
         public EditEmployee()
         {
             InitializeComponent();
-            DbProviderFactories.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
+            Program.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace IUL
             TextBoxEditEmployeeName.Text = String.Empty;
             TextBoxEditEmployeePatronymic.Text = String.Empty;
             ComboBoxEmployees.Items.Clear();
-            DbProviderFactories.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
+            Program.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
 
         }
         private void ButtonEditEmployeeSign_Click(object sender, EventArgs e)
@@ -96,66 +96,6 @@ namespace IUL
                 Image newSign = Image.FromFile(pathToSign);
                 _selectedEmployee.Sign = newSign;
             }
-        }
-
-        private void LabelSelectedEmployeeSign_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PictureBoxSelectedEmployeeSign_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxEditEmployeePatronymic_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelSelectedEmployeePatronymic_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxSelectedEmployeePatronymic_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxEditEmployeeName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelSelectedEmployeeName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxSelectedEmployeeName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxEditEmployeeSurname_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelSelectedEmployeeSurname_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxSelectedEmployeeSurname_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelEmployees_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

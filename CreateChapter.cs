@@ -17,39 +17,20 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
+                Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
                 _newChapter = new Chapter();
 
                 ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
-                ComboBoxProjectNames.DrawItem += Main.ComboBox_DrawItem;
-                ComboBoxProjectNames.MeasureItem += Main.ComboBox_MeasureItem;
+                ComboBoxProjectNames.DrawItem += Program.ComboBox_DrawItem;
+                ComboBoxProjectNames.MeasureItem += Program.ComboBox_MeasureItem;
 
                 ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
-                ComboBoxChapterNames.DrawItem += Main.ComboBox_DrawItem;
-                ComboBoxChapterNames.MeasureItem += Main.ComboBox_MeasureItem;
+                ComboBoxChapterNames.DrawItem += Program.ComboBox_DrawItem;
+                ComboBoxChapterNames.MeasureItem += Program.ComboBox_MeasureItem;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
-            }
-        }
-        private void ComboBox_MeasureItem(object sender, MeasureItemEventArgs e)
-        {
-            var lbox = (ComboBox)sender;
-            var text = lbox.Items[e.Index].ToString();
-            var width = lbox.ClientSize.Width;
-            var size = e.Graphics.MeasureString(text, lbox.Font, width);
-            e.ItemHeight = (int)size.Height;
-        }
-
-        private void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            var lbox = (ComboBox)sender;
-            var color = SystemColors.Window;
-            using (var brush = new SolidBrush(color))
-            {
-                e.Graphics.FillRectangle(brush, e.Bounds);
-                e.Graphics.DrawString(lbox.Items[e.Index].ToString(), e.Font, SystemBrushes.WindowText, e.Bounds);
             }
         }
         private void ComboBoxNameProjects_SelectedIndexChanged(object sender, EventArgs e)

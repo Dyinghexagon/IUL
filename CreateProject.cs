@@ -17,8 +17,8 @@ namespace IUL
             try 
             {
                 InitializeComponent();
-                DbProviderFactories.InitializeComboBox(ComboBoxChoosingGIP, Tables.EMPLOYEES);
-                DbProviderFactories.InitializeComboBox(ComboBoxChoosingNkontr, Tables.EMPLOYEES);
+                Program.InitializeComboBox(ComboBoxChoosingGIP, Tables.EMPLOYEES);
+                Program.InitializeComboBox(ComboBoxChoosingNkontr, Tables.EMPLOYEES);
                 _newProject = new Project();
             }
             catch(Exception ex) 
