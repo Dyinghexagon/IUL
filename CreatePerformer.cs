@@ -80,7 +80,7 @@ namespace IUL
                 _selectedProject = new Project(nameSelectedProject);
                 foreach(var chapter in _selectedProject.Chapters()) 
                 {
-                    ComboBoxChapterNames.Items.Add(chapter.ChapterName);
+                    ComboBoxChapterNames.Items.Add(chapter.Key.ChapterName);
                 }
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace IUL
                     {
                         Chapter chapter = new Chapter(_selectedProject.Id, chapterName);
                         performer.ChapterId = chapter.Id;
-                        performer.InsertNewPerformer();
+                        performer.Insert();
                     }
                 }
                 catch (Exception ex)
@@ -114,7 +114,7 @@ namespace IUL
             {
                 try 
                 {
-                    _newPerformer.InsertNewPerformer();
+                    _newPerformer.Insert();
                 }
                 catch (Exception ex)
                 {

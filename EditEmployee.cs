@@ -77,7 +77,7 @@ namespace IUL
             {
                 _selectedEmployee.Patromic = TextBoxEditEmployeePatronymic.Text;
             }
-            _selectedEmployee.UpdateEmployee();
+            _selectedEmployee.Update();
             CheckBoxEmployeeSurname.Checked = false;
             CheckBoxEmployeeName.Checked = false;
             CheckBoxEmployeePatronymic.Checked = false;

@@ -6,12 +6,6 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace IUL
 {
-    public enum Tables 
-    {
-        ROLES,
-        PROJECTS,
-        EMPLOYEES
-    }
     class DbProviderFactories
     {
         public static SqlConnection GetDBConnection()

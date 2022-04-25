@@ -181,7 +181,7 @@ namespace IUL
                 throw new Exception("ChapterСonstructorException " + ex.Message, ex);
             }
         }
-        public void InsertNewChapter()
+        public void Insert()
         {
             try 
             {

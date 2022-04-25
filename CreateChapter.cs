@@ -73,7 +73,7 @@ namespace IUL
                 _newChapter.Id = (CheckBoxUniqueChapterId.Checked)? TextBoxChapterId.Text : LabelProjectIdValue.Text + "-" + TextBoxChapterId?.Text;
                 _newChapter.ChapterName += " " + TextBoxNameSubChapter?.Text;
                 _newChapter.ProjectId = LabelProjectIdValue.Text;
-                _newChapter.InsertNewChapter();
+                _newChapter.Insert();
             }
             catch(Exception ex) 
             {

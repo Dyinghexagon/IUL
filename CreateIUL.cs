@@ -51,8 +51,10 @@ namespace IUL
             {
                 String projectName = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
                 _selectedProject = new Project(projectName);
-                _selectedProject.FillingDataGridViewChapters(DataGridViewChapterNames);
-
+                foreach(var chapter in _selectedProject.Chapters()) 
+                {
+                    DataGridViewChapterNames.Rows.Add(chapter.Value, chapter.Key.ChapterName);
+                }
             }
             catch (Exception ex)
             {

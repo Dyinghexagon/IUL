@@ -98,7 +98,7 @@ namespace IUL
                     _selectedProject.Surveys.IsArchaeologicalSurveys = CheckedListBoxResearchs.GetItemChecked(5);
                     _selectedProject.Surveys.IsInspectionOfTechnicalCondition = CheckedListBoxResearchs.GetItemChecked(6);
                 }
-                _selectedProject.UpdateProject();
+                _selectedProject.Update();
                 MessageBox.Show("Изменения внесенны!");
             }
             catch(Exception ex) 

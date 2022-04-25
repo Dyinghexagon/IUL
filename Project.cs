@@ -150,7 +150,7 @@ namespace IUL
                 throw new Exception("projectException " + ex.Message,ex);
             }
         }
-        public void InsertNewProject()
+        public void Insert()
         {
             try
             {
@@ -463,14 +463,6 @@ namespace IUL
                 throw new Exception(e.Message);
             }
         }
-        public void FillingDataGridViewChapters(System.Windows.Forms.DataGridView fillingDataGridView)
-        {
-            foreach(var chaper in _chaptersDict) 
-            {
-                fillingDataGridView.Rows.Add(chaper.Value, chaper.Key.ChapterName);
-            }
-
-        }
         public void ChangeSelectedRolloutChapters(String chapterName) 
         {
             foreach(var chapter in _chaptersDict.Keys.ToList()) 
@@ -481,14 +473,14 @@ namespace IUL
                 }
             }
         }
-        public IEnumerable<Chapter> Chapters() 
+        public IEnumerable<KeyValuePair<Chapter, Boolean>> Chapters()
         {
-            foreach(var chapter in _chaptersDict) 
+            foreach (var chapter in _chaptersDict)
             {
-                yield return chapter.Key;
+                yield return new KeyValuePair<Chapter, Boolean>(chapter.Key, chapter.Value);
             }
         }
-        public void UpdateProject() 
+        public void Update() 
         {
             try 
             {

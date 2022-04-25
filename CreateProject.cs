@@ -57,7 +57,7 @@ namespace IUL
                     _newProject.Id = TextBoxProjectId.Text;
                     _newProject.Name = TextBoxProjectName.Text;
                     _newProject.NameCustomer = TextBoxNameCustomer.Text;
-                    _newProject.InsertNewProject();
+                    _newProject.Insert();
 					MessageBox.Show("Новый проект добавлен!");
                 }
             }

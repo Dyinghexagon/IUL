@@ -8,6 +8,12 @@ using System.Data.SqlClient;
 
 namespace IUL
 {
+    public enum Tables
+    {
+        ROLES,
+        PROJECTS,
+        EMPLOYEES
+    }
     static class Program
     {
         public static Form PreviosPage;

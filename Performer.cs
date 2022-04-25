@@ -31,7 +31,7 @@ namespace IUL
             _employeeId = 0;
             _roleId = 0;
         }
-        public void InsertNewPerformer() 
+        public void Insert() 
         {
             try 
             {

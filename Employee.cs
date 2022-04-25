@@ -141,8 +141,7 @@ namespace IUL
                 _sign = ms.ToArray();
             }
         }
-
-        public void UpdateEmployee() 
+        public void Update() 
         {
             try
             {
@@ -169,6 +168,27 @@ namespace IUL
             {
                 throw new Exception(ex.Message);
             }
+        }
+        public static IEnumerable<String> Employees() 
+        {
+            String query = "use IUL;" +
+                "SELECT [EMPLOYEE_SURNAME] FROM [IUL].[dbo].[EMPLOYEES]";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            yield return reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }
