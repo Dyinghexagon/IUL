@@ -45,6 +45,7 @@
             this.ButtonEditPath = new System.Windows.Forms.Button();
             this.CheckBoxEditPath = new System.Windows.Forms.CheckBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).BeginInit();
             this.SuspendLayout();
@@ -204,6 +205,10 @@
             this.CheckBoxEditPath.UseVisualStyleBackColor = true;
             this.CheckBoxEditPath.CheckedChanged += new System.EventHandler(this.CheckBoxEditPath_CheckedChanged);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // EditChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -253,5 +258,6 @@
         private System.Windows.Forms.Button ButtonEditPath;
         private System.Windows.Forms.CheckBox CheckBoxEditPath;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

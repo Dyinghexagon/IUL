@@ -135,7 +135,7 @@ namespace IUL
             });
             dataGridView.ClearSelection();
         }
-        private static void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        public static void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             var row = ((DataGridView)sender).Rows[e.RowIndex];
             if (row.Selected)
@@ -237,7 +237,7 @@ namespace IUL
             {
                 EditChapter editChapter = new EditChapter();
                 Program.PreviosPage = Form.ActiveForm;
-                Form.ActiveForm.Hide();
+                Program.PreviosPage.Hide();
                 editChapter.Show();
             }
             catch (Exception ex)

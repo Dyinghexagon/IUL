@@ -18,7 +18,7 @@ namespace IUL
         private String _nameFileChapter;
         private String _pathToFileChapter;
         private Int32 _numberChapter;
-        private List<KeyValuePair<String, Employee>> _authorsChapter;
+        private List<KeyValuePair<Role, Employee>> _authorsChapter;
         private FileInfo _fileInfo;
 
 
@@ -100,12 +100,7 @@ namespace IUL
         {
             get { return _numberChapter; }
             set { _numberChapter = value; }
-        }
-        public KeyValuePair<String, Employee> this[Int32 index] 
-        {
-            get { return this._authorsChapter[index]; }
-        }
-        
+        }       
         public Chapter()
         {
             _chapterId = "";
@@ -117,7 +112,7 @@ namespace IUL
         {
             try 
             {
-                _authorsChapter = new List<KeyValuePair<String, Employee>>(4);
+                _authorsChapter = new List<KeyValuePair<Role, Employee>>(4);
                 _projectId = projectId;
                 _chapterName = chapterName;
                 //инциализирую поля шифра раздела и имени файла
@@ -169,7 +164,7 @@ namespace IUL
                             {
                                 String authorSurname = reader.GetValue(0).ToString().Trim();
                                 String authorRole = reader.GetValue(1).ToString().Trim();
-                                _authorsChapter.Add(new KeyValuePair<String, Employee>(authorRole, new Employee(authorSurname)));
+                                _authorsChapter.Add(new KeyValuePair<Role, Employee>(new Role(authorRole), new Employee(authorSurname)));
                             }
                         }
                     }
@@ -212,11 +207,41 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public IEnumerable<String> Authors() 
+        public IEnumerable<KeyValuePair<Role, Employee>> Authors() 
         {
             foreach(var author in _authorsChapter) 
             {
-                yield return author.Value.Name;
+                yield return author;
+            }
+        }
+        public void UpdateAuthors(List<KeyValuePair<Role, Employee>> employees) 
+        {
+            _authorsChapter.Clear();
+            _authorsChapter.AddRange(employees);
+        }
+        public void Update() 
+        {
+            try
+            {
+                String query = "USE IUL;" +
+                    "UPDATE[IUL].[dbo].[CHAPTERS]" +
+                    "SET[IUL].[dbo].[CHAPTERS].[CHAPTER_NAME] = @chapterName, " +
+                    "[IUL].[dbo].[CHAPTERS].[CHAPTER_FILE_NAME] = @path " +
+                    "WHERE[IUL].[dbo].[CHAPTERS].[CHAPTER_ID] = @id; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@chapterName", SqlDbType.Text).Value = _chapterName;
+                    command.Parameters.Add("@path", SqlDbType.Text).Value = _pathToFileChapter;
+                    command.Parameters.Add("@id", SqlDbType.VarChar).Value = _chapterId;
+                    command.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
         

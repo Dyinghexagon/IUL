@@ -11,7 +11,7 @@ namespace IUL
         private String _fullName;
         private String _abbreviatedName;
 
-        public Int32 Id 
+        public Int32 Id
         {
             get { return _id; }
             set { _id = value; }
@@ -26,9 +26,9 @@ namespace IUL
             get { return _abbreviatedName; }
             set { _abbreviatedName = value; }
         }
-        public Role(String roleAbbreviatedName) 
+        public Role(String roleAbbreviatedName)
         {
-            try 
+            try
             {
                 _abbreviatedName = roleAbbreviatedName;
                 String query = "USE IUL;" +
@@ -57,6 +57,28 @@ namespace IUL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
+            }
+        }
+
+        public static IEnumerable<String> Roles() 
+        {
+            String query = "USE IUL;" +
+                "SELECT [IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME] " +
+                "FROM [IUL].[dbo].[ROLES]";
+            using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            yield return reader.GetValue(0).ToString().Trim();
+                        }
+                    }
+                }
             }
         }
     }

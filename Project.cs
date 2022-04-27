@@ -366,19 +366,19 @@ namespace IUL
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
                         int countAuthors = chapter.Key.CountAuthorChapter;
-                        for (int i = 0; i < countAuthors; i++)
+                        foreach (var author in chapter.Key.Authors()) 
                         {
-                            cell = new PdfPCell(new Phrase(chapter.Key[i].Key, font));
+                            cell = new PdfPCell(new Phrase(author.Key.AbbreviatedName, font));
                             cell.Colspan = 1;
                             cell.HorizontalAlignment = Element.ALIGN_CENTER;
                             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                             table.AddCell(cell);
-                            cell = new PdfPCell(new Phrase(chapter.Key[i].Value.Surname, font));
+                            cell = new PdfPCell(new Phrase(author.Value.Surname, font));
                             cell.Colspan = 1;
                             cell.HorizontalAlignment = Element.ALIGN_CENTER;
                             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                             table.AddCell(cell);
-                            iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(chapter.Key[i].Value.Sign, BaseColor.WHITE);
+                            iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(author.Value.Sign, BaseColor.WHITE);
                             cell = new PdfPCell(signAuthor);
                             signAuthor.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                             cell.Colspan = 1;
