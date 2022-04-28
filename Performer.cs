@@ -125,8 +125,8 @@ namespace IUL
                 {
                     Performer performer = new Performer();
                     performer.ChapterId = chapterId;
-                    performer.EmployeeId = author.Key.Id;
-                    performer.RoleId = author.Value.Id;
+                    performer.EmployeeId = author.Value.Id;
+                    performer.RoleId = author.Key.Id;
                     performer.Insert();
                 }
             }

@@ -16,8 +16,25 @@ namespace IUL
         {
             InitializeComponent();
             Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
-            InitializationDataGridViewAuthors(ref DataGridViewAuthors);
-            InitializationDataGridViewChapterAuthors(ref DataGridViewChapterAuthors);
+            Program.GetDataGridViewCheckBoxAndTextBox(ref DataGridViewAuthors);
+            DataGridViewComboBoxColumn comboBoxCol;
+            comboBoxCol = new DataGridViewComboBoxColumn();
+            comboBoxCol.Name = "comboBoxCol";
+            comboBoxCol.HeaderText = "comboBoxCol";
+            List<String> roles = Role.Roles().ToList();
+            comboBoxCol.DataSource = roles;
+            DataGridViewAuthors.Columns.Add(comboBoxCol);
+            Program.GetDataGridViewCheckBoxAndTextBox(ref DataGridViewChapterAuthors);
+            DataGridViewTextBoxColumn textRoleCol;
+            textRoleCol = new DataGridViewTextBoxColumn();
+            textRoleCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            textRoleCol.Name = "textRoleCol";
+            textRoleCol.HeaderText = "textRoleCol";
+            var textColCellStyle = new DataGridViewCellStyle();
+            textColCellStyle.WrapMode = DataGridViewTriState.True;
+            textRoleCol.DefaultCellStyle = textColCellStyle;
+            textRoleCol.ReadOnly = true;
+            DataGridViewChapterAuthors.Columns.Add(textRoleCol);
             ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
             ComboBoxProjectNames.DrawItem += Program.ComboBox_DrawItem;
             ComboBoxProjectNames.MeasureItem += Program.ComboBox_MeasureItem;
@@ -41,8 +58,8 @@ namespace IUL
                 {
                     if (Convert.ToBoolean(DataGridViewChapterAuthors[0, i].Value)) 
                     {
-                        Role role = new Role(DataGridViewChapterAuthors[1, i].Value.ToString());
-                        Employee employee = new Employee(DataGridViewChapterAuthors[2, i].Value.ToString());
+                        Role role = new Role(DataGridViewChapterAuthors[2, i].Value.ToString());
+                        Employee employee = new Employee(DataGridViewChapterAuthors[1, i].Value.ToString());
                         authors.Add(new KeyValuePair<Role, Employee>(role, employee));
                     }
                 }
@@ -50,18 +67,19 @@ namespace IUL
                 {
                     if (Convert.ToBoolean(DataGridViewAuthors[0, i].Value))
                     {
-                        Role role = new Role(DataGridViewAuthors[1, i].Value.ToString());
-                        Employee employee = new Employee(DataGridViewAuthors[2, i].Value.ToString());
+                        Role role = new Role(DataGridViewAuthors[2, i].Value.ToString());
+                        Employee employee = new Employee(DataGridViewAuthors[1, i].Value.ToString());
                         authors.Add(new KeyValuePair<Role, Employee>(role, employee));
                     }
                 }
                 _selectedChapter.UpdateAuthors(authors);
                 _selectedChapter.Update();
-                Performer.Update(_selectedChapter.ChapterName, authors);
+                Performer.Update(_selectedChapter.Id, authors);
+                MessageBox.Show("Изменения внесены");
             }
             catch(Exception ex) 
             {
-                MessageBox.Show("Exception editing chapter", ex.GetType().Name);
+                MessageBox.Show(ex.Message, ex.GetType().Name);
             }
         }
 
@@ -139,120 +157,6 @@ namespace IUL
             catch(Exception ex) 
             {
                 MessageBox.Show("Exception selected new path", ex.GetType().Name);
-            }
-        }
-
-        private void InitializationDataGridViewAuthors(ref DataGridView dataGridView)
-        {
-            try 
-            {
-                DataGridViewCheckBoxColumn checkCol;
-                DataGridViewTextBoxColumn textCol;
-                DataGridViewComboBoxColumn comboBoxCol;
-
-                checkCol = new DataGridViewCheckBoxColumn();
-                checkCol.Name = "CheckCol";
-                checkCol.HeaderText = "CheckCol";
-                checkCol.Resizable = DataGridViewTriState.False;
-                checkCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-                var textColCellStyle = new DataGridViewCellStyle();
-                textColCellStyle.WrapMode = DataGridViewTriState.True;
-
-                textCol = new DataGridViewTextBoxColumn();
-                textCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                textCol.Name = "TextCol";
-                textCol.HeaderText = "TextCol";
-                textCol.DefaultCellStyle = textColCellStyle;
-                textCol.ReadOnly = true;
-
-                comboBoxCol = new DataGridViewComboBoxColumn();
-                comboBoxCol.Name = "comboBoxCol";
-                comboBoxCol.HeaderText = "comboBoxCol";
-                List<String> roles = Role.Roles().ToList();
-                comboBoxCol.DataSource = roles;
-
-                dataGridView.AllowUserToAddRows = false;
-                dataGridView.AllowUserToDeleteRows = false;
-                dataGridView.AllowUserToResizeColumns = false;
-                dataGridView.AllowUserToResizeRows = false;
-                dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
-                dataGridView.CellMouseDown += Program.DataGridView_CellMouseDown;
-                dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                dataGridView.ColumnHeadersVisible = false;
-                dataGridView.BackgroundColor = Color.White;
-                dataGridView.MultiSelect = false;
-                dataGridView.RowHeadersVisible = false;
-                dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-                dataGridView.Columns.AddRange(new DataGridViewColumn[]
-                {
-                    checkCol,comboBoxCol, textCol
-                });
-                dataGridView.ClearSelection();
-            }
-            catch(Exception ex) 
-            {
-                MessageBox.Show("Exception InitializationDataGridViewAuthors", ex.GetType().ToString());
-            }
-        }
-        private void InitializationDataGridViewChapterAuthors(ref DataGridView dataGridView)
-        {
-            try 
-            {
-                DataGridViewCheckBoxColumn checkCol;
-                DataGridViewTextBoxColumn textSurnameCol;
-                DataGridViewTextBoxColumn textRoleCol;
-
-                checkCol = new DataGridViewCheckBoxColumn();
-                checkCol.Name = "CheckCol";
-                checkCol.HeaderText = "CheckCol";
-                checkCol.Resizable = DataGridViewTriState.False;
-                checkCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-                var textColCellStyle = new DataGridViewCellStyle();
-                textColCellStyle.WrapMode = DataGridViewTriState.True;
-
-                textSurnameCol = new DataGridViewTextBoxColumn();
-                textSurnameCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                textSurnameCol.Name = "textSurnameCol";
-                textSurnameCol.HeaderText = "textSurnameCol";
-                textSurnameCol.DefaultCellStyle = textColCellStyle;
-                textSurnameCol.ReadOnly = true;
-
-
-                textRoleCol = new DataGridViewTextBoxColumn();
-                textRoleCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                textRoleCol.Name = "textRoleCol";
-                textRoleCol.HeaderText = "textRoleCol";
-                textRoleCol.DefaultCellStyle = textColCellStyle;
-                textRoleCol.ReadOnly = true;
-
-
-                dataGridView.AllowUserToAddRows = false;
-                dataGridView.AllowUserToDeleteRows = false;
-                dataGridView.AllowUserToResizeColumns = false;
-                dataGridView.AllowUserToResizeRows = false;
-                dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
-                dataGridView.CellMouseDown += Program.DataGridView_CellMouseDown;
-                dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                dataGridView.ColumnHeadersVisible = false;
-                dataGridView.BackgroundColor = Color.White;
-                dataGridView.MultiSelect = false;
-                dataGridView.RowHeadersVisible = false;
-                dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-                dataGridView.Columns.AddRange(new DataGridViewColumn[]
-                {
-                    checkCol,textRoleCol, textSurnameCol
-                });
-                dataGridView.ClearSelection();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception InitializationDataGridViewChapterAuthors", ex.GetType().ToString());
             }
         }
     }
