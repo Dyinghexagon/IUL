@@ -18,7 +18,7 @@ namespace IUL
         private String _nameFileChapter;
         private String _pathToFileChapter;
         private Int32 _numberChapter;
-        private List<KeyValuePair<Role, Employee>> _authorsChapter;
+        private List<Performer> _authors;
         private FileInfo _fileInfo;
 
 
@@ -92,10 +92,6 @@ namespace IUL
             get { return _nameFileChapter; }
             set { _nameFileChapter = value; }
         }
-        public Int32 CountAuthorChapter 
-        {
-            get { return _authorsChapter.Count; }
-        }
         public Int32 NumberChapter 
         {
             get { return _numberChapter; }
@@ -112,7 +108,7 @@ namespace IUL
         {
             try 
             {
-                _authorsChapter = new List<KeyValuePair<Role, Employee>>(4);
+                _authors = new List<Performer>();
                 _projectId = projectId;
                 _chapterName = chapterName;
                 //инциализирую поля шифра раздела и имени файла
@@ -142,15 +138,9 @@ namespace IUL
                 }
                 //инциализирую состав авторского коллектива для раздела
                 query = "USE IUL;" +
-                "SELECT " +
-                "[IUL].[dbo].[EMPLOYEES].[EMPLOYEE_SURNAME], " +
-                "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME] " +
-                "FROM [IUL].[dbo].[PERFORMERS] " +
-                "JOIN [IUL].[dbo].[EMPLOYEES] " +
-                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_EMPLOYEE_ID] = [IUL].[dbo].[EMPLOYEES].[EMPLOYEE_ID] " +
-                "JOIN [IUL].[dbo].[ROLES] " +
-                "ON [IUL].[dbo].[PERFORMERS].[PERFORMER_ROLE_ID] = [IUL].[dbo].[ROLES].[ROLE_ID] " +
-                "WHERE [IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @chapterId;";
+                    "SELECT[IUL].[dbo].[PERFORMERS].[PERFORMER_ID] " +
+                    "FROM[IUL].[dbo].[PERFORMERS] " +
+                    "WHERE[IUL].[dbo].[PERFORMERS].[PERFORMER_CHAPTER_ID] = @chapterId; ";
                 using (SqlConnection connection = DbProviderFactories.GetDBConnection())
                 {
                     connection.Open();
@@ -162,9 +152,8 @@ namespace IUL
                         {
                             while (reader.Read())
                             {
-                                String authorSurname = reader.GetValue(0).ToString().Trim();
-                                String authorRole = reader.GetValue(1).ToString().Trim();
-                                _authorsChapter.Add(new KeyValuePair<Role, Employee>(new Role(authorRole), new Employee(authorSurname)));
+                                Int32 performerId = Convert.ToInt32(reader.GetValue(0));
+                                _authors.Add(new Performer(performerId));
                             }
                         }
                     }
@@ -207,17 +196,12 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
-        public IEnumerable<KeyValuePair<Role, Employee>> Authors() 
+        public IEnumerable<Performer> Authors() 
         {
-            foreach(var author in _authorsChapter) 
+            foreach(var author in _authors) 
             {
                 yield return author;
             }
-        }
-        public void UpdateAuthors(List<KeyValuePair<Role, Employee>> employees) 
-        {
-            _authorsChapter.Clear();
-            _authorsChapter.AddRange(employees);
         }
         public void Update() 
         {

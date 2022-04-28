@@ -59,7 +59,40 @@ namespace IUL
                 throw new Exception(ex.Message, ex);
             }
         }
+        public Role(Int32 id) 
+        {
+            try
+            {
+                Id = id;
+                String query = "USE IUL; " +
+                    "SELECT [IUL].[dbo].[ROLES].[ROLE_FULL_NAME], " +
+                    "[IUL].[dbo].[ROLES].[ROLE_ABBREVIATED_NAME] " +
+                    "FROM[IUL].[dbo].[ROLES] " +
+                    "WHERE[IUL].[dbo].[ROLES].[ROLE_ID] = @id; ";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = Id;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            if (reader.Read())
+                            {
+                                FullName = reader.GetValue(0).ToString().Trim();
+                                AbbreviatedName = reader.GetValue(1).ToString().Trim();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
 
+        }
         public static IEnumerable<String> Roles() 
         {
             String query = "USE IUL;" +

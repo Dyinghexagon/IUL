@@ -37,7 +37,7 @@ namespace IUL
             EmployeeId = 1;
             RoleId = 1;
         }
-        private Performer(Int32 id) 
+        public Performer(Int32 id) 
         {
             Id = id;
             try

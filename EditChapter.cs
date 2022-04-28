@@ -72,12 +72,14 @@ namespace IUL
                         authors.Add(new KeyValuePair<Role, Employee>(role, employee));
                     }
                 }
-                _selectedChapter.UpdateAuthors(authors);
                 _selectedChapter.Update();
                 Performer.Update(_selectedChapter.Id, authors);
                 MessageBox.Show("Изменения внесены");
+                ComboBoxProjectNames.Items.Clear();
+                ComboBoxChapterNames.Items.Clear();
+                Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
             }
-            catch(Exception ex) 
+            catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message, ex.GetType().Name);
             }
@@ -116,6 +118,7 @@ namespace IUL
         {
             try 
             {
+                ComboBoxChapterNames.Items.Clear();
                 String nameProject = ComboBoxProjectNames.Items[ComboBoxProjectNames.SelectedIndex].ToString();
                 _selectedProject = new Project(nameProject);
                 foreach (var chapter in _selectedProject.Chapters())
@@ -133,11 +136,15 @@ namespace IUL
         {
             try
             {
+                DataGridViewChapterAuthors.Rows.Clear();
+                DataGridViewChapterAuthors.Refresh();
                 String nameChapter = ComboBoxChapterNames.Items[ComboBoxChapterNames.SelectedIndex].ToString();
                 _selectedChapter = new Chapter(_selectedProject.Id, nameChapter);
-                foreach(var autor in _selectedChapter.Authors()) 
+                foreach (var autor in _selectedChapter.Authors())
                 {
-                    DataGridViewChapterAuthors.Rows.Add(true, autor.Value.Surname, autor.Key.AbbreviatedName);
+                    Employee employee = new Employee(autor.EmployeeId);
+                    Role role = new Role(autor.RoleId);
+                    DataGridViewChapterAuthors.Rows.Add(true, employee.Surname, role.AbbreviatedName);
                 }
             }
             catch (Exception ex)

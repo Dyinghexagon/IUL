@@ -365,20 +365,46 @@ namespace IUL
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        int countAuthors = chapter.Key.CountAuthorChapter;
-                        foreach (var author in chapter.Key.Authors()) 
+                        //foreach (var author in chapter.Key.Authors()) 
+                        //{
+                        //    cell = new PdfPCell(new Phrase(author.Key.AbbreviatedName, font));
+                        //    cell.Colspan = 1;
+                        //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        //    table.AddCell(cell);
+                        //    cell = new PdfPCell(new Phrase(author.Value.Surname, font));
+                        //    cell.Colspan = 1;
+                        //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        //    table.AddCell(cell);
+                        //    iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(author.Value.Sign, BaseColor.WHITE);
+                        //    cell = new PdfPCell(signAuthor);
+                        //    signAuthor.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
+                        //    cell.Colspan = 1;
+                        //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        //    table.AddCell(cell);
+                        //    cell = new PdfPCell(new Phrase(dateSigning, font));
+                        //    cell.Colspan = 1;
+                        //    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        //    table.AddCell(cell);
+                        //}
+                        foreach (var author in chapter.Key.Authors())
                         {
-                            cell = new PdfPCell(new Phrase(author.Key.AbbreviatedName, font));
+                            Employee employee = new Employee(author.EmployeeId);
+                            Role role = new Role(author.RoleId);
+                            cell = new PdfPCell(new Phrase(role.AbbreviatedName, font));
                             cell.Colspan = 1;
                             cell.HorizontalAlignment = Element.ALIGN_CENTER;
                             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                             table.AddCell(cell);
-                            cell = new PdfPCell(new Phrase(author.Value.Surname, font));
+                            cell = new PdfPCell(new Phrase(employee.Surname, font));
                             cell.Colspan = 1;
                             cell.HorizontalAlignment = Element.ALIGN_CENTER;
                             cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                             table.AddCell(cell);
-                            iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(author.Value.Sign, BaseColor.WHITE);
+                            iTextSharp.text.Image signAuthor = iTextSharp.text.Image.GetInstance(employee.Sign, BaseColor.WHITE);
                             cell = new PdfPCell(signAuthor);
                             signAuthor.ScaleAbsolute(signGip.Width * scale, signGip.Height * scale);
                             cell.Colspan = 1;
