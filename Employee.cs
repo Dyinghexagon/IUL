@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Drawing;
 namespace IUL
 {
     class Employee
@@ -21,36 +22,37 @@ namespace IUL
         public String Surname
         {
             get { return _surname; }
-            set { _surname = value; }
+            set { _surname = (value is null)?  "unknown_surname":value; }
 
         }
         public String Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = (value is null) ? "unknown_name": value; }
 
         }
         public String Patromic
         {
             get { return _patromic; }
-            set { _patromic = value; }
+            set { _patromic = (value is null) ?  "unknown_patromic": value; }
 
         }
-        public System.Drawing.Image Sign 
+        public Image Sign 
         {
             get 
             { 
                 using(MemoryStream ms = new MemoryStream(_sign)) 
                 {
-                    System.Drawing.Image imgSign = System.Drawing.Image.FromStream(ms);
+                    Image imgSign = System.Drawing.Image.FromStream(ms);
                     return imgSign;
                 }
             }
             set 
             {
+                Image imageSign = (value is null) ? Image.FromFile("simple-sign.png") : value;
                 using(var ms = new MemoryStream()) 
                 {
-                    value.Save(ms, value.RawFormat);
+                    imageSign.Save(ms, imageSign.RawFormat);
                     _sign = ms.ToArray();
                 }
             }
@@ -139,6 +141,30 @@ namespace IUL
             {
                 employee.Sign.Save(ms, employee.Sign.RawFormat);
                 _sign = ms.ToArray();
+            }
+        }
+        public Employee() { }
+        public void Insert() 
+        {
+            try
+            {
+                String query = "USE IUL;" +
+                    "INSERT INTO [IUL].[dbo].[EMPLOYEES] ([EMPLOYEE_SURNAME], [EMPLOYEE_NAME], [EMPLOYEE_PATROMIC], [EMPLOYEE_SIGN]) " +
+                    "VALUES(@surname, @name, @patromic, @sign);";
+                using (SqlConnection connection = DbProviderFactories.GetDBConnection())
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.Add("@surname", SqlDbType.VarChar).Value = Surname;
+                    command.Parameters.Add("@name", SqlDbType.VarChar).Value = Name;
+                    command.Parameters.Add("@patromic", SqlDbType.VarChar).Value = Patromic;
+                    command.Parameters.Add("@sign", SqlDbType.Image).Value = (object)_sign;
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch(Exception ex) 
+            {
+                throw new Exception("Exception insert new Employee", ex);
             }
         }
         public void Update() 

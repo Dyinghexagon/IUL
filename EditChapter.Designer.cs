@@ -44,7 +44,6 @@
             this.CheckBoxEditNameChapter = new System.Windows.Forms.CheckBox();
             this.ButtonEditPath = new System.Windows.Forms.Button();
             this.CheckBoxEditPath = new System.Windows.Forms.CheckBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).BeginInit();
@@ -257,7 +256,6 @@
         private System.Windows.Forms.CheckBox CheckBoxEditNameChapter;
         private System.Windows.Forms.Button ButtonEditPath;
         private System.Windows.Forms.CheckBox CheckBoxEditPath;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

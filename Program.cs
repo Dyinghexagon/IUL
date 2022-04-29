@@ -171,8 +171,11 @@ namespace IUL
             employeeItemCreate.Click += CreateEmployee_Click;
             ToolStripMenuItem employeeItemEdit = new ToolStripMenuItem("Изменить данные о сотруднике");
             employeeItemEdit.Click += EditEmployee_Click;
+            ToolStripMenuItem employeeItemCreateNewEmployee = new ToolStripMenuItem("Добавить нового сотрудника");
+            employeeItemCreateNewEmployee.Click += CreateNewEmployee_Click;
             employeeItem.DropDownItems.Add(employeeItemCreate);
             employeeItem.DropDownItems.Add(employeeItemEdit);
+            employeeItem.DropDownItems.Add(employeeItemCreateNewEmployee);
             mainMenu.Items.Add(employeeItem);
         }
         private static void CreateProjectFolder_Click(object sender, EventArgs e)
@@ -267,6 +270,20 @@ namespace IUL
                 Program.PreviosPage = Form.ActiveForm;
                 Form.ActiveForm.Hide();
                 editEmployee.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().Name);
+            }
+        }
+        private static void CreateNewEmployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CreateEmployee createEmployee = new CreateEmployee();
+                Program.PreviosPage = Form.ActiveForm;
+                Form.ActiveForm.Hide();
+                createEmployee.Show();
             }
             catch (Exception ex)
             {
