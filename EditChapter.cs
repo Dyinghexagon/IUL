@@ -17,6 +17,8 @@ namespace IUL
             InitializeComponent();
             Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
             Program.GetDataGridViewCheckBoxAndTextBox(ref DataGridViewAuthors);
+            Program.GetMainMenu(ref MenuStrip);
+
             DataGridViewComboBoxColumn comboBoxCol;
             comboBoxCol = new DataGridViewComboBoxColumn();
             comboBoxCol.Name = "comboBoxCol";

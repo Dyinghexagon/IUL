@@ -42,13 +42,14 @@ namespace IUL
             this.DataGridViewSelectedChapter = new System.Windows.Forms.DataGridView();
             this.LableSelectedChapter = new System.Windows.Forms.Label();
             this.CheckBoxIsAddMultiple = new System.Windows.Forms.CheckBox();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSelectedChapter)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelChapterNames
             // 
             this.LabelChapterNames.AutoSize = true;
-            this.LabelChapterNames.Location = new System.Drawing.Point(12, 55);
+            this.LabelChapterNames.Location = new System.Drawing.Point(0, 79);
             this.LabelChapterNames.Name = "LabelChapterNames";
             this.LabelChapterNames.Size = new System.Drawing.Size(114, 15);
             this.LabelChapterNames.TabIndex = 12;
@@ -57,7 +58,7 @@ namespace IUL
             // ComboBoxChapterNames
             // 
             this.ComboBoxChapterNames.FormattingEnabled = true;
-            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 73);
+            this.ComboBoxChapterNames.Location = new System.Drawing.Point(0, 97);
             this.ComboBoxChapterNames.Name = "ComboBoxChapterNames";
             this.ComboBoxChapterNames.Size = new System.Drawing.Size(699, 23);
             this.ComboBoxChapterNames.TabIndex = 11;
@@ -66,7 +67,7 @@ namespace IUL
             // ComboBoxProjectNames
             // 
             this.ComboBoxProjectNames.FormattingEnabled = true;
-            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 28);
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(0, 52);
             this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
             this.ComboBoxProjectNames.Size = new System.Drawing.Size(699, 23);
             this.ComboBoxProjectNames.TabIndex = 10;
@@ -75,7 +76,7 @@ namespace IUL
             // LabelProjectNames
             // 
             this.LabelProjectNames.AutoSize = true;
-            this.LabelProjectNames.Location = new System.Drawing.Point(12, 9);
+            this.LabelProjectNames.Location = new System.Drawing.Point(0, 33);
             this.LabelProjectNames.Name = "LabelProjectNames";
             this.LabelProjectNames.Size = new System.Drawing.Size(102, 15);
             this.LabelProjectNames.TabIndex = 9;
@@ -84,7 +85,7 @@ namespace IUL
             // LabelSurnameEmploeey
             // 
             this.LabelSurnameEmploeey.AutoSize = true;
-            this.LabelSurnameEmploeey.Location = new System.Drawing.Point(12, 99);
+            this.LabelSurnameEmploeey.Location = new System.Drawing.Point(0, 123);
             this.LabelSurnameEmploeey.Name = "LabelSurnameEmploeey";
             this.LabelSurnameEmploeey.Size = new System.Drawing.Size(179, 15);
             this.LabelSurnameEmploeey.TabIndex = 14;
@@ -93,7 +94,7 @@ namespace IUL
             // ComboBoxEmployees
             // 
             this.ComboBoxEmployees.FormattingEnabled = true;
-            this.ComboBoxEmployees.Location = new System.Drawing.Point(12, 117);
+            this.ComboBoxEmployees.Location = new System.Drawing.Point(0, 141);
             this.ComboBoxEmployees.Name = "ComboBoxEmployees";
             this.ComboBoxEmployees.Size = new System.Drawing.Size(350, 23);
             this.ComboBoxEmployees.TabIndex = 13;
@@ -102,7 +103,7 @@ namespace IUL
             // LabelRoleEmployee
             // 
             this.LabelRoleEmployee.AutoSize = true;
-            this.LabelRoleEmployee.Location = new System.Drawing.Point(361, 99);
+            this.LabelRoleEmployee.Location = new System.Drawing.Point(349, 123);
             this.LabelRoleEmployee.Name = "LabelRoleEmployee";
             this.LabelRoleEmployee.Size = new System.Drawing.Size(109, 15);
             this.LabelRoleEmployee.TabIndex = 16;
@@ -111,7 +112,7 @@ namespace IUL
             // ComboBoxRoles
             // 
             this.ComboBoxRoles.FormattingEnabled = true;
-            this.ComboBoxRoles.Location = new System.Drawing.Point(361, 117);
+            this.ComboBoxRoles.Location = new System.Drawing.Point(349, 141);
             this.ComboBoxRoles.Name = "ComboBoxRoles";
             this.ComboBoxRoles.Size = new System.Drawing.Size(350, 23);
             this.ComboBoxRoles.TabIndex = 15;
@@ -119,7 +120,7 @@ namespace IUL
             // 
             // ButtonAddNewPerformer
             // 
-            this.ButtonAddNewPerformer.Location = new System.Drawing.Point(623, 146);
+            this.ButtonAddNewPerformer.Location = new System.Drawing.Point(611, 170);
             this.ButtonAddNewPerformer.Name = "ButtonAddNewPerformer";
             this.ButtonAddNewPerformer.Size = new System.Drawing.Size(88, 44);
             this.ButtonAddNewPerformer.TabIndex = 17;
@@ -129,7 +130,7 @@ namespace IUL
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(529, 146);
+            this.ButtonBack.Location = new System.Drawing.Point(517, 170);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(88, 44);
             this.ButtonBack.TabIndex = 18;
@@ -140,7 +141,7 @@ namespace IUL
             // DataGridViewSelectedChapter
             // 
             this.DataGridViewSelectedChapter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewSelectedChapter.Location = new System.Drawing.Point(12, 221);
+            this.DataGridViewSelectedChapter.Location = new System.Drawing.Point(0, 245);
             this.DataGridViewSelectedChapter.Name = "DataGridViewSelectedChapter";
             this.DataGridViewSelectedChapter.RowTemplate.Height = 25;
             this.DataGridViewSelectedChapter.Size = new System.Drawing.Size(699, 150);
@@ -149,7 +150,7 @@ namespace IUL
             // LableSelectedChapter
             // 
             this.LableSelectedChapter.AutoSize = true;
-            this.LableSelectedChapter.Location = new System.Drawing.Point(13, 200);
+            this.LableSelectedChapter.Location = new System.Drawing.Point(1, 224);
             this.LableSelectedChapter.Name = "LableSelectedChapter";
             this.LableSelectedChapter.Size = new System.Drawing.Size(121, 15);
             this.LableSelectedChapter.TabIndex = 20;
@@ -158,7 +159,7 @@ namespace IUL
             // CheckBoxIsAddMultiple
             // 
             this.CheckBoxIsAddMultiple.AutoSize = true;
-            this.CheckBoxIsAddMultiple.Location = new System.Drawing.Point(13, 171);
+            this.CheckBoxIsAddMultiple.Location = new System.Drawing.Point(1, 195);
             this.CheckBoxIsAddMultiple.Name = "CheckBoxIsAddMultiple";
             this.CheckBoxIsAddMultiple.Size = new System.Drawing.Size(288, 19);
             this.CheckBoxIsAddMultiple.TabIndex = 21;
@@ -166,11 +167,20 @@ namespace IUL
             this.CheckBoxIsAddMultiple.UseVisualStyleBackColor = true;
             this.CheckBoxIsAddMultiple.CheckedChanged += new System.EventHandler(this.CheckBoxIsAddMultiple_CheckedChanged);
             // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(705, 24);
+            this.MenuStrip.TabIndex = 33;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
             // CreatePerformer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 379);
+            this.ClientSize = new System.Drawing.Size(705, 403);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.CheckBoxIsAddMultiple);
             this.Controls.Add(this.LableSelectedChapter);
             this.Controls.Add(this.DataGridViewSelectedChapter);
@@ -208,5 +218,6 @@ namespace IUL
         private System.Windows.Forms.DataGridView DataGridViewSelectedChapter;
         private System.Windows.Forms.Label LableSelectedChapter;
         private System.Windows.Forms.CheckBox CheckBoxIsAddMultiple;
+        private System.Windows.Forms.MenuStrip MenuStrip;
     }
 }

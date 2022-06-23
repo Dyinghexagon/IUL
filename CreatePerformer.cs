@@ -23,6 +23,8 @@ namespace IUL
                 Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
                 Program.InitializeComboBox(ComboBoxRoles, Tables.ROLES);
                 Program.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
+                Program.GetMainMenu(ref MenuStrip);
+
                 _newPerformer = new Performer();
 
                 var textColCellStyle = new DataGridViewCellStyle();

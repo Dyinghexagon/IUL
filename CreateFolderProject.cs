@@ -13,6 +13,7 @@ namespace IUL
         public CreateFolderProject()
         {
             InitializeComponent();
+            Program.GetMainMenu(ref MenuStrip);
         }
         private void ButtonCreateFolder_Click(object sender, EventArgs e)
         {

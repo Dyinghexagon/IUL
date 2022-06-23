@@ -14,13 +14,14 @@ namespace IUL
         public CreateEmployee()
         {
             InitializeComponent();
-            _newEmployee = new Employee();
+            Program.GetMainMenu(ref MenuStrip);
         }
 
         private void ButtonCreate_Click(object sender, EventArgs e)
         {
             try 
             {
+                _newEmployee = new Employee();
                 _newEmployee.Surname = TextBoxSurname.Text;
                 _newEmployee.Name = TextBoxName.Text;
                 _newEmployee.Patromic = TextBoxPathomic.Text;

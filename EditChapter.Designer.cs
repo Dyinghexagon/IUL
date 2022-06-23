@@ -45,6 +45,7 @@
             this.ButtonEditPath = new System.Windows.Forms.Button();
             this.CheckBoxEditPath = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewAuthors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterAuthors)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.DataGridViewAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewAuthors.Enabled = false;
-            this.DataGridViewAuthors.Location = new System.Drawing.Point(316, 230);
+            this.DataGridViewAuthors.Location = new System.Drawing.Point(318, 248);
             this.DataGridViewAuthors.Name = "DataGridViewAuthors";
             this.DataGridViewAuthors.RowTemplate.Height = 25;
             this.DataGridViewAuthors.Size = new System.Drawing.Size(300, 200);
@@ -62,7 +63,7 @@
             // DataGridViewChapterAuthors
             // 
             this.DataGridViewChapterAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewChapterAuthors.Location = new System.Drawing.Point(10, 230);
+            this.DataGridViewChapterAuthors.Location = new System.Drawing.Point(12, 248);
             this.DataGridViewChapterAuthors.Name = "DataGridViewChapterAuthors";
             this.DataGridViewChapterAuthors.RowTemplate.Height = 25;
             this.DataGridViewChapterAuthors.Size = new System.Drawing.Size(300, 200);
@@ -71,7 +72,7 @@
             // CheckBoxEditAuthors
             // 
             this.CheckBoxEditAuthors.AutoSize = true;
-            this.CheckBoxEditAuthors.Location = new System.Drawing.Point(531, 211);
+            this.CheckBoxEditAuthors.Location = new System.Drawing.Point(533, 229);
             this.CheckBoxEditAuthors.Name = "CheckBoxEditAuthors";
             this.CheckBoxEditAuthors.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEditAuthors.TabIndex = 39;
@@ -82,7 +83,7 @@
             // LabelEmployeesAuthor
             // 
             this.LabelEmployeesAuthor.AutoSize = true;
-            this.LabelEmployeesAuthor.Location = new System.Drawing.Point(316, 212);
+            this.LabelEmployeesAuthor.Location = new System.Drawing.Point(318, 230);
             this.LabelEmployeesAuthor.Name = "LabelEmployeesAuthor";
             this.LabelEmployeesAuthor.Size = new System.Drawing.Size(143, 15);
             this.LabelEmployeesAuthor.TabIndex = 38;
@@ -91,7 +92,7 @@
             // LabelAuthors
             // 
             this.LabelAuthors.AutoSize = true;
-            this.LabelAuthors.Location = new System.Drawing.Point(10, 212);
+            this.LabelAuthors.Location = new System.Drawing.Point(12, 230);
             this.LabelAuthors.Name = "LabelAuthors";
             this.LabelAuthors.Size = new System.Drawing.Size(161, 15);
             this.LabelAuthors.TabIndex = 37;
@@ -100,7 +101,7 @@
             // LabelProjectNames
             // 
             this.LabelProjectNames.AutoSize = true;
-            this.LabelProjectNames.Location = new System.Drawing.Point(10, 6);
+            this.LabelProjectNames.Location = new System.Drawing.Point(12, 24);
             this.LabelProjectNames.Name = "LabelProjectNames";
             this.LabelProjectNames.Size = new System.Drawing.Size(115, 15);
             this.LabelProjectNames.TabIndex = 26;
@@ -109,7 +110,7 @@
             // ComboBoxProjectNames
             // 
             this.ComboBoxProjectNames.FormattingEnabled = true;
-            this.ComboBoxProjectNames.Location = new System.Drawing.Point(10, 24);
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 42);
             this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
             this.ComboBoxProjectNames.Size = new System.Drawing.Size(606, 23);
             this.ComboBoxProjectNames.TabIndex = 25;
@@ -118,7 +119,7 @@
             // LabelChapterNames
             // 
             this.LabelChapterNames.AutoSize = true;
-            this.LabelChapterNames.Location = new System.Drawing.Point(10, 52);
+            this.LabelChapterNames.Location = new System.Drawing.Point(12, 70);
             this.LabelChapterNames.Name = "LabelChapterNames";
             this.LabelChapterNames.Size = new System.Drawing.Size(115, 15);
             this.LabelChapterNames.TabIndex = 43;
@@ -127,7 +128,7 @@
             // ComboBoxChapterNames
             // 
             this.ComboBoxChapterNames.FormattingEnabled = true;
-            this.ComboBoxChapterNames.Location = new System.Drawing.Point(10, 70);
+            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 88);
             this.ComboBoxChapterNames.Name = "ComboBoxChapterNames";
             this.ComboBoxChapterNames.Size = new System.Drawing.Size(606, 23);
             this.ComboBoxChapterNames.TabIndex = 42;
@@ -135,7 +136,7 @@
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(10, 436);
+            this.ButtonBack.Location = new System.Drawing.Point(12, 454);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(75, 23);
             this.ButtonBack.TabIndex = 44;
@@ -145,7 +146,7 @@
             // 
             // ButtonEdit
             // 
-            this.ButtonEdit.Location = new System.Drawing.Point(541, 436);
+            this.ButtonEdit.Location = new System.Drawing.Point(543, 454);
             this.ButtonEdit.Name = "ButtonEdit";
             this.ButtonEdit.Size = new System.Drawing.Size(75, 23);
             this.ButtonEdit.TabIndex = 45;
@@ -156,7 +157,7 @@
             // TextBoxEditName
             // 
             this.TextBoxEditName.Enabled = false;
-            this.TextBoxEditName.Location = new System.Drawing.Point(10, 116);
+            this.TextBoxEditName.Location = new System.Drawing.Point(12, 134);
             this.TextBoxEditName.Multiline = true;
             this.TextBoxEditName.Name = "TextBoxEditName";
             this.TextBoxEditName.Size = new System.Drawing.Size(493, 87);
@@ -165,7 +166,7 @@
             // LabelEditName
             // 
             this.LabelEditName.AutoSize = true;
-            this.LabelEditName.Location = new System.Drawing.Point(10, 98);
+            this.LabelEditName.Location = new System.Drawing.Point(12, 116);
             this.LabelEditName.Name = "LabelEditName";
             this.LabelEditName.Size = new System.Drawing.Size(207, 15);
             this.LabelEditName.TabIndex = 47;
@@ -174,7 +175,7 @@
             // CheckBoxEditNameChapter
             // 
             this.CheckBoxEditNameChapter.AutoSize = true;
-            this.CheckBoxEditNameChapter.Location = new System.Drawing.Point(418, 94);
+            this.CheckBoxEditNameChapter.Location = new System.Drawing.Point(420, 112);
             this.CheckBoxEditNameChapter.Name = "CheckBoxEditNameChapter";
             this.CheckBoxEditNameChapter.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEditNameChapter.TabIndex = 48;
@@ -185,7 +186,7 @@
             // ButtonEditPath
             // 
             this.ButtonEditPath.Enabled = false;
-            this.ButtonEditPath.Location = new System.Drawing.Point(509, 116);
+            this.ButtonEditPath.Location = new System.Drawing.Point(511, 134);
             this.ButtonEditPath.Name = "ButtonEditPath";
             this.ButtonEditPath.Size = new System.Drawing.Size(107, 87);
             this.ButtonEditPath.TabIndex = 49;
@@ -196,7 +197,7 @@
             // CheckBoxEditPath
             // 
             this.CheckBoxEditPath.AutoSize = true;
-            this.CheckBoxEditPath.Location = new System.Drawing.Point(531, 94);
+            this.CheckBoxEditPath.Location = new System.Drawing.Point(533, 112);
             this.CheckBoxEditPath.Name = "CheckBoxEditPath";
             this.CheckBoxEditPath.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEditPath.TabIndex = 50;
@@ -208,11 +209,20 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(623, 24);
+            this.MenuStrip.TabIndex = 51;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
             // EditChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 468);
+            this.ClientSize = new System.Drawing.Size(623, 483);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.CheckBoxEditPath);
             this.Controls.Add(this.ButtonEditPath);
             this.Controls.Add(this.CheckBoxEditNameChapter);
@@ -257,5 +267,6 @@
         private System.Windows.Forms.Button ButtonEditPath;
         private System.Windows.Forms.CheckBox CheckBoxEditPath;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.MenuStrip MenuStrip;
     }
 }

@@ -91,11 +91,6 @@ namespace IUL
         {
             get { return _nameFileChapter; }
             set { _nameFileChapter = value; }
-        }
-        public Int32 NumberChapter 
-        {
-            get { return _numberChapter; }
-            set { _numberChapter = value; }
         }       
         public Chapter()
         {

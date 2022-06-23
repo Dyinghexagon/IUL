@@ -44,13 +44,14 @@ namespace IUL
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.ButtonCrossCreateProject = new System.Windows.Forms.Button();
             this.ButtonBack = new System.Windows.Forms.Button();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.GroupBoxChoosTypeProject.SuspendLayout();
             this.SuspendLayout();
             // 
             // LabelResearchs
             // 
             this.LabelResearchs.AutoSize = true;
-            this.LabelResearchs.Location = new System.Drawing.Point(12, 4);
+            this.LabelResearchs.Location = new System.Drawing.Point(3, 19);
             this.LabelResearchs.Name = "LabelResearchs";
             this.LabelResearchs.Size = new System.Drawing.Size(68, 15);
             this.LabelResearchs.TabIndex = 5;
@@ -66,7 +67,7 @@ namespace IUL
             "Инженерно-гидрометеорологические изыскания",
             "Инженерно-геотехнические изыскания",
             "Техническое обсследование здания"});
-            this.CheckedListBoxResearchs.Location = new System.Drawing.Point(12, 22);
+            this.CheckedListBoxResearchs.Location = new System.Drawing.Point(3, 37);
             this.CheckedListBoxResearchs.Name = "CheckedListBoxResearchs";
             this.CheckedListBoxResearchs.Size = new System.Drawing.Size(302, 112);
             this.CheckedListBoxResearchs.TabIndex = 6;
@@ -74,7 +75,7 @@ namespace IUL
             // LabelChapters
             // 
             this.LabelChapters.AutoSize = true;
-            this.LabelChapters.Location = new System.Drawing.Point(12, 135);
+            this.LabelChapters.Location = new System.Drawing.Point(3, 150);
             this.LabelChapters.Name = "LabelChapters";
             this.LabelChapters.Size = new System.Drawing.Size(197, 15);
             this.LabelChapters.TabIndex = 15;
@@ -83,7 +84,7 @@ namespace IUL
             // CheckedListBoxChapters
             // 
             this.CheckedListBoxChapters.FormattingEnabled = true;
-            this.CheckedListBoxChapters.Location = new System.Drawing.Point(12, 153);
+            this.CheckedListBoxChapters.Location = new System.Drawing.Point(3, 168);
             this.CheckedListBoxChapters.Name = "CheckedListBoxChapters";
             this.CheckedListBoxChapters.Size = new System.Drawing.Size(640, 22);
             this.CheckedListBoxChapters.TabIndex = 16;
@@ -92,7 +93,7 @@ namespace IUL
             // 
             this.GroupBoxChoosTypeProject.Controls.Add(this.RadioButtonCapital);
             this.GroupBoxChoosTypeProject.Controls.Add(this.RadioButtonLinear);
-            this.GroupBoxChoosTypeProject.Location = new System.Drawing.Point(320, 12);
+            this.GroupBoxChoosTypeProject.Location = new System.Drawing.Point(311, 27);
             this.GroupBoxChoosTypeProject.Name = "GroupBoxChoosTypeProject";
             this.GroupBoxChoosTypeProject.Size = new System.Drawing.Size(233, 76);
             this.GroupBoxChoosTypeProject.TabIndex = 17;
@@ -124,7 +125,7 @@ namespace IUL
             // LabelNameMianFolder
             // 
             this.LabelNameMianFolder.AutoSize = true;
-            this.LabelNameMianFolder.Location = new System.Drawing.Point(320, 91);
+            this.LabelNameMianFolder.Location = new System.Drawing.Point(311, 106);
             this.LabelNameMianFolder.Name = "LabelNameMianFolder";
             this.LabelNameMianFolder.Size = new System.Drawing.Size(126, 15);
             this.LabelNameMianFolder.TabIndex = 17;
@@ -132,7 +133,7 @@ namespace IUL
             // 
             // TextBoxNameMainFolder
             // 
-            this.TextBoxNameMainFolder.Location = new System.Drawing.Point(320, 112);
+            this.TextBoxNameMainFolder.Location = new System.Drawing.Point(311, 127);
             this.TextBoxNameMainFolder.Multiline = true;
             this.TextBoxNameMainFolder.Name = "TextBoxNameMainFolder";
             this.TextBoxNameMainFolder.Size = new System.Drawing.Size(232, 22);
@@ -140,7 +141,7 @@ namespace IUL
             // 
             // ButtonCreateFolder
             // 
-            this.ButtonCreateFolder.Location = new System.Drawing.Point(559, 12);
+            this.ButtonCreateFolder.Location = new System.Drawing.Point(550, 27);
             this.ButtonCreateFolder.Name = "ButtonCreateFolder";
             this.ButtonCreateFolder.Size = new System.Drawing.Size(94, 41);
             this.ButtonCreateFolder.TabIndex = 18;
@@ -150,7 +151,7 @@ namespace IUL
             // 
             // ButtonSelectAllReseach
             // 
-            this.ButtonSelectAllReseach.Location = new System.Drawing.Point(558, 106);
+            this.ButtonSelectAllReseach.Location = new System.Drawing.Point(549, 121);
             this.ButtonSelectAllReseach.Name = "ButtonSelectAllReseach";
             this.ButtonSelectAllReseach.Size = new System.Drawing.Size(94, 41);
             this.ButtonSelectAllReseach.TabIndex = 20;
@@ -160,7 +161,7 @@ namespace IUL
             // 
             // ButtonSelectAllChapters
             // 
-            this.ButtonSelectAllChapters.Location = new System.Drawing.Point(558, 59);
+            this.ButtonSelectAllChapters.Location = new System.Drawing.Point(549, 74);
             this.ButtonSelectAllChapters.Name = "ButtonSelectAllChapters";
             this.ButtonSelectAllChapters.Size = new System.Drawing.Size(94, 41);
             this.ButtonSelectAllChapters.TabIndex = 19;
@@ -170,7 +171,7 @@ namespace IUL
             // 
             // ButtonCrossCreateProject
             // 
-            this.ButtonCrossCreateProject.Location = new System.Drawing.Point(558, 181);
+            this.ButtonCrossCreateProject.Location = new System.Drawing.Point(549, 196);
             this.ButtonCrossCreateProject.Name = "ButtonCrossCreateProject";
             this.ButtonCrossCreateProject.Size = new System.Drawing.Size(94, 62);
             this.ButtonCrossCreateProject.TabIndex = 21;
@@ -180,7 +181,7 @@ namespace IUL
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(558, 245);
+            this.ButtonBack.Location = new System.Drawing.Point(549, 260);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(94, 41);
             this.ButtonBack.TabIndex = 22;
@@ -188,11 +189,20 @@ namespace IUL
             this.ButtonBack.UseVisualStyleBackColor = true;
             this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(656, 24);
+            this.MenuStrip.TabIndex = 33;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
             // CreateFolderProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 450);
+            this.ClientSize = new System.Drawing.Size(656, 468);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonCrossCreateProject);
             this.Controls.Add(this.ButtonSelectAllReseach);
@@ -280,6 +290,7 @@ namespace IUL
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button ButtonCrossCreateProject;
         private System.Windows.Forms.Button ButtonBack;
+        private System.Windows.Forms.MenuStrip MenuStrip;
     }
 
 }

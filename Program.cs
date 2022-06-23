@@ -148,7 +148,7 @@ namespace IUL
             ToolStripMenuItem projectItem = new ToolStripMenuItem("Проект");
             ToolStripMenuItem projectItemCreateFolder = new ToolStripMenuItem("Создать папку проекта");
             projectItemCreateFolder.Click += CreateProjectFolder_Click;
-            ToolStripMenuItem projectItemCreate = new ToolStripMenuItem("Создать папку проекта");
+            ToolStripMenuItem projectItemCreate = new ToolStripMenuItem("Создать проект");
             projectItemCreate.Click += CreateProject_Click;
             ToolStripMenuItem projectItemEdit = new ToolStripMenuItem("Изменить проект");
             projectItemEdit.Click += EditProject_Click;

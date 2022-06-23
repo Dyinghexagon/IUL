@@ -55,12 +55,13 @@
             this.CheckBoxChangeProjectName = new System.Windows.Forms.CheckBox();
             this.TextBoxProjectName = new System.Windows.Forms.TextBox();
             this.LabelProjectName = new System.Windows.Forms.Label();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.SuspendLayout();
             // 
             // ComboBoxProjectNames
             // 
             this.ComboBoxProjectNames.FormattingEnabled = true;
-            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 26);
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 42);
             this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
             this.ComboBoxProjectNames.Size = new System.Drawing.Size(806, 23);
             this.ComboBoxProjectNames.TabIndex = 0;
@@ -69,7 +70,7 @@
             // LabelProjectNames
             // 
             this.LabelProjectNames.AutoSize = true;
-            this.LabelProjectNames.Location = new System.Drawing.Point(12, 8);
+            this.LabelProjectNames.Location = new System.Drawing.Point(12, 24);
             this.LabelProjectNames.Name = "LabelProjectNames";
             this.LabelProjectNames.Size = new System.Drawing.Size(115, 15);
             this.LabelProjectNames.TabIndex = 1;
@@ -77,7 +78,7 @@
             // 
             // ButtonEdicting
             // 
-            this.ButtonEdicting.Location = new System.Drawing.Point(717, 406);
+            this.ButtonEdicting.Location = new System.Drawing.Point(717, 422);
             this.ButtonEdicting.Name = "ButtonEdicting";
             this.ButtonEdicting.Size = new System.Drawing.Size(101, 23);
             this.ButtonEdicting.TabIndex = 2;
@@ -87,7 +88,7 @@
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(418, 406);
+            this.ButtonBack.Location = new System.Drawing.Point(418, 422);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(75, 23);
             this.ButtonBack.TabIndex = 3;
@@ -98,7 +99,7 @@
             // LabelGIP
             // 
             this.LabelGIP.AutoSize = true;
-            this.LabelGIP.Location = new System.Drawing.Point(12, 248);
+            this.LabelGIP.Location = new System.Drawing.Point(12, 264);
             this.LabelGIP.Name = "LabelGIP";
             this.LabelGIP.Size = new System.Drawing.Size(158, 15);
             this.LabelGIP.TabIndex = 8;
@@ -107,7 +108,7 @@
             // TextBoxGIP
             // 
             this.TextBoxGIP.Enabled = false;
-            this.TextBoxGIP.Location = new System.Drawing.Point(12, 266);
+            this.TextBoxGIP.Location = new System.Drawing.Point(12, 282);
             this.TextBoxGIP.Name = "TextBoxGIP";
             this.TextBoxGIP.Size = new System.Drawing.Size(400, 23);
             this.TextBoxGIP.TabIndex = 9;
@@ -115,7 +116,7 @@
             // TextBoxNkontr
             // 
             this.TextBoxNkontr.Enabled = false;
-            this.TextBoxNkontr.Location = new System.Drawing.Point(11, 361);
+            this.TextBoxNkontr.Location = new System.Drawing.Point(11, 377);
             this.TextBoxNkontr.Name = "TextBoxNkontr";
             this.TextBoxNkontr.Size = new System.Drawing.Size(401, 23);
             this.TextBoxNkontr.TabIndex = 11;
@@ -123,7 +124,7 @@
             // LabelNkontr
             // 
             this.LabelNkontr.AutoSize = true;
-            this.LabelNkontr.Location = new System.Drawing.Point(11, 343);
+            this.LabelNkontr.Location = new System.Drawing.Point(11, 359);
             this.LabelNkontr.Name = "LabelNkontr";
             this.LabelNkontr.Size = new System.Drawing.Size(105, 15);
             this.LabelNkontr.TabIndex = 10;
@@ -132,7 +133,7 @@
             // CheckBoxChangeGIP
             // 
             this.CheckBoxChangeGIP.AutoSize = true;
-            this.CheckBoxChangeGIP.Location = new System.Drawing.Point(327, 247);
+            this.CheckBoxChangeGIP.Location = new System.Drawing.Point(327, 263);
             this.CheckBoxChangeGIP.Name = "CheckBoxChangeGIP";
             this.CheckBoxChangeGIP.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxChangeGIP.TabIndex = 12;
@@ -143,7 +144,7 @@
             // LabelEmployeesGIP
             // 
             this.LabelEmployeesGIP.AutoSize = true;
-            this.LabelEmployeesGIP.Location = new System.Drawing.Point(11, 292);
+            this.LabelEmployeesGIP.Location = new System.Drawing.Point(11, 308);
             this.LabelEmployeesGIP.Name = "LabelEmployeesGIP";
             this.LabelEmployeesGIP.Size = new System.Drawing.Size(143, 15);
             this.LabelEmployeesGIP.TabIndex = 14;
@@ -153,7 +154,7 @@
             // 
             this.ComboBoxeEmployeesGIP.Enabled = false;
             this.ComboBoxeEmployeesGIP.FormattingEnabled = true;
-            this.ComboBoxeEmployeesGIP.Location = new System.Drawing.Point(11, 310);
+            this.ComboBoxeEmployeesGIP.Location = new System.Drawing.Point(11, 326);
             this.ComboBoxeEmployeesGIP.Name = "ComboBoxeEmployeesGIP";
             this.ComboBoxeEmployeesGIP.Size = new System.Drawing.Size(401, 23);
             this.ComboBoxeEmployeesGIP.TabIndex = 13;
@@ -161,7 +162,7 @@
             // LabelEmployeesNkontr
             // 
             this.LabelEmployeesNkontr.AutoSize = true;
-            this.LabelEmployeesNkontr.Location = new System.Drawing.Point(11, 387);
+            this.LabelEmployeesNkontr.Location = new System.Drawing.Point(11, 403);
             this.LabelEmployeesNkontr.Name = "LabelEmployeesNkontr";
             this.LabelEmployeesNkontr.Size = new System.Drawing.Size(143, 15);
             this.LabelEmployeesNkontr.TabIndex = 16;
@@ -171,7 +172,7 @@
             // 
             this.ComboBoxeEmployeesNkontr.Enabled = false;
             this.ComboBoxeEmployeesNkontr.FormattingEnabled = true;
-            this.ComboBoxeEmployeesNkontr.Location = new System.Drawing.Point(12, 406);
+            this.ComboBoxeEmployeesNkontr.Location = new System.Drawing.Point(12, 422);
             this.ComboBoxeEmployeesNkontr.Name = "ComboBoxeEmployeesNkontr";
             this.ComboBoxeEmployeesNkontr.Size = new System.Drawing.Size(400, 23);
             this.ComboBoxeEmployeesNkontr.TabIndex = 15;
@@ -179,7 +180,7 @@
             // CheckBoxChangeNkontr
             // 
             this.CheckBoxChangeNkontr.AutoSize = true;
-            this.CheckBoxChangeNkontr.Location = new System.Drawing.Point(326, 339);
+            this.CheckBoxChangeNkontr.Location = new System.Drawing.Point(326, 355);
             this.CheckBoxChangeNkontr.Name = "CheckBoxChangeNkontr";
             this.CheckBoxChangeNkontr.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxChangeNkontr.TabIndex = 17;
@@ -190,7 +191,7 @@
             // TextBoxCustomer
             // 
             this.TextBoxCustomer.Enabled = false;
-            this.TextBoxCustomer.Location = new System.Drawing.Point(11, 73);
+            this.TextBoxCustomer.Location = new System.Drawing.Point(11, 89);
             this.TextBoxCustomer.Multiline = true;
             this.TextBoxCustomer.Name = "TextBoxCustomer";
             this.TextBoxCustomer.Size = new System.Drawing.Size(400, 75);
@@ -199,7 +200,7 @@
             // LabelCustomer
             // 
             this.LabelCustomer.AutoSize = true;
-            this.LabelCustomer.Location = new System.Drawing.Point(11, 51);
+            this.LabelCustomer.Location = new System.Drawing.Point(11, 67);
             this.LabelCustomer.Name = "LabelCustomer";
             this.LabelCustomer.Size = new System.Drawing.Size(147, 15);
             this.LabelCustomer.TabIndex = 18;
@@ -208,7 +209,7 @@
             // CheckBoxChangeCustomer
             // 
             this.CheckBoxChangeCustomer.AutoSize = true;
-            this.CheckBoxChangeCustomer.Location = new System.Drawing.Point(326, 51);
+            this.CheckBoxChangeCustomer.Location = new System.Drawing.Point(326, 67);
             this.CheckBoxChangeCustomer.Name = "CheckBoxChangeCustomer";
             this.CheckBoxChangeCustomer.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxChangeCustomer.TabIndex = 20;
@@ -219,7 +220,7 @@
             // TextBoxNewCustomer
             // 
             this.TextBoxNewCustomer.Enabled = false;
-            this.TextBoxNewCustomer.Location = new System.Drawing.Point(12, 166);
+            this.TextBoxNewCustomer.Location = new System.Drawing.Point(12, 182);
             this.TextBoxNewCustomer.Multiline = true;
             this.TextBoxNewCustomer.Name = "TextBoxNewCustomer";
             this.TextBoxNewCustomer.Size = new System.Drawing.Size(400, 75);
@@ -228,7 +229,7 @@
             // LabelNewCustomer
             // 
             this.LabelNewCustomer.AutoSize = true;
-            this.LabelNewCustomer.Location = new System.Drawing.Point(12, 151);
+            this.LabelNewCustomer.Location = new System.Drawing.Point(12, 167);
             this.LabelNewCustomer.Name = "LabelNewCustomer";
             this.LabelNewCustomer.Size = new System.Drawing.Size(183, 15);
             this.LabelNewCustomer.TabIndex = 21;
@@ -246,7 +247,7 @@
             "Инженерно-геотехнические изыскания",
             "Археологические изыскания",
             "Техническое обсследование здания"});
-            this.CheckedListBoxResearchs.Location = new System.Drawing.Point(418, 266);
+            this.CheckedListBoxResearchs.Location = new System.Drawing.Point(418, 282);
             this.CheckedListBoxResearchs.Name = "CheckedListBoxResearchs";
             this.CheckedListBoxResearchs.Size = new System.Drawing.Size(400, 130);
             this.CheckedListBoxResearchs.TabIndex = 24;
@@ -254,7 +255,7 @@
             // LabelResearch
             // 
             this.LabelResearch.AutoSize = true;
-            this.LabelResearch.Location = new System.Drawing.Point(418, 248);
+            this.LabelResearch.Location = new System.Drawing.Point(418, 264);
             this.LabelResearch.Name = "LabelResearch";
             this.LabelResearch.Size = new System.Drawing.Size(68, 15);
             this.LabelResearch.TabIndex = 23;
@@ -263,7 +264,7 @@
             // СheckBoxChangeResearchs
             // 
             this.СheckBoxChangeResearchs.AutoSize = true;
-            this.СheckBoxChangeResearchs.Location = new System.Drawing.Point(730, 247);
+            this.СheckBoxChangeResearchs.Location = new System.Drawing.Point(730, 263);
             this.СheckBoxChangeResearchs.Name = "СheckBoxChangeResearchs";
             this.СheckBoxChangeResearchs.Size = new System.Drawing.Size(85, 19);
             this.СheckBoxChangeResearchs.TabIndex = 25;
@@ -274,7 +275,7 @@
             // TextBoxNewProjectName
             // 
             this.TextBoxNewProjectName.Enabled = false;
-            this.TextBoxNewProjectName.Location = new System.Drawing.Point(418, 166);
+            this.TextBoxNewProjectName.Location = new System.Drawing.Point(418, 182);
             this.TextBoxNewProjectName.Multiline = true;
             this.TextBoxNewProjectName.Name = "TextBoxNewProjectName";
             this.TextBoxNewProjectName.Size = new System.Drawing.Size(400, 75);
@@ -283,7 +284,7 @@
             // LabelNewProjectName
             // 
             this.LabelNewProjectName.AutoSize = true;
-            this.LabelNewProjectName.Location = new System.Drawing.Point(418, 148);
+            this.LabelNewProjectName.Location = new System.Drawing.Point(418, 164);
             this.LabelNewProjectName.Name = "LabelNewProjectName";
             this.LabelNewProjectName.Size = new System.Drawing.Size(183, 15);
             this.LabelNewProjectName.TabIndex = 35;
@@ -292,7 +293,7 @@
             // CheckBoxChangeProjectName
             // 
             this.CheckBoxChangeProjectName.AutoSize = true;
-            this.CheckBoxChangeProjectName.Location = new System.Drawing.Point(730, 51);
+            this.CheckBoxChangeProjectName.Location = new System.Drawing.Point(730, 67);
             this.CheckBoxChangeProjectName.Name = "CheckBoxChangeProjectName";
             this.CheckBoxChangeProjectName.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxChangeProjectName.TabIndex = 34;
@@ -303,7 +304,7 @@
             // TextBoxProjectName
             // 
             this.TextBoxProjectName.Enabled = false;
-            this.TextBoxProjectName.Location = new System.Drawing.Point(418, 73);
+            this.TextBoxProjectName.Location = new System.Drawing.Point(418, 89);
             this.TextBoxProjectName.Multiline = true;
             this.TextBoxProjectName.Name = "TextBoxProjectName";
             this.TextBoxProjectName.Size = new System.Drawing.Size(400, 75);
@@ -312,17 +313,26 @@
             // LabelProjectName
             // 
             this.LabelProjectName.AutoSize = true;
-            this.LabelProjectName.Location = new System.Drawing.Point(418, 55);
+            this.LabelProjectName.Location = new System.Drawing.Point(418, 71);
             this.LabelProjectName.Name = "LabelProjectName";
             this.LabelProjectName.Size = new System.Drawing.Size(137, 15);
             this.LabelProjectName.TabIndex = 32;
             this.LabelProjectName.Text = "Наименование проекта";
             // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(827, 24);
+            this.MenuStrip.TabIndex = 37;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
             // EditProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 431);
+            this.ClientSize = new System.Drawing.Size(827, 453);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.TextBoxNewProjectName);
             this.Controls.Add(this.LabelNewProjectName);
             this.Controls.Add(this.CheckBoxChangeProjectName);
@@ -386,5 +396,6 @@
         private System.Windows.Forms.CheckBox CheckBoxChangeProjectName;
         private System.Windows.Forms.TextBox TextBoxProjectName;
         private System.Windows.Forms.Label LabelProjectName;
+        private System.Windows.Forms.MenuStrip MenuStrip;
     }
 }

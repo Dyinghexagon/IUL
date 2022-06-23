@@ -46,12 +46,13 @@ namespace IUL
             this.ButtonCrossCreatePerformer = new System.Windows.Forms.Button();
             this.ButtonBack = new System.Windows.Forms.Button();
             this.CheckBoxUniqueChapterId = new System.Windows.Forms.CheckBox();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.SuspendLayout();
             // 
             // LabelNameProjects
             // 
             this.LabelNameProjects.AutoSize = true;
-            this.LabelNameProjects.Location = new System.Drawing.Point(12, 8);
+            this.LabelNameProjects.Location = new System.Drawing.Point(12, 29);
             this.LabelNameProjects.Name = "LabelNameProjects";
             this.LabelNameProjects.Size = new System.Drawing.Size(102, 15);
             this.LabelNameProjects.TabIndex = 1;
@@ -60,7 +61,7 @@ namespace IUL
             // ComboBoxProjectNames
             // 
             this.ComboBoxProjectNames.FormattingEnabled = true;
-            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 27);
+            this.ComboBoxProjectNames.Location = new System.Drawing.Point(12, 51);
             this.ComboBoxProjectNames.Name = "ComboBoxProjectNames";
             this.ComboBoxProjectNames.Size = new System.Drawing.Size(699, 23);
             this.ComboBoxProjectNames.TabIndex = 2;
@@ -68,7 +69,7 @@ namespace IUL
             // 
             // ButtonAddNewChapter
             // 
-            this.ButtonAddNewChapter.Location = new System.Drawing.Point(15, 174);
+            this.ButtonAddNewChapter.Location = new System.Drawing.Point(15, 198);
             this.ButtonAddNewChapter.Name = "ButtonAddNewChapter";
             this.ButtonAddNewChapter.Size = new System.Drawing.Size(111, 50);
             this.ButtonAddNewChapter.TabIndex = 3;
@@ -79,7 +80,7 @@ namespace IUL
             // LabelProjectId
             // 
             this.LabelProjectId.AutoSize = true;
-            this.LabelProjectId.Location = new System.Drawing.Point(717, 27);
+            this.LabelProjectId.Location = new System.Drawing.Point(717, 51);
             this.LabelProjectId.Name = "LabelProjectId";
             this.LabelProjectId.Size = new System.Drawing.Size(159, 15);
             this.LabelProjectId.TabIndex = 5;
@@ -88,7 +89,7 @@ namespace IUL
             // ComboBoxChapterNames
             // 
             this.ComboBoxChapterNames.FormattingEnabled = true;
-            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 72);
+            this.ComboBoxChapterNames.Location = new System.Drawing.Point(12, 96);
             this.ComboBoxChapterNames.Name = "ComboBoxChapterNames";
             this.ComboBoxChapterNames.Size = new System.Drawing.Size(699, 23);
             this.ComboBoxChapterNames.TabIndex = 7;
@@ -96,7 +97,7 @@ namespace IUL
             // LabelNameChapters
             // 
             this.LabelNameChapters.AutoSize = true;
-            this.LabelNameChapters.Location = new System.Drawing.Point(12, 54);
+            this.LabelNameChapters.Location = new System.Drawing.Point(12, 78);
             this.LabelNameChapters.Name = "LabelNameChapters";
             this.LabelNameChapters.Size = new System.Drawing.Size(114, 15);
             this.LabelNameChapters.TabIndex = 8;
@@ -105,7 +106,7 @@ namespace IUL
             // LabelProjectIdValue
             // 
             this.LabelProjectIdValue.AutoSize = true;
-            this.LabelProjectIdValue.Location = new System.Drawing.Point(882, 27);
+            this.LabelProjectIdValue.Location = new System.Drawing.Point(882, 51);
             this.LabelProjectIdValue.Name = "LabelProjectIdValue";
             this.LabelProjectIdValue.Size = new System.Drawing.Size(159, 15);
             this.LabelProjectIdValue.TabIndex = 9;
@@ -114,7 +115,7 @@ namespace IUL
             // LabelChapterId
             // 
             this.LabelChapterId.AutoSize = true;
-            this.LabelChapterId.Location = new System.Drawing.Point(717, 54);
+            this.LabelChapterId.Location = new System.Drawing.Point(717, 78);
             this.LabelChapterId.Name = "LabelChapterId";
             this.LabelChapterId.Size = new System.Drawing.Size(158, 15);
             this.LabelChapterId.TabIndex = 6;
@@ -123,7 +124,7 @@ namespace IUL
             // LabelSubChapterId
             // 
             this.LabelSubChapterId.AutoSize = true;
-            this.LabelSubChapterId.Location = new System.Drawing.Point(15, 100);
+            this.LabelSubChapterId.Location = new System.Drawing.Point(15, 124);
             this.LabelSubChapterId.Name = "LabelSubChapterId";
             this.LabelSubChapterId.Size = new System.Drawing.Size(111, 15);
             this.LabelSubChapterId.TabIndex = 23;
@@ -131,7 +132,7 @@ namespace IUL
             // 
             // ButtonSelecFileChapter
             // 
-            this.ButtonSelecFileChapter.Location = new System.Drawing.Point(15, 118);
+            this.ButtonSelecFileChapter.Location = new System.Drawing.Point(15, 142);
             this.ButtonSelecFileChapter.Name = "ButtonSelecFileChapter";
             this.ButtonSelecFileChapter.Size = new System.Drawing.Size(111, 50);
             this.ButtonSelecFileChapter.TabIndex = 24;
@@ -142,7 +143,7 @@ namespace IUL
             // LabelNameSubChapter
             // 
             this.LabelNameSubChapter.AutoSize = true;
-            this.LabelNameSubChapter.Location = new System.Drawing.Point(132, 99);
+            this.LabelNameSubChapter.Location = new System.Drawing.Point(132, 123);
             this.LabelNameSubChapter.Name = "LabelNameSubChapter";
             this.LabelNameSubChapter.Size = new System.Drawing.Size(156, 15);
             this.LabelNameSubChapter.TabIndex = 27;
@@ -150,7 +151,7 @@ namespace IUL
             // 
             // TextBoxNameSubChapter
             // 
-            this.TextBoxNameSubChapter.Location = new System.Drawing.Point(132, 118);
+            this.TextBoxNameSubChapter.Location = new System.Drawing.Point(132, 142);
             this.TextBoxNameSubChapter.Multiline = true;
             this.TextBoxNameSubChapter.Name = "TextBoxNameSubChapter";
             this.TextBoxNameSubChapter.Size = new System.Drawing.Size(901, 199);
@@ -158,7 +159,7 @@ namespace IUL
             // 
             // TextBoxChapterId
             // 
-            this.TextBoxChapterId.Location = new System.Drawing.Point(717, 72);
+            this.TextBoxChapterId.Location = new System.Drawing.Point(717, 96);
             this.TextBoxChapterId.Name = "TextBoxChapterId";
             this.TextBoxChapterId.Size = new System.Drawing.Size(186, 23);
             this.TextBoxChapterId.TabIndex = 28;
@@ -169,7 +170,7 @@ namespace IUL
             // 
             // ButtonCrossCreatePerformer
             // 
-            this.ButtonCrossCreatePerformer.Location = new System.Drawing.Point(15, 230);
+            this.ButtonCrossCreatePerformer.Location = new System.Drawing.Point(15, 254);
             this.ButtonCrossCreatePerformer.Name = "ButtonCrossCreatePerformer";
             this.ButtonCrossCreatePerformer.Size = new System.Drawing.Size(111, 54);
             this.ButtonCrossCreatePerformer.TabIndex = 29;
@@ -179,7 +180,7 @@ namespace IUL
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(15, 290);
+            this.ButtonBack.Location = new System.Drawing.Point(15, 314);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(111, 27);
             this.ButtonBack.TabIndex = 30;
@@ -190,18 +191,27 @@ namespace IUL
             // CheckBoxUniqueChapterId
             // 
             this.CheckBoxUniqueChapterId.AutoSize = true;
-            this.CheckBoxUniqueChapterId.Location = new System.Drawing.Point(909, 72);
+            this.CheckBoxUniqueChapterId.Location = new System.Drawing.Point(909, 96);
             this.CheckBoxUniqueChapterId.Name = "CheckBoxUniqueChapterId";
             this.CheckBoxUniqueChapterId.Size = new System.Drawing.Size(132, 19);
             this.CheckBoxUniqueChapterId.TabIndex = 31;
             this.CheckBoxUniqueChapterId.Text = "Уникальный шифр";
             this.CheckBoxUniqueChapterId.UseVisualStyleBackColor = true;
             // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(1045, 24);
+            this.MenuStrip.TabIndex = 32;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
             // CreateChapter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1045, 326);
+            this.ClientSize = new System.Drawing.Size(1045, 351);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.CheckBoxUniqueChapterId);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonCrossCreatePerformer);
@@ -287,5 +297,6 @@ namespace IUL
         private System.Windows.Forms.Button ButtonCrossCreatePerformer;
         private System.Windows.Forms.Button ButtonBack;
         private System.Windows.Forms.CheckBox CheckBoxUniqueChapterId;
+        private System.Windows.Forms.MenuStrip MenuStrip;
     }
 }

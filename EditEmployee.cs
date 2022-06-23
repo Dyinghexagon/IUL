@@ -15,6 +15,8 @@ namespace IUL
         {
             InitializeComponent();
             Program.InitializeComboBox(ComboBoxEmployees, Tables.EMPLOYEES);
+            Program.GetMainMenu(ref MenuStrip);
+
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)

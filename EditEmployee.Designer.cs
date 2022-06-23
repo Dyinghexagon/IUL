@@ -49,14 +49,14 @@
             this.CheckBoxEditSign = new System.Windows.Forms.CheckBox();
             this.ButtonEditEmployeeSign = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSelectedEmployeeSign)).BeginInit();
             this.SuspendLayout();
             // 
             // ComboBoxEmployees
             // 
             this.ComboBoxEmployees.FormattingEnabled = true;
-            this.ComboBoxEmployees.Location = new System.Drawing.Point(10, 29);
+            this.ComboBoxEmployees.Location = new System.Drawing.Point(10, 44);
             this.ComboBoxEmployees.Name = "ComboBoxEmployees";
             this.ComboBoxEmployees.Size = new System.Drawing.Size(406, 23);
             this.ComboBoxEmployees.TabIndex = 0;
@@ -65,7 +65,7 @@
             // LabelEmployees
             // 
             this.LabelEmployees.AutoSize = true;
-            this.LabelEmployees.Location = new System.Drawing.Point(12, 9);
+            this.LabelEmployees.Location = new System.Drawing.Point(12, 24);
             this.LabelEmployees.Name = "LabelEmployees";
             this.LabelEmployees.Size = new System.Drawing.Size(121, 15);
             this.LabelEmployees.TabIndex = 1;
@@ -73,7 +73,7 @@
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(14, 283);
+            this.ButtonBack.Location = new System.Drawing.Point(14, 298);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(75, 23);
             this.ButtonBack.TabIndex = 2;
@@ -83,7 +83,7 @@
             // 
             // ButtonEdit
             // 
-            this.ButtonEdit.Location = new System.Drawing.Point(318, 283);
+            this.ButtonEdit.Location = new System.Drawing.Point(318, 298);
             this.ButtonEdit.Name = "ButtonEdit";
             this.ButtonEdit.Size = new System.Drawing.Size(98, 23);
             this.ButtonEdit.TabIndex = 3;
@@ -94,7 +94,7 @@
             // TextBoxSelectedEmployeeSurname
             // 
             this.TextBoxSelectedEmployeeSurname.Enabled = false;
-            this.TextBoxSelectedEmployeeSurname.Location = new System.Drawing.Point(10, 74);
+            this.TextBoxSelectedEmployeeSurname.Location = new System.Drawing.Point(10, 89);
             this.TextBoxSelectedEmployeeSurname.Name = "TextBoxSelectedEmployeeSurname";
             this.TextBoxSelectedEmployeeSurname.Size = new System.Drawing.Size(200, 23);
             this.TextBoxSelectedEmployeeSurname.TabIndex = 4;
@@ -102,7 +102,7 @@
             // LabelSelectedEmployeeSurname
             // 
             this.LabelSelectedEmployeeSurname.AutoSize = true;
-            this.LabelSelectedEmployeeSurname.Location = new System.Drawing.Point(10, 56);
+            this.LabelSelectedEmployeeSurname.Location = new System.Drawing.Point(10, 71);
             this.LabelSelectedEmployeeSurname.Name = "LabelSelectedEmployeeSurname";
             this.LabelSelectedEmployeeSurname.Size = new System.Drawing.Size(195, 15);
             this.LabelSelectedEmployeeSurname.TabIndex = 5;
@@ -111,7 +111,7 @@
             // CheckBoxEmployeeSurname
             // 
             this.CheckBoxEmployeeSurname.AutoSize = true;
-            this.CheckBoxEmployeeSurname.Location = new System.Drawing.Point(331, 52);
+            this.CheckBoxEmployeeSurname.Location = new System.Drawing.Point(331, 67);
             this.CheckBoxEmployeeSurname.Name = "CheckBoxEmployeeSurname";
             this.CheckBoxEmployeeSurname.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEmployeeSurname.TabIndex = 6;
@@ -122,7 +122,7 @@
             // TextBoxEditEmployeeSurname
             // 
             this.TextBoxEditEmployeeSurname.Enabled = false;
-            this.TextBoxEditEmployeeSurname.Location = new System.Drawing.Point(216, 74);
+            this.TextBoxEditEmployeeSurname.Location = new System.Drawing.Point(216, 89);
             this.TextBoxEditEmployeeSurname.Name = "TextBoxEditEmployeeSurname";
             this.TextBoxEditEmployeeSurname.Size = new System.Drawing.Size(200, 23);
             this.TextBoxEditEmployeeSurname.TabIndex = 7;
@@ -130,7 +130,7 @@
             // TextBoxEditEmployeeName
             // 
             this.TextBoxEditEmployeeName.Enabled = false;
-            this.TextBoxEditEmployeeName.Location = new System.Drawing.Point(216, 120);
+            this.TextBoxEditEmployeeName.Location = new System.Drawing.Point(216, 135);
             this.TextBoxEditEmployeeName.Name = "TextBoxEditEmployeeName";
             this.TextBoxEditEmployeeName.Size = new System.Drawing.Size(200, 23);
             this.TextBoxEditEmployeeName.TabIndex = 11;
@@ -138,7 +138,7 @@
             // CheckBoxEmployeeName
             // 
             this.CheckBoxEmployeeName.AutoSize = true;
-            this.CheckBoxEmployeeName.Location = new System.Drawing.Point(331, 98);
+            this.CheckBoxEmployeeName.Location = new System.Drawing.Point(331, 113);
             this.CheckBoxEmployeeName.Name = "CheckBoxEmployeeName";
             this.CheckBoxEmployeeName.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEmployeeName.TabIndex = 10;
@@ -149,7 +149,7 @@
             // LabelSelectedEmployeeName
             // 
             this.LabelSelectedEmployeeName.AutoSize = true;
-            this.LabelSelectedEmployeeName.Location = new System.Drawing.Point(12, 102);
+            this.LabelSelectedEmployeeName.Location = new System.Drawing.Point(12, 117);
             this.LabelSelectedEmployeeName.Name = "LabelSelectedEmployeeName";
             this.LabelSelectedEmployeeName.Size = new System.Drawing.Size(168, 15);
             this.LabelSelectedEmployeeName.TabIndex = 9;
@@ -158,7 +158,7 @@
             // TextBoxSelectedEmployeeName
             // 
             this.TextBoxSelectedEmployeeName.Enabled = false;
-            this.TextBoxSelectedEmployeeName.Location = new System.Drawing.Point(12, 120);
+            this.TextBoxSelectedEmployeeName.Location = new System.Drawing.Point(12, 135);
             this.TextBoxSelectedEmployeeName.Name = "TextBoxSelectedEmployeeName";
             this.TextBoxSelectedEmployeeName.Size = new System.Drawing.Size(200, 23);
             this.TextBoxSelectedEmployeeName.TabIndex = 8;
@@ -166,7 +166,7 @@
             // TextBoxEditEmployeePatronymic
             // 
             this.TextBoxEditEmployeePatronymic.Enabled = false;
-            this.TextBoxEditEmployeePatronymic.Location = new System.Drawing.Point(216, 169);
+            this.TextBoxEditEmployeePatronymic.Location = new System.Drawing.Point(216, 184);
             this.TextBoxEditEmployeePatronymic.Name = "TextBoxEditEmployeePatronymic";
             this.TextBoxEditEmployeePatronymic.Size = new System.Drawing.Size(200, 23);
             this.TextBoxEditEmployeePatronymic.TabIndex = 15;
@@ -174,7 +174,7 @@
             // CheckBoxEmployeePatronymic
             // 
             this.CheckBoxEmployeePatronymic.AutoSize = true;
-            this.CheckBoxEmployeePatronymic.Location = new System.Drawing.Point(331, 147);
+            this.CheckBoxEmployeePatronymic.Location = new System.Drawing.Point(331, 162);
             this.CheckBoxEmployeePatronymic.Name = "CheckBoxEmployeePatronymic";
             this.CheckBoxEmployeePatronymic.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEmployeePatronymic.TabIndex = 14;
@@ -185,7 +185,7 @@
             // LabelSelectedEmployeePatronymic
             // 
             this.LabelSelectedEmployeePatronymic.AutoSize = true;
-            this.LabelSelectedEmployeePatronymic.Location = new System.Drawing.Point(14, 151);
+            this.LabelSelectedEmployeePatronymic.Location = new System.Drawing.Point(14, 166);
             this.LabelSelectedEmployeePatronymic.Name = "LabelSelectedEmployeePatronymic";
             this.LabelSelectedEmployeePatronymic.Size = new System.Drawing.Size(195, 15);
             this.LabelSelectedEmployeePatronymic.TabIndex = 13;
@@ -194,14 +194,14 @@
             // TextBoxSelectedEmployeePatronymic
             // 
             this.TextBoxSelectedEmployeePatronymic.Enabled = false;
-            this.TextBoxSelectedEmployeePatronymic.Location = new System.Drawing.Point(14, 169);
+            this.TextBoxSelectedEmployeePatronymic.Location = new System.Drawing.Point(14, 184);
             this.TextBoxSelectedEmployeePatronymic.Name = "TextBoxSelectedEmployeePatronymic";
             this.TextBoxSelectedEmployeePatronymic.Size = new System.Drawing.Size(200, 23);
             this.TextBoxSelectedEmployeePatronymic.TabIndex = 12;
             // 
             // PictureBoxSelectedEmployeeSign
             // 
-            this.PictureBoxSelectedEmployeeSign.Location = new System.Drawing.Point(14, 212);
+            this.PictureBoxSelectedEmployeeSign.Location = new System.Drawing.Point(14, 227);
             this.PictureBoxSelectedEmployeeSign.Name = "PictureBoxSelectedEmployeeSign";
             this.PictureBoxSelectedEmployeeSign.Size = new System.Drawing.Size(294, 65);
             this.PictureBoxSelectedEmployeeSign.TabIndex = 16;
@@ -210,7 +210,7 @@
             // LabelSelectedEmployeeSign
             // 
             this.LabelSelectedEmployeeSign.AutoSize = true;
-            this.LabelSelectedEmployeeSign.Location = new System.Drawing.Point(14, 194);
+            this.LabelSelectedEmployeeSign.Location = new System.Drawing.Point(14, 209);
             this.LabelSelectedEmployeeSign.Name = "LabelSelectedEmployeeSign";
             this.LabelSelectedEmployeeSign.Size = new System.Drawing.Size(192, 15);
             this.LabelSelectedEmployeeSign.TabIndex = 17;
@@ -219,7 +219,7 @@
             // CheckBoxEditSign
             // 
             this.CheckBoxEditSign.AutoSize = true;
-            this.CheckBoxEditSign.Location = new System.Drawing.Point(331, 193);
+            this.CheckBoxEditSign.Location = new System.Drawing.Point(331, 208);
             this.CheckBoxEditSign.Name = "CheckBoxEditSign";
             this.CheckBoxEditSign.Size = new System.Drawing.Size(85, 19);
             this.CheckBoxEditSign.TabIndex = 18;
@@ -230,7 +230,7 @@
             // ButtonEditEmployeeSign
             // 
             this.ButtonEditEmployeeSign.Enabled = false;
-            this.ButtonEditEmployeeSign.Location = new System.Drawing.Point(314, 212);
+            this.ButtonEditEmployeeSign.Location = new System.Drawing.Point(314, 227);
             this.ButtonEditEmployeeSign.Name = "ButtonEditEmployeeSign";
             this.ButtonEditEmployeeSign.Size = new System.Drawing.Size(102, 65);
             this.ButtonEditEmployeeSign.TabIndex = 19;
@@ -242,19 +242,20 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // menuStrip1
+            // MenuStrip
             // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(419, 24);
-            this.menuStrip1.TabIndex = 20;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(419, 24);
+            this.MenuStrip.TabIndex = 33;
+            this.MenuStrip.Text = "menuStrip1";
             // 
             // EditEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 310);
+            this.ClientSize = new System.Drawing.Size(419, 333);
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.ButtonEditEmployeeSign);
             this.Controls.Add(this.CheckBoxEditSign);
             this.Controls.Add(this.LabelSelectedEmployeeSign);
@@ -275,8 +276,6 @@
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.LabelEmployees);
             this.Controls.Add(this.ComboBoxEmployees);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "EditEmployee";
             this.Text = "Изменение данных о сотрудниках";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSelectedEmployeeSign)).EndInit();
@@ -308,6 +307,6 @@
         private System.Windows.Forms.CheckBox CheckBoxEditSign;
         private System.Windows.Forms.Button ButtonEditEmployeeSign;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MenuStrip;
     }
 }

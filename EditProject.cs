@@ -23,6 +23,8 @@ namespace IUL
             Program.InitializeComboBox(ComboBoxProjectNames, Tables.PROJECTS);
             Program.InitializeComboBox(ComboBoxeEmployeesGIP, Tables.EMPLOYEES);
             Program.InitializeComboBox(ComboBoxeEmployeesNkontr, Tables.EMPLOYEES);
+            Program.GetMainMenu(ref MenuStrip);
+
             ComboBoxProjectNames.DrawMode = DrawMode.OwnerDrawVariable;
             ComboBoxProjectNames.DrawItem += Program.ComboBox_DrawItem;
             ComboBoxProjectNames.MeasureItem += Program.ComboBox_MeasureItem;

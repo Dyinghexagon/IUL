@@ -19,6 +19,7 @@ namespace IUL
                 InitializeComponent();
                 Program.InitializeComboBox(ComboBoxChoosingGIP, Tables.EMPLOYEES);
                 Program.InitializeComboBox(ComboBoxChoosingNkontr, Tables.EMPLOYEES);
+                Program.GetMainMenu(ref MenuStrip);
                 _newProject = new Project();
             }
             catch(Exception ex) 

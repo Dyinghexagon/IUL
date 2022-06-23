@@ -120,6 +120,7 @@ namespace IUL
             this.MaximizeBox = false;
             this.Name = "CreateIUL";
             this.Text = "Создание ИУЛов";
+            this.Load += new System.EventHandler(this.CreateIUL_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewChapterNames)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

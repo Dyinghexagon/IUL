@@ -27,6 +27,8 @@ namespace IUL
                 ComboBoxChapterNames.DrawMode = DrawMode.OwnerDrawVariable;
                 ComboBoxChapterNames.DrawItem += Program.ComboBox_DrawItem;
                 ComboBoxChapterNames.MeasureItem += Program.ComboBox_MeasureItem;
+                Program.GetMainMenu(ref MenuStrip);
+
             }
             catch (Exception ex)
             {
@@ -60,9 +62,9 @@ namespace IUL
             try 
             {
                 String nameSelectedChapter = ComboBoxChapterNames.Items[ComboBoxChapterNames.SelectedIndex].ToString();
-                _newChapter.NumberChapter = ComboBoxChapterNames.SelectedIndex++;
-                MessageBox.Show(_newChapter.NumberChapter.ToString());
-                if (_selectedProject.CapitalOrLinear && (_newChapter.NumberChapter >= 4 && _newChapter.NumberChapter <= 10))
+                Int32 selectedIndexComboBox = ComboBoxChapterNames.SelectedIndex;
+                selectedIndexComboBox++;
+                if (_selectedProject.CapitalOrLinear && (selectedIndexComboBox >= 4 && selectedIndexComboBox <= 10))
                 {
                     _newChapter.ChapterName =
                         "Раздел 5. Сведения об инженерном оборудовании, о сетях инженерно-технического обеспечения, " +

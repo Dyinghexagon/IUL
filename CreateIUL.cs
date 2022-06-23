@@ -65,5 +65,10 @@ namespace IUL
         {
             _selectedProject.ChangeSelectedRolloutChapters(DataGridViewChapterNames[1, e.RowIndex].Value.ToString());
         }
+
+        private void CreateIUL_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
